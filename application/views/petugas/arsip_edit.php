@@ -24,7 +24,7 @@
                             <label>Kode Arsip</label>
                             <input type="text" class="form-control" name="kode_arsip" required="required" value="<?php echo $arsip['kode_arsip']; ?>">
                         </div>
-                        <div class="form-group mb2">
+                        <div class="form-group mb-2">
                             <label>Nama Arsip</label>
                             <input type="text" class="form-control" name="nama_arsip" required="required" value="<?php echo $arsip['nama_arsip']; ?>">
                         </div>
@@ -47,9 +47,9 @@
                             <label>File</label>
                             <input type="file" name="file">
                             <small>Kosongkan jika tidak ingin mengubah file</small><br>
-                            <?php if (!empty($arsip['file_arsip'])): ?>
+                            <!-- <?php if (!empty($arsip['file_arsip'])): ?>
                                 <a href="<?= base_url('upload/arsip/' . $arsip['file_arsip']); ?>" target="_blank">Lihat file saat ini</a>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
                         </div>
                         <div class="form-group mb-2">
                             <input type="submit" class="btn" style="background-color: #38E54D;" value="Simpan Perubahan">

@@ -47,10 +47,10 @@
                             <label>File</label>
                             <input type="file" name="file">
                             <small>Kosongkan jika tidak ingin mengubah file</small><br>
-                            <?php if (!empty($arsip['file_arsip'])): ?>
+                            <!-- <?php if (!empty($arsip['file_arsip'])): ?>
                                 <a href="<?= base_url('upload/arsip/' . $arsip['file_arsip']); ?>" target="_blank">Lihat file saat ini</a>
-                            <?php endif; ?>
-                        </div>
+                            <?php endif; ?> -->
+                        </div><br>
                         <div class="form-group mb-2">
                             <input type="submit" class="btn" style="background-color: #38E54D;" value="Simpan Perubahan">
                         </div>

@@ -96,3 +96,9 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
+
+<!-- Bootstrap Bundle JS (wajib untuk dropdown dan lainnya) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<!-- Jika pakai Font Awesome 6 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">

@@ -1,13 +1,18 @@
 <?php
 $riwayat['ekstensi_file_arsip'] = pathinfo($riwayat['file_arsip'], PATHINFO_EXTENSION);
 ?>
-
 <div class="container-fluid" style="margin-top: 20px;">
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                 <h4 style="margin: 0; font-weight: bold; color: #333;">Preview Arsip</h4>
             </div>
+        </div>
+    </div>
+</div><br>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
         </div>
     </div>
 </div><br>
@@ -54,7 +59,7 @@ $riwayat['ekstensi_file_arsip'] = pathinfo($riwayat['file_arsip'], PATHINFO_EXTE
 
                             <img src="<?php echo $qrcode ?>" class="img-fluid">
                             <div class="mb-2">
-                                <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-primary">Unduh QR Code</a>
+                                <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn" style="background-color: #38E54D;">Unduh QR Code</a>
                             </div>
                         </div>
                         <div class="col-lg-8">
