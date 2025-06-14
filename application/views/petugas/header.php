@@ -8,10 +8,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Sistem Arsip</title>
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"> -->
 
-
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.css'); ?>">
@@ -28,10 +27,11 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/metisMenu/metisMenu-vertical.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/calendar/fullcalendar.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/calendar/fullcalendar.print.min.css'); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="<?php echo base_url("assets/css/styles.css") ?>" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -39,7 +39,7 @@
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="index.html">Sistem Arsip Digital</a>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="bi bi-distribute-vertical text-dark"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fa-solid fa-bars fa-lg text-dark"></i></button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
@@ -50,7 +50,11 @@
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle text-dark"></i></a>
+                <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 text-white fw-semibold"
+                id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user-circle fa-lg text-white"></i>
+                    <span><?php echo $this->session->userdata('nama'); ?></span>
+                </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="<?php echo base_url('petugas/profil'); ?>">Profil</a></li>
                     <li><a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>">Logout</a></li>
@@ -97,8 +101,5 @@
             <main>
                 <div class="container-fluid px-4">
 
-<!-- Bootstrap Bundle JS (wajib untuk dropdown dan lainnya) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-<!-- Jika pakai Font Awesome 6 -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+

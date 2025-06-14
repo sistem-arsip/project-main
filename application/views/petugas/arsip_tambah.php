@@ -48,7 +48,7 @@
                         <br>
                         <div class="form-group">
                             <label></label>
-                            <input type="submit" class="btn btn-primary" value="Upload">
+                            <input type="submit" class="btn" style="background-color: #38E54D;" value="Upload">
                         </div>
                     </form>
                 </div>

@@ -31,7 +31,7 @@
                         <br>
                         <div class="form-group">
                             <label></label>
-                            <input type="submit" class="btn btn-primary" value="Simpan">
+                            <input type="submit" class="btn" style="background-color: #38E54D;" value="Simpan">
                         </div>
                     </form>
                 </div>

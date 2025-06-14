@@ -39,7 +39,6 @@ class Riwayat extends CI_Controller {
             'eccLevel' => QRCode::ECC_L,
         ]);
 
-
         $isi = base_url("arsip/cek/".$data['riwayat']['unik_arsip']);
         $data['qrcode'] =  (new QRCode($options))->render($isi);
 

@@ -3,20 +3,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 
-    public function __construct(){
+    function __construct(){
         parent::__construct();
         $this->load->model('Auth_model');
     }
 
     // Halaman login
-    public function login() {
+    function login() {
         $this->load->view('login');
     }
 
-    public function proses_login(){
+    function proses_login(){
+
+        $this->form_validation->set_rules('username', 'Username', 'required', [
+            'required' => 'Username wajib diisi!'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required', [
+            'required' => 'Password wajib diisi!'
+        ]);
+        $this->form_validation->set_rules('akses', 'Role', 'required', [
+            'required' => 'Silakan pilih role terlebih dahulu!'
+        ]);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('login');
+            return;
+        }
+        
         $username = $this->input->post('username', TRUE);
         $password = md5($this->input->post('password', TRUE));
         $akses = $this->input->post('akses', TRUE);
+
 
         if ($akses == "admin") {
             $user = $this->Auth_model->check_admin($username, $password);
@@ -47,7 +64,7 @@ class Auth extends CI_Controller {
         }
     }
 
-    public function logout() {
+    function logout() {
         // Cek status login pengguna
         $status = $this->session->userdata('status');
 

@@ -15,7 +15,7 @@
                 <a href="<?php echo base_url('admin/petugas/tambah'); ?>" class="btn btn-sm" style="background-color: #38E54D;"><i class="fa fa-plus"></i> Tambah Petugas</a>
             </div>
             <br>
-            <table id="table" class="table table-bordered table-striped table-hover table-datatable">
+            <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
                 <thead>
                     <tr>
                         <th width="1%">No</th>

@@ -179,20 +179,27 @@
                         <form action="<?php echo site_url('auth/proses_login'); ?>" method="POST" id="loginForm" autocomplete="off">
                             <div class="form-group">
                                 <i class="fas fa-user"></i>
-                                <input type="text" name="username" placeholder="Username" required class="form-control" autocomplete="off">
+                                <input type="text" name="username" class="form-control" value="<?php echo set_value('username'); ?>" placeholder="Username" required>
+                                <span class="small text-danger"><?php echo form_error('username'); ?></span>
                             </div>
                             <div class="form-group">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" name="password" placeholder="Password" required class="form-control" autocomplete="new-password">
+                                <input type="password" name="password" class="form-control" value="<?php echo set_value('password'); ?>" placeholder="Password" required>
+                                <span class="small text-danger"><?php echo form_error('password'); ?></span>
                             </div>
                             <div class="form-group">
                                 <i class="fas fa-user-shield"></i>
                                 <select class="form-control" name="akses">
-                                    <option value="" selected>Pilih Role</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="petugas">Petugas</option>
+                                    <option value="" <?php echo set_select('akses', '', TRUE); ?>>Pilih Role</option>
+                                    <option value="admin" <?php echo set_select('akses', 'admin'); ?>>Admin</option>
+                                    <option value="petugas" <?php echo set_select('akses', 'petugas'); ?>>Petugas</option>
                                 </select>
                             </div>
+                            <?php if (form_error('akses')): ?>
+                                <div style="color: red; font-size: 14px; margin-top: 5px; margin-bottom: 12px;">
+                                    <i class="fas fa-exclamation-circle"></i> <?php echo strip_tags(form_error('akses')); ?>
+                                </div>
+                            <?php endif; ?>
                             <input type="submit" class="btn btn-primary btn-block loginbtn" value="Login">
                         </form>
                         <div class="text-center mt-3">

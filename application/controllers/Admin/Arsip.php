@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 include 'vendor/autoload.php';
 use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 class Arsip extends CI_Controller {
 
     function __construct() {
@@ -25,8 +26,16 @@ class Arsip extends CI_Controller {
     function detail($id_arsip){
         $data["arsip"] = $this->Arsip_model->detail($id_arsip);
 
+        // Konfigurasi QR Code
+        $options = new QROptions([
+            'outputType' => QRCode::OUTPUT_IMAGE_PNG,
+            'eccLevel' => QRCode::ECC_L,
+        ]);
+
         $isi = base_url("arsip/cek/".$data['arsip']['unik_arsip']);
-        $data['qrcode'] =  '<img src="'.(new QRCode)->render($isi).'" alt="QR Code" />';
+        $data['qrcode'] =  (new QRCode($options))->render($isi);
+
+
         $this->load->view("admin/header");
         $this->load->view("admin/arsip_detail",$data);
         $this->load->view("admin/footer");
