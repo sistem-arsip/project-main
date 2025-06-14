@@ -1,55 +1,37 @@
-<!-- <div class="breadcome-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcome-list">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcome-heading">
-                                <h4 style="margin-bottom: 0px">Tambah Petugas</h4>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <ul class="breadcome-menu" style="padding-top: 0px">
-                                <li><a href="#">Home</a> <span class="bread-slash">/</span></li>
-                                <li><span class="bread-blod">Petugas</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <h4 style="margin: 0; font-weight: bold; color: #333;">Tambah Petugas</h4>
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-10">
             <div class="panel panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Tambah Petugas</h3>
-                </div>
                 <div class="panel-body">
                     <div class="pull-right">
-                        <a href="<?php echo base_url('admin/petugas'); ?>" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                        <a href="<?php echo base_url('admin/petugas'); ?>" class="btn btn-sm" style="background-color: #38E54D;"><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>
-                    <br>
                     <br>
 
                     <form method="post" enctype="multipart/form-data">
-                        <div class="form-group">
+                        <div class="form-group mb-2">
                             <label>Nama</label>
                             <input type="text" class="form-control" name="nama_petugas">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-2">
                             <label>Username</label>
                             <input type="text" class="form-control" name="username_petugas" autocomplete="off">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-2">
                             <label>Password</label>
                             <input type="password" class="form-control" name="password_petugas" autocomplete="new-password">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-2">
                             <label>Unit</label>
                             <select id="pilihan" name="id_unit" class="form-control">
                                 <option value="" selected disabled>Pilih Unit</option>
@@ -58,9 +40,9 @@
                                 <?php endforeach ?>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-2">
                             <label></label>
-                            <input type="submit" class="btn btn-success" value="Simpan">
+                            <input type="submit" class="btn btn-sm" style="background-color: #38E54D;" value="Simpan">
                         </div>
                     </form>
                 </div>

@@ -31,9 +31,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($arsip as $a => $v): ?>
+                    <?php foreach ($arsip as $a => $v): ?>
                         <tr>
-                            <td><?php echo $a+1; ?></td>
+                            <td><?php echo $a + 1; ?></td>
                             <td><?php echo $v['waktu_upload']; ?></td>
                             <td>
 
@@ -49,10 +49,10 @@
                             <td><?php echo $v['keterangan_arsip']; ?></td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    
-                                    <a href="<?php echo base_url('petugas/arsip/detail/'. $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;" ><i class="fa fa-search"></i> Preview</a>
+
+                                    <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;"><i class="fa fa-search"></i> Preview</a>
                                     <?php if ($v['id_petugas'] == $this->session->userdata('id')): ?>
-                                        <a href="<?php echo base_url('petugas/arsip/edit/'.$v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;"><i class="fa fa-wrench"></i></a>
+                                        <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;"><i class="fa fa-wrench"></i></a>
                                         <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                             <i class="fa fa-trash"></i>
                                         </a>

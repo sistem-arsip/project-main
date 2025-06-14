@@ -17,7 +17,7 @@
                         <a href="<?php echo base_url('petugas/arsip'); ?>" class="btn btn-sm" style="background-color: #38E54D;"><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>
                     <br>
-            
+
 
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-group mb-2">

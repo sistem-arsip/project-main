@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                  <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                    <h3 class="box-title">Petugas</h3>
+                    <h5 class="box-title">Petugas</h5>
                     <ul class="list-inline two-part-sp">
                         <li>
                             <!-- <div id="">INI BUAT IKON GRAFIKNYA</div>  -->
@@ -33,7 +33,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                    <h3 class="box-title">Unit</h3>
+                    <h5 class="box-title">Unit</h5>
                     <ul class="list-inline two-part-sp">
                         <li>
                             <!-- <div id="">INI BUAT IKON GRAFIKNYA</div>  -->
@@ -49,7 +49,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                    <h3 class="box-title">Total Arsip</h3>
+                    <h5 class="box-title">Total Arsip</h5>
                     <ul class="list-inline two-part-sp">
                         <li>
                             <!-- <div id="">INI BUAT IKON GRAFIKNYA</div>  -->
@@ -65,7 +65,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                    <h3 class="box-title">Kategori Arsip</h3>
+                    <h5 class="box-title">Kategori Arsip</h5>
                     <ul class="list-inline two-part-sp">
                         <li>
                             <!-- <div id="">INI BUAT IKON GRAFIKNYA</div>  -->

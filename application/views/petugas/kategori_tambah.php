@@ -12,9 +12,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel">
-                
                 <div class="panel-body">
-
                     <div class="pull-right">
                         <a href="<?php echo base_url('petugas/kategori'); ?>" class="btn btn-sm" style="background-color: #38E54D;"><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>

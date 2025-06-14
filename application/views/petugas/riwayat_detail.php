@@ -55,7 +55,6 @@ $riwayat['ekstensi_file_arsip'] = pathinfo($riwayat['file_arsip'], PATHINFO_EXTE
                             <img src="<?php echo $qrcode ?>" class="img-fluid">
                             <div class="mb-2">
                                 <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-primary">Unduh QR Code</a>
-
                             </div>
                         </div>
                         <div class="col-lg-8">

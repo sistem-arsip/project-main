@@ -1,32 +1,15 @@
-<!-- <div class="breadcome-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcome-list">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcome-heading">
-                                <h4 style="margin-bottom: 0px">Data Arsip</h4>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <ul class="breadcome-menu" style="padding-top: 0px">
-                                <li><a href="#">Home</a> <span class="bread-slash">/</span></li>
-                                <li><span class="bread-blod">Arsip</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <h4 style="margin: 0; font-weight: bold; color: #333;">Semua Arsip Unit</h4>
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <br>
 <div class="container-fluid">
     <div class="panel panel">
-        <div class="panel-heading">
-            <h3 class="panel-title">Semua Arsip</h3>
-        </div>
         <div class="panel-body">
             <table id="table" class="table table-bordered table-striped table-hover table-datatable">
                 <thead>
@@ -61,9 +44,8 @@
 
 
                                 <div class="btn-group">
-                                    <!-- <a target="_blank" class="btn btn-default" href=""><i class="fa fa-download"></i></a> -->
-                                    <a href="<?php echo base_url('admin/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>
-                                    <a href="<?php echo base_url('admin/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-primary">
+                                    <a href="<?php echo base_url('admin/arsip/detail/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;"><i class="fa fa-search"></i> Preview</a>
+                                    <a href="<?php echo base_url('admin/arsip/hapus/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>

@@ -1,5 +1,4 @@
-
-    <div class="container-fluid" style="margin-top: 20px;">
+<div class="container-fluid" style="margin-top: 20px;">
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">

@@ -2,49 +2,26 @@
 $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSION);
 ?>
 
-<div class="breadcome-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcome-list">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="breadcome-heading">
-                                <h4 style="margin-bottom: 0px">Preview Arsip</h4>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <ul class="breadcome-menu" style="padding-top: 0px">
-                                <li><a href="#">Home</a> <span class="bread-slash">/</span></li>
-                                <li><span class="bread-blod">Preview Arsip</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <h4 style="margin: 0; font-weight: bold; color: #333;">Priview Arsip</h4>
             </div>
         </div>
     </div>
 </div>
+<br>
 <div class="container-fluid">
-
-
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-10">
             <div class="panel panel">
-
-                <div class="panel-heading">
-                    <h3 class="panel-title">Preview Arsip</h3>
-                </div>
                 <div class="panel-body">
-
-                    <a href="<?php echo base_url('admin/arsip'); ?>" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
-
-                    <br>
-                    <br>
+                    <a href="<?php echo base_url('admin/arsip'); ?>" class="btn btn-sm" style="background-color: #38E54D;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                    <br><br>
 
                     <div class="row">
                         <div class="col-lg-4">
-
                             <table class="table">
                                     <tr>
                                         <th>Kode Arsip</th>
