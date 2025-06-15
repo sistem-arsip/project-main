@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/calendar/fullcalendar.print.min.css'); ?>">
     <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="<?php echo base_url("assets/css/styles.css") ?>" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/styles.css") ?>"  />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
 
 </head>
@@ -41,12 +41,56 @@
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fa-solid fa-bars fa-lg text-dark"></i></button>
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
                 <button class="btn" style="background-color: #38E54D;" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
             </div>
-        </form>
+        </form> -->
+
+        <!-- Navbar Notification page-->
+        <!-- <div class="ms-auto me-3 d-none d-md-inline-block">
+            <a href="" class="btn position-relative">
+                <i class="fas fa-bell fa-lg text-white"></i>
+            </a>
+        </div> -->
+
+        <!-- Dropdown Notifikasi -->
+        <div class="dropdown ms-auto me-3 d-none d-md-inline-block">
+            <a class="btn position-relative" href="#" role="button" id="notifDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-bell fa-lg text-white"></i>
+                <!-- Optional: Badge -->
+                <span style="position: absolute; top: 3px; right: 3px; width: 10px; height: 10px; background-color: #dc3545; border: 2px solid #32cd40; border-radius: 50%;"></span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end p-3 shadow" aria-labelledby="notifDropdown" style="width: 350px; max-height: 400px; overflow-y: auto;">
+                <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+                    <span class="fw-semibold">Notifikasi</span>
+                    <a href="#" class="text-decoration-none small">Tandai Dibaca</a>
+                </div>
+
+                <!-- Notifikasi item -->
+                <li class="dropdown-item mb-2" style="white-space: normal; word-break: break-word; overflow-x: hidden;">
+                    <div class="d-flex gap-2 align-items-start">
+                        <div class="custom-notification-icon">
+                            <i class="fas fa-bell text-white"></i>
+                        </div>
+                        <div>
+                            <div class="small">
+                                Logbook sudah disahkan semuanya oleh DPL pada tanggal //620253
+                            </div>
+                            <div class="text-muted small">04 June 2025 14:08:54</div>
+                        </div>
+                    </div>
+                </li>
+
+
+                <!-- Tambahkan notifikasi lainnya seperti ini -->
+            </ul>
+
+        </div>
+
+
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">

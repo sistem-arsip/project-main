@@ -8,42 +8,52 @@
     </div>
 </div><br>
 
-<div class="product-sales-area mg-tb-30">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
-                <div class="panel">
-                    <div class="panel-body">
-                        <div class="pull-right">
-                            <a href="<?php echo base_url('petugas/dashboard'); ?>" class="btn" style="background-color: #38E54D;"><i class="fa fa-arrow-left"></i> Kembali</a>
-                        </div>
-                        <br>
-                        <br>
-
-                        <form action="<?php echo base_url('petugas/profil/update'); ?>" method="post" enctype="multipart/form-data">
-
-                            <div class="form-group mb-2">
-                                <label>Nama</label>
-                                <input type="hidden" name="id_petugas" value="<?php echo set_value("nama_petugas", $profil['id_petugas']) ?>">
-                                <input type="text" class="form-control" name="nama_petugas" value="<?php echo set_value("nama_petugas", $profil['nama_petugas']) ?>">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label>Username</label>
-                                <input type="text" class="form-control" name="username_petugas" value="<?php echo set_value("username_petugas", $profil['username_petugas']) ?>">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label>Password</label>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama .." name="password_petugas" value="">
-                                <small>Kosongkan jika tidak ingin mengubah password.</small>
-                            </div>
-                            <div class="form-group mb-2">
-                                <input type="submit" class="btn" style="background-color: #38E54D;" value="Simpan">
-                            </div>
-                        </form>
-                    </div>
+            <div class="card">
+                <div class="card-body">
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="<?php echo base_url('petugas/dashboard'); ?>" class="btn bg-custome">
+                    <i class="fa fa-arrow-left"></i> Kembali
+                    </a>
                 </div>
+
+                <form action="<?php echo base_url('petugas/profil/update'); ?>" method="post" enctype="multipart/form-data">
+
+                    <input type="hidden" name="id_petugas" value="<?php echo set_value('nama_petugas', $profil['id_petugas']) ?>">
+
+                    <div class="mb-3">
+                        <label for="nama_petugas" class="form-label">Nama</label>
+                        <input type="text" id="nama_petugas" class="form-control" name="nama_petugas" value="<?php echo set_value('nama_petugas', $profil['nama_petugas']) ?>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="username_petugas" class="form-label">Username</label>
+                        <input type="text" id="username_petugas" class="form-control" name="username_petugas" value="<?php echo set_value('username_petugas', $profil['username_petugas']) ?>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password_petugas" class="form-label">Password</label>
+                        <input type="password" id="password_petugas" class="form-control" placeholder="Masukkan Password .." name="password_petugas" value="">
+                        <div class="form-text">Kosongkan jika tidak ingin mengubah password.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nama_unit" class="form-label">Unit</label>
+                        <input type="text" id="nama_unit" class="form-control" name="nama_unit" value="<?php echo $profil['nama_unit']; ?>" readonly>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn bg-custome">Simpan</button>
+                    </div>
+
+                </form>
+                </div>
+            </div>
             </div>
         </div>
     </div>
-</div>
+
 <br>

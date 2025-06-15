@@ -27,13 +27,14 @@
                             <td><?php echo $var['keterangan_pengajuan']; ?></td>
                             <td class="text-center">
                                 <?php if ($var['status_pengajuan'] == 'pending'): ?>
-                                    <span class="label label-warning">Pending</span>
+                                    <span class="badge bg-warning text-dark">Pending</span>
                                 <?php elseif ($var['status_pengajuan'] == 'accepted'): ?>
-                                    <span class="label label-success">Diterima</span>
+                                    <span class="badge bg-custome">Diterima</span>
                                 <?php elseif ($var['status_pengajuan'] == 'rejected'): ?>
-                                    <span class="label label-danger">Ditolak</span>
+                                    <span class="badge bg-danger">Ditolak</span>
                                 <?php endif; ?>
                             </td>
+
                         </tr>
                     <?php endforeach ?>
                 </tbody>

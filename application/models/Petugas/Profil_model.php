@@ -5,10 +5,10 @@ class Profil_model extends CI_Model {
     function tampil() {
         $id_petugas = $this->session->userdata('id'); // Ambil ID dari session
     
+        $this->db->join('unit', 'petugas.id_unit = unit.id_unit', 'left');
         $this->db->where("id_petugas", $id_petugas);
         $query = $this->db->get("petugas");
-    
-        return $query->row_array(); // Mengembalikan hanya satu baris data
+        return $query->row_array();
     }
     
 
