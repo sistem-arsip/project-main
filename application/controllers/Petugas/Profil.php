@@ -23,7 +23,7 @@ class Profil extends CI_Controller {
     }
 
     function update() {
-        $id_petugas = $this->session->userdata('id'); // Ambil ID petugas yang sedang login
+        $id_petugas = $this->session->userdata('id_petugas'); // Ambil ID petugas yang sedang login
 
         // Ambil data dari form
         $data = [
@@ -35,13 +35,13 @@ class Profil extends CI_Controller {
         // Lakukan update melalui model
         if ($this->Profil_model->ubah($id_petugas, $data)) {
             // Update session dengan data baru
-            $this->session->set_userdata("nama", $data["nama_petugas"]);
-            $this->session->set_userdata("username", $data["username_petugas"]);
+            $this->session->set_userdata("nama_petugas", $data["nama_petugas"]);
+            $this->session->set_userdata("username_petugas", $data["username_petugas"]);
 
             $this->session->set_flashdata('sukses', 'Profil berhasil diubah');
             redirect("petugas/dashboard"); // Kembali ke halaman profil setelah update
         } else {
-            echo "Gagal memperbarui data"; // Bisa diganti dengan notifikasi atau log
+            echo "Gagal memperbarui data"; // 
         }
     }
 }

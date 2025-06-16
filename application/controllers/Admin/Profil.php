@@ -23,20 +23,20 @@ class Profil extends CI_Controller {
     }
 
     function update() {
-        $id_admin = $this->session->userdata('id'); // Ambil ID admin yang sedang login
+        $id_admin = $this->session->userdata('id_admin'); // Ambil ID admin yang sedang login
 
         // Ambil data dari form
         $data = [
-            "admin_nama" => $this->input->post("admin_nama", TRUE),
-            "admin_username" => $this->input->post("admin_username", TRUE),
-            "admin_password" => $this->input->post("admin_password", TRUE)
+            "nama_admin" => $this->input->post("nama_admin", TRUE),
+            "username_admin" => $this->input->post("username_admin", TRUE),
+            "password_admin" => $this->input->post("password_admin", TRUE)
         ];
 
         // Lakukan update melalui model
         if ($this->Profil_model->ubah($id_admin, $data)) {
             // Update session dengan data baru
-            $this->session->set_userdata("nama", $data["admin_nama"]);
-            $this->session->set_userdata("username", $data["admin_username"]);
+            $this->session->set_userdata("nama_admin", $data["nama_admin"]);
+            $this->session->set_userdata("username_admin", $data["username_admin"]);
 
             $this->session->set_flashdata('sukses', 'Profil berhasil diubah');
             redirect("admin/dashboard", 'refresh'); // Kembali ke halaman profil setelah update

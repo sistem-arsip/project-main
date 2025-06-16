@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profil_model extends CI_Model {
     function tampil() {
-        $id_petugas = $this->session->userdata('id'); // Ambil ID dari session
+        $id_petugas = $this->session->userdata('id_petugas'); // Ambil ID dari session
     
         $this->db->join('unit', 'petugas.id_unit = unit.id_unit', 'left');
         $this->db->where("id_petugas", $id_petugas);

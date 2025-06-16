@@ -20,7 +20,7 @@ class Riwayat extends CI_Controller {
     }
 
     function index() {
-        $id_petugas = $this->session->userdata('id'); 
+        $id_petugas = $this->session->userdata('id_petugas'); 
 
         $data['riwayat'] = $this->Riwayat_model->tampil_by_petugas($id_petugas);
         $this->load->view("petugas/header");
@@ -55,8 +55,8 @@ class Riwayat extends CI_Controller {
     
         if (!empty($inputan)) {
             // Tambahkan data tetap
-            $inputan['id_petugas'] = $this->session->userdata('id');
-            $inputan['id_unit'] = $this->Riwayat_model->unit_by_petugas($this->session->userdata('id'));
+            $inputan['id_petugas'] = $this->session->userdata('id_petugas');
+            $inputan['id_unit'] = $this->Riwayat_model->unit_by_petugas($this->session->userdata('id_petugas'));
             $inputan['waktu_upload'] = date('Y-m-d');
     
             // Proses upload file jika ada

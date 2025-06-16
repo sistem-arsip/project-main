@@ -24,18 +24,18 @@
 
                             <div class="form-group mb-2">
                                 <label>Nama</label>
-                                <input type="hidden" name="id_admin" value="<?php echo set_value("admin_nama", $profil['id_admin']) ?>">
-                                <input type="text" class="form-control" name="admin_nama" value="<?php echo set_value("admin_nama", $profil['admin_nama']) ?>">
+                                <input type="hidden" name="id_admin" value="<?php echo set_value("nama_admin", $profil['id_admin']) ?>">
+                                <input type="text" class="form-control" name="nama_admin" value="<?php echo set_value("nama_admin", $profil['nama_admin']) ?>">
                             </div>
 
                             <div class="form-group mb-2">
                                 <label>Username</label>
-                                <input type="text" class="form-control" name="admin_username" value="<?php echo set_value("admin_username", $profil['admin_username']) ?>">
+                                <input type="text" class="form-control" name="username_admin" value="<?php echo set_value("username_admin", $profil['username_admin']) ?>">
                             </div>
 
                             <div class="form-group mb-2">
                                 <label>Password</label>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama .." name="admin_password" value="">
+                                <input type="text" class="form-control" placeholder="Masukkan Nama .." name="password_admin" value="">
                                 <small>Kosongkan jika tidak ingin mengubah password.</small>
                             </div>
 

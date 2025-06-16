@@ -53,7 +53,7 @@
                 <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 text-white fw-semibold"
                 id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user-circle fa-lg text-white"></i>
-                    <span><?php echo $this->session->userdata('nama'); ?></span>
+                    <span><?php echo $this->session->userdata('nama_admin'); ?></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="<?php echo base_url('admin/profil'); ?>">Profil</a></li>

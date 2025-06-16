@@ -21,7 +21,7 @@ class Arsip extends CI_Controller {
 
     function index() {
 
-        $id_petugas = $this->session->userdata('id'); 
+        $id_petugas = $this->session->userdata('id_petugas'); 
         $id_unit = $this->Arsip_model->unit_by_petugas($id_petugas);
         $data["arsip"] = $this->Arsip_model->tampil_by_unit($id_unit);
         $this->load->view("petugas/header");
@@ -52,8 +52,8 @@ class Arsip extends CI_Controller {
         // jika ada inputan (form disubmit)
         if (!empty($inputan)) {
             // Tambahkan data lain ke inputan
-            $inputan['id_petugas'] = $this->session->userdata('id');
-            $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas($this->session->userdata('id'));
+            $inputan['id_petugas'] = $this->session->userdata('id_petugas');
+            $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas($this->session->userdata('id_petugas'));
             $inputan['waktu_upload'] = date('Y-m-d');
     
             // Jalankan fungsi simpan() di model
@@ -84,8 +84,8 @@ class Arsip extends CI_Controller {
     
         if (!empty($inputan)) {
             // Tambahkan data tetap
-            $inputan['id_petugas'] = $this->session->userdata('id');
-            $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas($this->session->userdata('id'));
+            $inputan['id_petugas'] = $this->session->userdata('id_petugas');
+            $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas($this->session->userdata('id_petugas'));
             $inputan['waktu_upload'] = date('Y-m-d');
     
             // Proses upload file jika ada

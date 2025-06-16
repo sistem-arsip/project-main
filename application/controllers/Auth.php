@@ -38,8 +38,8 @@ class Auth extends CI_Controller {
         if ($akses == "admin") {
             $user = $this->Auth_model->check_admin($username, $password);
             $id_session = 'id_admin';
-            $nama_session = 'admin_nama';
-            $username_session = 'admin_username';
+            $nama_session = 'nama_admin';
+            $username_session = 'username_admin';
             $redirect_url = 'admin/dashboard'; // Ubah arah ke admin/dashboard
         } else {
             $user = $this->Auth_model->check_petugas($username, $password);
@@ -51,11 +51,11 @@ class Auth extends CI_Controller {
 
         if ($user) {
             $this->session->set_userdata([
-                'id' => $user->$id_session,
-                'nama' => $user->$nama_session,
-                'username' => $user->$username_session,
-                'status' => $akses . '_login'
-            ]);
+            $id_session => $user->$id_session,
+            $nama_session => $user->$nama_session,
+            $username_session => $user->$username_session,
+            'status' => $akses . '_login'
+        ]);
 
             $this->session->set_flashdata('login_success', 'Login berhasil, selamat datang!');
             redirect($redirect_url);
@@ -66,16 +66,21 @@ class Auth extends CI_Controller {
 
     function logout() {
         // Cek status login pengguna
-        $status = $this->session->userdata('status');
+         $status = $this->session->userdata('status');
 
-        if ($status == "admin_login" || $status == "petugas_login") {
-            $this->session->unset_userdata('id');
-            $this->session->unset_userdata('nama');
-            $this->session->unset_userdata('username');
-            $this->session->unset_userdata('status');
-        }
+    if ($status == "admin_login") {
+        $this->session->unset_userdata('id_admin');
+        $this->session->unset_userdata('nama_admin');
+        $this->session->unset_userdata('username_admin');
+    } elseif ($status == "petugas_login") {
+        $this->session->unset_userdata('id_petugas');
+        $this->session->unset_userdata('nama_petugas');
+        $this->session->unset_userdata('username_petugas');
+    }
 
-        $this->session->set_flashdata('logout_success', 'Anda telah logout.');
-        redirect('auth/login');
+    $this->session->unset_userdata('status');
+    $this->session->set_flashdata('logout_success', 'Anda telah berhasil logout.');
+
+    redirect('auth/login');
     }
 }

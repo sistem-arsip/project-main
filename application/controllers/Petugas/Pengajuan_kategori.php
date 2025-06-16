@@ -14,7 +14,7 @@ class Pengajuan_kategori extends CI_Controller {
         }
     }
     function index(){
-        $id_petugas = $this->session->userdata('id'); 
+        $id_petugas = $this->session->userdata('id_petugas'); 
         $data["pengajuan"] = $this->Pengajuan_kategori_model->tampil_by_petugas($id_petugas);
         $this->load->view("petugas/header");
         $this->load->view("petugas/pengajuan_kategori",$data);

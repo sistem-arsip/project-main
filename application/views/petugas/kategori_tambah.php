@@ -22,11 +22,14 @@
                     <form method="post">
                         <div class="form-group">
                             <label>Nama Kategori</label>
-                            <input type="text" class="form-control" name="nama_kategori" required="required">
-                        </div><br>
+                            <input type="text" class="form-control" name="nama_kategori" value="<?php echo set_value("nama_kategori") ?>">
+                            <?php echo form_error("nama_kategori","<div class='text-danger'>","</div>") ?>
+                        </div>
+                        <br>
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <textarea class="form-control" name="keterangan_kategori" required="required"></textarea>
+                            <textarea class="form-control" name="keterangan_kategori"><?php echo set_value("keterangan_kategori") ?></textarea>
+                            <?php echo form_error("keterangan_kategori","<div class='text-danger'>","</div>") ?>
                         </div>
                         <br>
                         <div class="form-group">

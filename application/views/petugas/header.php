@@ -69,7 +69,17 @@
                     <a href="#" class="text-decoration-none small">Tandai Dibaca</a>
                 </div>
 
+
+                <!-- <pre>
+                <?php 
+                $notifikasi = tampil_notifikasi($this->session->userdata("id_petugas"));
+                print_r($notifikasi);
+                
+                ?>
+                </pre> -->
                 <!-- Notifikasi item -->
+
+                <?php foreach ($notifikasi as $notif) : ?>
                 <li class="dropdown-item mb-2" style="white-space: normal; word-break: break-word; overflow-x: hidden;">
                     <div class="d-flex gap-2 align-items-start">
                         <div class="custom-notification-icon">
@@ -77,12 +87,13 @@
                         </div>
                         <div>
                             <div class="small">
-                                Logbook sudah disahkan semuanya oleh DPL pada tanggal //620253
+                                <?php echo $notif['isi_notifikasi']; ?>
                             </div>
-                            <div class="text-muted small">04 June 2025 14:08:54</div>
+                            <div class="text-muted small"><?php echo $notif['waktu_notifikasi']; ?></div>
                         </div>
                     </div>
                 </li>
+                <?php endforeach ?>
 
 
                 <!-- Tambahkan notifikasi lainnya seperti ini -->
@@ -97,7 +108,7 @@
                 <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 text-white fw-semibold"
                 id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user-circle fa-lg text-white"></i>
-                    <span><?php echo $this->session->userdata('nama'); ?></span>
+                    <span><?php echo $this->session->userdata('nama_petugas'); ?></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="<?php echo base_url('petugas/profil'); ?>">Profil</a></li>

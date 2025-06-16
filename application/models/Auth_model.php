@@ -5,8 +5,8 @@ class Auth_model extends CI_Model {
 
     function check_admin($username, $password) {
         return $this->db->get_where('admin', [
-            'admin_username' => $username,
-            'admin_password' => $password
+            'username_admin' => $username,
+            'password_admin' => $password
         ])->row();
     }
 

@@ -26,8 +26,13 @@ class Kategori extends CI_Controller {
     function tambah(){
     $inputan = $this->input->post();
 
-        if (!empty($inputan)) {
-            $id_petugas = $this->session->userdata('id');
+        $this->form_validation->set_rules("nama_kategori","Nama Kategori","required|is_unique[kategori.nama_kategori]");
+        $this->form_validation->set_rules("keterangan_kategori","Keterangan ","required");
+        $this->form_validation->set_message("required"," %s wajib diisi");
+        $this->form_validation->set_message("is_unique", "%s yang sama sudah ada");
+
+        if ($this->form_validation->run() == TRUE) {
+            $id_petugas = $this->session->userdata('id_petugas');
             $id_unit = $this->Kategori_model->unit_by_petugas($id_petugas); 
 
             $data = [

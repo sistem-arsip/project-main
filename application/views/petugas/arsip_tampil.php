@@ -18,11 +18,12 @@
             <br>
             <br>
 
-            <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
                 <thead>
                     <tr>
                         <th width="1%">No</th>
-                        <th>Waktu Upload</th>
+                        <th class="d-none d-md-block">Waktu Upload</th>
                         <th>Arsip</th>
                         <th>Kategori</th>
                         <th>Petugas</th>
@@ -34,14 +35,17 @@
                     <?php foreach ($arsip as $a => $v): ?>
                         <tr>
                             <td><?php echo $a + 1; ?></td>
-                            <td><?php echo $v['waktu_upload']; ?></td>
+                            <td class="d-none d-md-block"><?php echo $v['waktu_upload']; ?></td>
                             <td>
 
                                 <b>KODE: <?php echo $v['kode_arsip']; ?><br>
                                 <b>Nama: <?php echo $v['nama_arsip']; ?><br>
 
                             </td>
-                            <td><?php echo $v['nama_kategori']; ?></td>
+                            <td>
+                                <?php echo $v['nama_kategori']; ?>
+                                <div class="d-block d-md-none"><?php echo $v['waktu_upload']; ?></div>
+                            </td>
                             <td>
                                 <b>Petugas :</b> <?php echo $v['nama_petugas']; ?> <br>
                                 <b>Bagian :</b> <?php echo $v['nama_unit']; ?> <br>
@@ -51,7 +55,7 @@
                                 <div class="btn-group">
 
                                     <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;"><i class="fa fa-search"></i> Preview</a>
-                                    <?php if ($v['id_petugas'] == $this->session->userdata('id')): ?>
+                                    <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
                                         <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;"><i class="fa fa-wrench"></i></a>
                                         <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                             <i class="fa fa-trash"></i>
@@ -64,6 +68,7 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </div>
