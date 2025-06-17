@@ -44,8 +44,8 @@
                     </div>
 
                     <div class="mb-4">
-                        <button type="submit" class="btn text-white btn-sm" style="background-color: #5F6F52;">
-                            <i class="fa fa-save"></i> Ubah
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-save"></i> Simpan Perubahan
                         </button>
                     </div>
                 </form>
