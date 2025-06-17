@@ -32,13 +32,14 @@
 </div>
 </main>
 <div class="footer-copyright-area mg-t-30">
-    <footer class="py-2 bs-success-text-emphasis mt-auto" style="background-color: #32cd40; color: hex;">
+    <footer class="py-2 bs-success-text-emphasis mt-auto text-light" style="background-color: #5F6F52">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="footer-copy-right text-center">
-                        <p>Copyright © <?php echo date('Y') ?>. Sistem Informasi Arsip Digital. All rights reserved.</p>
+                    <div class="footer-copy-right text-center fw-semibold">
+                        <p class="small">COPYRIGHT © <?php echo date('Y') ?>. ARSIP DIGITAL PONDOK PESANTREN WALI SONGO NGABAR</p>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -1,62 +1,71 @@
-<div class="container-fluid" style="margin-top: 20px;">
+<div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <h4 style="margin: 0; font-weight: bold; color: #333;">Edit Arsip</h4>
+        <div class="col-12">
+            <div class="bg-light p-3 rounded shadow-sm">
+                <h4 class="m-0 fw-bold text-dark">Edit Arsip</h4>
             </div>
         </div>
     </div>
-</div><br>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel">
-                <div class="panel-body">
-                    <div class="pull-right">
-                        <a href="<?php echo base_url('petugas/riwayat'); ?>" class="btn btn-sm" style="background-color: #38E54D;"><i class="fa fa-arrow-left"></i> Kembali</a>
-                    </div>
-                    <br><br>
+</div>
+<br>
 
-                    <form method="post" enctype="multipart/form-data">
-                        <!-- Hidden ID Arsip -->
-                        <input type="hidden" name="id_arsip" value="<?php echo $arsip['id_arsip']; ?>">
-                        <div class="form-group mb-2">
-                            <label>Kode Arsip</label>
-                            <input type="text" class="form-control" name="kode_arsip" required="required" value="<?php echo $arsip['kode_arsip']; ?>">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Nama Arsip</label>
-                            <input type="text" class="form-control" name="nama_arsip" required="required" value="<?php echo $arsip['nama_arsip']; ?>">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Kategori</label>
-                            <select class="form-control" name="id_kategori" required="required">
-                                <option value="">Pilih kategori</option>
-                                <?php foreach ($kategori as $k): ?>
-                                    <option value="<?= $k['id_kategori']; ?>" <?= $k['id_kategori'] == $arsip['id_kategori'] ? 'selected' : ''; ?>>
-                                        <?= $k['nama_kategori']; ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Keterangan</label>
-                            <textarea class="form-control" name="keterangan_arsip" required="required"><?php echo $arsip['keterangan_arsip']; ?></textarea>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>File</label>
-                            <input type="file" name="file">
-                            <small>Kosongkan jika tidak ingin mengubah file</small><br>
-                            <!-- <?php if (!empty($arsip['file_arsip'])): ?>
-                                <a href="<?= base_url('upload/arsip/' . $arsip['file_arsip']); ?>" target="_blank">Lihat file saat ini</a>
-                            <?php endif; ?> -->
-                        </div><br>
-                        <div class="form-group mb-2">
-                            <input type="submit" class="btn" style="background-color: #38E54D;" value="Simpan Perubahan">
-                        </div>
-                    </form>
+<div class="container-fluid">
+    <div class="row justify-content">
+        <div class="col-lg-10">
+            <div class="bg-light rounded shadow-sm p-3">
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="<?php echo base_url('petugas/riwayat'); ?>" class="btn btn-sm btn-outline-dark">
+                        <i class="fa fa-arrow-left"></i> Kembali
+                    </a>
                 </div>
+
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id_arsip" value="<?php echo $arsip['id_arsip']; ?>">
+
+                    <div class="mb-3">
+                        <label class="form-label">Kode Arsip</label>
+                        <input type="text" class="form-control" name="kode_arsip" required value="<?php echo $arsip['kode_arsip']; ?>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nama Arsip</label>
+                        <input type="text" class="form-control" name="nama_arsip" required value="<?php echo $arsip['nama_arsip']; ?>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Kategori</label>
+                        <select class="form-select" name="id_kategori" required>
+                            <option value="">Pilih kategori</option>
+                            <?php foreach ($kategori as $k): ?>
+                                <option value="<?= $k['id_kategori']; ?>" <?= $k['id_kategori'] == $arsip['id_kategori'] ? 'selected' : ''; ?>>
+                                    <?= $k['nama_kategori']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Keterangan</label>
+                        <textarea class="form-control" name="keterangan_arsip" rows="3" required><?php echo $arsip['keterangan_arsip']; ?></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">File</label>
+                        <input type="file" class="form-control" name="file">
+                        <div class="form-text">Kosongkan jika tidak ingin mengubah file.</div>
+                        <?php if (!empty($arsip['file_arsip'])): ?>
+                            <a href="<?= base_url('assets/arsip/' . $arsip['file_arsip']); ?>" target="_blank" class="d-inline-block mt-2">Lihat file saat ini</a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-save"></i> Simpan Perubahan
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div><br>
+</div>
+<br>

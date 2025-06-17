@@ -1,26 +1,25 @@
-<div class="container-fluid" style="margin-top: 20px;">
+<div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <h4 style="margin: 0; font-weight: bold; color: #333;">Profil</h4>
+        <div class="col-12">
+            <div class="bg-light p-3 rounded shadow-sm">
+                <h4 class="m-0 fw-bold text-dark">Profil</h4>
             </div>
         </div>
     </div>
-</div><br>
+</div>
+<br>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-10">
-            <div class="card">
-                <div class="card-body">
+<div class="container-fluid">
+    <div class="row justify-content">
+        <div class="col-lg-10">
+            <div class="bg-light rounded shadow-sm p-3">
                 <div class="d-flex justify-content-end mb-3">
-                    <a href="<?php echo base_url('petugas/dashboard'); ?>" class="btn bg-custome">
-                    <i class="fa fa-arrow-left"></i> Kembali
+                    <a href="<?php echo base_url('petugas/dashboard'); ?>" class="btn btn-sm btn-outline-dark">
+                        <i class="fa fa-arrow-left"></i> Kembali
                     </a>
                 </div>
 
                 <form action="<?php echo base_url('petugas/profil/update'); ?>" method="post" enctype="multipart/form-data">
-
                     <input type="hidden" name="id_petugas" value="<?php echo set_value('nama_petugas', $profil['id_petugas']) ?>">
 
                     <div class="mb-3">
@@ -35,7 +34,7 @@
 
                     <div class="mb-3">
                         <label for="password_petugas" class="form-label">Password</label>
-                        <input type="password" id="password_petugas" class="form-control" placeholder="Masukkan Password .." name="password_petugas" value="">
+                        <input type="password" id="password_petugas" class="form-control" placeholder="Masukkan Password .." name="password_petugas">
                         <div class="form-text">Kosongkan jika tidak ingin mengubah password.</div>
                     </div>
 
@@ -44,16 +43,14 @@
                         <input type="text" id="nama_unit" class="form-control" name="nama_unit" value="<?php echo $profil['nama_unit']; ?>" readonly>
                     </div>
 
-
-                    <div class="mb-3">
-                        <button type="submit" class="btn bg-custome">Simpan</button>
+                    <div class="mb-4">
+                        <button type="submit" class="btn text-white btn-sm" style="background-color: #5F6F52;">
+                            <i class="fa fa-save"></i> Ubah
+                        </button>
                     </div>
-
                 </form>
-                </div>
-            </div>
             </div>
         </div>
     </div>
-
+</div>
 <br>

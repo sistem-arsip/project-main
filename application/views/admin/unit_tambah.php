@@ -1,8 +1,8 @@
-<div class="container-fluid" style="margin-top: 20px;">
+<div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <h4 style="margin: 0; font-weight: bold; color: #333;">Tambah Data Unit</h4>
+        <div class="col-12">
+            <div class="bg-light rounded p-3 shadow-sm">
+                <h4 class="m-0 fw-bold text-dark">Tambah Unit</h4>
             </div>
         </div>
     </div>
@@ -11,28 +11,28 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-10">
-            <div class="panel panel">
-                <div class="panel-body">
-                    <div class="pull-right">
-                        <a href="<?php echo base_url('admin/unit'); ?>" class="btn btn-sm" style="background-color: #38E54D;"><i class="fa fa-arrow-left"></i> Kembali</a>
-                    </div>
-                    <br>
-
-                    <form method="post">
-                        <div class="form-group mb-2">
-                            <label>Nama Unit</label>
-                            <input type="text" class="form-control" name="nama_unit" required="required">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Keterangan</label>
-                            <textarea class="form-control" name="keterangan" required="required"></textarea>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label></label>
-                            <input type="submit" class="btn btn-sm" style="background-color: #38E54D;" value="Simpan">
-                        </div>
-                    </form>
+            <div class="bg-light rounded shadow-sm p-3">
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="<?php echo base_url('admin/unit'); ?>" class="btn btn-sm btn-outline-dark">
+                        <i class="fa fa-arrow-left"></i> Kembali
+                    </a>
                 </div>
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="nama_unit" class="form-label">Nama Unit</label>
+                        <input type="text" id="nama_unit" class="form-control" name="nama_unit" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <textarea id="keterangan" class="form-control" name="keterangan" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-outline-light fa-plus" style="background-color: #5F6F52;"> Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

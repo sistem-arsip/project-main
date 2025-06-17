@@ -2,11 +2,11 @@
 $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSION);
 ?>
 
-<div class="container-fluid" style="margin-top: 20px;">
+<div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <h4 style="margin: 0; font-weight: bold; color: #333;">Preview Arsip</h4>
+        <div class="col-12">
+            <div class="bg-light rounded p-3 shadow-sm">
+                <h4 class="m-0 fw-bold text-dark">Priview Arsip</h4>
             </div>
         </div>
     </div>
@@ -15,68 +15,71 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-10">
-            <div class="panel panel">
-                <div class="panel-body">
-                    <a href="<?php echo base_url('admin/arsip'); ?>" class="btn btn-sm" style="background-color: #38E54D;"><i class="fa fa-arrow-left"></i> Kembali</a>
-                    <br><br>
+            <div class="bg-light rounded shadow-sm p-3">
+                <a href="<?php echo base_url('admin/arsip'); ?>" class="btn btn-sm mb-3 btn-outline-dark">
+                    <i class="fa fa-arrow-left"></i> Kembali
+                </a>
 
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <table class="table">
-                                    <tr>
-                                        <th>Kode Arsip</th>
-                                        <td><?php echo $arsip['kode_arsip']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Waktu Upload</th>
-                                        <td><?php echo date('H:i:s  d-m-Y', strtotime($arsip['waktu_upload'])) ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Nama File</th>
-                                        <td><?php echo $arsip['nama_arsip']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Kategori</th>
-                                        <td><?php echo $arsip['nama_kategori']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Jenis File</th>
-                                        <td><?php echo strtoupper($arsip['ekstensi_file_arsip']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Petugas Pengupload</th>
-                                        <td>Bagian <?php echo $arsip['nama_unit']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Keterangan</th>
-                                        <td><?php echo $arsip['keterangan_arsip']; ?></td>
-                                    </tr>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Kode Arsip</th>
+                                    <td><?php echo $arsip['kode_arsip']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Waktu</th>
+                                    <td><?php echo date('H:i:s  d-m-Y', strtotime($arsip['waktu_upload'])) ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Nama File</th>
+                                    <td><?php echo $arsip['nama_arsip']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Kategori</th>
+                                    <td><?php echo $arsip['nama_kategori']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Jenis File</th>
+                                    <td><?php echo strtoupper($arsip['ekstensi_file_arsip']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Petugas Pengupload</th>
+                                    <td>Bagian <?php echo $arsip['nama_unit']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Keterangan</th>
+                                    <td><?php echo $arsip['keterangan_arsip']; ?></td>
+                                </tr>
                             </table>
-
-                            <img src="<?php echo $qrcode ?>" class="img-fluid">
-                            <div class="mb-4">
-                                <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn" style="background-color: #38E54D;">Unduh QR Code</a>
-                            </div>
-
                         </div>
-                        <div class="col-lg-8">
-                            <?php if ($arsip['ekstensi_file_arsip']=="pdf"): ?>
-                                     <iframe src="<?php echo base_url("assets/arsip/".$arsip['file_arsip']) ?>" width="100%" height="500"></iframe>   
-                                <?php endif ?>
 
-                                <?php if (in_array($arsip['ekstensi_file_arsip'], ['png','jpg','jpeg'])): ?>
-                                     <img src="<?php echo base_url("assets/arsip/".$arsip['file_arsip']) ?>" class="w-100 img-fluid">   
-                                <?php endif ?>
-
-                                <?php if (in_array($arsip['ekstensi_file_arsip'], ['doc','docx'])): ?>
-                                     <iframe src="https://docs.google.com/gview?url=<?php echo base_url("assets/arsip/".$arsip['file_arsip']) ?>&embedded=true"></iframe> 
-                                <?php endif ?>
+                        <img src="<?php echo $qrcode ?>" class="img-fluid mb-2" alt="QR Code">
+                        <div class="mb-4">
+                            <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success">
+                                <i class="fa fa-download"></i> Unduh QR Code
+                            </a>
                         </div>
                     </div>
+
+                    <div class="col-lg-8">
+                        <?php if ($arsip['ekstensi_file_arsip'] == "pdf"): ?>
+                            <iframe src="<?php echo base_url("assets/arsip/" . $arsip['file_arsip']) ?>" width="100%" height="500"></iframe>
+                        <?php endif; ?>
+
+                        <?php if (in_array($arsip['ekstensi_file_arsip'], ['png', 'jpg', 'jpeg'])): ?>
+                            <img src="<?php echo base_url("assets/arsip/" . $arsip['file_arsip']) ?>" class="w-100 img-fluid">
+                        <?php endif; ?>
+
+                        <?php if (in_array($arsip['ekstensi_file_arsip'], ['doc', 'docx'])): ?>
+                            <iframe src="https://docs.google.com/gview?url=<?php echo base_url("assets/arsip/" . $arsip['file_arsip']) ?>&embedded=true" width="100%" height="500"></iframe>
+                        <?php endif; ?>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-
-
 </div>
+<br>

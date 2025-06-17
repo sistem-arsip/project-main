@@ -1,74 +1,73 @@
-<div class="container-fluid" style="margin-top: 20px;">
+<div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div style="background-color: #F5F5F5; border-radius: 10px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <h4 style="margin: 0; font-weight: bold; color: #333;">Data Arsip</h4>
+        <div class="col-12">
+            <div class="bg-light rounded p-3 shadow-sm">
+                <h4 class="m-0 fw-bold text-dark">Data Arsip</h4>
             </div>
         </div>
     </div>
 </div>
 <br>
 <div class="container-fluid">
-    <div class="panel panel">
-        <div class="panel-body">
-            <div class="pull-right">
-                <a href="<?php echo base_url('petugas/arsip/tambah'); ?>" class="btn" style="background-color: #38E54D;"><i class="fa fa-cloud"></i> Upload Arsip</a>
-            </div>
-            <br>
-            <br>
-            <br>
+    <div class="bg-light rounded shadow-sm p-3">
+        <div class="d-flex justify-content-end mb-3">
+            <a href="<?php echo base_url('petugas/arsip/tambah'); ?>" class="btn text-white btn-success">
+                <i class="fa fa-plus"></i> Upload Arsip
+            </a>
+        </div>
 
-            <div class="table-responsive">
-                <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
-                <thead>
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
+                <thead class="table-light">
                     <tr>
-                        <th width="1%">No</th>
-                        <th class="d-none d-md-block">Waktu Upload</th>
+                        <th style="width: 1%;">No</th>
+                        <th class="d-none d-md-table-cell">Waktu</th>
                         <th>Arsip</th>
                         <th>Kategori</th>
                         <th>Petugas</th>
                         <th>Keterangan</th>
-                        <th class="text-center" width="20%">OPSI</th>
+                        <th class="text-center" style="width: 20%;">Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($arsip as $a => $v): ?>
                         <tr>
                             <td><?php echo $a + 1; ?></td>
-                            <td class="d-none d-md-block"><?php echo $v['waktu_upload']; ?></td>
+                            <td class="d-none d-md-table-cell"><?php echo $v['waktu_upload']; ?></td>
                             <td>
-
-                                <b>KODE: <?php echo $v['kode_arsip']; ?><br>
-                                <b>Nama: <?php echo $v['nama_arsip']; ?><br>
-
+                                <strong>KODE:</strong> <?php echo $v['kode_arsip']; ?><br>
+                                <strong>Nama:</strong> <?php echo $v['nama_arsip']; ?>
                             </td>
                             <td>
                                 <?php echo $v['nama_kategori']; ?>
-                                <div class="d-block d-md-none"><?php echo $v['waktu_upload']; ?></div>
+                                <div class="d-block d-md-none"><small><?php echo $v['waktu_upload']; ?></small></div>
                             </td>
                             <td>
-                                <b>Petugas :</b> <?php echo $v['nama_petugas']; ?> <br>
-                                <b>Bagian :</b> <?php echo $v['nama_unit']; ?> <br>
+                                <strong>Petugas:</strong> <?php echo $v['nama_petugas']; ?> <br>
+                                <strong>Bagian:</strong> <?php echo $v['nama_unit']; ?>
                             </td>
                             <td><?php echo $v['keterangan_arsip']; ?></td>
                             <td class="text-center">
                                 <div class="btn-group">
-
-                                    <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;"><i class="fa fa-search"></i> Preview</a>
+                                    <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-light" style="margin-right: 5px;">
+                                        <i class="fa fa-file"></i> Preview
+                                    </a>
                                     <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
-                                        <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;  padding-right: 10px; margin-right: 5px;"><i class="fa fa-wrench"></i></a>
-                                        <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn" style="background-color: #38E54D;" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
+                                        <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white me-1">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     <?php endif; ?>
-
                                 </div>
                             </td>
+
                         </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
-            </div>
         </div>
     </div>
 </div>
+<br>
