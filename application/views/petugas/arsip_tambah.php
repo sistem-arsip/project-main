@@ -18,14 +18,16 @@
                     </a>
                 </div>
 
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" novalidate enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label class="form-label">Kode Arsip</label>
+                        <label class="form-label" value="<?php echo set_value('kode_arsip') ?>">Kode Arsip</label>
                         <input type="text" class="form-control" name="kode_arsip" required>
+                        <?php echo form_error('kode_arsip', "<div class='text-danger small'>", "</div>") ?>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Nama Arsip</label>
+                        <label class="form-label" value="<?php echo set_value('nama_arsip') ?>">Nama Arsip</label>
                         <input type="text" class="form-control" name="nama_arsip" required>
+                        <?php echo form_error('nama_arsip', "<div class='text-danger small'>", "</div>") ?>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Kategori</label>
@@ -37,8 +39,9 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Keterangan</label>
+                        <label class="form-label" value="<?php echo set_value('keterangan_arsip') ?>">Keterangan</label>
                         <textarea class="form-control" name="keterangan_arsip" required></textarea>
+                        <?php echo form_error('keterangan_arsip', "<div class='text-danger small'>", "</div>") ?>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">File</label>

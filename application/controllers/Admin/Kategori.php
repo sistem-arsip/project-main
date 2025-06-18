@@ -25,19 +25,30 @@ class Kategori extends CI_Controller
         $this->load->view("admin/footer");
     }
 
-    function tambah()
-    {
-
+    
+    function tambah(){
         $inputan = $this->input->post();
 
-        //jika ada inputan
-        if (!empty($inputan)) {
+        $this->form_validation->set_rules("nama_kategori","Nama Kategori","required|is_unique[kategori.nama_kategori]");
+        $this->form_validation->set_rules("keterangan_kategori","Keterangan ","required");
+        $this->form_validation->set_message("required"," %s wajib diisi");
+        $this->form_validation->set_message("is_unique", "%s yang sama sudah ada");
 
-            //jalankan fungsi simpan()
-            $this->Kategori_model->simpan($inputan);
+        if ($this->form_validation->run() == TRUE) {
+            $id_admin = $this->session->userdata('id_admin');
+            $id_unit = $this->Kategori_model->unit_by_petugas($id_admin);
 
-            //redirect 
-            $this->session->set_flashdata('sukses', 'Kategori berhasil ditambahkan');
+            $data = [
+                'nama_pengajuan' => $inputan['nama_kategori'],
+                'keterangan_pengajuan' => $inputan['keterangan_kategori'],
+                'status_pengajuan' => 'pending', // Default
+                'id_admin' => $id_admin,
+                'id_unit' => $id_unit
+            ];
+
+            $this->Kategori_model->simpan($data); 
+
+            $this->session->set_flashdata('sukses', 'Kategori berhasil diajukan');
             redirect('admin/kategori', 'refresh');
         }
 

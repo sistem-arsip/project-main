@@ -23,28 +23,38 @@ class Petugas extends CI_Controller {
         $this->load->view("admin/footer");
     }
 
-    function tambah(){
-
+    function tambah()
+    {
         $data['unit'] = $this->Unit_model->tampil();
 
-        // tambah 
-        $inputan = $this->input->post();
+        // Aturan validasi
+        $this->form_validation->set_rules("nama_petugas", "Nama Petugas", "required");
+        $this->form_validation->set_rules("username_petugas", "Username", "required|is_unique[petugas.username_petugas]");
+        $this->form_validation->set_rules("password_petugas", "Password", "required");
+        $this->form_validation->set_rules("id_unit", "Unit", "required");
 
-        //jika ada inputan
-		if (!empty($inputan)) {
+        // Pesan error
+        $this->form_validation->set_message("required", "%s wajib diisi");
+        $this->form_validation->set_message("is_unique", "%s sudah digunakan");
 
-            // hash
+        // Jika validasi sukses
+        if ($this->form_validation->run() == TRUE) {
+            $inputan = $this->input->post();
+
+            // Hash password jika diisi
             if (!empty($inputan['password_petugas'])) {
                 $inputan['password_petugas'] = md5($inputan['password_petugas']);
             }
-			
-			//jalankan fungsi simpan()
-			$this->Petugas_model->simpan($inputan);
 
-			//redirect 
+            // Simpan ke database
+            $this->Petugas_model->simpan($inputan);
+
+            // Tampilkan notifikasi sukses dan redirect
             $this->session->set_flashdata('sukses', 'Petugas berhasil ditambahkan');
-			redirect('admin/petugas', 'refresh');
-		}
+            redirect('admin/petugas', 'refresh');
+        }
+
+        // Jika validasi gagal atau form belum disubmit
         $this->load->view("admin/header");
         $this->load->view("admin/petugas_tambah", $data);
         $this->load->view("admin/footer");

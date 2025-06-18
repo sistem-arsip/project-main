@@ -46,35 +46,44 @@ class Arsip extends CI_Controller {
         $this->load->view("petugas/footer");
     }
 
-    function tambah() {
-        $inputan = $this->input->post();
-    
-        // jika ada inputan (form disubmit)
-        if (!empty($inputan)) {
-            // Tambahkan data lain ke inputan
+    function tambah()
+    {
+        $this->load->model('Kategori_model');
+        $data["kategori"] = $this->Kategori_model->tampil();
+
+        // Aturan validasi
+        $this->form_validation->set_rules("kode_arsip", "Kode Arsip", "required|is_unique[arsip.kode_arsip]");
+        $this->form_validation->set_rules("nama_arsip", "Nama Arsip", "required");
+        $this->form_validation->set_rules("keterangan_arsip", "Keterangan Arsip", "required");
+        $this->form_validation->set_rules("id_kategori", "Kategori", "required");
+
+        // Pesan error khusus
+        $this->form_validation->set_message("required", "%s wajib diisi");
+        $this->form_validation->set_message("is_unique", "%s sudah digunakan, silakan gunakan kode lain");
+
+        if ($this->form_validation->run() === TRUE) {
+            $inputan = $this->input->post();
             $inputan['id_petugas'] = $this->session->userdata('id_petugas');
             $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas($this->session->userdata('id_petugas'));
             $inputan['waktu_upload'] = date('Y-m-d');
-    
-            // Jalankan fungsi simpan() di model
+
             $hasil = $this->Arsip_model->simpan($inputan);
 
-            if ($hasil=="sukses") {
-                // Redirect dengan notifikasi sukses
+            if ($hasil == "sukses") {
                 $this->session->set_flashdata('sukses', 'Arsip berhasil ditambahkan');
                 redirect('petugas/arsip', 'refresh');
             } else {
-                $this->session->set_flashdata('gagal', 'mampus, file sudah saya peringatkan');
+                $this->session->set_flashdata('gagal', 'Gagal menyimpan arsip');
                 redirect('petugas/arsip/tambah', 'refresh');
             }
-    
         }
-    
-        $data["kategori"] = $this->Kategori_model->tampil();
+
+        // Jika belum submit atau validasi gagal
         $this->load->view('petugas/header');
         $this->load->view('petugas/arsip_tambah', $data);
         $this->load->view('petugas/footer');
     }
+
     
 
     function edit($id_arsip) {

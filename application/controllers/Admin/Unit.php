@@ -22,25 +22,34 @@ class Unit extends CI_Controller {
         $this->load->view("admin/footer");
     }
 
-    function tambah(){
+    function tambah()
+    {
+        // Aturan validasi
+        $this->form_validation->set_rules("nama_unit", "Nama Unit", "required|is_unique[unit.nama_unit]");
+        $this->form_validation->set_rules("keterangan", "Keterangan", "required");
 
-        $inputan = $this->input->post();
+        // Pesan error kustom
+        $this->form_validation->set_message("required", "%s wajib diisi");
+        $this->form_validation->set_message("is_unique", "%s sudah digunakan");
 
-        //jika ada inputan
-		if (!empty($inputan)) {
-			
-			//jalankan fungsi simpan()
-			$this->Unit_model->tambah($inputan);
+        // Jika validasi sukses
+        if ($this->form_validation->run() == TRUE) {
+            $inputan = $this->input->post();
 
-			//redirect 
+            // Simpan ke database
+            $this->Unit_model->tambah($inputan);
+
+            // Notifikasi dan redirect
             $this->session->set_flashdata('sukses', 'Unit berhasil ditambahkan');
-			redirect('admin/unit', 'refresh');
-		}
-        
+            redirect('admin/unit', 'refresh');
+        }
+
+        // Jika gagal validasi atau belum ada input
         $this->load->view("admin/header");
         $this->load->view("admin/unit_tambah");
         $this->load->view("admin/footer");
     }
+
 
     function edit($id_unit){
 

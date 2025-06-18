@@ -17,18 +17,20 @@
                         <i class="fa fa-arrow-left"></i> Kembali</a>
                 </div>
 
-                <form method="post">
+                <form method="post" novalidate>
                     <div class="mb-3">
-                        <label for="nama_kategori" class="form-label">Nama Kategori</label>
-                        <input type="text" id="nama_kategori" class="form-control" name="nama_kategori" required>
+                        <label class="form-label">Nama Kategori</label>
+                        <input type="text" class="form-control" name="nama_kategori" value="<?php echo set_value('nama_kategori') ?>">
+                        <?php echo form_error('nama_kategori', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
-                        <label for="keterangan_kategori" class="form-label">Keterangan</label>
-                        <textarea id="keterangan_kategori" class="form-control" name="keterangan_kategori" required></textarea>
+                        <label class="form-label">Keterangan</label>
+                        <textarea class="form-control" name="keterangan_kategori" rows="3"><?php echo set_value('keterangan_kategori') ?></textarea>
+                        <?php echo form_error('keterangan_kategori', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <button type="submit" class="btn btn-outline-light fa-plus" style="background-color: #5F6F52;"> Tambah</button>
                     </div>
                 </form>

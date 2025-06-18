@@ -18,15 +18,17 @@
                     </a>
                 </div>
 
-                <form method="post">
+                <form method="post" novalidate>
                     <div class="mb-3">
-                        <label for="nama_unit" class="form-label">Nama Unit</label>
+                        <label for="nama_unit" class="form-label" value="<?php echo set_value('nama_unit') ?>">Nama Unit</label>
                         <input type="text" id="nama_unit" class="form-control" name="nama_unit" required>
+                        <?php echo form_error('nama_unit', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
-                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <label for="keterangan" class="form-label" value="<?php echo set_value('keterangan') ?>">Keterangan</label>
                         <textarea id="keterangan" class="form-control" name="keterangan" required></textarea>
+                        <?php echo form_error('keterangan', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">

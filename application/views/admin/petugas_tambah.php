@@ -18,20 +18,23 @@
                     </a>
                 </div>
 
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" novalidate enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="nama_petugas" class="form-label">Nama</label>
+                        <label for="nama_petugas" class="form-label" value="<?php echo set_value('nama_petugas') ?>">Nama</label>
                         <input type="text" id="nama_petugas" class="form-control" name="nama_petugas">
+                        <?php echo form_error('nama_petugas', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
-                        <label for="username_petugas" class="form-label">Username</label>
+                        <label for="username_petugas" class="form-label" value="<?php echo set_value('username_petugas') ?>">Username</label>
                         <input type="text" id="username_petugas" class="form-control" name="username_petugas" autocomplete="off">
+                        <?php echo form_error('username_petugas', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
-                        <label for="password_petugas" class="form-label">Password</label>
+                        <label for="password_petugas" class="form-label" value="<?php echo set_value('password_petugas') ?>">Password</label>
                         <input type="password" id="password_petugas" class="form-control" name="password_petugas" autocomplete="new-password">
+                        <?php echo form_error('password_petugas', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
