@@ -23,7 +23,7 @@
                         <th style="width: 1%;">No</th>
                         <th class="d-none d-md-table-cell">Waktu</th>
                         <th>Arsip</th>
-                        <th>Kategori</th>
+                        <th>Kategori | Jenis</th>
                         <th>Petugas</th>
                         <th>Keterangan</th>
                         <th class="text-center" style="width: 20%;">Opsi</th>
@@ -39,7 +39,8 @@
                                 <strong>Nama:</strong> <?php echo $v['nama_arsip']; ?>
                             </td>
                             <td>
-                                <?php echo $v['nama_kategori']; ?>
+                                <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>
+                                <b>Jenis : </b><?php echo $v['jenis_kategori']; ?> <br>
                                 <div class="d-block d-md-none"><small><?php echo $v['waktu_upload']; ?></small></div>
                             </td>
                             <td>

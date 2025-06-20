@@ -26,7 +26,7 @@ class Unit extends CI_Controller {
     {
         // Aturan validasi
         $this->form_validation->set_rules("nama_unit", "Nama Unit", "required|is_unique[unit.nama_unit]");
-        $this->form_validation->set_rules("keterangan", "Keterangan", "required");
+        $this->form_validation->set_rules("keterangan_unit", "Keterangan", "required");
 
         // Pesan error kustom
         $this->form_validation->set_message("required", "%s wajib diisi");

@@ -40,9 +40,11 @@ class Pengajuan_kategori extends CI_Controller {
         redirect('admin/pengajuan_kategori', 'refresh');
     }
 
-    function tolak($id_pengajuan){
+    function tolak(){
+        $id_pengajuan = $this->input->post("id_pengajuan");
+        $alasan = $this->input->post("alasan");
         // update status pengajuan
-        $this->Pengajuan_kategori_model->tolak_status_pengajuan($id_pengajuan, 'rejected');
+        $this->Pengajuan_kategori_model->tolak_status_pengajuan($id_pengajuan, $alasan, 'rejected');
 
         $this->session->set_flashdata('sukses', 'Pengajuan kategori berhasil ditolak.');
 

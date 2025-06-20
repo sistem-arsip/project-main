@@ -18,7 +18,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
         <div class="col-lg-10">
             <div class="bg-light rounded shadow-sm p-3">
                 <div class="mb-3">
-                    <a href="<?php echo base_url('petugas/riwayat'); ?>" class="btn btn-sm btn-outline-dark">
+                    <a href="<?php echo base_url('petugas/arsip'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
                     </a>
                 </div>
@@ -44,6 +44,10 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                     <td><?php echo $arsip['nama_kategori']; ?></td>
                                 </tr>
                                 <tr>
+                                    <th>Jenis Surat</th>
+                                    <td><?php echo $arsip['jenis_kategori']; ?></td>
+                                </tr>
+                                <tr>
                                     <th>Jenis File</th>
                                     <td><?php echo strtoupper($arsip['ekstensi_file_arsip']); ?></td>
                                 </tr>
@@ -58,13 +62,16 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                             </table>
                         </div>
 
-                        <div class="text-center">
-                            <img src="<?php echo $qrcode; ?>" class="img-fluid mb-2">
-                            <br>
-                            <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success btn-sm">
-                                <i class="fa fa-download"></i> Unduh QR Code
-                            </a>
-                        </div>
+                        
+                        <?php if ($arsip['jenis_kategori'] == "keluar"): ?>
+                            <div class="text-center">
+                                <img src="<?php echo $qrcode; ?>" class="img-fluid mb-2">
+                                <br>
+                                <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success btn-sm">
+                                    <i class="fa fa-download"></i> Unduh QR Code
+                                </a>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Kolom Preview Arsip -->

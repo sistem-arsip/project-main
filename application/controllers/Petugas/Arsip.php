@@ -46,9 +46,7 @@ class Arsip extends CI_Controller {
         $this->load->view("petugas/footer");
     }
 
-    function tambah()
-    {
-        $this->load->model('Kategori_model');
+    function tambah(){
         $data["kategori"] = $this->Kategori_model->tampil();
 
         // Aturan validasi

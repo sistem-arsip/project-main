@@ -189,7 +189,7 @@
                             </div>
                             <div class="form-group">
                                 <i class="fas fa-user-shield"></i>
-                                <select class="form-control" name="akses">
+                                <select class="form-control" name="akses" id="roleSelect">
                                     <option value="" <?php echo set_select('akses', '', TRUE); ?>>Pilih Role</option>
                                     <option value="admin" <?php echo set_select('akses', 'admin'); ?>>Admin</option>
                                     <option value="petugas" <?php echo set_select('akses', 'petugas'); ?>>Petugas</option>
@@ -252,6 +252,21 @@
             });
         </script>
     <?php endif; ?>
+
+    <!-- select login -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleSelect = document.getElementById('roleSelect');
+
+            roleSelect.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    document.getElementById('loginForm').submit();
+                }
+            });
+        });
+    </script>
+
+
 
 </body>
 

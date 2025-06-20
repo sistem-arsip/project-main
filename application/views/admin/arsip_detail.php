@@ -6,7 +6,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
     <div class="row">
         <div class="col-12">
             <div class="bg-light rounded p-3 shadow-sm">
-                <h4 class="m-0 fw-bold text-dark">Priview Arsip</h4>
+                <h4 class="m-0 fw-bold text-dark">Preview Arsip</h4>
             </div>
         </div>
     </div>
@@ -41,6 +41,10 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                     <td><?php echo $arsip['nama_kategori']; ?></td>
                                 </tr>
                                 <tr>
+                                    <th>Jenis Surat</th>
+                                    <td><?php echo $arsip['jenis_kategori']; ?></td>
+                                </tr>
+                                <tr>
                                     <th>Jenis File</th>
                                     <td><?php echo strtoupper($arsip['ekstensi_file_arsip']); ?></td>
                                 </tr>
@@ -55,12 +59,14 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                             </table>
                         </div>
 
-                        <img src="<?php echo $qrcode ?>" class="img-fluid mb-2" alt="QR Code">
-                        <div class="mb-4">
-                            <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success">
-                                <i class="fa fa-download"></i> Unduh QR Code
-                            </a>
-                        </div>
+                        <?php if ($arsip['jenis_kategori'] == "keluar"): ?>
+                            <img src="<?php echo $qrcode ?>" class="img-fluid mb-2" alt="QR Code">
+                            <div class="mb-4">
+                                <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success">
+                                    <i class="fa fa-download"></i> Unduh QR Code
+                                </a>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="col-lg-8">

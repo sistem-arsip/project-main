@@ -32,9 +32,17 @@ class Pengajuan_kategori_model extends CI_Model {
 		$this->db->insert("notifikasi", $masuk);
 	}
 
-	function tolak_status_pengajuan($id_pengajuan, $status) {
+	function tolak_status_pengajuan($id_pengajuan, $alasan, $status) {
 		$this->db->where('id_pengajuan', $id_pengajuan);
 		$this->db->update('pengajuan_kategori', ['status_pengajuan' => $status]);
+
+		$pengajuan = $this->get_pengajuan_by_id($id_pengajuan);
+
+		//query insert ke tabel notifikasi
+		$masuk['id_admin'] = $this->session->userdata("id_admin");
+		$masuk['id_petugas'] = $pengajuan["id_petugas"];
+		$masuk['isi_notifikasi'] = "Pengajuan kategori dengan nama <b> ".$pengajuan['nama_pengajuan']."</b> dengan keterangan <b> ".$pengajuan["keterangan_pengajuan"]."</b> telah kami tolak dengan alasan <b>".$alasan."</b>";
+		$this->db->insert("notifikasi", $masuk);
 	}
 
 }

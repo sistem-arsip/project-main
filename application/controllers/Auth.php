@@ -12,13 +12,22 @@ class Auth extends CI_Controller {
     function login() {
         $this->load->view('login');
     }
+    public function periksa_html($str)
+    {
+        $clean = strip_tags($str);
+        if ($str !== $clean) {
+            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            return FALSE;
+        }
+        return TRUE;
+    }
 
     function proses_login(){
 
-        $this->form_validation->set_rules('username', 'Username', 'required', [
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|callback_periksa_html', [
             'required' => 'Username wajib diisi!'
         ]);
-        $this->form_validation->set_rules('password', 'Password', 'required', [
+        $this->form_validation->set_rules('password', 'Password', 'required|callback_periksa_html', [
             'required' => 'Password wajib diisi!'
         ]);
         $this->form_validation->set_rules('akses', 'Role', 'required', [

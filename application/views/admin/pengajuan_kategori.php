@@ -39,9 +39,8 @@
                                             <a href="<?php echo base_url('admin/pengajuan_kategori/terima/' . $var['id_pengajuan']); ?>"
                                                 class="btn btn-success btn-xs" style="color: #fff;"
                                                 onclick="return confirm('Yakin akan menerima kategori ini?')">Terima</a>
-                                            <a href="<?php echo base_url('admin/pengajuan_kategori/tolak/' . $var['id_pengajuan']); ?>"
-                                                class="btn btn-danger btn-xs" style="color: #fff;"
-                                                onclick="return confirm('Yakin akan menolak kategori ini?')">Tolak</a>
+                                            <span class="btn btn-danger btn-xs btn-tolak" style="color: #fff;" 
+                                                id_pengajuan="<?php echo $var['id_pengajuan'] ?>">Tolak</span>
                                         <?php elseif ($var['status_pengajuan'] == 'accepted'): ?>
                                             <span class="text-success"><i class="fa fa-check"></i></span>
                                         <?php elseif ($var['status_pengajuan'] == 'rejected'): ?>
@@ -57,3 +56,41 @@
         </div>
     </div>
 </div>
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="<?php echo base_url("admin/pengajuan_kategori/tolak") ?>" method="POST">
+            <div class="mb-2">
+                <label>Alasan Penolakan</label>
+                <input type="hidden" name="id_pengajuan">
+                <textarea name="alasan" class="form-control" value="" placeholder="" required></textarea>
+            </div>
+            <button class="btn btn-primary">Kirim</button>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function(e){
+        $(document).on("click", ".btn-tolak", function(){
+            var id_pengajuan = $(this).attr("id_pengajuan");
+            $("#exampleModal input[name=id_pengajuan]").val(id_pengajuan);
+            $("#exampleModal").modal("show");
+        })
+    })
+</script>
