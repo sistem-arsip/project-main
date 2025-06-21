@@ -54,6 +54,8 @@ class Arsip extends CI_Controller {
         $this->form_validation->set_rules("nama_arsip", "Nama Arsip", "required");
         $this->form_validation->set_rules("keterangan_arsip", "Keterangan Arsip", "required");
         $this->form_validation->set_rules("id_kategori", "Kategori", "required");
+        $this->form_validation->set_rules("jenis_arsip", "Jenis Surat", "required");
+
 
         // Pesan error khusus
         $this->form_validation->set_message("required", "%s wajib diisi");
@@ -63,7 +65,8 @@ class Arsip extends CI_Controller {
             $inputan = $this->input->post();
             $inputan['id_petugas'] = $this->session->userdata('id_petugas');
             $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas($this->session->userdata('id_petugas'));
-            $inputan['waktu_upload'] = date('Y-m-d');
+            $inputan['jenis_arsip'] = $this->input->post('jenis_arsip');
+
 
             $hasil = $this->Arsip_model->simpan($inputan);
 

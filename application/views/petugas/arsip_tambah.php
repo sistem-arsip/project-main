@@ -51,6 +51,15 @@
                         <input type="file" class="form-control" name="file" accept="image/*, .docx, .pdf">
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Jenis Surat</label>
+                            <select class="form-select" name="jenis_arsip" required>
+                                <option value="">Pilih Jenis Surat</option>
+                                <option value="masuk" <?= set_select('jenis_arsip', 'masuk') ?>>Masuk</option>
+                                <option value="keluar" <?= set_select('jenis_arsip', 'keluar') ?>>Keluar</option>
+                            </select>
+                            <?php echo form_error('jenis_arsip', "<div class='text-danger small'>", "</div>") ?>
+                    </div>
+                    <div class="mb-3">
                         <button type="submit" class="btn btn-outline-light fa-plus" style="background-color: #5F6F52;"> Tambah</button>
                     </div>
                 </form>

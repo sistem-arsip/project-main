@@ -45,7 +45,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                 </tr>
                                 <tr>
                                     <th>Jenis Surat</th>
-                                    <td><?php echo $arsip['jenis_kategori']; ?></td>
+                                    <td><?php echo $arsip['jenis_arsip']; ?></td>
                                 </tr>
                                 <tr>
                                     <th>Jenis File</th>
@@ -63,7 +63,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                         </div>
 
                         
-                        <?php if ($arsip['jenis_kategori'] == "keluar"): ?>
+                        <?php if ($arsip['jenis_arsip'] == "keluar"): ?>
                             <div class="text-center">
                                 <img src="<?php echo $qrcode; ?>" class="img-fluid mb-2">
                                 <br>
