@@ -33,7 +33,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                 </tr>
                                 <tr>
                                     <th>Waktu</th>
-                                    <td><?php echo date('d-m-Y', strtotime($arsip['waktu_upload'])); ?></td>
+                                    <td><?php echo date('d-m-Y H:i:s', strtotime($arsip['waktu_upload'])); ?></td>
                                 </tr>
                                 <tr>
                                     <th>Nama File</th>
@@ -42,10 +42,6 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                 <tr>
                                     <th>Kategori</th>
                                     <td><?php echo $arsip['nama_kategori']; ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Jenis Surat</th>
-                                    <td><?php echo $arsip['jenis_arsip']; ?></td>
                                 </tr>
                                 <tr>
                                     <th>Jenis File</th>
@@ -63,7 +59,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                         </div>
 
                         
-                        <?php if ($arsip['jenis_arsip'] == "keluar"): ?>
+                        <?php if ($arsip['kode_qr'] == "ya"): ?>
                             <div class="text-center">
                                 <img src="<?php echo $qrcode; ?>" class="img-fluid mb-2">
                                 <br>

@@ -1,0 +1,65 @@
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12">
+            <div class="bg-light rounded p-3 shadow-sm">
+                <h4 class="m-0 fw-bold text-dark">Semua Arsip</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid">
+    <div class="bg-light rounded shadow-sm p-3">
+        <div class="d-flex justify-content-end mb-3">
+                    <a href="<?php echo base_url('admin/arsip'); ?>" class="btn btn-sm btn-outline-dark">
+                        <i class="fa fa-arrow-left"></i> Kembali
+                    </a>
+                </div>
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
+                <thead class="table-light">
+                    <tr>
+                        <th width="1%">No</th>
+                        <th class="d-none d-md-table-cell">Waktu</th>
+                        <th>Arsip</th>
+                        <th>Kategori</th>
+                        <th>Petugas</th>
+                        <th>Keterangan</th>
+                        <th class="text-center" width="20%">OPSI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($arsip as $a => $v): ?>
+                        <tr>
+                            <td><?php echo $a + 1; ?></td>
+                            <td class="d-none d-md-table-cell"><?php echo $v['waktu_upload']; ?></td>
+                            <td>
+                                <b>KODE:</b> <?php echo $v['kode_arsip']; ?><br>
+                                <b>Nama:</b> <?php echo $v['nama_arsip']; ?>
+                            </td>
+                            <td>
+                                <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>
+                                <div class="d-block d-md-none text-muted small"><?php echo $v['waktu_upload']; ?></div>
+                            </td>
+                            <td>
+                                <b>Petugas:</b> <?php echo $v['nama_petugas']; ?><br>
+                                <b>Bagian:</b> <?php echo $v['nama_unit']; ?>
+                            </td>
+                            <td><?php echo $v['keterangan_arsip']; ?></td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a href="<?php echo base_url('admin/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-light" style="margin-right: 5px;">
+                                        <i class="fa fa-file"></i> Preview
+                                    </a>
+                                    <a href="<?php echo base_url('admin/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

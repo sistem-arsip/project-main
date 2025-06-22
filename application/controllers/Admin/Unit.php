@@ -73,12 +73,17 @@ class Unit extends CI_Controller {
     }
 
     function hapus($id_unit) {
+        $error_code = $this->Unit_model->hapus($id_unit);
 
-		//jalankan fungsi hapus()
-		$this->Unit_model->hapus($id_unit);
+        if ($error_code == 0) {
+            $this->session->set_flashdata('sukses', 'Unit berhasil dihapus.');
+        } else if ($error_code == 1451) {
+            $this->session->set_flashdata('gagal', 'Unit tidak dapat dihapus karena masih digunakan di data lain.');
+        } else {
+            $this->session->set_flashdata('gagal', 'Terjadi kesalahan saat menghapus unit.');
+        }
 
-		//redirect ke kategori 
-        $this->session->set_flashdata('sukses', 'Unit berhasil dihapus');
-		redirect('admin/unit', 'refresh');
-	}
+        redirect('admin/unit', 'refresh');
+    }
+
 }

@@ -36,7 +36,6 @@
                     <div class="mb-3">
                         <label class="form-label">Kategori</label>
                         <select class="form-select" name="id_kategori" required>
-                            <option value="">Pilih kategori</option>
                             <?php foreach ($kategori as $k): ?>
                                 <option value="<?= $k['id_kategori']; ?>" <?= $k['id_kategori'] == $arsip['id_kategori'] ? 'selected' : ''; ?>>
                                     <?= $k['nama_kategori']; ?>
@@ -44,6 +43,7 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
+
 
                     <div class="mb-3">
                         <label class="form-label">Keterangan</label>
@@ -54,13 +54,16 @@
                         <label class="form-label">File</label>
                         <input class="form-control" type="file" name="file">
                         <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small><br>
-                        <!--
-                        <?php if (!empty($arsip['file_arsip'])): ?>
-                            <a href="<?= base_url('upload/arsip/' . $arsip['file_arsip']); ?>" target="_blank">Lihat file saat ini</a>
-                        <?php endif; ?>
-                        -->
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Apakah Perlu QR Code?</label>
+                        <select class="form-select" name="kode_qr" required>
+                            <option value="ya" <?= $arsip['kode_qr'] == 'ya' ? 'selected' : ''; ?>>Ya</option>
+                            <option value="tidak" <?= $arsip['kode_qr'] == 'tidak' ? 'selected' : ''; ?>>Tidak</option>
+                        </select>
+                    </div>
+                    
                     <div class="mb-4">
                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-save"></i> Simpan Perubahan

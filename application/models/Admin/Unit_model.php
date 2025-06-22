@@ -29,8 +29,13 @@ class Unit_model extends CI_Model {
 
     function hapus($id_unit){
         $this->db->where('id_unit', $id_unit);
-		$this->db->delete('unit');
+        $this->db->delete('unit');
+
+        // Cek error dari query delete
+        $error = $this->db->error(); // ['code' => 1451, 'message' => 'Cannot delete ...']
+        return $error['code']; // return 0 jika berhasil, 1451 jika gagal karena FK
     }
+
 
     // fungsi untuk dashboard
     function total_unit() {

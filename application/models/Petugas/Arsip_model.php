@@ -35,7 +35,7 @@ class Arsip_model extends CI_Model {
         $this->load->library('upload', $config);
     
         // Lakukan upload file (dari input name="file")
-        $ngupload = $this->upload->do_upload('file');
+        $ngupload = $this->upload->do_upload('file_arsip');
     
         // Jika berhasil, simpan nama file ke array inputan
         if ($ngupload) {
@@ -46,7 +46,6 @@ class Arsip_model extends CI_Model {
         } else {
             return "gagal";
         }
-    
     }
 
     function detail_ubah($id_arsip){

@@ -54,7 +54,9 @@ class Arsip extends CI_Controller {
         $this->form_validation->set_rules("nama_arsip", "Nama Arsip", "required");
         $this->form_validation->set_rules("keterangan_arsip", "Keterangan Arsip", "required");
         $this->form_validation->set_rules("id_kategori", "Kategori", "required");
-        $this->form_validation->set_rules("jenis_arsip", "Jenis Surat", "required");
+        $this->form_validation->set_rules("kode_qr", "Pilihan QR Code", "required");
+
+        
 
 
         // Pesan error khusus
@@ -62,20 +64,24 @@ class Arsip extends CI_Controller {
         $this->form_validation->set_message("is_unique", "%s sudah digunakan, silakan gunakan kode lain");
 
         if ($this->form_validation->run() === TRUE) {
-            $inputan = $this->input->post();
-            $inputan['id_petugas'] = $this->session->userdata('id_petugas');
-            $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas($this->session->userdata('id_petugas'));
-            $inputan['jenis_arsip'] = $this->input->post('jenis_arsip');
-
-
-            $hasil = $this->Arsip_model->simpan($inputan);
-
-            if ($hasil == "sukses") {
-                $this->session->set_flashdata('sukses', 'Arsip berhasil ditambahkan');
-                redirect('petugas/arsip', 'refresh');
+            if (empty($_FILES['file_arsip']['name'])) {
+                $data['error_file'] = "<div class='text-danger small'>File Arsip wajib diisi</div>";
             } else {
-                $this->session->set_flashdata('gagal', 'Gagal menyimpan arsip');
-                redirect('petugas/arsip/tambah', 'refresh');
+                $inputan = $this->input->post();
+                $inputan['id_petugas'] = $this->session->userdata('id_petugas');
+                $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas($this->session->userdata('id_petugas'));
+                $inputan['kode_qr'] = $this->input->post('kode_qr');
+
+
+                $hasil = $this->Arsip_model->simpan($inputan);
+
+                if ($hasil == "sukses") {
+                    $this->session->set_flashdata('sukses', 'Arsip berhasil ditambahkan');
+                    redirect('petugas/arsip', 'refresh');
+                } else {
+                    $this->session->set_flashdata('gagal', 'Gagal menyimpan arsip');
+                    redirect('petugas/arsip/tambah', 'refresh');
+                }
             }
         }
 

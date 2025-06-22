@@ -48,16 +48,17 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">File</label>
-                        <input type="file" class="form-control" name="file" accept="image/*, .docx, .pdf">
+                        <input type="file" class="form-control" name="file_arsip" accept="image/*, .docx, .pdf">
+                        <?php if (!empty($error_file)) echo $error_file; ?>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Jenis Surat</label>
-                            <select class="form-select" name="jenis_arsip" required>
-                                <option value="">Pilih Jenis Surat</option>
-                                <option value="masuk" <?= set_select('jenis_arsip', 'masuk') ?>>Masuk</option>
-                                <option value="keluar" <?= set_select('jenis_arsip', 'keluar') ?>>Keluar</option>
+                        <label class="form-label">Apakah Perlu QR Code ?</label>
+                            <select class="form-select" name="kode_qr" required>
+                                <option value="">Pilih QR Code</option>
+                                <option value="ya" <?= set_select('kode_qr', 'ya') ?>>Ya</option>
+                                <option value="tidak" <?= set_select('kode_qr', 'tidak') ?>>Tidak</option>
                             </select>
-                            <?php echo form_error('jenis_arsip', "<div class='text-danger small'>", "</div>") ?>
+                            <?php echo form_error('kode_qr', "<div class='text-danger small'>", "</div>") ?>
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-outline-light fa-plus" style="background-color: #5F6F52;"> Tambah</button>

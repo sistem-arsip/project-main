@@ -95,12 +95,17 @@ class Petugas extends CI_Controller {
     }
 
     function hapus($id_petugas) {
+    $error_code = $this->Petugas_model->hapus($id_petugas);
 
-		//jalankan fungsi hapus()
-		$this->Petugas_model->hapus($id_petugas);
+    if ($error_code == 0) {
+        $this->session->set_flashdata('sukses', 'Petugas berhasil dihapus.');
+    } else if ($error_code == 1451) {
+        $this->session->set_flashdata('gagal', 'Tidak dapat menghapus karena petugas masih digunakan di data lain.');
+    } else {
+        $this->session->set_flashdata('gagal', 'Terjadi kesalahan saat menghapus data.');
+    }
 
-		//redirect 
-        $this->session->set_flashdata('sukses', 'Petugas berhasil dihapus');
-		redirect('admin/petugas', 'refresh');
-	}
+    redirect('admin/petugas', 'refresh');
+}
+
 }

@@ -3,18 +3,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
 
-    // Halaman dashboard
+    
+    function __construct() {
+        parent::__construct();
+        $this->load->model('admin/Dashboard_model');
+        
+        // Pastikan user sudah login sebagai admin
+        if (!$this->session->userdata('status') || $this->session->userdata('status') != 'admin_login') {
+            redirect('auth/login', 'refresh'); 
+        }
+    }
     function index() {
-        // model kategori
-        $this->load->model('admin/Kategori_model');
+        // Ambil semua unit
+        $units = $this->Dashboard_model->tampil_unit();
 
-        // model unit
-        $this->load->model('admin/Unit_model');
+        // Siapkan array untuk data chart
+        $data_chart = [];
 
-        // data
-        $data['total_unit'] = $this->Unit_model->total_unit();
-        $data['total_kategori'] = $this->Kategori_model->total_kategori();
-        // Menampilkan halaman dashboard
+        foreach ($units as $unit) {
+            $jumlah = $this->Dashboard_model->jumlah_arsip_perunit($unit['id_unit']);
+            $data_chart[] = [
+                'unit' => $unit['nama_unit'],  // sesuaikan nama kolom unit-nya
+                'jumlah' => $jumlah
+            ];
+        }
+
+        // Kirim data ke view
+        $data['data_arsip_per_unit'] = $data_chart;
+
         $this->load->view('admin/header');
         $this->load->view('admin/dashboard', $data);
         $this->load->view('admin/footer');

@@ -33,7 +33,7 @@ class Kategori_model extends CI_Model {
     }
 
 	 // fungsi untuk dashboard
-	 function total_kategori() {
+	function total_kategori() {
         return $this->db->count_all('kategori'); 
     }
 }

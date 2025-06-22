@@ -36,7 +36,7 @@
             </li>
             <li class="text-end text-purple">
               <i class="fa fa-level-up" aria-hidden="true"></i> 
-              <span class="counter"><?php echo $total_unit; ?></span>
+              <span class="counter"></span>
             </li>
           </ul>
         </div>
@@ -65,8 +65,7 @@
               <!-- <div id="">INI BUAT IKON GRAFIKNYA</div> -->
             </li>
             <li class="text-end text-danger">
-              <i class="fa fa-level-up" aria-hidden="true"></i> 
-              <?php echo $total_kategori; ?>
+              <i class="fa fa-level-up" aria-hidden="true"></i>
             </li>
           </ul>
         </div>
@@ -75,39 +74,77 @@
   </div>
 </div>
 
-<div class="product-sales-area mb-4">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-9 col-md-12 col-sm-12 col-12">
-        <div class="bg-light rounded p-4 shadow-sm">
-          <div class="portlet-title">
-            <div class="row">
-              <div class="col-6">
-                <div class="caption pro-sl-hd">
-                  <span class="caption-subject fw-bold">Grafik pengunduhan arsip</span>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="actions graph-rp graph-rp-dl text-end">
-                  <p>Grafik jumlah unduh arsip perhari selama sebulan</p>
-                </div>
-              </div>
-            </div>
+<h4 class="mb-4">Dashboard Admin - Grafik Jumlah Arsip per Unit</h4>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div style="overflow-x: auto;">
+            <canvas id="barChartUnit" height="400" style="min-width: 500px;"></canvas>
           </div>
-
-          <ul class="list-inline cus-product-sl-rp mb-3">
-            <li>
-              <h5><i class="fa fa-circle" style="color: #006DF0;"></i>Jumlah Unduhan</h5>
-            </li>
-          </ul>
-
-          <div id="extra-area-chart" style="height: 356px;"></div>
-          <div id="morris-area-chart"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const dataUnit = <?php echo json_encode($data_arsip_per_unit); ?>;
+  const labels = dataUnit.map(item => item.unit);
+  const data = dataUnit.map(item => item.jumlah);
+
+  // ✅ Fungsi untuk generate warna acak (dalam rgba)
+  function getRandomColor(opacity = 0.7) {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }
+
+  // Buat array warna acak sebanyak jumlah unit
+  const backgroundColors = labels.map(() => getRandomColor(0.7));
+  const borderColors = backgroundColors.map(color => color.replace(/0\.7/, '1'));
+
+  const ctx = document.getElementById('barChartUnit').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Jumlah Arsip per Unit',
+        data: data,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1,
+        borderRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 10 } }
+        },
+        y: {
+          grid: { display: false },
+          ticks: { display: false }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    }
+  });
+</script>
+
 
 <?php if ($this->session->flashdata('login_success')): ?>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

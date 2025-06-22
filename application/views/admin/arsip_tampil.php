@@ -2,60 +2,50 @@
     <div class="row">
         <div class="col-12">
             <div class="bg-light rounded p-3 shadow-sm">
-                <h4 class="m-0 fw-bold text-dark">Arsip Unit</h4>
+                <h4 class="m-0 fw-bold text-dark">Arsip-Arsip Unit</h4>
             </div>
         </div>
     </div>
 </div>
 <br>
 <div class="container-fluid">
-    <div class="bg-light rounded shadow-sm p-3">
-        <div class="table-responsive">
-            <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
-                <thead class="table-light">
-                    <tr>
-                        <th width="1%">No</th>
-                        <th class="d-none d-md-table-cell">Waktu</th>
-                        <th>Arsip</th>
-                        <th>Kategori | Jenis</th>
-                        <th>Petugas</th>
-                        <th>Keterangan</th>
-                        <th class="text-center" width="20%">OPSI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($arsip as $a => $v): ?>
-                        <tr>
-                            <td><?php echo $a + 1; ?></td>
-                            <td class="d-none d-md-table-cell"><?php echo $v['waktu_upload']; ?></td>
-                            <td>
-                                <b>KODE:</b> <?php echo $v['kode_arsip']; ?><br>
-                                <b>Nama:</b> <?php echo $v['nama_arsip']; ?>
-                            </td>
-                            <td>
-                                <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>
-                                <b>Jenis : </b><?php echo $v['jenis_kategori']; ?> <br>
-                                <div class="d-block d-md-none text-muted small"><?php echo $v['waktu_upload']; ?></div>
-                            </td>
-                            <td>
-                                <b>Petugas:</b> <?php echo $v['nama_petugas']; ?><br>
-                                <b>Bagian:</b> <?php echo $v['nama_unit']; ?>
-                            </td>
-                            <td><?php echo $v['keterangan_arsip']; ?></td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <a href="<?php echo base_url('admin/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-light" style="margin-right: 5px;">
-                                        <i class="fa fa-file"></i> Preview
-                                    </a>
-                                    <a href="<?php echo base_url('admin/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+    <div class="row">
+        <div class="col-12">
+            <div class="bg-light rounded shadow-sm p-3">
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="<?php echo base_url("admin/arsip/all_arsip"); ?>" class="btn btn-success text-light"><i class="fa fa-file"></i> Lihat Semua Arsip
+                    </a>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-center" width="1%">No</th>
+                                <th class="text-center" width="10%">Unit</th>
+                                <th class="text-center" width="5%">Jumlah Arsip</th>
+                                <th class="text-center" width="5%">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            foreach ($unit_arsip as $unit) : ?>
+                                <tr>
+                                    <td class="text-center"><?= $no++; ?></td>
+                                    <td><?= $unit['nama_unit']; ?></td>
+                                    <td class="text-center"><?= $unit['jumlah_arsip']; ?></td>
+                                    <td class="text-center">
+                                        <a href="<?php echo base_url('admin/arsip/arsip_perunit/' . $unit['id_unit']); ?>" class="btn btn-secondary text-light">
+                                            <i class="bi bi-eye"></i> View Detail
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
