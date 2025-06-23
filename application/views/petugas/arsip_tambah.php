@@ -53,15 +53,16 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Apakah Perlu QR Code ?</label>
-                            <select class="form-select" name="kode_qr" required>
-                                <option value="">Pilih QR Code</option>
-                                <option value="ya" <?= set_select('kode_qr', 'ya') ?>>Ya</option>
-                                <option value="tidak" <?= set_select('kode_qr', 'tidak') ?>>Tidak</option>
-                            </select>
-                            <?php echo form_error('kode_qr', "<div class='text-danger small'>", "</div>") ?>
+                        <select class="form-select" name="kode_qr" required>
+                            <option value="">Pilih QR Code</option>
+                            <option value="ya" <?= set_select('kode_qr', 'ya') ?>>Ya</option>
+                            <option value="tidak" <?= set_select('kode_qr', 'tidak') ?>>Tidak</option>
+                        </select>
+                        <?php echo form_error('kode_qr', "<div class='text-danger small'>", "</div>") ?>
                     </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-outline-light fa-plus" style="background-color: #5F6F52;"> Tambah</button>
+                        <button type="submit" class="btn btn-success text-light">
+                            <i class="fa fa-plus"></i> Tambah</button>
                     </div>
                 </form>
             </div>

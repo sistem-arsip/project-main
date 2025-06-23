@@ -22,7 +22,7 @@
     }
 
     body {
-      background: url("http://ppwalisongo.id/home/wp-content/uploads/2021/08/DSC_0072.jpg") no-repeat center center fixed;
+      background: url("assets/img/homepage.jpg") no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }

@@ -55,12 +55,13 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                             </table>
                         </div>
 
-                            <img src="<?php echo $qrcode ?>" class="img-fluid mb-2" alt="QR Code">
-                            <div class="mb-4">
-                                <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success">
-                                    <i class="fa fa-download"></i> Unduh QR Code
-                                </a>
-                            </div>
+                        <div class="text-center">
+                            <img src="<?php echo $qrcode; ?>" class="img-fluid mb-2">
+                            <br>
+                            <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success btn-sm">
+                                <i class="fa fa-download"></i> Unduh QR Code
+                            </a>
+                        </div>
                     </div>
 
                     <div class="col-lg-8">

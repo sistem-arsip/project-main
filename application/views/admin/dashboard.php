@@ -1,11 +1,11 @@
 <div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-12">
-            <div class="bg-light rounded p-3 shadow-sm">
-                <h4 class="m-0 fw-bold text-dark">Dashboard Admin</h4>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="bg-light rounded p-3 shadow-sm">
+        <h4 class="m-0 fw-bold text-dark">Dashboard Admin</h4>
+      </div>
     </div>
+  </div>
 </div>
 <br>
 
@@ -20,7 +20,7 @@
               <!-- <div id="">INI BUAT IKON GRAFIKNYA</div> -->
             </li>
             <li class="text-end text-success">
-              <i class="fa fa-level-up" aria-hidden="true"></i> 
+              <i class="fa fa-level-up" aria-hidden="true"></i>
               <span class="counter"></span>
             </li>
           </ul>
@@ -35,7 +35,7 @@
               <!-- <div id="">INI BUAT IKON GRAFIKNYA</div> -->
             </li>
             <li class="text-end text-purple">
-              <i class="fa fa-level-up" aria-hidden="true"></i> 
+              <i class="fa fa-level-up" aria-hidden="true"></i>
               <span class="counter"></span>
             </li>
           </ul>
@@ -50,7 +50,7 @@
               <!-- <div id="">INI BUAT IKON GRAFIKNYA</div> -->
             </li>
             <li class="text-end text-info">
-              <i class="fa fa-level-up" aria-hidden="true"></i> 
+              <i class="fa fa-level-up" aria-hidden="true"></i>
               <span class="counter"></span>
             </li>
           </ul>
@@ -90,60 +90,82 @@
   </div>
 </div>
 
-<!-- Load Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="bg-light rounded shadow-sm p-3">
+        <!-- Load Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-  const dataUnit = <?php echo json_encode($data_arsip_per_unit); ?>;
-  const labels = dataUnit.map(item => item.unit);
-  const data = dataUnit.map(item => item.jumlah);
+        <script>
+          const dataUnit = <?php echo json_encode($data_arsip_per_unit); ?>;
+          const labels = dataUnit.map(item => item.unit);
+          const data = dataUnit.map(item => item.jumlah);
 
-  // ✅ Fungsi untuk generate warna acak (dalam rgba)
-  function getRandomColor(opacity = 0.7) {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-  }
+          // ✅ Fungsi untuk generate warna acak (dalam rgba)
+          function getRandomColor(opacity = 0.7) {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+          }
 
-  // Buat array warna acak sebanyak jumlah unit
-  const backgroundColors = labels.map(() => getRandomColor(0.7));
-  const borderColors = backgroundColors.map(color => color.replace(/0\.7/, '1'));
+          // Buat array warna acak sebanyak jumlah unit
+          const backgroundColors = labels.map(() => getRandomColor(0.7));
+          const borderColors = backgroundColors.map(color => color.replace(/0\.7/, '1'));
 
-  const ctx = document.getElementById('barChartUnit').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Jumlah Arsip per Unit',
-        data: data,
-        backgroundColor: backgroundColors,
-        borderColor: borderColors,
-        borderWidth: 1,
-        borderRadius: 5
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: { font: { size: 10 } }
-        },
-        y: {
-          grid: { display: false },
-          ticks: { display: false }
-        }
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: { enabled: true }
-      }
-    }
-  });
-</script>
+          const ctx = document.getElementById('barChartUnit').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Jumlah Arsip per Unit',
+                data: data,
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
+                borderWidth: 1,
+                borderRadius: 5
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  grid: {
+                    display: false
+                  },
+                  ticks: {
+                    font: {
+                      size: 10
+                    }
+                  }
+                },
+                y: {
+                  grid: {
+                    display: false
+                  },
+                  ticks: {
+                    display: false
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+                  display: false
+                },
+                tooltip: {
+                  enabled: true
+                }
+              }
+            }
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <?php if ($this->session->flashdata('login_success')): ?>
