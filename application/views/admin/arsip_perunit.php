@@ -11,10 +11,10 @@
 <div class="container-fluid">
     <div class="bg-light rounded shadow-sm p-3">
         <div class="d-flex justify-content-end mb-3">
-                    <a href="<?php echo base_url('admin/arsip'); ?>" class="btn btn-sm btn-outline-dark">
-                        <i class="fa fa-arrow-left"></i> Kembali
-                    </a>
-                </div>
+            <a href="<?php echo base_url('admin/arsip'); ?>" class="btn btn-sm btn-outline-dark">
+                <i class="fa fa-arrow-left"></i> Kembali
+            </a>
+        </div>
         <div class="table-responsive">
             <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
                 <thead class="table-light">
@@ -47,9 +47,10 @@
                             <td><?php echo $v['keterangan_arsip']; ?></td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a href="<?php echo base_url('admin/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-light" style="margin-right: 5px;">
+                                    <a href="<?php echo base_url('admin/arsip/detail/' . $v['id_arsip'] . '?unit_id=' . $v['id_unit']); ?>" class="btn btn-success text-light" style="margin-right: 5px;">
                                         <i class="fa fa-file"></i> Preview
                                     </a>
+
                                     <a href="<?php echo base_url('admin/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                         <i class="fa fa-trash"></i>
                                     </a>
