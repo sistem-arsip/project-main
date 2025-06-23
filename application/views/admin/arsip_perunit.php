@@ -50,8 +50,7 @@
                                     <a href="<?php echo base_url('admin/arsip/detail/' . $v['id_arsip'] . '?unit_id=' . $v['id_unit']); ?>" class="btn btn-success text-light" style="margin-right: 5px;">
                                         <i class="fa fa-file"></i> Preview
                                     </a>
-
-                                    <a href="<?php echo base_url('admin/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
+                                    <a href="<?php echo base_url('admin/arsip/hapus/' . $v['id_arsip'] . '?redirect=admin/arsip/arsip_perunit/' .  $v['id_unit']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>

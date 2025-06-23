@@ -17,13 +17,17 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
         <div class="col-lg-10">
             <div class="bg-light rounded shadow-sm p-3">
                 <?php
-                $unit_id = $this->input->get('unit_id');
-                $back_url = $unit_id
-                    ? base_url('admin/arsip/arsip_perunit/' . $unit_id)
-                    : base_url('admin/arsip');
+                    $unit_id = $this->input->get('unit_id');
+
+                    if ($unit_id) {
+                        $back_url = base_url('admin/arsip/arsip_perunit/' . $unit_id);
+                    } else {
+                        $back_url = base_url('admin/arsip/all_arsip');
+                    }
                 ?>
 
-                <a href="<?= $back_url ?>" class="btn btn-sm mb-3 btn-outline-dark">
+
+                <a href="<?php echo $back_url; ?>" class="btn btn-sm mb-3 btn-outline-dark">
                     <i class="fa fa-arrow-left"></i> Kembali
                 </a>
 

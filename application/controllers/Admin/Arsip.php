@@ -49,15 +49,20 @@ class Arsip extends CI_Controller {
         $this->load->view("admin/footer");
     }
 
-    function hapus($id_arsip)
-    {
-        //jalankan fungsi hapus()
+    function hapus($id_arsip){
         $this->Arsip_model->hapus($id_arsip);
-
-        //redirect ke kategori 
         $this->session->set_flashdata('sukses', 'Arsip berhasil dihapus');
-        redirect('admin/arsip', 'refresh');
+
+        //  redirect dari query string
+        $redirect = $this->input->get('redirect');
+
+        // default ke 'admin/arsip'
+        if (!$redirect) {
+            $redirect = 'admin/arsip';
+        }
+        redirect($redirect, 'refresh');
     }
+
 
     function all_arsip() {
         $data["arsip"] = $this->Arsip_model->tampil();
