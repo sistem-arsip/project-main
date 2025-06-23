@@ -30,10 +30,9 @@ class Kategori_model extends CI_Model {
     function hapus($id_kategori){
         $this->db->where('id_kategori', $id_kategori);
 		$this->db->delete('kategori');
-    }
 
-	 // fungsi untuk dashboard
-	function total_kategori() {
-        return $this->db->count_all('kategori'); 
+		// Cek error MySQL
+        $error = $this->db->error(); // error = Cannot delete or update
+        return $error['code']; // 0 jika tidak ada error
     }
 }

@@ -29,11 +29,11 @@ class Petugas_model extends CI_Model {
     }
 
     function hapus($id_petugas) {
-    $this->db->where('id_petugas', $id_petugas);
-    $this->db->delete('petugas');
+        $this->db->where('id_petugas', $id_petugas);
+        $this->db->delete('petugas');
 
-    // Cek error MySQL jika ada
-    $error = $this->db->error(); // array('code' => 1451, 'message' => 'Cannot delete or update ...')
-    return $error['code']; // 0 jika tidak ada error
-}
+        // Cek error MySQL
+        $error = $this->db->error(); // array('code' => 1451, 'message' => 'Cannot delete or update ...')
+        return $error['code']; // 0 jika tidak ada error
+    }
 }

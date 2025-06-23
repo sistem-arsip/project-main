@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="bg-light rounded p-3 shadow-sm">
-                <h4 class="m-0 fw-bold text-dark">Data Arsip</h4>
+                <h4 class="m-0 fw-bold text-dark">Data Arsip Unit</h4>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="bg-light rounded p-3 shadow-sm">
-                <h4 class="fw-bold text-dark m-0">Data Riwayat Unggah Arsip Unit</h4>
+                <h4 class="fw-bold text-dark m-0">Data Riwayat Unggah Arsip Saya</h4>
             </div>
         </div>
     </div>

@@ -1,8 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Kategori extends CI_Controller
-{
+class Kategori extends CI_Controller {
 
     function __construct(){
         parent::__construct();
@@ -22,7 +21,6 @@ class Kategori extends CI_Controller
         $this->load->view("admin/kategori_tampil", $data);
         $this->load->view("admin/footer");
     }
-
     
     function tambah(){
 
@@ -48,8 +46,7 @@ class Kategori extends CI_Controller
         $this->load->view("admin/footer");
     }
 
-    function edit($id_kategori)
-    {
+    function edit($id_kategori){
 
         $data['kategori'] = $this->Kategori_model->detail($id_kategori);
 
@@ -70,14 +67,19 @@ class Kategori extends CI_Controller
         $this->load->view("admin/footer");
     }
 
-    function hapus($id_kategori)
-    {
+    function hapus($id_kategori){
 
         //jalankan fungsi hapus()
-        $this->Kategori_model->hapus($id_kategori);
+        $error_code = $this->Kategori_model->hapus($id_kategori);
 
-        //redirect ke kategori 
-        $this->session->set_flashdata('sukses', 'Kategori berhasil dihapus');
+        if ($error_code == 0) {
+            $this->session->set_flashdata('sukses', 'Kategori berhasil dihapus.');
+        } else if ($error_code == 1451) {
+            $this->session->set_flashdata('gagal', 'Tidak dapat menghapus karena kategori masih digunakan di data lain.');
+        } else {
+            $this->session->set_flashdata('gagal', 'Terjadi kesalahan saat menghapus data.');
+        }
+
         redirect('admin/kategori', 'refresh');
     }
 }

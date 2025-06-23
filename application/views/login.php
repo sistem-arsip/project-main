@@ -254,19 +254,21 @@
     <?php endif; ?>
 
     <!-- select login -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const roleSelect = document.getElementById('roleSelect');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('loginForm');
+                const roleSelect = document.getElementById('roleSelect');
 
-            roleSelect.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    document.getElementById('loginForm').submit();
-                }
+                form.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        if (document.activeElement === roleSelect) {
+                            e.preventDefault();
+                            form.submit();
+                        }
+                    }
+                });
             });
-        });
-    </script>
-
-
+        </script>
 
 </body>
 

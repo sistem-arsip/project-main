@@ -78,7 +78,7 @@ class Unit extends CI_Controller {
         if ($error_code == 0) {
             $this->session->set_flashdata('sukses', 'Unit berhasil dihapus.');
         } else if ($error_code == 1451) {
-            $this->session->set_flashdata('gagal', 'Unit tidak dapat dihapus karena masih digunakan di data lain.');
+            $this->session->set_flashdata('gagal', 'Tidak dapat menghapus karena unit masih digunakan di data lain.');
         } else {
             $this->session->set_flashdata('gagal', 'Terjadi kesalahan saat menghapus unit.');
         }

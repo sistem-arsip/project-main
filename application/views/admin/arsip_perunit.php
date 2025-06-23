@@ -25,7 +25,7 @@
                         <th>Kategori</th>
                         <th>Petugas</th>
                         <th>Keterangan</th>
-                        <th class="text-center" width="15%">OPSI</th>
+                        <th class="text-center" width="20%">OPSI</th>
                     </tr>
                 </thead>
                 <tbody>
