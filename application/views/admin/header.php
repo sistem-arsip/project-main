@@ -37,7 +37,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand fw-semibold" style="background-color: #5F6F52;">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3 text-center text-light" href="index.html">Arsip Digital</a>
+        <a class="navbar-brand ps-3 text-center text-light">Arsip Digital</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fa-solid fa-bars fa-lg text-light"></i></button>
         <!-- Navbar Search-->
