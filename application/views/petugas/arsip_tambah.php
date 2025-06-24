@@ -25,9 +25,9 @@
                         <?php echo form_error('kode_arsip', "<div class='text-danger small'>", "</div>") ?>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Nama Arsip</label>
-                        <input type="text" class="form-control" name="nama_arsip" value="<?php echo set_value('nama_arsip') ?>" required>
-                        <?php echo form_error('nama_arsip', "<div class='text-danger small'>", "</div>") ?>
+                        <label class="form-label">Nomor Arsip</label>
+                        <input type="text" class="form-control" name="nomor_arsip" value="<?php echo set_value('nomor_arsip') ?>">
+                        <small class="text-muted">Kosongkan jika arsip tidak memiliki nomor surat</small><br>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Kategori</label>

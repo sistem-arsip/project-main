@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo base_url("assets/css/styles.css") ?>"  />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
-
 </head>
 
 <body class="sb-nav-fixed">
@@ -55,14 +54,10 @@
                     <a href="#" class="text-decoration-none small">Tandai Dibaca</a>
                 </div>
 
-
-                <!-- <pre>
                 <?php 
                 $notifikasi = tampil_notifikasi($this->session->userdata("id_petugas"));
-                print_r($notifikasi);
-                
                 ?>
-                </pre> -->
+                
                 <!-- Notifikasi item -->
 
                 <?php foreach ($notifikasi as $notif) : ?>
@@ -80,9 +75,6 @@
                     </div>
                 </li>
                 <?php endforeach ?>
-
-
-                <!-- Tambahkan notifikasi lainnya seperti ini -->
             </ul>
 
         </div>

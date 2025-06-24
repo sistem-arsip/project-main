@@ -28,8 +28,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Nama Arsip</label>
-                        <input type="text" class="form-control" name="nama_arsip" required value="<?php echo $arsip['nama_arsip']; ?>">
+                        <label class="form-label">Nomor Surat</label>
+                        <input type="text" class="form-control" name="nomor_surat" required value="<?php echo $arsip['nomor_surat']; ?>">
                     </div>
 
                     <div class="mb-3">

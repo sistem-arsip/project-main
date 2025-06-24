@@ -34,8 +34,7 @@
                             <td><?php echo $a + 1; ?></td>
                             <td class="d-none d-md-table-cell"><?php echo $v['waktu_upload']; ?></td>
                             <td>
-                                <b>KODE:</b> <?php echo $v['kode_arsip']; ?><br>
-                                <b>Nama:</b> <?php echo $v['nama_arsip']; ?>
+                                <b>Kode Arsip:</b> <?php echo $v['kode_arsip']; ?><br>
                             </td>
                             <td>
                                 <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>

@@ -34,13 +34,22 @@ class Arsip extends CI_Controller {
     function detail($id_arsip){
         $data["arsip"] = $this->Arsip_model->detail($id_arsip);
 
+        $nama_unit = $data['arsip']['nama_unit'];
+        $nomor_surat = $data['arsip']['nomor_surat'];
+        $kode_arsip = $data['arsip']['kode_arsip'];
+
+        if (!empty($nomor_surat)) {
+            $isi = "Surat ini resmi dikeluarkan oleh bagian $nama_unit Pondok Pesantren Wali Songo Ngabar dengan nomor surat $nomor_surat dan kode $kode_arsip.";
+        } else {
+            $isi = "Surat ini resmi dikeluarkan oleh bagian $nama_unit Pondok Pesantren Wali Songo Ngabar dengan kode $kode_arsip.";
+        }
+
         // Konfigurasi QR Code
         $options = new QROptions([
             'outputType' => QRCode::OUTPUT_IMAGE_PNG,
             'eccLevel' => QRCode::ECC_L,
         ]);
 
-        $isi = base_url("arsip/cek/".$data['arsip']['unik_arsip']);
         $data['qrcode'] =  (new QRCode($options))->render($isi);
 
 

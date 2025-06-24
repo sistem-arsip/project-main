@@ -17,6 +17,19 @@ class Kategori_model extends CI_Model {
 
     function simpan($data) {
         $this->db->insert('pengajuan_kategori', $data);
+
+        // get nama petugas dan unit
+        $this->db->where('id_petugas', $data['id_petugas']);
+        $petugas = $this->db->get('petugas')->row();
+
+        $this->db->where('id_unit', $data['id_unit']);
+        $unit = $this->db->get('unit')->row();
+
+        // insert tabel notif admin
+        $notif['id_petugas'] = $data["id_petugas"];
+        $notif['isi_notif_admin'] = "Terdapat pengajuan kategori baru dari <b>" .$petugas->nama_petugas." (Unit ".$unit->nama_unit.")</b> dengan nama <b>" .$data['nama_pengajuan']. "</b>" ;
+        $this->db->insert('notifikasi_admin', $notif);
+        
     }
 
     

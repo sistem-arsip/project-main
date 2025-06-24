@@ -16,12 +16,9 @@
         <div class="bg-light rounded p-4 shadow-sm h-100">
           <h5 class="box-title">Petugas</h5>
           <ul class="list-inline two-part-sp d-flex justify-content-between align-items-center mb-0">
-            <li>
-              <!-- <div id="">INI BUAT IKON GRAFIKNYA</div> -->
-            </li>
+            <span class="counter"><?php echo $total_petugas ?></span>
             <li class="text-end text-success">
               <i class="fa fa-level-up" aria-hidden="true"></i>
-              <span class="counter"></span>
             </li>
           </ul>
         </div>
@@ -31,12 +28,9 @@
         <div class="bg-light rounded p-4 shadow-sm h-100">
           <h5 class="box-title">Unit</h5>
           <ul class="list-inline two-part-sp d-flex justify-content-between align-items-center mb-0">
-            <li>
-              <!-- <div id="">INI BUAT IKON GRAFIKNYA</div> -->
-            </li>
+            <span class="counter"><?php echo $total_unit ?></span>
             <li class="text-end text-purple">
               <i class="fa fa-level-up" aria-hidden="true"></i>
-              <span class="counter"></span>
             </li>
           </ul>
         </div>
@@ -46,12 +40,9 @@
         <div class="bg-light rounded p-4 shadow-sm h-100">
           <h5 class="box-title">Total Arsip</h5>
           <ul class="list-inline two-part-sp d-flex justify-content-between align-items-center mb-0">
-            <li>
-              <!-- <div id="">INI BUAT IKON GRAFIKNYA</div> -->
-            </li>
+            <span class="counter"><?php echo $total_arsip ?></span>
             <li class="text-end text-info">
               <i class="fa fa-level-up" aria-hidden="true"></i>
-              <span class="counter"></span>
             </li>
           </ul>
         </div>
@@ -61,9 +52,7 @@
         <div class="bg-light rounded p-4 shadow-sm h-100">
           <h5 class="box-title">Kategori Arsip</h5>
           <ul class="list-inline two-part-sp d-flex justify-content-between align-items-center mb-0">
-            <li>
-              <!-- <div id="">INI BUAT IKON GRAFIKNYA</div> -->
-            </li>
+            <span class="counter"><?php echo $total_kategori ?></span>
             <li class="text-end text-danger">
               <i class="fa fa-level-up" aria-hidden="true"></i>
             </li>

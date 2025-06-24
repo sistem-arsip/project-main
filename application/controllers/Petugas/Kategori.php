@@ -24,7 +24,7 @@ class Kategori extends CI_Controller {
 
 
     function tambah(){
-    $inputan = $this->input->post();
+        $inputan = $this->input->post();
 
         $this->form_validation->set_rules("nama_kategori","Nama Kategori","required|is_unique[kategori.nama_kategori]");
         $this->form_validation->set_rules("keterangan_kategori","Keterangan ","required");

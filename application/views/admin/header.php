@@ -40,13 +40,43 @@
         <a class="navbar-brand ps-3 text-center text-light">Arsip Digital</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fa-solid fa-bars fa-lg text-light"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn" style="background-color: #86AB89;" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
+                <!-- Dropdown Notifikasi -->
+        <div class="dropdown ms-auto me-3 d-none d-md-inline-block">
+            <a class="btn position-relative" href="#" role="button" id="notifDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-bell fa-lg text-white"></i>
+                <!-- Optional: Badge -->
+                <span style="position: absolute; top: 3px; right: 3px; width: 10px; height: 10px; background-color: #dc3545; border: 2px solid #32cd40; border-radius: 50%;"></span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end p-3 shadow" aria-labelledby="notifDropdown" style="width: 350px; max-height: 400px; overflow-y: auto;">
+                <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+                    <span class="fw-semibold">Notifikasi</span>
+                    <a href="#" class="text-decoration-none small">Tandai Dibaca</a>
+                </div>
+
+                <!-- Notifikasi item -->
+
+                <?php 
+                $notifikasi = tampil_notif_admin();
+                ?>
+
+                <?php foreach ($notifikasi as $notif) : ?>
+                <li class="dropdown-item mb-2" style="white-space: normal; word-break: break-word; overflow-x: hidden;">
+                    <div class="d-flex gap-2 align-items-start">
+                        <div class="custom-notification-icon">
+                            <i class="fas fa-bell text-white"></i>
+                        </div>
+                        <div>
+                            <div class="small">
+                                <?php echo $notif['isi_notif_admin']; ?>
+                            </div>
+                            <div class="text-muted small"><?php echo $notif['waktu_notif_admin']; ?></div>
+                        </div>
+                    </div>
+                </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
@@ -110,6 +140,12 @@
                                 <li style="transition: background-color 0.3s;">
                                     <a href="<?php echo base_url('admin/arsip'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'">
                                         <i class="bi bi-journal-bookmark-fill"></i> Data Arsip Unit
+                                    </a>
+                                </li>
+
+                                <li style="transition: background-color 0.3s;">
+                                    <a href="<?php echo base_url('admin/backup'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'">
+                                         Backup & Restore
                                     </a>
                                 </li>
 

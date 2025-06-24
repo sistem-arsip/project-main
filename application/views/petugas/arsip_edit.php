@@ -29,8 +29,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Nama Arsip</label>
-                        <input type="text" class="form-control" name="nama_arsip" required value="<?php echo $arsip['nama_arsip']; ?>">
+                        <label class="form-label">Nomor Surat</label>
+                        <input type="text" class="form-control" name="nomor_surat" required value="<?php echo $arsip['nomor_surat']; ?>">
+                        <small class="text-muted">Kosongkan jika arsip tidak memiliki nomor surat</small><br>
                     </div>
 
                     <div class="mb-3">
@@ -54,6 +55,9 @@
                         <label class="form-label">File</label>
                         <input class="form-control" type="file" name="file">
                         <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small><br>
+                        <?php if (!empty($arsip['file_arsip'])): ?>
+                            <a href="<?= base_url('assets/arsip/' . $arsip['file_arsip']); ?>" target="_blank" class="d-inline-block mt-2">Lihat file saat ini</a>
+                        <?php endif; ?>
                     </div>
 
                     <div class="mb-3">

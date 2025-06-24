@@ -45,8 +45,8 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                     <td><?php echo date('H:i:s  d-m-Y', strtotime($arsip['waktu_upload'])) ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Nama File</th>
-                                    <td><?php echo $arsip['nama_arsip']; ?></td>
+                                    <th>Nomor Surat</th>
+                                    <td><?php echo $arsip['nomor_surat']; ?></td>
                                 </tr>
                                 <tr>
                                     <th>Kategori</th>

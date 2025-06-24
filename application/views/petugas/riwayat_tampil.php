@@ -31,7 +31,6 @@
                                     <td><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
                                     <td>
                                         <strong>Kode:</strong> <?= $v['kode_arsip']; ?><br>
-                                        <strong>Nama:</strong> <?= $v['nama_arsip']; ?><br>
                                         <strong>Kategori:</strong> <?= $v['nama_kategori']; ?>
                                     </td>
                                     <td>

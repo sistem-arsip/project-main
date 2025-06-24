@@ -32,13 +32,21 @@ class Arsip extends CI_Controller {
     function detail($id_arsip){
         $data["arsip"] = $this->Arsip_model->detail($id_arsip);
 
+        $nama_unit = $data['arsip']['nama_unit'];
+        $nomor_surat = $data['arsip']['nomor_surat'];
+        $kode_arsip = $data['arsip']['kode_arsip'];
+
+        if (!empty($nomor_surat)) {
+            $isi = "Surat ini resmi dikeluarkan oleh bagian $nama_unit Pondok Pesantren Wali Songo Ngabar dengan nomor surat $nomor_surat dan kode $kode_arsip.";
+        } else {
+            $isi = "Surat ini resmi dikeluarkan oleh bagian $nama_unit Pondok Pesantren Wali Songo Ngabar dengan kode $kode_arsip.";
+        }
         // Konfigurasi QR Code
         $options = new QROptions([
             'outputType' => QRCode::OUTPUT_IMAGE_PNG,
             'eccLevel' => QRCode::ECC_L,
         ]);
 
-        $isi = base_url("arsip/cek/".$data['arsip']['unik_arsip']);
         $data['qrcode'] =  (new QRCode($options))->render($isi);
 
         $this->load->view("petugas/header");
@@ -51,7 +59,6 @@ class Arsip extends CI_Controller {
 
         // Aturan validasi
         $this->form_validation->set_rules("kode_arsip", "Kode Arsip", "required|is_unique[arsip.kode_arsip]");
-        $this->form_validation->set_rules("nama_arsip", "Nama Arsip", "required");
         $this->form_validation->set_rules("keterangan_arsip", "Keterangan Arsip", "required");
         $this->form_validation->set_rules("id_kategori", "Kategori", "required");
         $this->form_validation->set_rules("kode_qr", "Pilihan QR Code", "required");

@@ -35,8 +35,7 @@
                             <td><?php echo $a + 1; ?></td>
                             <td class="d-none d-md-table-cell"><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
                             <td>
-                                <strong>KODE:</strong> <?php echo $v['kode_arsip']; ?><br>
-                                <strong>Nama:</strong> <?php echo $v['nama_arsip']; ?>
+                                <strong>Kode Arsip:</strong> <?php echo $v['kode_arsip']; ?><br>
                             </td>
                             <td>
                                 <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>

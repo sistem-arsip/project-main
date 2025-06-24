@@ -37,8 +37,8 @@ $riwayat['ekstensi_file_arsip'] = pathinfo($riwayat['file_arsip'], PATHINFO_EXTE
                                     <td><?php echo date('d-m-Y', strtotime($riwayat['waktu_upload'])); ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Nama File</th>
-                                    <td><?php echo $riwayat['nama_arsip']; ?></td>
+                                    <th>Nomor Surat</th>
+                                    <td><?php echo $riwayat['nomor_surat']; ?></td>
                                 </tr>
                                 <tr>
                                     <th>Kategori</th>
