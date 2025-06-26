@@ -21,7 +21,7 @@
                                 <strong><i class="fa fa-database"></i> Backup</strong>
                             </div>
                             <div class="card-body">
-                                <a href="<?php echo base_url('admin/backup/db') ?>" class="btn btn-success mt-2">
+                                <a href="<?php echo base_url('admin/backup/db') ?>" class="btn btn-success mt-4">
                                     <i class="fa fa-download"></i> Klik untuk Backup database
                                 </a>
                                 <a href="<?php echo base_url('admin/backup/files') ?>" class="btn btn-success mt-2">
@@ -37,15 +37,27 @@
                                 <strong><i class="fa fa-upload"></i> Restore</strong>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form action="<?php echo base_url('admin/backup/restore_db') ?>" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="sqlFile">Pilih File <code>*.sql</code></label>
-                                        <input type="file" class="form-control-file" id="sqlFile">
+                                        <input type="file" class="form-control-file" name="sql_file" id="sqlFile" accept=".sql" required>
                                     </div>
-                                    <button type="submit" class="btn btn-success mt-2">
+                                    <button type="submit" class="btn btn-success mt-3">
                                         <i class="fa fa-upload"></i> Restore Database
                                     </button>
                                 </form>
+                            </div>
+                            <div class="card-body">
+                                <form action="<?php echo base_url('admin/backup/restore_files') ?>" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="zipFile">Pilih File ZIP Arsip</label>
+                                        <input type="file" class="form-control-file" name="zip_file" id="zipFile" accept=".zip" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-success mt-2">
+                                        <i class="fa fa-upload"></i> Restore File Arsip
+                                    </button>
+                                </form>
+
                             </div>
                         </div>
                     </div>

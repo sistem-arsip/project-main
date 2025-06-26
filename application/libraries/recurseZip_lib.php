@@ -1,17 +1,18 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/*Library untuk membuat file ZIP dari folder atau file secara rekursif.*/
 class recurseZip_lib {
 
     private $src; // Lokasi sumber file/folder
     private $dst; // Lokasi tujuan penyimpanan ZIP
 
-    /** Konstruktor, menerima array $opt dari controller*/
+    /*Konstruktor, menerima array $opt dari controller*/
     public function __construct($opt) {
         $this->src = $opt['src'];
         $this->dst = $opt['dst'];
     }
 
-    /** Fungsi rekursif untuk menambahkan file dan folder ke dalam ZIP.*/
+    /*Fungsi rekursif untuk menambahkan file dan folder ke dalam ZIP.*/
     private function recurse_zip($src, &$zip, $path) {
         $dir = opendir($src);
         while (false !== ($file = readdir($dir))) {
@@ -30,14 +31,14 @@ class recurseZip_lib {
         closedir($dir);
     }
 
-    /* Fungsi proses kompresi.*/
+    /*Fungsi utama untuk menjalankan proses kompresi.*/
     private function run($src, $dst = '') {
         // Hapus trailing slash jika ada
         $src = rtrim($src, '/');
         $dst = rtrim($dst, '/');
 
         $path = strlen(dirname($src) . '/'); // Digunakan untuk membuat path relatif dalam ZIP
-        $filename = basename($src) . '.zip'; 
+        $filename = basename($src) . '.zip'; // Nama file ZIP = nama folder sumber
         $dst = empty($dst) ? $filename : $dst . '/' . $filename;
 
         // Hapus ZIP lama jika ada
@@ -72,7 +73,7 @@ class recurseZip_lib {
         return $dst;
     }
 
-    /** Fungsi publik untuk memulai kompresi.*/
+    /*Fungsi publik yang dipanggil dari controller untuk memulai kompresi.*/
     public function compress() {
         return $this->run($this->src, $this->dst);
     }
