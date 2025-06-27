@@ -12,114 +12,117 @@
 <div class="traffice-source-area mb-4">
   <div class="container-fluid">
     <div class="row g-3">
-      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <div class="bg-light rounded p-4 shadow-sm h-100">
-          <h5 class="box-title">Petugas</h5>
-          <ul class="list-inline two-part-sp d-flex justify-content-between align-items-center mb-0">
-            <span class="counter"><?php echo $total_petugas ?></span>
-            <li class="text-end text-success">
-              <i class="fa fa-level-up" aria-hidden="true"></i>
-            </li>
-          </ul>
-        </div>
-      </div>
 
       <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <div class="bg-light rounded p-4 shadow-sm h-100">
-          <h5 class="box-title">Unit</h5>
-          <ul class="list-inline two-part-sp d-flex justify-content-between align-items-center mb-0">
-            <span class="counter"><?php echo $total_unit ?></span>
-            <li class="text-end text-purple">
-              <i class="fa fa-level-up" aria-hidden="true"></i>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <div class="bg-light rounded p-4 shadow-sm h-100">
-          <h5 class="box-title">Total Arsip</h5>
-          <ul class="list-inline two-part-sp d-flex justify-content-between align-items-center mb-0">
-            <span class="counter"><?php echo $total_arsip ?></span>
-            <li class="text-end text-info">
-              <i class="fa fa-level-up" aria-hidden="true"></i>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <div class="bg-light rounded p-4 shadow-sm h-100">
-          <h5 class="box-title">Kategori Arsip</h5>
-          <ul class="list-inline two-part-sp d-flex justify-content-between align-items-center mb-0">
-            <span class="counter"><?php echo $total_kategori ?></span>
-            <li class="text-end text-danger">
-              <i class="fa fa-level-up" aria-hidden="true"></i>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<h4 class="mb-4">Dashboard Admin - Grafik Jumlah Arsip per Unit</h4>
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div style="overflow-x: auto;">
-            <canvas id="barChartUnit" height="400" style="min-width: 500px;"></canvas>
+        <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <h6 class="mb-1 text-muted">Petugas</h6>
+              <h3 class="fw-bold mb-0"><?php echo $total_petugas ?></h3>
+            </div>
+            <div class="text-primary bg-primary bg-opacity-10 rounded-circle p-3">
+              <i class="fa fa-users fa-2x"></i>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <h6 class="mb-1 text-muted">Unit</h6>
+              <h3 class="fw-bold mb-0"><?php echo $total_unit ?></h3>
+            </div>
+            <div class="text-success bg-success bg-opacity-10 rounded-circle p-3">
+              <i class="fa fa-sitemap fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <h6 class="mb-1 text-muted">Total Arsip</h6>
+              <h3 class="fw-bold mb-0"><?php echo $total_arsip ?></h3>
+            </div>
+            <div class="text-info bg-info bg-opacity-10 rounded-circle p-3">
+              <i class="fa fa-file-archive-o fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+        <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <h6 class="mb-1 text-muted">Kategori Arsip</h6>
+              <h3 class="fw-bold mb-0"><?php echo $total_kategori ?></h3>
+            </div>
+            <div class="text-danger bg-danger bg-opacity-10 rounded-circle p-3">
+              <i class="fa fa-tags fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
+
+<h4 class="mb-4">Grafik Jumlah Arsip per Unit</h4>
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12">
       <div class="bg-light rounded shadow-sm p-3">
-        <!-- Load Chart.js -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+        <!-- Chart.js & Datalabels plugin -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+        <!-- Responsive Chart Container -->
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div style="position: relative; width: 100%; height: 300px;">
+              <canvas id="barChartUnit"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart Script -->
         <script>
           const dataUnit = <?php echo json_encode($data_arsip_per_unit); ?>;
           const labels = dataUnit.map(item => item.unit);
           const data = dataUnit.map(item => item.jumlah);
 
-          // ✅ Fungsi untuk generate warna acak (dalam rgba)
-          function getRandomColor(opacity = 0.7) {
-            const r = Math.floor(Math.random() * 256);
-            const g = Math.floor(Math.random() * 256);
-            const b = Math.floor(Math.random() * 256);
-            return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-          }
-
-          // Buat array warna acak sebanyak jumlah unit
-          const backgroundColors = labels.map(() => getRandomColor(0.7));
-          const borderColors = backgroundColors.map(color => color.replace(/0\.7/, '1'));
-
           const ctx = document.getElementById('barChartUnit').getContext('2d');
+
           new Chart(ctx, {
             type: 'bar',
             data: {
               labels: labels,
               datasets: [{
-                label: 'Jumlah Arsip per Unit',
+                label: 'Jumlah Arsip',
                 data: data,
-                backgroundColor: backgroundColors,
-                borderColor: borderColors,
+                backgroundColor: 'rgba(0, 123, 255, 0.7)',
+                borderColor: 'rgba(0, 123, 255, 1)',
                 borderWidth: 1,
-                borderRadius: 5
+                borderRadius: 8,
+                barPercentage: 0.6
               }]
             },
             options: {
               responsive: true,
               maintainAspectRatio: false,
+              animation: {
+                duration: 1000,
+                easing: 'easeOutQuart'
+              },
               scales: {
                 x: {
                   grid: {
@@ -128,16 +131,22 @@
                   ticks: {
                     font: {
                       size: 10
-                    }
+                    },
+                    color: '#333'
                   }
                 },
                 y: {
+                  beginAtZero: true,
                   grid: {
                     display: false
                   },
                   ticks: {
+                    display: false // Hilangkan angka 0–6
+                  },
+                  border: {
                     display: false
                   }
+
                 }
               },
               plugins: {
@@ -146,15 +155,29 @@
                 },
                 tooltip: {
                   enabled: true
+                },
+                datalabels: {
+                  anchor: 'end',
+                  align: 'end',
+                  color: '#111',
+                  font: {
+                    size: 10,
+                    weight: 'bold'
+                  },
+                  formatter: value => value
                 }
               }
-            }
+            },
+            plugins: [ChartDataLabels]
           });
         </script>
+
       </div>
     </div>
   </div>
 </div>
+
+
 
 
 <?php if ($this->session->flashdata('login_success')): ?>
