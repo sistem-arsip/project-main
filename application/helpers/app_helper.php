@@ -20,12 +20,40 @@ function tampil_notif_admin(){
     return $notifikasi;
 }
 
+function status_notifikasi_admin(){
+    $notifikasi = tampil_notif_admin();
+    $notif_belum_dibaca = false;
 
-function status_notif_admin(){
-    $ci =& get_instance();
-    $ci->db->where("status_notif", 0);
-    $ci->db->limit(1);
-    $query = $ci->db->get("notifikasi_admin");
-    return $query->num_rows() > 0;
+    foreach ($notifikasi as $n) {
+        if ($n['status_notif_admin'] == 'belum') {
+            $notif_belum_dibaca = true;
+            break;
+        }
+    }
+
+    return [
+        'notifikasi' => $notifikasi,
+        'notif_belum_dibaca' => $notif_belum_dibaca
+    ];
 }
+
+function status_notifikasi_petugas($id_petugas) {
+    $notifikasi = tampil_notifikasi($id_petugas);
+    $notif_belum_dibaca = false;
+
+    foreach ($notifikasi as $n) {
+        if ($n['status_notifikasi'] == 'belum') {
+            $notif_belum_dibaca = true;
+            break;
+        }
+    }
+
+    return [
+        'notifikasi' => $notifikasi,
+        'notif_belum_dibaca' => $notif_belum_dibaca
+    ];
+}
+
+
+
 ?>

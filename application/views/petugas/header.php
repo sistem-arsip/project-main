@@ -41,42 +41,40 @@
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fa-solid fa-bars fa-lg text-light"></i></button>
 
         <!-- Dropdown Notifikasi -->
+         <?php 
+            $notif_data = status_notifikasi_petugas($this->session->userdata("id_petugas"));
+            $notifikasi = $notif_data['notifikasi'];
+            $notif_belum_dibaca = $notif_data['notif_belum_dibaca'];
+            ?>
         <div class="dropdown ms-auto me-3 d-none d-md-inline-block">
             <a class="btn position-relative" href="#" role="button" id="notifDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-bell fa-lg text-white"></i>
-                <!-- Optional: Badge -->
-                <span style="position: absolute; top: 3px; right: 3px; width: 10px; height: 10px; background-color: #dc3545; border: 2px solid #32cd40; border-radius: 50%;"></span>
+                <?php if ($notif_belum_dibaca): ?>
+                    <span id="notifPetugasDot" style="position: absolute; top: 3px; right: 3px; width: 10px; height: 10px; background-color: #dc3545; border: 2px solid #32cd40; border-radius: 50%;"></span>
+                <?php endif; ?>
             </a>
 
             <ul class="dropdown-menu dropdown-menu-end p-3 shadow" aria-labelledby="notifDropdown" style="width: 350px; max-height: 400px; overflow-y: auto;">
                 <div class="d-flex justify-content-between align-items-center mb-2 px-1">
                     <span class="fw-semibold">Notifikasi</span>
-                    <a href="#" class="text-decoration-none small">Tandai Dibaca</a>
+                    <a href="#" id="btnTandaiSemuaPetugas" class="text-decoration-none small">Tandai Dibaca</a>
                 </div>
 
-                <?php 
-                $notifikasi = tampil_notifikasi($this->session->userdata("id_petugas"));
-                ?>
-                
-                <!-- Notifikasi item -->
-
                 <?php foreach ($notifikasi as $notif) : ?>
-                <li class="dropdown-item mb-2" style="white-space: normal; word-break: break-word; overflow-x: hidden;">
-                    <div class="d-flex gap-2 align-items-start">
-                        <div class="custom-notification-icon">
-                            <i class="fas fa-bell text-white"></i>
-                        </div>
-                        <div>
-                            <div class="small">
-                                <?php echo $notif['isi_notifikasi']; ?>
+                    <?php $style = ($notif['status_notifikasi'] == 'belum') ? 'background-color: #f0f0f0;' : ''; ?>
+                    <li class="dropdown-item mb-2 notif-item" data-id="<?= $notif['id_notifikasi'] ?>" style="white-space: normal; word-break: break-word; overflow-x: hidden; <?= $style ?> cursor: pointer;">
+                        <div class="d-flex gap-2 align-items-start">
+                            <div class="custom-notification-icon">
+                                <i class="fas fa-bell text-white"></i>
                             </div>
-                            <div class="text-muted small"><?php echo $notif['waktu_notifikasi']; ?></div>
+                            <div>
+                                <div class="small"><?= $notif['isi_notifikasi']; ?></div>
+                                <div class="text-muted small"><?= $notif['waktu_notifikasi']; ?></div>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
                 <?php endforeach ?>
             </ul>
-
         </div>
 
 

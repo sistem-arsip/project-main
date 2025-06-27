@@ -1,5 +1,4 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="<?php //echo base_url('assets/js/vendor/jquery-1.12.4.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/wow.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/jquery-price-slider.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/jquery.meanmenu.js'); ?>"></script>
@@ -24,8 +23,6 @@
 <script src="<?php echo base_url('assets/js/calendar/fullcalendar-active.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
-
-<!-- <script src="<?php echo base_url('assets/js/DataTables/datatables.js'); ?>"></script> -->
 <script src="<?php echo base_url('assets/js/pdf/jquery.media.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/pdf/pdf-active.js'); ?>"></script>
 
@@ -85,6 +82,77 @@
         });
     </script>
 <?php endif; ?>
+
+<!-- scrip notif -->
+ <script>
+    $(document).ready(function() {
+    // id_pengajuan dari query string URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetId = urlParams.get('id_pengajuan');
+    if (!targetId) return;
+
+    // Inisialisasi DataTables
+    const table = $('#mytable').DataTable();
+
+    // Cari baris id pengajuan
+    let targetRowIndex = null;
+    table.rows().every(function(rowIdx, tableLoop, rowLoop) {
+        const rowNode = this.node();
+        if ($(rowNode).attr('id') === 'pengajuan-' + targetId) {
+            targetRowIndex = rowIdx;
+        }
+    });
+
+    if (targetRowIndex !== null) {
+        // Hitung halaman yang harus ditampilkan
+        const pageLength = table.page.len();
+        const pageNum = Math.floor(targetRowIndex / pageLength);
+
+        // Tampilkan halaman yang berisi baris target
+        table.page(pageNum).draw(false);
+
+        // Scroll ke baris target dengan offset agar terlihat jelas
+        $('html, body').animate({
+            scrollTop: $('#pengajuan-' + targetId).offset().top - 100
+        }, 800);
+
+        // Beri highlight sementara baris target (opsional)
+        $('#pengajuan-' + targetId).css('background-color', '#ffff99');
+        setTimeout(() => {
+            $('#pengajuan-' + targetId).css('background-color', '');
+        }, 3000);
+    }
+});
+ </script>
+
+ <!-- ajax notif -->
+<script>
+    $(document).on('click', '#btnTandaiSemua', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '<?= base_url("admin/pengajuan_kategori/baca_semua") ?>',
+            method: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                if (res.status === 'success') {
+                    // Hapus titik merah (jika ada)
+                    $('a#notifDropdown span').remove();
+
+                    // Hilangkan background abu dari semua notifikasi
+                    $('.dropdown-item').css('background-color', '');
+
+                    // Optional: tampilkan pesan sukses
+                    console.log("Semua notifikasi dibaca");
+                }
+            },
+            error: function() {
+                alert('Gagal menandai semua notifikasi.');
+            }
+        });
+    });
+</script>
+
 
 </body>
 

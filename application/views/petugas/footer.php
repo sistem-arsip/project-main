@@ -85,6 +85,53 @@
     </script>
 <?php endif; ?>
 
+<!-- ajax notif -->
+ <script>
+    $(document).ready(function(){
+
+    // Tandai satu notifikasi
+    $(document).on('click', '.notif-item', function(e) {
+        let id = $(this).data('id');
+
+        $.ajax({
+            url: '<?= base_url("petugas/notifikasi/baca_notif/") ?>' + id,
+            type: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                if (res.status === 'success') {
+                    // Ubah background item jadi kosong
+                    $(`.notif-item[data-id="${id}"]`).css('background-color', '');
+
+                    // Jika semua notif sudah dibaca, hilangkan titik merah
+                    if ($('.notif-item').filter(function(){ return $(this).css('background-color') === 'rgb(240, 240, 240)'; }).length === 0) {
+                        $('#notifPetugasDot').remove();
+                    }
+                }
+            }
+        });
+    });
+
+    // Tandai semua notifikasi
+    $(document).on('click', '#btnTandaiSemuaPetugas', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '<?= base_url("petugas/notifikasi/baca_semua") ?>',
+            type: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                if (res.status === 'success') {
+                    $('.notif-item').css('background-color', '');
+                    $('#notifPetugasDot').remove();
+                }
+            }
+        });
+    });
+
+});
+
+</script>
+
+
 </body>
 
 </html>

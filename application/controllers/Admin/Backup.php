@@ -32,18 +32,66 @@ class Backup extends CI_Controller {
             return;
         }
 
+        // Buat nama folder sementara dengan tanggal
+        $tanggal = date('d-m-Y');
+        $nama_folder_dalam_zip = 'arsip_file_backup_' . $tanggal;
+        $temp_folder = FCPATH . 'temp_backup/' . $nama_folder_dalam_zip;
+
+        // Hapus folder temp sebelumnya jika ada
+        $this->load->helper('file');
+        if (is_dir($temp_folder)) {
+            delete_files($temp_folder, true);
+            rmdir($temp_folder);
+        }
+
+        // Buat folder baru
+        mkdir($temp_folder, 0755, true);
+
+        // Salin semua isi dari assets/arsip ke folder temp
+        $this->load->helper('directory');
+        $this->copy_recursive($src, $temp_folder); // fungsi baru (lihat di bawah)
+
+        // Kompres folder temp menjadi arsip_file_backup.zip
         $opt = array(
-            'src' => $src,
+            'src' => $temp_folder,
             'dst' => $dst
         );
 
         $this->load->library('recurseZip_lib', $opt);
-        $download = $this->recursezip_lib->compress();
+        $zipPath = $this->recursezip_lib->compress();
 
-        $relative_path = str_replace(FCPATH, '', $download);
+        // Ganti nama file zip jadi 'arsip_file_backup.zip'
+        $finalZipPath = $dst . '/arsip_file_backup.zip';
+        @unlink($finalZipPath); // hapus kalau sudah ada
+        rename($zipPath, $finalZipPath);
+
+        // Hapus folder temp
+        delete_files($temp_folder, true);
+        rmdir($temp_folder);
+
+        // Redirect download
+        $relative_path = str_replace(FCPATH, '', $finalZipPath);
         redirect(base_url($relative_path));
     }
 
+    private function copy_recursive($src, $dst) {
+        $dir = opendir($src);
+        @mkdir($dst);
+
+        while (false !== ($file = readdir($dir))) {
+            if (($file != '.') && ($file != '..')) {
+                $srcPath = $src . '/' . $file;
+                $dstPath = $dst . '/' . $file;
+
+                if (is_dir($srcPath)) {
+                    $this->copy_recursive($srcPath, $dstPath);
+                } else {
+                    copy($srcPath, $dstPath);
+                }
+            }
+        }
+        closedir($dir);
+    }
 
 
     // backup database.sql
@@ -69,7 +117,7 @@ class Backup extends CI_Controller {
 
         // --- buat file ZIP yang berisi file .sql tadi ---
         $zip = new ZipArchive();
-        $filename_zip = 'arsip_database_backup_' . date("Y-m-d") . '.zip';
+        $filename_zip = 'arsip_database_backup' . '.zip';
         $save_path_zip = FCPATH . 'backup/db/' . $filename_zip;
 
         if ($zip->open($save_path_zip, ZipArchive::CREATE) === TRUE) {
@@ -118,15 +166,45 @@ class Backup extends CI_Controller {
     }
 
     function restore_files() {
-        $target = FCPATH . 'assets/';
+        $target_folder = FCPATH . 'assets/arsip/';
+        $temp_extract_folder = FCPATH . 'temp_restore/';
 
         if (!empty($_FILES['zip_file']['name'])) {
             $tmpPath = $_FILES['zip_file']['tmp_name'];
             $zip = new ZipArchive;
 
             if ($zip->open($tmpPath) === TRUE) {
-                $zip->extractTo($target);
+                // Bersihkan folder sementara
+                $this->load->helper('file');
+                if (is_dir($temp_extract_folder)) {
+                    delete_files($temp_extract_folder, true);
+                    rmdir($temp_extract_folder);
+                }
+                mkdir($temp_extract_folder, 0755, true);
+
+                // Ekstrak ke temp folder
+                $zip->extractTo($temp_extract_folder);
                 $zip->close();
+
+                // Ambil folder pertama di dalam ZIP (harusnya hanya 1 folder: arsip_file_backup_d-m-Y)
+                $subfolders = scandir($temp_extract_folder);
+                foreach ($subfolders as $folder) {
+                    if ($folder != '.' && $folder != '..' && is_dir($temp_extract_folder . $folder)) {
+                        $fullTempPath = $temp_extract_folder . $folder;
+
+                        // Hapus isi /assets/arsip/ dulu (optional)
+                        delete_files($target_folder, true);
+
+                        // Salin isi folder backup ke assets/arsip/
+                        $this->copy_recursive($fullTempPath, $target_folder);
+                        break;
+                    }
+                }
+
+                // Hapus folder temp
+                delete_files($temp_extract_folder, true);
+                rmdir($temp_extract_folder);
+
                 $this->session->set_flashdata('sukses', 'File arsip berhasil di-restore.');
             } else {
                 $this->session->set_flashdata('gagal', 'Gagal membuka file ZIP.');
@@ -137,5 +215,6 @@ class Backup extends CI_Controller {
 
         redirect('admin/backup');
     }
+
 
 }

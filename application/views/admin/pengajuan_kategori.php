@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                             <?php foreach ($pengajuan as $pn => $var): ?>
-                                <tr>
+                                <tr id="pengajuan-<?php echo $var['id_pengajuan']; ?>">
                                     <td class="text-center"><?php echo $pn + 1; ?></td>
                                     <td><?php echo $var['nama_pengajuan']; ?></td>
                                     <td><?php echo $var['keterangan_pengajuan']; ?></td>
@@ -63,17 +63,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Alasan Penolakan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form action="<?php echo base_url("admin/pengajuan_kategori/tolak") ?>" method="POST">
             <div class="mb-2">
-                <label>Alasan Penolakan</label>
+                <label>Masukkan Alasan Penolakan</label>
                 <input type="hidden" name="id_pengajuan">
                 <textarea name="alasan" class="form-control" value="" placeholder="" required></textarea>
             </div>
-            <button class="btn btn-primary">Kirim</button>
+            <button class="btn btn-success">Kirim</button>
         </form>
       </div>
       

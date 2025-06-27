@@ -50,4 +50,26 @@ class Pengajuan_kategori extends CI_Controller {
 
         redirect('admin/pengajuan_kategori', 'refresh');
     }
+
+    // fungsi notif
+    function baca_notif($id_notif_admin) {
+        $notif = $this->Pengajuan_kategori_model->get_notifikasi_by_id($id_notif_admin);
+
+        if ($notif) {
+            $this->Pengajuan_kategori_model->tandaiBaca($id_notif_admin);
+            redirect('admin/pengajuan_kategori?id_pengajuan=' . $notif['id_pengajuan']);
+        } else {
+            redirect('admin/pengajuan_kategori');
+        }
+    }
+
+    function baca_semua() {
+        $this->Pengajuan_kategori_model->baca_semua();
+
+        if ($this->input->is_ajax_request()) {
+            // Kalau dipanggil via AJAX
+            echo json_encode(['status' => 'success']);
+        }
+    }
+
 }
