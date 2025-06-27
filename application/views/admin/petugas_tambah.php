@@ -10,9 +10,9 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="bg-light rounded shadow-sm p-3">
-                <div class="d-flex justify-content-end mb-3">
+                <div class="mb-3">
                     <a href="<?php echo base_url('admin/petugas'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
                     </a>

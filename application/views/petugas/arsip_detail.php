@@ -15,7 +15,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
 
 <div class="container-fluid">
     <div class="row justify-content">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="bg-light rounded shadow-sm p-3">
                 <div class="mb-3">
                     <a href="<?php echo base_url('petugas/arsip'); ?>" class="btn btn-sm btn-outline-dark">

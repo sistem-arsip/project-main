@@ -20,11 +20,11 @@
                             <div class="card-header bg-success text-white">
                                 <strong><i class="fa fa-database"></i> Backup</strong>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body d-flex justify-content-center gap-3">
                                 <a href="<?php echo base_url('admin/backup/db') ?>" class="btn btn-success mt-4">
                                     <i class="fa fa-download"></i> Klik untuk Backup database
                                 </a>
-                                <a href="<?php echo base_url('admin/backup/files') ?>" class="btn btn-success mt-2">
+                                <a href="<?php echo base_url('admin/backup/files') ?>" class="btn btn-success mt-4">
                                     <i class="fa fa-archive"></i> Klik untuk Backup File Arsip
                                 </a>
                             </div>
@@ -57,7 +57,6 @@
                                         <i class="fa fa-upload"></i> Restore File Arsip
                                     </button>
                                 </form>
-
                             </div>
                         </div>
                     </div>

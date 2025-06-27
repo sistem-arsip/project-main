@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
     <div class="row justify-content">
-        <div class="col-lg-12">
+        <div class="col-12">
             <div class="bg-light rounded shadow-sm p-3">
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordered table-striped table-hover table-datatable align-middle">

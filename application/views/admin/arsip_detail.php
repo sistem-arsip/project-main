@@ -14,7 +14,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="bg-light rounded shadow-sm p-3">
                 <?php
                     $unit_id = $this->input->get('unit_id');

@@ -11,9 +11,9 @@
 
 <div class="container-fluid">
     <div class="row justify-content">
-        <div class="col-lg-8 col-md-10">
+        <div class="col-12">
             <div class="bg-light rounded shadow-sm p-3">
-                <div class="d-flex justify-content-end mb-3">
+                <div class="mb-3">
                     <a href="<?php echo base_url('petugas/kategori'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
                     </a>

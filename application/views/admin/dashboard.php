@@ -81,7 +81,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
       <div class="bg-light rounded shadow-sm p-3">
         <!-- Load Chart.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

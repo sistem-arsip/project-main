@@ -11,8 +11,8 @@
 
     <?php if (in_array($arsip['ekstensi_file_arsip'], ['png', 'jpg', 'jpeg'])): ?>
         <div class="image-fullscreen" style="width: 100%; overflow: hidden;">
-            <img src="<?php echo base_url("assets/arsip/" . $arsip['file_arsip']) ?>" 
-                alt="Preview Arsip" 
+            <img src="<?php echo base_url("assets/arsip/" . $arsip['file_arsip']) ?>"
+                alt="Preview Arsip"
                 style="width: 100%; height: auto; display: block; margin: 0 auto;">
         </div>
     <?php endif; ?>

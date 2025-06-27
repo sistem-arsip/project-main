@@ -15,7 +15,7 @@ $riwayat['ekstensi_file_arsip'] = pathinfo($riwayat['file_arsip'], PATHINFO_EXTE
 
 <div class="container-fluid">
     <div class="row justify-content">
-        <div class="col-lg-11">
+        <div class="col-12">
             <div class="bg-light rounded shadow-sm p-3">
                 <div class="mb-3">
                     <a href="<?php echo base_url('petugas/riwayat'); ?>" class="btn btn-sm btn-outline-dark">
