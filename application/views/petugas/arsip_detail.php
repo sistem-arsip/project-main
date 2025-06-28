@@ -59,7 +59,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                         </div>
 
                         
-                        <?php if ($arsip['kode_qr'] == "ya"): ?>
+                        <?php if ($arsip['kode_qr'] == "ya" && $arsip['id_petugas'] == $this->session->userdata('id_petugas')): ?>
                             <div class="text-center">
                                 <img src="<?php echo $qrcode; ?>" class="img-fluid mb-2">
                                 <br>

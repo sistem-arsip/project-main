@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard Petugas</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .card-box {
@@ -27,7 +20,6 @@
             font-weight: bold;
         }
     </style>
-</head>
 
 <body>
 
@@ -96,11 +88,15 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center gap-2">
                             <h5 class="mb-0"><b>Grafik Jumlah Arsip Tahun</b></h5>
-                            <select id="tahunSelect" class="form-select ms-3" style="width:auto; min-width:120px;">
-                                <option value="2023">2023</option>
-                                <option value="2024" selected>2024</option>
-                                <option value="2025">2025</option>
-                            </select>
+                                <select id="tahunSelect" class="form-select ms-3" style="width:auto; min-width:120px;">
+                                    <?php foreach ($tahunList as $tahun): ?>
+                                        <option value="<?= $tahun ?>" <?= ($tahun == date('Y')) ? 'selected' : '' ?>>
+                                            <?= $tahun ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+
+
                         </div>
                     </div>
                     <canvas id="uploadChart" style="height: 150px;"></canvas>
@@ -112,12 +108,11 @@
     </div>
 
     <script>
-        // dataset per tahun (dummy)
-        const arsipDataPerTahun = {
-            2023: [15, 25, 35, 45, 55, 65, 75, 85, 95, 100, 105, 110],
-            2024: [30, 45, 50, 70, 60, 80, 90, 75, 85, 95, 110, 120],
-            2025: [20, 35, 40, 60, 55, 70, 80, 90, 100, 110, 120, 130]
-        };
+        // Ambil dataset dari PHP
+        const arsipDataPerTahun = <?php echo $arsipDataPerTahunJson; ?>;
+
+        // Ambil tahun yang terpilih default
+        const tahunAwal = document.getElementById('tahunSelect').value;
 
         const ctx = document.getElementById('uploadChart').getContext('2d');
         const uploadChart = new Chart(ctx, {
@@ -129,7 +124,7 @@
                 ],
                 datasets: [{
                     label: 'Jumlah Upload',
-                    data: arsipDataPerTahun['2024'],
+                    data: arsipDataPerTahun[tahunAwal] || [],
                     fill: true,
                     backgroundColor: 'rgba(0, 109, 240, 0.2)',
                     borderColor: '#006DF0',
@@ -140,24 +135,26 @@
             options: {
                 responsive: true,
                 plugins: {
-                    legend: {
-                        display: false
-                    }
+                    legend: { display: false }
                 },
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        ticks: {display: false} ,
+                        grid: {display: false}
                     }
                 }
             }
         });
 
-        document.getElementById('tahunSelect').addEventListener('change', function() {
+        // Ubah grafik saat tahun diganti manual
+        document.getElementById('tahunSelect').addEventListener('change', function () {
             const tahunDipilih = this.value;
-            uploadChart.data.datasets[0].data = arsipDataPerTahun[tahunDipilih];
+            uploadChart.data.datasets[0].data = arsipDataPerTahun[tahunDipilih] || [];
             uploadChart.update();
         });
     </script>
+
 
     <?php if ($this->session->flashdata('login_success')): ?>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -16,6 +16,34 @@
             </a>
         </div>
 
+        <div class="row mb-3">
+        <div class="col-md-3">
+            <label for="filterBulan" class="form-label fw-bold">Arsip Unit Perbulan:</label>
+            <select class="form-select" id="filterBulan">
+                <option value="">-- Semua Bulan --</option>
+                <?php 
+                    $bulanList = [
+                        '01' => 'Januari',
+                        '02' => 'Februari',
+                        '03' => 'Maret',
+                        '04' => 'April',
+                        '05' => 'Mei',
+                        '06' => 'Juni',
+                        '07' => 'Juli',
+                        '08' => 'Agustus',
+                        '09' => 'September',
+                        '10' => 'Oktober',
+                        '11' => 'November',
+                        '12' => 'Desember'
+                    ];
+                    foreach ($bulanList as $key => $value) {
+                        echo "<option value='$key'>$value</option>";
+                    }
+                ?>
+            </select>
+        </div>
+    </div>
+
         <div class="table-responsive">
             <table id="mytable" class="table table-bordered table-striped table-hover w-100">
                 <thead class="table-light">
@@ -31,7 +59,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($arsip as $a => $v): ?>
-                        <tr>
+                        <tr data-bulan="<?php echo date('m', strtotime($v['waktu_upload'])); ?>">
                             <td><?php echo $a + 1; ?></td>
                             <td class="d-none d-md-table-cell"><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
                             <td>
@@ -66,6 +94,21 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+            <script>
+                document.getElementById('filterBulan').addEventListener('change', function () {
+                    var selectedMonth = this.value;
+                    var rows = document.querySelectorAll('#mytable tbody tr');
+
+                    rows.forEach(function (row) {
+                        var rowMonth = row.getAttribute('data-bulan');
+                        if (selectedMonth === "" || rowMonth === selectedMonth) {
+                            row.style.display = "";
+                        } else {
+                            row.style.display = "none";
+                        }
+                    });
+                });
+                </script>
         </div>
     </div>
 </div>

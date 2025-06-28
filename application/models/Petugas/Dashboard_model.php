@@ -9,16 +9,45 @@ function unit_by_petugas($id_petugas){
     return $data ? $data['id_unit'] : null;
 }
 
+function total_arsip_unit($id_unit) {
+    return $this->db->where('id_unit', $id_unit)->count_all_results('arsip');
+}
 
-    function total_arsip_unit($id_unit) {
-        return $this->db->where('id_unit', $id_unit)->count_all_results('arsip');
+function total_arsip_saya($id_petugas) {
+    return $this->db->where('id_petugas', $id_petugas)->count_all_results('arsip');
+}
+
+function total_kategori() {
+    return $this->db->count_all('kategori'); 
+}
+
+function arsip_per_bulan_per_tahun($id_unit, $tahun) {
+    $hasil = [];
+
+    for ($bulan = 1; $bulan <= 12; $bulan++) {
+        $start_date = sprintf('%s-%02d-01', $tahun, $bulan);
+        $end_date = date("Y-m-t", strtotime($start_date));
+
+        $this->db->where('waktu_upload >=', $start_date);
+        $this->db->where('waktu_upload <=', $end_date);
+        $this->db->where('id_unit', $id_unit);
+
+        $jumlah = $this->db->count_all_results('arsip');
+        $hasil[] = $jumlah;
     }
 
-    function total_arsip_saya($id_petugas) {
-        return $this->db->where('id_petugas', $id_petugas)->count_all_results('arsip');
-    }
+    return $hasil;
+}
 
-	function total_kategori() {
-        return $this->db->count_all('kategori'); 
-    }
+
+function get_tahun_arsip_unit($id_unit) {
+    $this->db->select('YEAR(waktu_upload) as tahun');
+    $this->db->from('arsip');
+    $this->db->where('id_unit', $id_unit);
+    $this->db->group_by('tahun');
+    $this->db->order_by('tahun', 'ASC');
+    return $this->db->get()->result();
+}
+
+
 }

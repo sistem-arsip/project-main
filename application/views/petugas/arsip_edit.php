@@ -30,7 +30,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Nomor Surat</label>
-                        <input type="text" class="form-control" name="nomor_surat" required value="<?php echo $arsip['nomor_surat']; ?>">
+                        <input type="text" class="form-control" name="nomor_surat" value="<?php echo $arsip['nomor_surat']; ?>">
                         <small class="text-muted">Kosongkan jika arsip tidak memiliki nomor surat</small><br>
                     </div>
 
