@@ -35,7 +35,7 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand fw-semibold" style="background-color: #5F6F52;">
+    <nav class="sb-topnav navbar navbar-expand fw-bold" style="background-color: #5F6F52;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 text-center text-light">Arsip Digital</a>
         <!-- Sidebar Toggle-->
@@ -107,7 +107,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" style="background-color: #F5F5F5;" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="logo mb-2 text-center">
-                        <img class="main-logo" src="<?php echo base_url("assets/img/logo/logo-ngabar.png") ?>" alt="Logo Ngabar" style="width: 120px; height: auto;">
+                        <img class="main-logo" src="<?php echo base_url("assets/img/logo/logo-ngabar.png") ?>" alt="Logo Ngabar" style="width: 150px; height: auto;">
                     </div>
                     <div class="left-custom-menu-adp-wrap comment-scrollbar">
 

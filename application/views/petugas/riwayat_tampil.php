@@ -14,7 +14,7 @@
         <div class="col-12">
             <div class="bg-light rounded shadow-sm p-3">
                 <div class="table-responsive">
-                    <table id="mytable" class="table table-bordered table-striped table-hover table-datatable align-middle">
+                    <table id="mytable" class="table table-bordered table-striped table-hover w-100 align-middle">
                         <thead class="table-light">
                             <tr>
                                 <th style="width: 1%;">No</th>

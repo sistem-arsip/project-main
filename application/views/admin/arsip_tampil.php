@@ -18,13 +18,13 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
+                    <table id="mytable" class="table table-bordered table-striped table-hover w-100">
                         <thead class="table-light">
                             <tr>
                                 <th class="text-center" width="1%">No</th>
-                                <th class="text-center" width="10%">Unit</th>
-                                <th class="text-center" width="5%">Jumlah Arsip</th>
-                                <th class="text-center" width="5%">Detail</th>
+                                <th class="text-center">Unit</th>
+                                <th class="text-center">Jumlah Arsip</th>
+                                <th class="text-center" width="20%">Detail</th>
                             </tr>
                         </thead>
                         <tbody>

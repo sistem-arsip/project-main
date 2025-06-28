@@ -26,24 +26,6 @@
 <script src="<?php echo base_url('assets/js/pdf/jquery.media.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/pdf/pdf-active.js'); ?>"></script>
 
-
-</div>
-</main>
-
-<div class="footer-copyright-area mg-t-30">
-    <footer class="py-2 bs-success-text-emphasis mt-auto text-light" style="background-color: #5F6F52">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer-copy-right text-center fw-semibold">
-                        <p class="small">COPYRIGHT © <?php echo date('Y') ?>. ARSIP DIGITAL PONDOK PESANTREN WALI SONGO NGABAR</p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="<?php echo base_url("assets/js/scripts.js"); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -152,6 +134,25 @@
         });
     });
 </script>
+
+</div>
+</main>
+
+<div class="footer-copyright-area mg-t-30">
+    <footer class="py-2 bs-success-text-emphasis mt-auto text-light" style="background-color: #5F6F52">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12" style="font-size: 12px;">
+                    <div class="footer-copy-right text-center fw-semibold">
+                        <p class="small">COPYRIGHT © <?php echo date('Y') ?>. ARSIP DIGITAL PONDOK PESANTREN WALI SONGO NGABAR</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
 
 
 </body>

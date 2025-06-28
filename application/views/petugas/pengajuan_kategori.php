@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover table-datatable">
+                    <table class="table table-bordered table-striped table-hover w-100">
                         <thead class="table-light">
                             <tr>
                                 <th style="width: 5%;">No</th>

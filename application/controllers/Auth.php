@@ -66,7 +66,7 @@ class Auth extends CI_Controller {
             'status' => $akses . '_login'
         ]);
 
-            $this->session->set_flashdata('login_success', 'Login berhasil, selamat datang!');
+            $this->session->set_flashdata('login_success', 'Login berhasil, selamat datang, ' . $user->$nama_session . '!');
             redirect($redirect_url);
         } else {
             redirect('auth/login?alert=gagal');

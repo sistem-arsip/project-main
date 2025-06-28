@@ -44,12 +44,12 @@
             <div class="container-fluid">
                 <div class="row g-3">
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div>
-                                    <h6 class="mb-1 text-muted">Petugas</h6>
-                                    <h3 class="fw-bold mb-0"><?php echo $total_kategori ?></h3>
+                                    <h6 class="mb-1 text-muted">Total Arsip Unit</h6>
+                                    <h3 class="fw-bold mb-0"><?php echo $total_arsip_unit ?></h3>
                                 </div>
                                 <div class="text-primary bg-primary bg-opacity-10 rounded-circle p-3">
                                     <i class="fa fa-users fa-2x"></i>
@@ -58,12 +58,12 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div>
-                                    <h6 class="mb-1 text-muted">Riwayat</h6>
-                                    <h3 class="fw-bold mb-0"><?php echo $total_kategori ?></h3>
+                                    <h6 class="mb-1 text-muted">Riwayat Arsip Saya</h6>
+                                    <h3 class="fw-bold mb-0"><?php echo $total_arsip_saya ?></h3>
                                 </div>
                                 <div class="text-success bg-success bg-opacity-10 rounded-circle p-3">
                                     <i class="fa fa-history fa-2x"></i>
@@ -72,29 +72,15 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                        <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    <h6 class="mb-1 text-muted">Total Arsip</h6>
-                                    <h3 class="fw-bold mb-0"><?php echo $total_kategori ?></h3>
-                                </div>
-                                <div class="text-info bg-info bg-opacity-10 rounded-circle p-3">
-                                    <i class="fa fa-file-archive-o fa-2x"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div>
                                     <h6 class="mb-1 text-muted">Kategori Arsip</h6>
                                     <h3 class="fw-bold mb-0"><?php echo $total_kategori ?></h3>
                                 </div>
-                                <div class="text-danger bg-danger bg-opacity-10 rounded-circle p-3">
-                                    <i class="fa fa-tags fa-2x"></i>
+                                <div class="text-info bg-info bg-opacity-10 rounded-circle p-3">
+                                    <i class="fa fa-file-archive-o fa-2x"></i>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +125,7 @@
             data: {
                 labels: [
                     'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
-                    'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'
+                    'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des',
                 ],
                 datasets: [{
                     label: 'Jumlah Upload',

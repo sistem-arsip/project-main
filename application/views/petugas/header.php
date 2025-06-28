@@ -34,7 +34,7 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand fw-semibold" style="background-color: #5F6F52;">
+    <nav class="sb-topnav navbar navbar-expand fw-bold" style="background-color: #5F6F52;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3 text-center text-light" href="index.html"> Arsip Digital</a>
         <!-- Sidebar Toggle-->
@@ -84,11 +84,11 @@
                 <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 text-white fw-semibold"
                 id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user-circle fa-lg text-white"></i>
-                    <span><?php echo $this->session->userdata('nama_petugas'); ?></span>
+                    <span class="d-none d-md-inline text-light"><?php echo $this->session->userdata('nama_petugas'); ?></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="<?php echo base_url('petugas/profil'); ?>">Profil</a></li>
-                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>">Logout</a></li> 
                 </ul>
             </li>
         </ul>
@@ -98,7 +98,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" style="background-color: #F5F5F5;" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="logo mb-2 text-center">
-                        <img class="main-logo" src="<?php echo base_url("assets/img/logo/logo-ngabar.png") ?>" alt="Logo Ngabar" style="width: 120px; height: auto;">
+                        <img class="main-logo" src="<?php echo base_url("assets/img/logo/logo-ngabar.png") ?>" alt="Logo Ngabar" style="width: 150px; height: auto;">
                     </div>
 
                     <div class="left-custom-menu-adp-wrap comment-scrollbar">

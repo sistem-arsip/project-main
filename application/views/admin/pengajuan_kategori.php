@@ -15,7 +15,7 @@
             <div class="bg-light rounded shadow-sm p-3">
                 <div class="table-responsive">
                     <br>
-                    <table id="mytable" class="table table-bordered table-striped table-hover table-datatable">
+                    <table id="mytable" class="table table-bordered table-striped table-hover w-100">
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
