@@ -27,26 +27,15 @@ class Arsip_model extends CI_Model {
 	}
 
     function simpan($inputan) {
-        // Konfigurasi upload file arsip
-        $config['upload_path']   = './assets/arsip/';
-        $config['allowed_types'] = 'pdf|doc|docx|jpg|png';
-        $config['max_size']      = 10000;
-    
-        $this->load->library('upload', $config);
-    
-        // Lakukan upload file (dari input name="file")
-        $ngupload = $this->upload->do_upload('file_arsip');
-    
-        // Jika berhasil, simpan nama file ke array inputan
-        if ($ngupload) {
-            $inputan['file_arsip'] = $this->upload->data('file_name');
-            // Simpan ke tabel arsip
-            $this->db->insert('arsip', $inputan);
-            return "sukses";
-        } else {
-            return "gagal";
-        }
+        $this->db->insert('arsip', $inputan);
+        return $this->db->affected_rows() > 0 ? "sukses" : "gagal";
     }
+
+
+    function get_nomor_by_kode_qr($kode_qr) {
+        return $this->db->get_where('kode_qr', ['kode_qr' => $kode_qr])->row_array();
+    }
+
 
     function detail_ubah($id_arsip){
 		$this->db->where('arsip.id_arsip', $id_arsip);
@@ -64,9 +53,7 @@ class Arsip_model extends CI_Model {
             $this->db->where('id_arsip', $id_arsip);
             $this->db->delete('arsip');
     }
-    
 
-    
     
 }
 ?>

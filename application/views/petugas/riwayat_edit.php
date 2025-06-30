@@ -23,13 +23,9 @@
                     <input type="hidden" name="id_arsip" value="<?php echo $arsip['id_arsip']; ?>">
 
                     <div class="mb-3">
-                        <label class="form-label">Kode Arsip</label>
-                        <input type="text" class="form-control" name="kode_arsip" required value="<?php echo $arsip['kode_arsip']; ?>">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Nomor Surat</label>
-                        <input type="text" class="form-control" name="nomor_surat" required value="<?php echo $arsip['nomor_surat']; ?>">
+                        <label class="form-label">Nomor Surat / Dokumen</label>
+                        <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo $arsip['nomor_dokumen']; ?>"
+                            <?php echo !empty($arsip['kode_qr']) ? 'readonly' : ''; ?>>
                     </div>
 
                     <div class="mb-3">

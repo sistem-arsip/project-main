@@ -24,22 +24,21 @@ $riwayat['ekstensi_file_arsip'] = pathinfo($riwayat['file_arsip'], PATHINFO_EXTE
                 </div>
 
                 <div class="row">
-                    <!-- Informasi Arsip -->
-                    <div class="col-lg-4">
-                        <div class="table-responsive mb-4">
+                    <div class="col-lg-4 mb-4">
+                        <div class="table-responsive mb-3">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Kode Arsip</th>
-                                    <td><?php echo $riwayat['kode_arsip']; ?></td>
-                                </tr>
-                                <tr>
                                     <th>Waktu</th>
-                                    <td><?php echo date('d-m-Y', strtotime($riwayat['waktu_upload'])); ?></td>
+                                    <td><?php echo date('d-m-Y H:i:s', strtotime($riwayat['waktu_upload'])); ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Nomor Surat</th>
-                                    <td><?php echo $riwayat['nomor_surat']; ?></td>
+                                    <th>Nomor Surat / Dokumen</th>
+                                    <td><?php echo $riwayat['nomor_dokumen']; ?></td>
                                 </tr>
+                                <?php if (!empty($riwayat['kode_qr'])): ?>
+                                    <th>Kode QR</th>
+                                    <td><?php echo $riwayat['kode_qr']; ?></td>
+                                <?php endif; ?>
                                 <tr>
                                     <th>Kategori</th>
                                     <td><?php echo $riwayat['nama_kategori']; ?></td>
@@ -57,14 +56,6 @@ $riwayat['ekstensi_file_arsip'] = pathinfo($riwayat['file_arsip'], PATHINFO_EXTE
                                     <td><?php echo $riwayat['keterangan_arsip']; ?></td>
                                 </tr>
                             </table>
-                        </div>
-
-                        <div class="text-center">
-                            <img src="<?php echo $qrcode; ?>" class="img-fluid mb-2">
-                            <br>
-                            <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success btn-sm">
-                                <i class="fa fa-download"></i> Unduh QR Code
-                            </a>
                         </div>
                     </div>
 

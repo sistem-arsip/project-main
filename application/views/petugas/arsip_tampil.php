@@ -50,7 +50,6 @@
                     <tr>
                         <th style="width: 1%;">No</th>
                         <th class="d-none d-md-table-cell">Waktu</th>
-                        <th>Arsip</th>
                         <th>Kategori</th>
                         <th>Petugas</th>
                         <th>Keterangan</th>
@@ -62,9 +61,6 @@
                         <tr data-bulan="<?php echo date('m', strtotime($v['waktu_upload'])); ?>">
                             <td><?php echo $a + 1; ?></td>
                             <td class="d-none d-md-table-cell"><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
-                            <td>
-                                <strong>Kode Arsip:</strong> <?php echo $v['kode_arsip']; ?><br>
-                            </td>
                             <td>
                                 <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>
                                 <div class="d-block d-md-none"><small><?php echo $v['waktu_upload']; ?></small></div>

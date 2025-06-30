@@ -29,19 +29,7 @@ class Riwayat extends CI_Controller {
     }
 
     function detail($id_arsip){
-
-        
         $data["riwayat"] = $this->Riwayat_model->detail($id_arsip);
-
-        // Konfigurasi QR Code
-        $options = new QROptions([
-            'outputType' => QRCode::OUTPUT_IMAGE_PNG,
-            'eccLevel' => QRCode::ECC_L,
-        ]);
-
-        $isi = base_url("arsip/cek/".$data['riwayat']['unik_arsip']);
-        $data['qrcode'] =  (new QRCode($options))->render($isi);
-
 
         $this->load->view("petugas/header");
         $this->load->view("petugas/riwayat_detail",$data);
@@ -57,7 +45,6 @@ class Riwayat extends CI_Controller {
             // Tambahkan data tetap
             $inputan['id_petugas'] = $this->session->userdata('id_petugas');
             $inputan['id_unit'] = $this->Riwayat_model->unit_by_petugas($this->session->userdata('id_petugas'));
-            $inputan['waktu_upload'] = date('Y-m-d');
     
             // Proses upload file jika ada
             if (!empty($_FILES['file']['name'])) {

@@ -24,14 +24,9 @@
                     <input type="hidden" name="id_arsip" value="<?php echo $arsip['id_arsip']; ?>">
 
                     <div class="mb-3">
-                        <label class="form-label">Kode Arsip</label>
-                        <input type="text" class="form-control" name="kode_arsip" required value="<?php echo $arsip['kode_arsip']; ?>">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Nomor Surat</label>
-                        <input type="text" class="form-control" name="nomor_surat" value="<?php echo $arsip['nomor_surat']; ?>">
-                        <small class="text-muted">Kosongkan jika arsip tidak memiliki nomor surat</small><br>
+                        <label class="form-label">Nomor Surat / Dokumen</label>
+                        <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo $arsip['nomor_dokumen']; ?>"
+                            <?php echo !empty($arsip['kode_qr']) ? 'readonly' : ''; ?>>
                     </div>
 
                     <div class="mb-3">
@@ -58,14 +53,6 @@
                         <?php if (!empty($arsip['file_arsip'])): ?>
                             <a href="<?= base_url('assets/arsip/' . $arsip['file_arsip']); ?>" target="_blank" class="d-inline-block mt-2">Lihat file saat ini</a>
                         <?php endif; ?>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Apakah Perlu QR Code?</label>
-                        <select class="form-select" name="kode_qr" required>
-                            <option value="ya" <?= $arsip['kode_qr'] == 'ya' ? 'selected' : ''; ?>>Ya</option>
-                            <option value="tidak" <?= $arsip['kode_qr'] == 'tidak' ? 'selected' : ''; ?>>Tidak</option>
-                        </select>
                     </div>
                     
                     <div class="mb-4">

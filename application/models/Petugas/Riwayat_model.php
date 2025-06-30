@@ -37,7 +37,7 @@ class Riwayat_model extends CI_Model {
         $this->db->update('arsip', $data);
     }
     function hapus($id_arsip){
-            $this->db->where('id_arsip', $id_arsip);
-            $this->db->delete('arsip');
+        $this->db->where('id_arsip', $id_arsip);
+        $this->db->delete('arsip');
     }
 }
