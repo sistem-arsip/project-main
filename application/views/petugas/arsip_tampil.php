@@ -10,39 +10,19 @@
 <br>
 <div class="container-fluid">
     <div class="bg-light rounded shadow-sm p-3">
-        <div class="d-flex justify-content-end mb-3">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-end align-items-md-center mb-3 gap-2">
+
+            <div class="d-flex align-items-start gap-2">
+                <div>
+                    <label for="filterBulanTahun" class="form-label fw-bold mb-0">Pilih Arsip Bulan & Tahun:</label>
+                    <input type="text" class="form-control" id="filterBulanTahun" placeholder="Pilih Bulan & Tahun">
+                </div>
+            </div>
+
             <a href="<?php echo base_url('petugas/arsip/tambah'); ?>" class="btn text-white btn-success">
                 <i class="fa fa-plus"></i> Upload Arsip
             </a>
         </div>
-
-        <div class="row mb-3">
-        <div class="col-md-3">
-            <label for="filterBulan" class="form-label fw-bold">Arsip Unit Perbulan:</label>
-            <select class="form-select" id="filterBulan">
-                <option value="">-- Semua Bulan --</option>
-                <?php 
-                    $bulanList = [
-                        '01' => 'Januari',
-                        '02' => 'Februari',
-                        '03' => 'Maret',
-                        '04' => 'April',
-                        '05' => 'Mei',
-                        '06' => 'Juni',
-                        '07' => 'Juli',
-                        '08' => 'Agustus',
-                        '09' => 'September',
-                        '10' => 'Oktober',
-                        '11' => 'November',
-                        '12' => 'Desember'
-                    ];
-                    foreach ($bulanList as $key => $value) {
-                        echo "<option value='$key'>$value</option>";
-                    }
-                ?>
-            </select>
-        </div>
-    </div>
 
         <div class="table-responsive">
             <table id="mytable" class="table table-bordered table-striped table-hover w-100">
@@ -91,11 +71,11 @@
                 </tbody>
             </table>
             <script>
-                document.getElementById('filterBulan').addEventListener('change', function () {
+                document.getElementById('filterBulan').addEventListener('change', function() {
                     var selectedMonth = this.value;
                     var rows = document.querySelectorAll('#mytable tbody tr');
 
-                    rows.forEach(function (row) {
+                    rows.forEach(function(row) {
                         var rowMonth = row.getAttribute('data-bulan');
                         if (selectedMonth === "" || rowMonth === selectedMonth) {
                             row.style.display = "";
@@ -104,7 +84,7 @@
                         }
                     });
                 });
-                </script>
+            </script>
         </div>
     </div>
 </div>

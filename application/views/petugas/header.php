@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo base_url("assets/css/styles.css") ?>"  />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -114,7 +117,7 @@
                                     <a href="<?php echo base_url('petugas/kategori'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'"><i class="bi bi-window-stack"></i> Kategori Arsip</span></a>
                                 </li>
                                 <li style="transition: background-color 0.3s;">
-                                    <a href="<?php echo base_url('petugas/generate'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'"><i class="bi bi-window-stack"></i> Buat QR code</span></a>
+                                    <a href="<?php echo base_url('petugas/generate'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'"><i class="bi bi-qr-code"></i> Buat QR code</span></a>
                                 </li>
                                 <li style="transition: background-color 0.3s;">
                                     <a href="<?php echo base_url('petugas/arsip'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'"> <i class="bi bi-file-earmark-text"></i> Arsip Unit</span></a>

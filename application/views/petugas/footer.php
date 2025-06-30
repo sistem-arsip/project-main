@@ -38,7 +38,16 @@
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('#filterBulanTahun').datepicker({
+    format: "mm-yyyy",
+    minViewMode: 1,
+    autoclose: true
+  });
+});
+</script>
 <script>
     $(document).ready(function() {
         $('#mytable').DataTable();
