@@ -38,7 +38,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($arsip as $a => $v): ?>
-                        <tr data-bulan="<?php echo date('m', strtotime($v['waktu_upload'])); ?>">
+                        <tr data-bulan="<?php echo date('m', strtotime($v['waktu_upload'])); ?>" data-tahun="<?php echo date('Y', strtotime($v['waktu_upload'])); ?>">
                             <td><?php echo $a + 1; ?></td>
                             <td class="d-none d-md-table-cell"><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
                             <td>
@@ -71,16 +71,21 @@
                 </tbody>
             </table>
             <script>
-                document.getElementById('filterBulan').addEventListener('change', function() {
-                    var selectedMonth = this.value;
-                    var rows = document.querySelectorAll('#mytable tbody tr');
+                document.getElementById('filterBulanTahun').addEventListener('change', function () {
+                    var value = this.value; // Misal: 2025-06
+                    if (!value) return;
 
-                    rows.forEach(function(row) {
-                        var rowMonth = row.getAttribute('data-bulan');
-                        if (selectedMonth === "" || rowMonth === selectedMonth) {
-                            row.style.display = "";
+                    const [year, month] = value.split('-');
+
+                    const rows = document.querySelectorAll('#mytable tbody tr');
+                    rows.forEach(function (row) {
+                        const rowMonth = row.getAttribute('data-bulan'); // ex: 06
+                        const rowYear = row.getAttribute('data-tahun');  // ex: 2025
+
+                        if (rowMonth === month && rowYear === year) {
+                            row.style.display = '';
                         } else {
-                            row.style.display = "none";
+                            row.style.display = 'none';
                         }
                     });
                 });
@@ -89,3 +94,27 @@
     </div>
 </div>
 <br>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+
+<script>
+    // Inisialisasi Flatpickr
+    flatpickr("#filterBulanTahun", {
+        dateFormat: "Y-m",         // Format hasil value (e.g. 2025-06)
+        altFormat: "F Y",          // Format tampilan
+        altInput: true,
+        plugins: [
+            new monthSelectPlugin({
+                shorthand: true,
+                dateFormat: "Y-m"
+            })
+        ]
+    });
+
+    // Event Listener untuk Filter
+   
+</script>
+
+
