@@ -32,6 +32,15 @@ class Riwayat_model extends CI_Model {
 		return $data;
 	}
 
+    function cek_nomor_dokumen($nomor, $id_arsip = null) {
+        $this->db->where('nomor_dokumen', $nomor);
+        if ($id_arsip !== null) {
+            $this->db->where('id_arsip !=', $id_arsip);
+        }
+        $query = $this->db->get('arsip');
+        return $query->num_rows() > 0 ? TRUE : FALSE;
+    }
+
     function ubah($id_arsip, $data) {
         $this->db->where('id_arsip', $id_arsip);
         $this->db->update('arsip', $data);

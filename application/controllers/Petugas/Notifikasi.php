@@ -8,9 +8,9 @@ class Notifikasi extends CI_Controller {
 
         $this->load->model('petugas/Notifikasi_model');
         
-        // Pastikan user sudah login sebagai admin
+        // Pastikan user sudah login
         if (!$this->session->userdata('status') || $this->session->userdata('status') != 'petugas_login') {
-            redirect('auth/login', 'refresh'); // Redirect ke halaman login
+            redirect('auth/login', 'refresh'); 
         }
     }
 

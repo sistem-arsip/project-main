@@ -47,6 +47,7 @@ function get_tahun_arsip_unit($id_unit) {
     $this->db->order_by('tahun', 'ASC');
     return $this->db->get()->result();
 }
+
 function total_qr_saya($id_petugas) {
     return $this->db->where('id_petugas', $id_petugas)->count_all_results('kode_qr');
 }

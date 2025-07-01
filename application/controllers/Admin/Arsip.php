@@ -16,7 +16,7 @@ class Arsip extends CI_Controller {
     function index() {
         $unit_list = $this->Arsip_model->tampil_by_unit();
 
-        // Tambahkan jumlah arsip per unit
+        // jumlah arsip per unit
         foreach ($unit_list as &$unit) {
             $unit['jumlah_arsip'] = $this->Arsip_model->jumlah_arsip_perunit($unit['id_unit']);
         }

@@ -8,7 +8,7 @@ class Auth extends CI_Controller {
         $this->load->model('Auth_model');
     }
 
-    // Halaman login
+    // halaman login
     function login() {
         $this->load->view('login');
     }
@@ -49,13 +49,13 @@ class Auth extends CI_Controller {
             $id_session = 'id_admin';
             $nama_session = 'nama_admin';
             $username_session = 'username_admin';
-            $redirect_url = 'admin/dashboard'; // Ubah arah ke admin/dashboard
+            $redirect_url = 'admin/dashboard'; //  admin/dashboard
         } else {
             $user = $this->Auth_model->check_petugas($username, $password);
             $id_session = 'id_petugas';
             $nama_session = 'nama_petugas';
             $username_session = 'username_petugas';
-            $redirect_url = 'petugas/dashboard'; // Ubah arah ke petugas/dashboard
+            $redirect_url = 'petugas/dashboard'; // petugas/dashboard
         }
 
         if ($user) {
@@ -74,7 +74,7 @@ class Auth extends CI_Controller {
     }
 
     function logout() {
-        // Cek status login pengguna
+        //  status login pengguna
          $status = $this->session->userdata('status');
 
     if ($status == "admin_login") {

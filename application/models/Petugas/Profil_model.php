@@ -10,14 +10,19 @@ class Profil_model extends CI_Model {
         $query = $this->db->get("petugas");
         return $query->row_array();
     }
-    
+    function cek_username_petugas($username_petugas, $id_petugas){
+        $this->db->where("username_petugas", $username_petugas);
+        $this->db->where("id_petugas !=", $id_petugas);
+        $query = $this->db->get("petugas");
 
+        return $query->num_rows() > 0 ? TRUE : FALSE;
+    }
 	function ubah($id_petugas, $data) {
-        // Jika password diisi, enkripsi sebelum disimpan
+        // jika password diisi, enkripsi sebelum disimpan
         if (!empty($data["password_petugas"])) {
             $data["password_petugas"] = md5($data["password_petugas"]);
         } else {
-            unset($data["password_petugas"]); // Jika password kosong, hapus dari array update
+            unset($data["password_petugas"]); // jika kosong, hapus dari array update
         }
 
         $this->db->where("id_petugas", $id_petugas);

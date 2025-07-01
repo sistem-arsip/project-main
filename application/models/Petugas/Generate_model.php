@@ -8,7 +8,6 @@ class Generate_model extends CI_Model {
         $query = $this->db->get('kode_qr');
         return $query->result_array();
     }
-
     function unit_by_petugas($id_petugas){
         $query = $this->db->get_where('petugas', ['id_petugas' => $id_petugas]);
         $data = $query->row_array();
@@ -43,7 +42,5 @@ class Generate_model extends CI_Model {
         $this->db->where('kode_qr', $kode_qr);
         return $this->db->delete('kode_qr');
     }
-
-
 
 }

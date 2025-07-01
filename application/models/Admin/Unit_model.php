@@ -14,13 +14,19 @@ class Unit_model extends CI_Model {
     }
 
     function detail($id_unit){
-		//select * from kategori where id_kategori = x
 		$this->db->where('id_unit', $id_unit);
 		$q = $this->db->get('unit');
 		$d = $q->row_array();
 
 		return $d;
 	}
+    function cek_nama_unit($nama_unit, $id_unit){
+        $this->db->where('nama_unit', $nama_unit);
+        $this->db->where('id_unit !=', $id_unit);
+        $query = $this->db->get('unit');
+
+        return $query->num_rows() > 0 ? TRUE : FALSE;
+    }
 
     function edit($input, $id_unit){
         $this->db->where('id_unit', $id_unit);
@@ -34,11 +40,5 @@ class Unit_model extends CI_Model {
         // Cek error dari query delete
         $error = $this->db->error(); // ['code' => 1451, 'message' => 'Cannot delete ...']
         return $error['code']; // return 0 jika berhasil, 1451 jika gagal karena FK
-    }
-
-
-    // fungsi untuk dashboard
-    function total_unit() {
-        return $this->db->count_all('unit'); 
     }
 }

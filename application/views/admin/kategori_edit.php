@@ -23,11 +23,13 @@
                     <div class="mb-3">
                         <label for="nama_kategori" class="form-label">Nama</label>
                         <input type="text" id="nama_kategori" class="form-control" name="nama_kategori" required value="<?php echo set_value('nama_kategori', $kategori['nama_kategori']) ?>">
+                        <?php echo form_error('nama_kategori', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
                         <label for="keterangan_kategori" class="form-label">Keterangan</label>
                         <textarea id="keterangan_kategori" class="form-control" name="keterangan_kategori"><?php echo set_value('keterangan_kategori', $kategori['keterangan_kategori']); ?></textarea>
+                        <?php echo form_error('keterangan_kategori', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-4">

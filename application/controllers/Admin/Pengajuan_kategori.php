@@ -10,7 +10,7 @@ class Pengajuan_kategori extends CI_Controller {
         
         // Pastikan user sudah login sebagai admin
         if (!$this->session->userdata('status') || $this->session->userdata('status') != 'admin_login') {
-            redirect('auth/login', 'refresh'); // Redirect ke halaman login
+            redirect('auth/login', 'refresh'); 
         }
     }
     function index(){
@@ -67,7 +67,7 @@ class Pengajuan_kategori extends CI_Controller {
         $this->Pengajuan_kategori_model->baca_semua();
 
         if ($this->input->is_ajax_request()) {
-            // Kalau dipanggil via AJAX
+            // dipanggil via AJAX
             echo json_encode(['status' => 'success']);
         }
     }

@@ -10,7 +10,7 @@ class Dashboard extends CI_Controller
         // load model
         $this->load->model('petugas/Dashboard_model');
 
-        // Pastikan user sudah login sebagai admin
+        // Pastikan user sudah login
         if (!$this->session->userdata('status') || $this->session->userdata('status') != 'petugas_login') {
             redirect('auth/login', 'refresh');
         }
@@ -26,20 +26,19 @@ class Dashboard extends CI_Controller
         $data['total_kategori'] = $this->Dashboard_model->total_kategori();
         $data['total_qr'] = $this->Dashboard_model->total_qr_saya($id_petugas);
 
-        // Ambil tahun dari database
+        // tahun dari database
         $tahunListResult = $this->Dashboard_model->get_tahun_arsip_unit($id_unit);
         $tahunList = [];
         foreach ($tahunListResult as $row) {
             $tahunList[] = $row->tahun;
         }
 
-        // Siapkan data grafik arsip per tahun
+        // data grafik arsip per tahun
         $arsipData = [];
         foreach ($tahunList as $tahun) {
             $arsipData[$tahun] = $this->Dashboard_model->arsip_per_bulan_per_tahun($id_unit, $tahun);
         }
 
-        // Kirim ke view
         $data['tahunList'] = $tahunList;
         $data['arsipDataPerTahunJson'] = json_encode($arsipData);
 
@@ -47,9 +46,5 @@ class Dashboard extends CI_Controller
         $this->load->view('petugas/dashboard', $data);
         $this->load->view('petugas/footer');
     }
-
-
-
-
 
 }

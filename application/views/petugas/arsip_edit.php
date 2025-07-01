@@ -22,11 +22,19 @@
                 <form method="post" enctype="multipart/form-data">
                     <!-- Hidden ID Arsip -->
                     <input type="hidden" name="id_arsip" value="<?php echo $arsip['id_arsip']; ?>">
-
+                    <?php if (!empty($arsip['kode_qr'])): ?>
+                        <div class="mb-3">
+                            <label class="form-label">Kode QR</label>
+                            <input type="text" class="form-control" name="kode_qr" value="<?php echo $arsip['kode_qr']; ?>"
+                                <?php echo !empty($arsip['kode_qr']) ? 'readonly' : ''; ?>>
+                        </div>
+                    <?php endif; ?>
+                    
                     <div class="mb-3">
                         <label class="form-label">Nomor Surat / Dokumen</label>
                         <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo $arsip['nomor_dokumen']; ?>"
                             <?php echo !empty($arsip['kode_qr']) ? 'readonly' : ''; ?>>
+                            <?php echo form_error('nomor_dokumen', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
@@ -43,7 +51,8 @@
 
                     <div class="mb-3">
                         <label class="form-label">Keterangan</label>
-                        <textarea class="form-control" name="keterangan_arsip" required rows="3"><?php echo $arsip['keterangan_arsip']; ?></textarea>
+                        <textarea class="form-control" name="keterangan_arsip" rows="3"><?php echo $arsip['keterangan_arsip']; ?></textarea>
+                        <?php echo form_error('keterangan_arsip', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
@@ -51,7 +60,7 @@
                         <input class="form-control" type="file" name="file">
                         <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small><br>
                         <?php if (!empty($arsip['file_arsip'])): ?>
-                            <a href="<?= base_url('assets/arsip/' . $arsip['file_arsip']); ?>" target="_blank" class="d-inline-block mt-2">Lihat file saat ini</a>
+                            <a href="<?php echo base_url('assets/arsip/' . $arsip['file_arsip']); ?>" target="_blank" class="d-inline-block mt-2">Lihat file saat ini</a>
                         <?php endif; ?>
                     </div>
                     

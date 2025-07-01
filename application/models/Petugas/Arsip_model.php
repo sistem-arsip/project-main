@@ -31,11 +31,9 @@ class Arsip_model extends CI_Model {
         return $this->db->affected_rows() > 0 ? "sukses" : "gagal";
     }
 
-
     function get_nomor_by_kode_qr($kode_qr) {
         return $this->db->get_where('kode_qr', ['kode_qr' => $kode_qr])->row_array();
     }
-
 
     function detail_ubah($id_arsip){
 		$this->db->where('arsip.id_arsip', $id_arsip);
@@ -43,6 +41,16 @@ class Arsip_model extends CI_Model {
 		$data = $query->row_array();
 		return $data;
 	}
+
+    function cek_nomor_dokumen($nomor, $id_arsip = null) {
+        $this->db->where('nomor_dokumen', $nomor);
+        if ($id_arsip !== null) {
+            $this->db->where('id_arsip !=', $id_arsip);
+        }
+        $query = $this->db->get('arsip');
+        return $query->num_rows() > 0 ? TRUE : FALSE;
+    }
+
 
     function ubah($id_arsip, $data) {
         $this->db->where('id_arsip', $id_arsip);
@@ -54,6 +62,5 @@ class Arsip_model extends CI_Model {
             $this->db->delete('arsip');
     }
 
-    
 }
 ?>

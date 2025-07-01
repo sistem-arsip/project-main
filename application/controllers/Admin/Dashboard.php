@@ -17,17 +17,17 @@ class Dashboard extends CI_Controller {
         // Ambil semua unit
         $units = $this->Dashboard_model->tampil_unit();
 
-        // Siapkan array untuk data chart
+        // array untuk data chart
         $data_chart = [];
         foreach ($units as $unit) {
             $jumlah = $this->Dashboard_model->jumlah_arsip_perunit($unit['id_unit']);
             $data_chart[] = [
-                'unit' => $unit['nama_unit'],  // sesuaikan dengan nama kolom pada database
+                'unit' => $unit['nama_unit'],  
                 'jumlah' => $jumlah
             ];
         }
 
-        // Data chart
+        // data chart
         $data['data_arsip_per_unit'] = $data_chart;
 
         // Kirim total data ke view
@@ -36,7 +36,6 @@ class Dashboard extends CI_Controller {
         $data['total_arsip']    = $this->Dashboard_model->total_arsip();
         $data['total_kategori'] = $this->Dashboard_model->total_kategori();
 
-        // Tampilkan view
         $this->load->view('admin/header');
         $this->load->view('admin/dashboard', $data);
         $this->load->view('admin/footer');

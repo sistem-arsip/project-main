@@ -10,8 +10,17 @@ class Kategori extends CI_Controller {
 
         // Pastikan user sudah login sebagai admin
         if (!$this->session->userdata('status') || $this->session->userdata('status') != 'admin_login') {
-            redirect('auth/login', 'refresh'); // Redirect ke halaman login
+            redirect('auth/login', 'refresh'); 
         }
+    }
+
+    public function periksa_html($str){
+        $clean = strip_tags($str);
+        if ($str !== $clean) {
+            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            return FALSE;
+        }
+        return TRUE;
     }
 
     function index(){
@@ -25,8 +34,8 @@ class Kategori extends CI_Controller {
     function tambah(){
 
         $inputan = $this->input->post();
-        $this->form_validation->set_rules("nama_kategori","Nama Kategori","required|is_unique[kategori.nama_kategori]");
-        $this->form_validation->set_rules("keterangan_kategori","Keterangan ","required");
+        $this->form_validation->set_rules("nama_kategori","Nama Kategori","required|is_unique[kategori.nama_kategori]|trim|callback_periksa_html");
+        $this->form_validation->set_rules("keterangan_kategori","Keterangan ","required|trim|callback_periksa_html");
         $this->form_validation->set_message("required"," %s wajib diisi");
         $this->form_validation->set_message("is_unique", "%s yang sama sudah ada");
 
@@ -46,30 +55,42 @@ class Kategori extends CI_Controller {
         $this->load->view("admin/footer");
     }
 
-    function edit($id_kategori){
+    function cek_nama_kategori($nama_kategori, $id_kategori){
+        $result = $this->Kategori_model->cek_nama_kategori($nama_kategori, $id_kategori);
+        if ($result) {
+            $this->form_validation->set_message('cek_nama_kategori', 'Nama Kategori yang sama sudah ada!');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
 
+    function edit($id_kategori){
         $data['kategori'] = $this->Kategori_model->detail($id_kategori);
 
         $input = $this->input->post();
 
-        //jika ada inputan
         if (!empty($input)) {
+            $this->form_validation->set_rules('nama_kategori','Nama Kategori','required|trim|callback_cek_nama_kategori['.$id_kategori.']|callback_periksa_html');
+            $this->form_validation->set_rules('keterangan_kategori','Keterangan','required|trim|callback_periksa_html');
+            $this->form_validation->set_message("required", " %s wajib diisi!");
 
-            //jalankan fungsi simpan()
-            $this->Kategori_model->edit($input, $id_kategori);
+            if ($this->form_validation->run() == TRUE) {
+                $this->Kategori_model->edit($input, $id_kategori);
 
-            //redirect ke fitur kategori untuk tampil kategori
-            $this->session->set_flashdata('sukses', 'Kategori berhasil diubah');
-            redirect('admin/kategori', 'refresh');
+                $this->session->set_flashdata('sukses', 'Kategori berhasil diubah');
+                redirect('admin/kategori', 'refresh');
+            }
         }
+
         $this->load->view("admin/header");
         $this->load->view("admin/kategori_edit", $data);
         $this->load->view("admin/footer");
     }
 
+
     function hapus($id_kategori){
 
-        //jalankan fungsi hapus()
         $error_code = $this->Kategori_model->hapus($id_kategori);
 
         if ($error_code == 0) {

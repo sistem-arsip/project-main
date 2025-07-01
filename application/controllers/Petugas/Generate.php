@@ -11,10 +11,18 @@ class Generate extends CI_Controller {
         // load model
          $this->load->model('petugas/Generate_model');
 
-        // Pastikan user sudah login sebagai admin
+        // Pastikan user sudah login
         if (!$this->session->userdata('status') || $this->session->userdata('status') != 'petugas_login') {
-            redirect('auth/login', 'refresh'); // Redirect ke halaman login
+            redirect('auth/login', 'refresh'); 
         }
+    }
+    public function periksa_html($str){
+        $clean = strip_tags($str);
+        if ($str !== $clean) {
+            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            return FALSE;
+        }
+        return TRUE;
     }
 
     function index() {
@@ -28,7 +36,7 @@ class Generate extends CI_Controller {
 
     
     function tambah() {
-        $this->form_validation->set_rules("nomor_dokumen","Masukkan Nomor Surat/Dokumen","required|is_unique[kode_qr.nomor_dokumen]");
+        $this->form_validation->set_rules("nomor_dokumen","Masukkan Nomor Surat/Dokumen","required|is_unique[kode_qr.nomor_dokumen]|trim|callback_periksa_html");
         $this->form_validation->set_message("required", "%s wajib diisi!");
         $this->form_validation->set_message("is_unique", "%s yang sama sudah digunakan!");
 
@@ -120,7 +128,7 @@ class Generate extends CI_Controller {
             show_404();
         }
 
-        $this->form_validation->set_rules("nomor_dokumen", "Nomor Dokumen", "required|callback_nomor_dokumen_cek[".$kode_qr."]");
+        $this->form_validation->set_rules("nomor_dokumen", "Nomor Dokumen", "required|callback_nomor_dokumen_cek[".$kode_qr."]|trim|callback_periksa_html");
         $this->form_validation->set_message("required", "%s wajib diisi!");
         $this->form_validation->set_message("is_unique", "%s sudah digunakan!");
 

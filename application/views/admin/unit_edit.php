@@ -24,11 +24,13 @@
                     <div class="mb-3">
                         <label for="nama_unit" class="form-label">Nama Unit</label>
                         <input type="text" id="nama_unit" class="form-control" name="nama_unit" required value="<?php echo set_value("nama_unit", $unit['nama_unit']) ?>">
+                        <?php echo form_error('nama_unit', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
                         <label for="keterangan_unit" class="form-label">Keterangan</label>
                         <textarea id="keterangan_unit" class="form-control" name="keterangan_unit"><?php echo set_value("keterangan_unit", $unit['keterangan_unit']); ?></textarea>
+                        <?php echo form_error('keterangan_unit', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
                     <div class="mb-4">

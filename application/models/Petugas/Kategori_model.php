@@ -31,6 +31,5 @@ class Kategori_model extends CI_Model {
         $notif['id_pengajuan'] = $id_pengajuan;
         $notif['isi_notif_admin'] = "Terdapat pengajuan kategori baru dari <b>" .$petugas->nama_petugas." (Unit ".$unit->nama_unit.")</b> dengan nama <b>" .$data['nama_pengajuan']. "</b>" ;
         $this->db->insert('notifikasi_admin', $notif);
-        
     }
 }

@@ -9,14 +9,14 @@ class Kode_qr extends CI_Controller {
 
         // Pastikan user sudah login sebagai admin
         if (!$this->session->userdata('status') || $this->session->userdata('status') != 'admin_login') {
-            redirect('auth/login', 'refresh'); // Redirect ke halaman login
+            redirect('auth/login', 'refresh');
         }
     }
 
     function index() {
         $unit_list = $this->Kode_qr_model->tampil_by_unit();
 
-        // Tambahkan jumlah arsip per unit
+        // jumlah arsip per unit
         foreach ($unit_list as &$unit) {
             $unit['jumlah_qr'] = $this->Kode_qr_model->jumlah_qr_perunit($unit['id_unit']);
         }

@@ -20,12 +20,20 @@
                 </div>
 
                 <form method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id_arsip" value="<?php echo $arsip['id_arsip']; ?>">
+                    <input type="hidden" name="id_arsip" value="<?php echo $riwayat['id_arsip']; ?>">
+
+                    <?php if (!empty($riwayat['kode_qr'])): ?>
+                        <div class="mb-3">
+                            <label class="form-label">Kode QR</label>
+                            <input type="text" class="form-control" name="kode_qr" value="<?php echo $riwayat['kode_qr']; ?>"
+                                <?php echo !empty($riwayat['kode_qr']) ? 'readonly' : ''; ?>>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="mb-3">
                         <label class="form-label">Nomor Surat / Dokumen</label>
-                        <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo $arsip['nomor_dokumen']; ?>"
-                            <?php echo !empty($arsip['kode_qr']) ? 'readonly' : ''; ?>>
+                        <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo $riwayat['nomor_dokumen']; ?>"
+                            <?php echo !empty($riwayat['kode_qr']) ? 'readonly' : ''; ?>>
                     </div>
 
                     <div class="mb-3">
@@ -33,7 +41,7 @@
                         <select class="form-select" name="id_kategori" required>
                             <option value="">Pilih kategori</option>
                             <?php foreach ($kategori as $k): ?>
-                                <option value="<?= $k['id_kategori']; ?>" <?= $k['id_kategori'] == $arsip['id_kategori'] ? 'selected' : ''; ?>>
+                                <option value="<?= $k['id_kategori']; ?>" <?= $k['id_kategori'] == $riwayat['id_kategori'] ? 'selected' : ''; ?>>
                                     <?= $k['nama_kategori']; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -42,15 +50,15 @@
 
                     <div class="mb-3">
                         <label class="form-label">Keterangan</label>
-                        <textarea class="form-control" name="keterangan_arsip" rows="3" required><?php echo $arsip['keterangan_arsip']; ?></textarea>
+                        <textarea class="form-control" name="keterangan_arsip" rows="3" required><?php echo $riwayat['keterangan_arsip']; ?></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">File</label>
                         <input type="file" class="form-control" name="file">
                         <div class="form-text">Kosongkan jika tidak ingin mengubah file.</div>
-                        <?php if (!empty($arsip['file_arsip'])): ?>
-                            <a href="<?= base_url('assets/arsip/' . $arsip['file_arsip']); ?>" target="_blank" class="d-inline-block mt-2">Lihat file saat ini</a>
+                        <?php if (!empty($riwayat['file_arsip'])): ?>
+                            <a href="<?= base_url('assets/arsip/' . $riwayat['file_arsip']); ?>" target="_blank" class="d-inline-block mt-2">Lihat file saat ini</a>
                         <?php endif; ?>
                     </div>
 

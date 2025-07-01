@@ -11,18 +11,23 @@ class Kategori_model extends CI_Model {
 	}
 
     function simpan($data) {
-        $this->db->insert('kategori', $data); // Menambah data
+        $this->db->insert('kategori', $data);
     }
 
     function detail($id_kategori){
-		//select * from kategori where id_kategori = x
 		$this->db->where('id_kategori', $id_kategori);
 		$q = $this->db->get('kategori');
 		$d = $q->row_array();
 
 		return $d;
 	}
+    function cek_nama_kategori($nama_kategori, $id_kategori){
+        $this->db->where('nama_kategori', $nama_kategori);
+        $this->db->where('id_kategori !=', $id_kategori);
+        $query = $this->db->get('kategori');
 
+        return $query->num_rows() > 0 ? TRUE : FALSE;
+    }
     function edit($input, $id_kategori){
         $this->db->where('id_kategori', $id_kategori);
 		$this->db->update('kategori', $input);
