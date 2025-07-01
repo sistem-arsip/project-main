@@ -67,8 +67,8 @@
                         <div class="bg-light rounded-4 p-4 shadow-sm border border-light h-100">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div>
-                                    <h6 class="mb-1 text-muted">Riwayat QR Kode</h6>
-                                    <h3 class="fw-bold mb-0"><?php echo $total_kategori ?></h3>
+                                    <h6 class="mb-1 text-muted">Riwayat QR Code</h6>
+                                    <h3 class="fw-bold mb-0"><?php echo $total_qr ?></h3>
                                 </div>
                                 <div class="text-danger bg-danger bg-opacity-10 rounded-circle p-3">
                                     <i class="fa fa-qrcode fa-2x"></i>

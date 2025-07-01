@@ -146,6 +146,10 @@
                                 </li>
 
                                 <li style="transition: background-color 0.3s;">
+                                    <a href="<?php echo base_url('admin/kode_qr'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'"><i class="bi bi-qr-code"></i> Data QR code</span></a>
+                                </li>
+
+                                <li style="transition: background-color 0.3s;">
                                     <a href="<?php echo base_url('admin/arsip'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'">
                                         <i class="bi bi-journal-bookmark-fill"></i> Data Arsip Unit
                                     </a>

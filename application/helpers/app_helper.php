@@ -54,6 +54,21 @@ function status_notifikasi_petugas($id_petugas) {
     ];
 }
 
+function format_tanggal_indo($datetime) {
+    $bulanIndo = [
+        1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+
+    $timestamp = strtotime($datetime);
+    $tanggal = date('d', $timestamp);
+    $bulan = $bulanIndo[(int)date('m', $timestamp)];
+    $tahun = date('Y', $timestamp);
+
+    return "{$tanggal} {$bulan} {$tahun}";
+}
+
+
 
 
 ?>

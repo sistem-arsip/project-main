@@ -21,7 +21,6 @@
                     <tr>
                         <th width="1%">No</th>
                         <th class="d-none d-md-table-cell">Waktu</th>
-                        <th>Arsip</th>
                         <th>Kategori</th>
                         <th>Petugas</th>
                         <th>Keterangan</th>
@@ -33,9 +32,7 @@
                         <tr>
                             <td><?php echo $a + 1; ?></td>
                             <td class="d-none d-md-table-cell"><?php echo $v['waktu_upload']; ?></td>
-                            <td>
-                                <b>Kode Arsip:</b> <?php echo $v['kode_arsip']; ?><br>
-                            </td>
+
                             <td>
                                 <?php echo $v['nama_kategori']; ?> <br>
                                 <div class="d-block d-md-none text-muted small"><?php echo $v['waktu_upload']; ?></div>

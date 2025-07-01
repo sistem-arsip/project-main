@@ -37,16 +37,12 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                         <div class="table-responsive mb-4">
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Kode Arsip</th>
-                                    <td><?php echo $arsip['kode_arsip']; ?></td>
-                                </tr>
-                                <tr>
                                     <th>Waktu</th>
                                     <td><?php echo date('H:i:s  d-m-Y', strtotime($arsip['waktu_upload'])) ?></td>
                                 </tr>
                                 <tr>
                                     <th>Nomor Surat</th>
-                                    <td><?php echo $arsip['nomor_surat']; ?></td>
+                                    <td><?php echo $arsip['nomor_dokumen']; ?></td>
                                 </tr>
                                 <tr>
                                     <th>Kategori</th>
@@ -65,14 +61,6 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                     <td><?php echo $arsip['keterangan_arsip']; ?></td>
                                 </tr>
                             </table>
-                        </div>
-
-                        <div class="text-center">
-                            <img src="<?php echo $qrcode; ?>" class="img-fluid mb-2">
-                            <br>
-                            <a href="<?= $qrcode ?>" download="<?php echo date("YmHis") ?>_qrcode.png" class="btn btn-success btn-sm">
-                                <i class="fa fa-download"></i> Unduh QR Code
-                            </a>
                         </div>
                     </div>
 
