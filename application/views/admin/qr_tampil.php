@@ -12,10 +12,6 @@
     <div class="row">
         <div class="col-12">
             <div class="bg-light rounded shadow-sm p-3">
-                <!-- <div class="d-flex justify-content-end mb-3">
-                    <a href="" class="btn btn-success text-light"><i class="fa fa-file"></i> Lihat Semua
-                    </a>
-                </div> -->
 
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordered table-striped table-hover w-100">
