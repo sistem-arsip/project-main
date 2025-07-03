@@ -36,7 +36,7 @@ class Generate extends CI_Controller {
 
     
     function tambah() {
-        $this->form_validation->set_rules("nomor_dokumen","Masukkan Nomor Surat/Dokumen","required|is_unique[kode_qr.nomor_dokumen]|trim|callback_periksa_html");
+        $this->form_validation->set_rules("nomor_dokumen","Nomor Surat/Dokumen","required|is_unique[kode_qr.nomor_dokumen]|trim|callback_periksa_html");
         $this->form_validation->set_message("required", "%s wajib diisi!");
         $this->form_validation->set_message("is_unique", "%s yang sama sudah digunakan!");
 

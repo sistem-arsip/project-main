@@ -54,7 +54,7 @@ class Kategori extends CI_Controller {
             $this->Kategori_model->simpan($data); 
 
             $this->session->set_flashdata('sukses', 'Kategori berhasil diajukan');
-            redirect('petugas/kategori', 'refresh');
+            redirect('petugas/pengajuan_kategori', 'refresh');
         }
 
         $this->load->view("petugas/header");

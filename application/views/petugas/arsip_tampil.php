@@ -42,7 +42,7 @@
                             <td><?php echo $a + 1; ?></td>
                             <td class="d-none d-md-table-cell"><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
                             <td>
-                                <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>
+                                <?php echo $v['nama_kategori']; ?> <br>
                                 <div class="d-block d-md-none"><small><?php echo $v['waktu_upload']; ?></small></div>
                             </td>
                             <td>

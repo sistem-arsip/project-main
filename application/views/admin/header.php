@@ -123,7 +123,7 @@
 
                                 <li style="transition: background-color 0.3s;">
                                     <a href="<?php echo base_url('admin/kategori'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'">
-                                        <i class="bi bi-window-stack"></i> Kategori Arsip
+                                        <i class="bi bi-window-stack"></i> Data Kategori
                                     </a>
                                 </li>
 
@@ -134,14 +134,14 @@
                                 </li>
 
                                 <li style="transition: background-color 0.3s;">
-                                    <a href="<?php echo base_url('admin/petugas'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'">
-                                        <i class="bi bi-file-earmark-text"></i> Data Petugas
+                                    <a href="<?php echo base_url('admin/unit'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'">
+                                        <i class="bi bi-journal-bookmark-fill"></i> Data Unit
                                     </a>
                                 </li>
 
                                 <li style="transition: background-color 0.3s;">
-                                    <a href="<?php echo base_url('admin/unit'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'">
-                                        <i class="bi bi-journal-bookmark-fill"></i> Data Unit
+                                    <a href="<?php echo base_url('admin/petugas'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'">
+                                        <i class="bi bi-file-earmark-text"></i> Data Petugas
                                     </a>
                                 </li>
 
