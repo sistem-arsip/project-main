@@ -69,14 +69,14 @@
 
                 <?php foreach ($notifikasi as $notif) : ?>
                     <?php $style = ($notif['status_notifikasi'] == 'belum') ? 'background-color: #f0f0f0;' : ''; ?>
-                    <li class="dropdown-item mb-2 notif-item" data-id="<?= $notif['id_notifikasi'] ?>" style="white-space: normal; word-break: break-word; overflow-x: hidden; <?= $style ?> cursor: pointer;">
+                    <li class="dropdown-item mb-2 notif-item" data-id="<?php echo $notif['id_notifikasi'] ?>" style="white-space: normal; word-break: break-word; overflow-x: hidden; <?= $style ?> cursor: pointer;">
                         <div class="d-flex gap-2 align-items-start">
                             <div class="custom-notification-icon">
                                 <i class="fas fa-bell text-white"></i>
                             </div>
                             <div>
-                                <div class="small"><?= $notif['isi_notifikasi']; ?></div>
-                                <div class="text-muted small"><?= $notif['waktu_notifikasi']; ?></div>
+                                <div class="small"><?php echo $notif['isi_notifikasi']; ?></div>
+                                <div class="text-muted small"><?php echo $notif['waktu_notifikasi']; ?></div>
                             </div>
                         </div>
                     </li>
@@ -118,7 +118,7 @@
                                     </a>
                                 </li>
                                 <li style="transition: background-color 0.3s;">
-                                    <a href="<?php echo base_url('petugas/kategori'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'"><i class="bi bi-window-stack"></i> Kategori Arsip</span></a>
+                                    <a href="<?php echo base_url('petugas/kategori'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'"><i class="bi bi-window-stack"></i> Data Kategori</span></a>
                                 </li>
                                 <li style="transition: background-color 0.3s;">
                                     <a href="<?php echo base_url('petugas/generate'); ?>" aria-expanded="false" style="display: block; padding: 10px; text-decoration: none; color: inherit;" onmouseover="this.style.backgroundColor='#e0e0e0'" onmouseout="this.style.backgroundColor='transparent'"><i class="bi bi-qr-code"></i> Buat QR Code</span></a>

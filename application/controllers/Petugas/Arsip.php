@@ -208,6 +208,16 @@ class Arsip extends CI_Controller {
 
     function hapus($id_arsip){
 
+        $arsip = $this->Arsip_model->detail($id_arsip);
+
+        
+        // if(!empty($arsip['file_arsip']))
+        // {
+        //     if (file_exists("assets/arsip/".$arsip['file_arsip'])) {
+        //         unlink(""assets/arsip/".$arsip['file_arsip']");
+        //     }
+        // }
+        
         $this->Arsip_model->hapus($id_arsip);
 
         $this->session->set_flashdata('sukses', 'Arsip berhasil dihapus');

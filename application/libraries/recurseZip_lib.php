@@ -3,10 +3,10 @@
 /*Library untuk membuat file ZIP dari folder atau file secara rekursif.*/
 class recurseZip_lib {
 
-    private $src; // Lokasi sumber file/folder
-    private $dst; // Lokasi tujuan penyimpanan ZIP
+    private $src; // lokasi sumber file/folder
+    private $dst; // lokasi tujuan penyimpanan ZIP
 
-    /*Konstruktor, menerima array $opt dari controller*/
+    /*menerima array $opt dari controller*/
     public function __construct($opt) {
         $this->src = $opt['src'];
         $this->dst = $opt['dst'];
