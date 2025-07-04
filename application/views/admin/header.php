@@ -68,7 +68,7 @@
             <?php foreach ($notifikasi as $notif) : ?>
             <?php $style = ($notif['status_notif_admin'] == 'belum') ? 'background-color: #f0f0f0;' : ''; ?>
                 <li class="dropdown-item mb-2" style="white-space: normal; word-break: break-word; overflow-x: hidden; <?php echo $style ?>">
-                    <a href="<?php echo base_url('admin/pengajuan_kategori/baca_notif/' . $notif['id_notif_admin']) ?>" style="text-decoration: none; color: inherit; display: block;">
+                    <a href="<?php echo base_url('admin/notifikasi/baca_notif/' . $notif['id_notif_admin']) ?>" style="text-decoration: none; color: inherit; display: block;">
                         <div class="d-flex gap-2 align-items-start">
                             <div class="custom-notification-icon">
                                 <i class="fas fa-bell text-white"></i>

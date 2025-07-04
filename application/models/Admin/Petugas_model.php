@@ -3,9 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Petugas_model extends CI_Model {
     public function tampil() {
+
+        $this->db->order_by("id_petugas","asc");
         $this->db->from("petugas");
-        $this->db->join("unit", "petugas.id_unit = unit.id_unit", "left"); 
-        
+        $this->db->join("unit", "petugas.id_unit = unit.id_unit", "left");
         $query = $this->db->get();
         return $query->result_array();
     }

@@ -113,7 +113,7 @@
         e.preventDefault();
 
         $.ajax({
-            url: '<?= base_url("admin/pengajuan_kategori/baca_semua") ?>',
+            url: '<?= base_url("admin/notifikasi/baca_semua") ?>',
             method: 'POST',
             dataType: 'json',
             success: function(res) {

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Kategori_model extends CI_Model {
     function tampil (){
         
-        // $this->db->order_by("nama_kategori","asc");
+        $this->db->order_by("id_kategori","asc");
 		$query = $this->db->get("kategori");
 		$data = $query->result_array();
 		return $data;
@@ -30,7 +30,7 @@ class Kategori_model extends CI_Model {
         // insert tabel notif admin
         $notif['id_petugas'] = $data["id_petugas"];
         $notif['id_pengajuan'] = $id_pengajuan;
-        $notif['isi_notif_admin'] = "Terdapat pengajuan kategori baru dari <b>" .$petugas->nama_petugas." (Unit ".$unit->nama_unit.")</b> dengan nama <b>" .$data['nama_pengajuan']. "</b>" ;
+        $notif['isi_notif_admin'] = "Terdapat pengajuan kategori baru dari <b>" .$petugas->nama_petugas." (".$unit->nama_unit.")</b> dengan nama <b>" .$data['nama_pengajuan']. "</b>" ;
         $this->db->insert('notifikasi_admin', $notif);
     }
 }

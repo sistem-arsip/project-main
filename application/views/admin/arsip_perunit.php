@@ -31,11 +31,11 @@
                     <?php foreach ($arsip as $a => $v): ?>
                         <tr>
                             <td><?php echo $a + 1; ?></td>
-                            <td class="d-none d-md-table-cell"><?php echo $v['waktu_upload']; ?></td>
+                            <td class="d-none d-md-table-cell"><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
 
                             <td>
                                 <?php echo $v['nama_kategori']; ?> <br>
-                                <div class="d-block d-md-none text-muted small"><?php echo $v['waktu_upload']; ?></div>
+                                <div class="d-block d-md-none text-muted small"><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></div>
                             </td>
                             <td>
                                 <?php echo $v['nama_petugas']; ?><br>
