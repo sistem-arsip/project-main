@@ -37,14 +37,12 @@
                                     <td><?php echo $var['nama_unit']; ?></td>
                                     <td><?php echo $var['username_petugas']; ?></td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="<?php echo base_url('admin/petugas/edit/' . $var['id_petugas']); ?>" class="btn btn-warning text-light" style="margin-right: 5px;">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="<?php echo base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus petugas ini?')">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                        </div>
+                                        <a href="<?php echo base_url('admin/petugas/edit/' . $var['id_petugas']); ?>" class="btn btn-warning text-light">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="<?php echo base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus petugas ini?')">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -55,4 +53,3 @@
         </div>
     </div>
 </div>
-

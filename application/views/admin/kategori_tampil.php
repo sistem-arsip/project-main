@@ -35,14 +35,12 @@
                                     <td><?php echo $v['nama_kategori']; ?></td>
                                     <td><?php echo $v['keterangan_kategori']; ?></td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="<?php echo base_url('admin/kategori/edit/' . $v['id_kategori']); ?>" class="btn btn-warning text-light" style="margin-right: 5px;">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="<?php echo base_url('admin/kategori/hapus/' . $v['id_kategori']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus kategori ini?')">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                        </div>
+                                        <a href="<?php echo base_url('admin/kategori/edit/' . $v['id_kategori']); ?>" class="btn btn-warning text-light">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="<?php echo base_url('admin/kategori/hapus/' . $v['id_kategori']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus kategori ini?')">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
 
                                     </td>
                                 </tr>

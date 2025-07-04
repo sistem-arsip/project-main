@@ -30,25 +30,23 @@
                                     <td class="text-center"><?php echo $r + 1; ?></td>
                                     <td><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
                                     <td>
-                                    <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>
-                                    <?php echo $v['keterangan_arsip']; ?>
+                                        <b>Kategori : </b><?php echo $v['nama_kategori']; ?> <br>
+                                        <?php echo $v['keterangan_arsip']; ?>
                                     </td>
                                     <td>
                                         <strong><?php echo $v['nama_petugas']; ?></strong><br>
                                         <small class="text-muted">Bagian <?php echo $v['nama_unit']; ?></small>
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="<?php echo base_url('petugas/riwayat/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-light" style="margin-right: 5px;">
-                                        <i class="fa fa-file"></i> Preview
-                                            </a>
-                                            <a href="<?php echo base_url('petugas/riwayat/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white me-1">
+                                        <a href="<?php echo base_url('petugas/riwayat/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-white">
+                                            <i class="fa fa-file"></i> Preview
+                                        </a>
+                                        <a href="<?php echo base_url('petugas/riwayat/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white">
                                             <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="<?php echo base_url('petugas/riwayat/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
+                                        </a>
+                                        <a href="<?php echo base_url('petugas/riwayat/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                             <i class="fa fa-trash"></i>
-                                            </a>
-                                        </div>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

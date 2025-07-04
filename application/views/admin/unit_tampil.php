@@ -35,14 +35,12 @@
                                     <td><?php echo $var['nama_unit']; ?></td>
                                     <td><?php echo $var['keterangan_unit']; ?></td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="<?php echo base_url('admin/unit/edit/' . $var['id_unit']); ?>" class="btn btn-warning text-light" style="margin-right: 5px;">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="<?php echo base_url('admin/unit/hapus/' . $var['id_unit']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus unit ini?')">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                        </div>
+                                        <a href="<?php echo base_url('admin/unit/edit/' . $var['id_unit']); ?>" class="btn btn-warning text-light">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="<?php echo base_url('admin/unit/hapus/' . $var['id_unit']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus unit ini?')">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

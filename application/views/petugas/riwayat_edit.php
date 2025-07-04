@@ -58,7 +58,7 @@
                         <input type="file" class="form-control" name="file">
                         <div class="form-text">Kosongkan jika tidak ingin mengubah file.</div>
                         <?php if (!empty($riwayat['file_arsip'])): ?>
-                            <a href="<?= base_url('assets/arsip/' . $riwayat['file_arsip']); ?>" target="_blank" class="d-inline-block mt-2">Lihat file saat ini</a>
+                            <a href="<?= base_url('assets/arsip/' . $riwayat['file_arsip']); ?>" target="_blank" class="btn btn-sm btn-secondary mt-2">Lihat file saat ini</a>
                         <?php endif; ?>
                     </div>
 

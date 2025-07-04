@@ -51,19 +51,17 @@
                             </td>
                             <td><?php echo $v['keterangan_arsip']; ?></td>
                             <td class="text-center">
-                                <div class="btn-group">
-                                    <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-light" style="margin-right: 5px;">
-                                        <i class="fa fa-file"></i> Preview
+                                <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-white">
+                                    <i class="fa fa-file"></i> Preview
+                                </a>
+                                <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
+                                    <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white">
+                                        <i class="fa fa-edit"></i>
                                     </a>
-                                    <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
-                                        <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white me-1">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    <?php endif; ?>
-                                </div>
+                                    <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                <?php endif; ?>
                             </td>
 
                         </tr>
@@ -71,16 +69,16 @@
                 </tbody>
             </table>
             <script>
-                document.getElementById('filterBulanTahun').addEventListener('change', function () {
+                document.getElementById('filterBulanTahun').addEventListener('change', function() {
                     var value = this.value; // Misal: 2025-06
                     if (!value) return;
 
                     const [year, month] = value.split('-');
 
                     const rows = document.querySelectorAll('#mytable tbody tr');
-                    rows.forEach(function (row) {
+                    rows.forEach(function(row) {
                         const rowMonth = row.getAttribute('data-bulan'); // ex: 06
-                        const rowYear = row.getAttribute('data-tahun');  // ex: 2025
+                        const rowYear = row.getAttribute('data-tahun'); // ex: 2025
 
                         if (rowMonth === month && rowYear === year) {
                             row.style.display = '';
@@ -102,8 +100,8 @@
 <script>
     // Inisialisasi Flatpickr
     flatpickr("#filterBulanTahun", {
-        dateFormat: "Y-m",         // Format hasil value (e.g. 2025-06)
-        altFormat: "F Y",          // Format tampilan
+        dateFormat: "Y-m", // Format hasil value (e.g. 2025-06)
+        altFormat: "F Y", // Format tampilan
         altInput: true,
         plugins: [
             new monthSelectPlugin({
@@ -114,7 +112,4 @@
     });
 
     // Event Listener untuk Filter
-   
 </script>
-
-

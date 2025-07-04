@@ -33,13 +33,13 @@
                                 <td><?php echo $var['kode_qr']; ?></td>
                                 <td><?php echo $var['nomor_dokumen']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?php echo base_url('petugas/generate/detail/' . $var['kode_qr']); ?>" class="btn btn-secondary text-light">
-                                        <i class="bi bi-eye"></i>
+                                    <a href="<?php echo base_url('petugas/generate/detail/' . $var['kode_qr']); ?>" class="btn btn-secondary text-white">
+                                        <i class="bi bi-eye"></i> View Detail
                                     </a>
-                                    <a href="<?php echo base_url('petugas/generate/edit/' . $var['kode_qr']); ?>" class="btn btn-warning text-light" style="margin-right: 5px;">
+                                    <a href="<?php echo base_url('petugas/generate/edit/' . $var['kode_qr']); ?>" class="btn btn-warning text-white">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a href="<?php echo base_url('petugas/generate/hapus/' . $var['kode_qr']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus QR Code ini?')">
+                                    <a href="<?php echo base_url('petugas/generate/hapus/' . $var['kode_qr']); ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus QR Code ini?')">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
