@@ -26,7 +26,7 @@
                                 <th>Nama Petugas</th>
                                 <th>Unit</th>
                                 <th>Username</th>
-                                <th class="text-center" width="10%">OPSI</th>
+                                <th class="text-center" width="15%">OPSI</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -23,7 +23,7 @@
                             <th class="text-center" width="1%">No</th>
                             <th>Kode QR</th>
                             <th>Nomor</th>
-                            <th class="text-center" width="20%">Detail</th>
+                            <th class="text-center" width="15%">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +34,7 @@
                                 <td><?php echo $var['nomor_dokumen']; ?></td>
                                 <td class="text-center">
                                     <a href="<?php echo base_url('petugas/generate/detail/' . $var['kode_qr']); ?>" class="btn btn-secondary text-white">
-                                        <i class="bi bi-eye"></i> View Detail
+                                        <i class="bi bi-eye"></i>
                                     </a>
                                     <a href="<?php echo base_url('petugas/generate/edit/' . $var['kode_qr']); ?>" class="btn btn-warning text-white">
                                         <i class="fa fa-edit"></i>

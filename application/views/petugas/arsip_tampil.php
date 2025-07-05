@@ -33,7 +33,7 @@
                         <th>Kategori</th>
                         <th>Petugas</th>
                         <th>Keterangan</th>
-                        <th class="text-center" style="width: 20%;">Opsi</th>
+                        <th class="text-center" style="width: 15%;">Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@
                             <td><?php echo $v['keterangan_arsip']; ?></td>
                             <td class="text-center">
                                 <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-white">
-                                    <i class="fa fa-file"></i> Preview
+                                    <i class="fa fa-file"></i>
                                 </a>
                                 <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
                                     <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white">

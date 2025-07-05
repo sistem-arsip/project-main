@@ -21,7 +21,7 @@
                                 <th>Waktu</th>
                                 <th>Arsip Yang Diunggah</th>
                                 <th>Petugas</th>
-                                <th class="text-center" style="width: 20%;">Opsi</th>
+                                <th class="text-center" style="width: 15%;">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,7 +39,7 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="<?php echo base_url('petugas/riwayat/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-white">
-                                            <i class="fa fa-file"></i> Preview
+                                            <i class="fa fa-file"></i>
                                         </a>
                                         <a href="<?php echo base_url('petugas/riwayat/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white">
                                             <i class="fa fa-edit"></i>
