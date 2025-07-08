@@ -50,8 +50,12 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                     <td><?php echo strtoupper($arsip['ekstensi_file_arsip']); ?></td>
                                 </tr>
                                 <tr>
-                                    <th>Petugas Pengupload</th>
-                                    <td>Bagian <?php echo $arsip['nama_unit']; ?></td>
+                                    <th>Unit</th>
+                                    <td><?php echo $arsip['nama_unit']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Petugas</th>
+                                    <td><?php echo $arsip['nama_petugas']; ?></td>
                                 </tr>
                                 <tr>
                                     <th>Keterangan</th>
@@ -59,18 +63,34 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                 </tr>
                             </table>
                         </div>
+                        <?php
+                        $file_url = base_url("assets/arsip/" . $arsip['file_arsip']);
+                        ?>
+                        <a href="<?php echo $file_url; ?>" download class="btn btn-success mt-3">
+                            <i class="fa fa-download"></i> Download File
+                        </a>
                     </div>
 
                     <!-- Kolom Preview Arsip -->
                     <div class="col-lg-8">
                         <?php if ($arsip['ekstensi_file_arsip'] === 'pdf'): ?>
-                            <iframe src="<?php echo base_url("assets/arsip/" . $arsip['file_arsip']) ?>" width="100%" height="500" style="border: none;"></iframe>
+                            <iframe src="<?= $file_url ?>" width="100%" height="500" style="border: none;"></iframe>
+                    
                         <?php elseif (in_array($arsip['ekstensi_file_arsip'], ['png', 'jpg', 'jpeg'])): ?>
-                            <img src="<?php echo base_url("assets/arsip/" . $arsip['file_arsip']) ?>" class="w-100 img-fluid rounded shadow-sm" alt="Preview Gambar">
-                        <?php elseif (in_array($arsip['ekstensi_file_arsip'], ['doc', 'docx'])): ?>
-                            <iframe src="https://docs.google.com/gview?url=<?php echo base_url("assets/arsip/" . $arsip['file_arsip']) ?>&embedded=true" width="100%" height="500" style="border: none;"></iframe>
+                            <img src="<?= $file_url ?>" class="w-100 img-fluid rounded shadow-sm" alt="Preview Gambar">
+                    
+                        <?php elseif (in_array($arsip['ekstensi_file_arsip'], ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'])): ?>
+                                <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=<?= urlencode($file_url) ?>" width="100%" height="500" frameborder="0"></iframe>
+
+                        <?php elseif ($arsip['ekstensi_file_arsip'] === 'zip'): ?>
+                            <div class="alert alert-info">
+                                File <strong>ZIP</strong> tidak dapat dipreview di browser.<br>Silakan <strong>Download</strong> untuk membuka file.
+                            </div>
+                    
                         <?php else: ?>
-                            <div class="alert alert-warning">Preview untuk tipe file ini tidak tersedia.</div>
+                            <div class="alert alert-warning">
+                                Preview tidak tersedia untuk tipe file <strong><?= strtoupper($arsip['ekstensi_file_arsip']) ?></strong>.
+                            </div>
                         <?php endif; ?>
                     </div>
                 </div>

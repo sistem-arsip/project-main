@@ -1,9 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include 'vendor/autoload.php';
-use chillerlan\QRCode\QRCode;
-use chillerlan\QRCode\QROptions;
+
 class Riwayat extends CI_Controller {
 
     function __construct() {

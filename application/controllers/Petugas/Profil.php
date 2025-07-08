@@ -29,9 +29,9 @@ class Profil extends CI_Controller {
         }
         return TRUE;
     }
-    function cek_username_petugas($username_admin){
-        $id_admin = $this->session->userdata('id_admin');
-        $result = $this->Profil_model->cek_username_petugas($username_admin, $id_admin);
+    function cek_username_petugas($username_petugas){
+        $id_petugas = $this->session->userdata('id_petugas');
+        $result = $this->Profil_model->cek_username_petugas($username_petugas, $id_petugas);
         if ($result) {
             $this->form_validation->set_message('cek_username_petugas', 'Username sudah digunakan!');
             return FALSE;

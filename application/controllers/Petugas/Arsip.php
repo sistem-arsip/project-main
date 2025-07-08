@@ -1,9 +1,6 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include 'vendor/autoload.php';
-use chillerlan\QRCode\QRCode;
-use chillerlan\QRCode\QROptions;
 class Arsip extends CI_Controller {
 
     public function __construct() {
@@ -99,7 +96,7 @@ class Arsip extends CI_Controller {
 
                 // Upload file
                 $config['upload_path']   = './assets/arsip/';
-                $config['allowed_types'] = 'pdf|doc|docx|jpg|png';
+                $config['allowed_types'] = 'pdf|doc|docx|xls|xlsx|jpg|jpeg|png|ppt|pptx|zip';
                 $config['max_size']      = 10000;
 
                 $this->load->library('upload', $config);
@@ -128,6 +125,7 @@ class Arsip extends CI_Controller {
         $this->load->view('petugas/arsip_tambah', $data);
         $this->load->view('petugas/footer');
     }
+    
     function nomor_dokumen_cek($nomor) {
         $id_arsip = $this->uri->segment(4); 
         if ($this->Arsip_model->cek_nomor_dokumen($nomor, $id_arsip)) {
@@ -173,7 +171,7 @@ class Arsip extends CI_Controller {
 
                 if (!empty($_FILES['file']['name'])) {
                     $config['upload_path']   = './assets/arsip/';
-                    $config['allowed_types'] = 'pdf|doc|docx|jpg|png';
+                    $config['allowed_types'] = 'pdf|doc|docx|xls|xlsx|jpg|jpeg|png|ppt|pptx|zip';
                     $config['max_size']      = 10000;
 
                     $this->load->library('upload', $config);

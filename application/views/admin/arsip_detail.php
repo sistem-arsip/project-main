@@ -62,7 +62,16 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                                 </tr>
                             </table>
                         </div>
+                        <?php
+                        $file_url = base_url("assets/arsip/" . $arsip['file_arsip']);
+                        ?>
+                        <a href="<?php echo $file_url; ?>" download class="btn btn-success mt-3">
+                            <i class="fa fa-download"></i> Download File
+                        </a>
                     </div>
+
+                    
+
 
                     <div class="col-lg-8">
                         <?php if ($arsip['ekstensi_file_arsip'] == "pdf"): ?>
