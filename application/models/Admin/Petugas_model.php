@@ -31,6 +31,20 @@ class Petugas_model extends CI_Model {
 		$this->db->update('petugas', $input);
     }
 
+    // jika ubah unit
+    function update_unit($id_petugas, $id_unit_baru) {
+        // arsip
+        $this->db->where('id_petugas', $id_petugas);
+        $this->db->update('arsip', ['id_unit' => $id_unit_baru]);
+        // kode_qr
+        $this->db->where('id_petugas', $id_petugas);
+        $this->db->update('kode_qr', ['id_unit' => $id_unit_baru]);
+        // pengajuan_kategori
+        $this->db->where('id_petugas', $id_petugas);
+        $this->db->update('pengajuan_kategori', ['id_unit' => $id_unit_baru]);
+    }
+
+
     function simpan($data) {
         $this->db->insert('petugas', $data); 
     }

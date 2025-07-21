@@ -96,6 +96,10 @@ class Petugas extends CI_Controller {
                 }
 
                 $this->Petugas_model->edit($update_data, $id_petugas);
+                // jika update unit
+                if ($update_data['id_unit'] != $data['petugas']['id_unit']) {
+                    $this->Petugas_model->update_unit($id_petugas, $update_data['id_unit']);
+                }
 
                 $this->session->set_flashdata('sukses', 'Petugas berhasil diubah');
                 redirect('admin/petugas', 'refresh');
