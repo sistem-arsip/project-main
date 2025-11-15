@@ -103,7 +103,7 @@
         }
 
         .loginbtn {
-            background-color: #007bff;
+            background-color: #5CB338;
             border: none;
             font-weight: 600;
             color: #fff;
@@ -111,7 +111,8 @@
         }
 
         .loginbtn:hover {
-            background-color: #0069d9;
+            background-color: #347928;
+            color: #fff;
         }
 
         a.btn-sm {
@@ -200,10 +201,10 @@
                                     <i class="fas fa-exclamation-circle"></i> <?php echo strip_tags(form_error('akses')); ?>
                                 </div>
                             <?php endif; ?>
-                            <input type="submit" class="btn btn-primary btn-block loginbtn" value="Login">
+                            <input type="submit" class="btn btn-block loginbtn" value="Login">
                         </form>
                         <div class="text-center mt-3">
-                            <a href="<?php echo base_url('/'); ?>" class="btn btn-primary btn-sm">← Kembali</a>
+                            <a href="<?php echo base_url('/'); ?>" class="btn btn-sm btn-success text-light">← Kembali</a>
                         </div>
                     </div>
                 </div>

@@ -45,7 +45,23 @@ class Arsip extends CI_Controller {
     }
 
     function tambah() {
-        $data["kategori"] = $this->Kategori_model->tampil();
+
+        $id_petugas = $this->session->userdata('id_petugas');
+        $id_unit = $this->Arsip_model->unit_by_petugas($id_petugas);
+
+        $kategori = $this->Kategori_model->tampil();
+        
+        //cek unit
+        $nama_unit = $this->Arsip_model->get_nama_unit($id_unit);
+
+        if (strtolower($nama_unit) !== 'unit c') {
+            // Filter agar kategori "Warta Tahunan" tidak muncul
+            $kategori = array_filter($kategori, function($k) {
+                return strtolower($k['nama_kategori']) !== 'kategori c';
+            });
+        }
+
+        $data["kategori"] = $kategori;
 
         $this->form_validation->set_rules("id_kategori", "Kategori", "required");
         $this->form_validation->set_rules("keterangan_arsip", "Keterangan Arsip", "required|trim|callback_periksa_html");
@@ -137,7 +153,20 @@ class Arsip extends CI_Controller {
 
     function edit($id_arsip) {
         $data["arsip"] = $this->Arsip_model->detail_ubah($id_arsip);
-        $data["kategori"] = $this->Kategori_model->tampil();
+        
+        $id_petugas = $this->session->userdata('id_petugas');
+        $id_unit = $this->Arsip_model->unit_by_petugas($id_petugas);
+        $nama_unit = $this->Arsip_model->get_nama_unit($id_unit);
+
+        $kategori = $this->Kategori_model->tampil();
+
+        if (strtolower($nama_unit) !== 'unit c') {
+            $kategori = array_filter($kategori, function($k) {
+                return strtolower($k['nama_kategori']) !== 'kategori c';
+            });
+        }
+
+        $data["kategori"] = $kategori;
 
         $inputan = $this->input->post();
 

@@ -22,7 +22,7 @@
 
                     <div class="mb-3">
                         <label for="nama_kategori" class="form-label">Nama</label>
-                        <input type="text" id="nama_kategori" class="form-control" name="nama_kategori" required value="<?php echo set_value('nama_kategori', $kategori['nama_kategori']) ?>">
+                        <input type="text" id="nama_kategori" class="form-control" name="nama_kategori" value="<?php echo set_value('nama_kategori', $kategori['nama_kategori']) ?>">
                         <?php echo form_error('nama_kategori', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 

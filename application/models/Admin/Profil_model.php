@@ -23,7 +23,7 @@ class Profil_model extends CI_Model {
         if (!empty($data["password_admin"])) {
             $data["password_admin"] = md5($data["password_admin"]);
         } else {
-            unset($data["password_admin"]); // Jika password kosong, hapus dari array update
+            unset($data["password_admin"]); 
         }
 
         $this->db->where("id_admin", $id_admin);

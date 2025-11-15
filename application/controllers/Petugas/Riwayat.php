@@ -54,7 +54,19 @@ class Riwayat extends CI_Controller {
 
     function edit($id_arsip) {
         $data["riwayat"] = $this->Riwayat_model->detail_ubah($id_arsip);
-        $data["kategori"] = $this->Kategori_model->tampil();
+        $id_petugas = $this->session->userdata('id_petugas');
+        $id_unit = $this->Riwayat_model->unit_by_petugas($id_petugas);
+        $nama_unit = $this->Riwayat_model->get_nama_unit($id_unit);
+
+        $kategori = $this->Kategori_model->tampil();
+
+        if (strtolower($nama_unit) !== 'unit c') {
+            $kategori = array_filter($kategori, function($k) {
+                return strtolower($k['nama_kategori']) !== 'kategori c';
+            });
+        }
+
+        $data["kategori"] = $kategori;
 
         $inputan = $this->input->post();
 

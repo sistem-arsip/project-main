@@ -20,13 +20,16 @@
                             <div class="card-header bg-success text-white">
                                 <strong><i class="fa fa-database"></i> Backup</strong>
                             </div>
-                            <div class="card-body d-flex justify-content-center gap-3">
-                                <a href="<?php echo base_url('admin/backup/db') ?>" class="btn btn-success mt-4">
-                                    <i class="fa fa-download"></i> Klik untuk Backup database
-                                </a>
-                                <a href="<?php echo base_url('admin/backup/files') ?>" class="btn btn-success mt-4">
-                                    <i class="fa fa-archive"></i> Klik untuk Backup File Arsip
-                                </a>
+                            <div class="card-body">
+                                <p>Data telah ter-backup secara otomatis ke server. Untuk backup manual, silakan klik salah satu tombol di bawah:</p>
+                                <div class="d-flex justify-content-center gap-3 mt-4">
+                                    <a href="<?php echo base_url('admin/backup/db') ?>" class="btn btn-success">
+                                        <i class="fa fa-download"></i> Backup Database
+                                    </a>
+                                    <a href="<?php echo base_url('admin/backup/files') ?>" class="btn btn-success">
+                                        <i class="fa fa-archive"></i> Backup File Arsip
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

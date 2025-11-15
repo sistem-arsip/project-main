@@ -62,5 +62,12 @@ class Arsip_model extends CI_Model {
             $this->db->delete('arsip');
     }
 
+    function get_nama_unit($id_unit) {
+        $this->db->where('id_unit', $id_unit);
+        $query = $this->db->get('unit');
+        $data = $query->row_array();
+        return $data ? $data['nama_unit'] : null;
+    }
+
 }
 ?>
