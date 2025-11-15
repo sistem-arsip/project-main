@@ -2,20 +2,22 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Petugas_model extends CI_Model {
-    public function tampil() {
-
-        $this->db->order_by("id_petugas","asc");
-        $this->db->from("petugas");
+    function tampil_aktif() {
+        $this->db->where('status_petugas', 'aktif');
+        $this->db->order_by('id_petugas', 'asc');
         $this->db->join("unit", "petugas.id_unit = unit.id_unit", "left");
-        $query = $this->db->get();
-        return $query->result_array();
+        return $this->db->get("petugas")->result_array();
     }
-
+    function tampil_nonaktif() {
+        $this->db->where('status_petugas', 'nonaktif');
+        $this->db->order_by('id_petugas', 'asc');
+        $this->db->join("unit", "petugas.id_unit = unit.id_unit", "left");
+        return $this->db->get("petugas")->result_array();
+    }
     function detail($id_petugas){
 		$this->db->where('id_petugas', $id_petugas);
 		$q = $this->db->get('petugas');
 		$d = $q->row_array();
-
 		return $d;
 	}
     function cek_username($username_petugas, $id_petugas){
@@ -48,7 +50,10 @@ class Petugas_model extends CI_Model {
     function simpan($data) {
         $this->db->insert('petugas', $data); 
     }
-
+    function update_status($id_petugas, $status) {
+        $this->db->where('id_petugas', $id_petugas);
+        $this->db->update('petugas', ['status_petugas' => $status]);
+    }
     function hapus($id_petugas) {
         $this->db->where('id_petugas', $id_petugas);
         $this->db->delete('petugas');

@@ -26,7 +26,7 @@
                                 <th>Nama Petugas</th>
                                 <th>Unit</th>
                                 <th>Username</th>
-                                <th class="text-center" width="15%">OPSI</th>
+                                <th class="text-center" >OPSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,18 +37,89 @@
                                     <td><?php echo $var['nama_unit']; ?></td>
                                     <td><?php echo $var['username_petugas']; ?></td>
                                     <td class="text-center">
-                                        <a href="<?php echo base_url('admin/petugas/edit/' . $var['id_petugas']); ?>" class="btn btn-warning text-light">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a href="<?php echo base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>" class="btn btn-danger text-light" onclick="return confirm('Yakin ingin menghapus petugas ini?')">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
+                                        <div class="d-flex justify-content-center gap-1">
+                                            <a href="<?php echo base_url('admin/petugas/edit/' . $var['id_petugas']); ?>" 
+                                            class="btn btn-warning btn-sm text-light">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a href="<?php echo base_url('admin/petugas/nonaktif/' . $var['id_petugas']); ?>" 
+                                            class="btn btn-warning btn-sm text-light" style="background-color:#ff8c00; border-color:#ff8c00;"
+                                            onclick="return confirm('Nonaktifkan petugas ini?')">
+                                                <i class="fa fa-ban"></i> Nonaktifkan
+                                            </a>
+                                            <a href="<?php echo base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>" 
+                                            class="btn btn-danger btn-sm text-light" 
+                                            onclick="return confirm('Yakin ingin menghapus petugas ini?')">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TABEL PETUGAS NONAKTIF -->
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="bg-light rounded p-3 shadow-sm">
+                <h5 class="m-0 fw-bold text-dark">Petugas Nonaktif</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="bg-light rounded shadow-sm p-3">
+
+                <div class="table-responsive">
+                    <table id="mytable2" class="table table-bordered table-striped table-hover w-100">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="1%">No</th>
+                                <th>Nama Petugas</th>
+                                <th>Unit</th>
+                                <th>Username</th>
+                                <th class="text-center">OPSI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($petugas_nonaktif as $kt => $var): ?>
+                                <tr>
+                                    <td class="text-center"><?= $kt + 1; ?></td>
+                                    <td><?= $var['nama_petugas']; ?></td>
+                                    <td><?= $var['nama_unit']; ?></td>
+                                    <td><?= $var['username_petugas']; ?></td>
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-1">
+
+                                            <a href="<?= base_url('admin/petugas/aktifkan/'.$var['id_petugas']); ?>" 
+                                               class="btn btn-success btn-sm text-light"
+                                               onclick="return confirm('Apakah ingin mengaktifkan kembali petugas ini?')">
+                                                <i class="fa fa-check"></i> Aktifkan
+                                            </a>
+                                            <a href="<?= base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>" 
+                                                class="btn btn-danger btn-sm text-light"
+                                                onclick="return confirm('Yakin ingin menghapus petugas ini secara permanen?')">
+                                                    <i class="fa fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>

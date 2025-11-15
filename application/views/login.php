@@ -271,6 +271,17 @@
             });
         </script>
 
+        <?php if ($this->session->flashdata('gagal')): ?>
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal Login!',
+                    text: "<?php echo $this->session->flashdata('gagal'); ?>",
+                });
+            </script>
+        <?php endif; ?>
+
+
 </body>
 
 </html>

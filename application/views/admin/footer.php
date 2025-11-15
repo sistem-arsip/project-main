@@ -40,9 +40,16 @@
 
 <script>
     $(document).ready(function() {
-        $('#mytable').DataTable({ stateSave:true });
+        $('#mytable').DataTable({
+            stateSave: true
+        });
+
+        $('#mytable2').DataTable({
+            stateSave: true
+        });
     });
 </script>
+
 <?php if ($this->session->flashdata('sukses')): ?>
     <script>
         Swal.fire({

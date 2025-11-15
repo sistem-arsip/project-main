@@ -43,6 +43,12 @@ class Auth extends CI_Controller {
             $redirect_url = 'admin/dashboard';
         } else {
             $user = $this->Auth_model->check_petugas($username, $password);
+            //cek aktif
+            if ($user && $user->status_petugas == 'nonaktif') {
+            $this->session->set_flashdata('gagal', 'Anda tidak dapat login karena sudah bukan petugas aktif.');
+            redirect('auth/login');
+            return;
+        }
             $id_session = 'id_petugas';
             $nama_session = 'nama_petugas';
             $username_session = 'username_petugas';

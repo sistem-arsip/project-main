@@ -24,8 +24,9 @@ class Petugas extends CI_Controller {
     }
 
     function index() {
-
-        $data["petugas"] = $this->Petugas_model->tampil();
+        $data["petugas"] = $this->Petugas_model->tampil_aktif();
+        $data["petugas_nonaktif"] = $this->Petugas_model->tampil_nonaktif();
+        
         $this->load->view("admin/header");
         $this->load->view("admin/petugas_tampil",$data);
         $this->load->view("admin/footer");
@@ -109,6 +110,18 @@ class Petugas extends CI_Controller {
         $this->load->view("admin/header");
         $this->load->view("admin/petugas_edit", $data);
         $this->load->view("admin/footer");
+    }
+
+    function nonaktif($id_petugas) {
+        $this->Petugas_model->update_status($id_petugas, 'nonaktif');
+        $this->session->set_flashdata('sukses', 'Petugas berhasil dinonaktifkan');
+        redirect('admin/petugas','refresh');
+    }
+
+    function aktifkan($id_petugas) {
+        $this->Petugas_model->update_status($id_petugas, 'aktif');
+        $this->session->set_flashdata('sukses', 'Petugas berhasil diaktifkan kembali');
+        redirect('admin/petugas','refresh');
     }
 
 
