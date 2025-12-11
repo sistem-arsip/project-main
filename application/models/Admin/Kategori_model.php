@@ -2,7 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Kategori_model extends CI_Model {
-    function tampil (){
+    // NEW
+    function tampil_aktif (){
+        $this->db->where('status_kategori', 'aktif');
+        $this->db->order_by("id_kategori","asc");
+		$query = $this->db->get("kategori");
+		$data = $query->result_array();
+		return $data;
+	}
+    function tampil_nonaktif (){
+        $this->db->where('status_kategori', 'nonaktif');
         $this->db->order_by("id_kategori","asc");
 		$query = $this->db->get("kategori");
 		$data = $query->result_array();
@@ -30,6 +39,11 @@ class Kategori_model extends CI_Model {
     function edit($input, $id_kategori){
         $this->db->where('id_kategori', $id_kategori);
 		$this->db->update('kategori', $input);
+    }
+    // New
+    function update_status($id_kategori, $status) {
+        $this->db->where('id_kategori', $id_kategori);
+        $this->db->update('kategori', ['status_kategori' => $status]);
     }
     function hapus($id_kategori){
         $this->db->where('id_kategori', $id_kategori);

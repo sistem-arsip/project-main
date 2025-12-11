@@ -2,11 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Unit_model extends CI_Model {
-    function tampil (){
+    // NEW
+    function tampil_aktif (){
+        $this->db->where('status_unit', 'aktif');
         $this->db->order_by("id_unit","asc");
 		$query = $this->db->get("unit");
 		$data = $query->result_array();
-
+		return $data;
+	}
+    function tampil_nonaktif (){
+        $this->db->where('status_unit', 'nonaktif');
+        $this->db->order_by("id_unit","asc");
+		$query = $this->db->get("unit");
+		$data = $query->result_array();
 		return $data;
 	}
     function tambah($data) {
@@ -31,6 +39,11 @@ class Unit_model extends CI_Model {
     function edit($input, $id_unit){
         $this->db->where('id_unit', $id_unit);
 		$this->db->update('unit', $input);
+    }
+    // NEW
+     function update_status($id_unit, $status) {
+        $this->db->where('id_unit', $id_unit);
+        $this->db->update('unit', ['status_unit' => $status]);
     }
 
     function hapus($id_unit){

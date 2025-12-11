@@ -24,8 +24,9 @@ class Kategori extends CI_Controller {
     }
 
     function index(){
+        $data["kategori"] = $this->Kategori_model->tampil_aktif();
+        $data["kategori_nonaktif"] = $this->Kategori_model->tampil_nonaktif();
 
-        $data["kategori"] = $this->Kategori_model->tampil();
         $this->load->view("admin/header");
         $this->load->view("admin/kategori_tampil", $data);
         $this->load->view("admin/footer");
@@ -88,6 +89,17 @@ class Kategori extends CI_Controller {
         $this->load->view("admin/footer");
     }
 
+    function nonaktif($id_kategori) {
+        $this->Kategori_model->update_status($id_kategori, 'nonaktif');
+        $this->session->set_flashdata('sukses', 'Kategori berhasil dinonaktifkan');
+        redirect('admin/kategori','refresh');
+    }
+
+    function aktifkan($id_kategori) {
+        $this->Kategori_model->update_status($id_kategori, 'aktif');
+        $this->session->set_flashdata('sukses', 'Kategori berhasil diaktifkan kembali');
+        redirect('admin/kategori','refresh');
+    }
 
     function hapus($id_kategori){
 

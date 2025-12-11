@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="bg-light rounded p-3 shadow-sm">
-                <h4 class="m-0 fw-bold text-dark">Data Petugas</h4>
+                <h4 class="m-0 fw-bold text-dark">Data Petugas Aktif</h4>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
                                 <th>Nama Petugas</th>
                                 <th>Unit</th>
                                 <th>Username</th>
-                                <th class="text-center" >OPSI</th>
+                                <th class="text-center">OPSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,18 +96,18 @@
                             <?php foreach ($petugas_nonaktif as $kt => $var): ?>
                                 <tr>
                                     <td class="text-center"><?= $kt + 1; ?></td>
-                                    <td><?= $var['nama_petugas']; ?></td>
-                                    <td><?= $var['nama_unit']; ?></td>
-                                    <td><?= $var['username_petugas']; ?></td>
+                                    <td><?php echo $var['nama_petugas']; ?></td>
+                                    <td><?php echo $var['nama_unit']; ?></td>
+                                    <td><?php echo $var['username_petugas']; ?></td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-1">
 
-                                            <a href="<?= base_url('admin/petugas/aktifkan/'.$var['id_petugas']); ?>" 
+                                            <a href="<?php echo base_url('admin/petugas/aktifkan/'.$var['id_petugas']); ?>" 
                                                class="btn btn-success btn-sm text-light"
                                                onclick="return confirm('Apakah ingin mengaktifkan kembali petugas ini?')">
                                                 <i class="fa fa-check"></i> Aktifkan
                                             </a>
-                                            <a href="<?= base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>" 
+                                            <a href="<?php echo base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>" 
                                                 class="btn btn-danger btn-sm text-light"
                                                 onclick="return confirm('Yakin ingin menghapus petugas ini secara permanen?')">
                                                     <i class="fa fa-trash"></i>
