@@ -30,6 +30,7 @@ class Arsip extends CI_Controller {
         $id_petugas = $this->session->userdata('id_petugas'); 
         $id_unit = $this->Arsip_model->unit_by_petugas($id_petugas);
         $data["arsip"] = $this->Arsip_model->tampil_by_unit($id_unit);
+        $data["kategori"] = $this->Kategori_model->tampil();
         $this->load->view("petugas/header");
         $this->load->view("petugas/arsip_tampil",$data);
         $this->load->view("petugas/footer");

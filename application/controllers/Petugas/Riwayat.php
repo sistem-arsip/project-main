@@ -30,6 +30,7 @@ class Riwayat extends CI_Controller {
         $id_petugas = $this->session->userdata('id_petugas'); 
 
         $data['riwayat'] = $this->Riwayat_model->tampil_by_petugas($id_petugas);
+        $data['kategori'] = $this->Kategori_model->tampil();
         $this->load->view("petugas/header");
         $this->load->view("petugas/riwayat_tampil",$data);
         $this->load->view("petugas/footer");
