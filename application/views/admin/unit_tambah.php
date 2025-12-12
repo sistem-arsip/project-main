@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-success text-light">
+                        <button type="submit" class="btn btn-sm btn-success text-light">
                             <i class="fa fa-plus"></i> Tambah</button>
                     </div>
                 </form>

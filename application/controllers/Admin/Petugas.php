@@ -117,6 +117,14 @@ class Petugas extends CI_Controller {
         $this->session->set_flashdata('sukses', 'Petugas berhasil dinonaktifkan');
         redirect('admin/petugas','refresh');
     }
+    function nonaktif_list() {
+    $data['petugas_nonaktif'] = $this->Petugas_model->tampil_nonaktif();
+
+    $this->load->view("admin/header");
+    $this->load->view("admin/petugas_nonaktif", $data);
+    $this->load->view("admin/footer");
+}
+
 
     function aktifkan($id_petugas) {
         $this->Petugas_model->update_status($id_petugas, 'aktif');

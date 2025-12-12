@@ -94,6 +94,16 @@ class Kategori extends CI_Controller {
         $this->session->set_flashdata('sukses', 'Kategori berhasil dinonaktifkan');
         redirect('admin/kategori','refresh');
     }
+    function nonaktif_list() {
+    $this->load->model('admin/Kategori_model');
+
+    $data['kategori_nonaktif'] = $this->Kategori_model->tampil_nonaktif();
+
+    $this->load->view("admin/header");
+    $this->load->view("admin/kategori_nonaktif", $data);  // HALAMAN BARU
+    $this->load->view("admin/footer");
+}
+
 
     function aktifkan($id_kategori) {
         $this->Kategori_model->update_status($id_kategori, 'aktif');

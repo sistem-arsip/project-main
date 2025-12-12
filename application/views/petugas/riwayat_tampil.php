@@ -19,7 +19,7 @@
 
                 <!-- FILTER BULAN TAHUN -->
                 <div>
-                    <label class="form-label fw-bold mb-0">Pilih Bulan & Tahun:</label>
+                    <label class="form-label fw-bold mb-0">Pilih Arsip Bulan & Tahun:</label>
                     <input type="text" id="filterBulanTahun" class="form-control" placeholder="Pilih Bulan & Tahun">
                 </div>
 

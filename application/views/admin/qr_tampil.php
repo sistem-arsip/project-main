@@ -18,7 +18,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th class="text-center" width="1%">No</th>
-                                <th class="text-center">Unit</th>
+                                <th>Unit</th>
                                 <th class="text-center">Jumlah QR Code</th>
                                 <th class="text-center" width="20%">Detail</th>
                             </tr>
@@ -32,8 +32,8 @@
                                         <td><?= $qr['nama_unit'] ?></td>
                                         <td class="text-center"><?= $qr['jumlah_qr'] ?></td>
                                         <td class="text-center">
-                                            <a href="<?php echo base_url('admin/kode_qr/qr_perunit/' . $qr['id_unit']); ?>" class="btn btn-secondary text-light">
-                                                <i class="bi bi-eye"></i> View Detail
+                                            <a href="<?php echo base_url('admin/kode_qr/qr_perunit/' . $qr['id_unit']); ?>" class="btn btn-sm btn-secondary text-light">
+                                                <i class="bi bi-eye"></i> View More
                                             </a>
                                         </td>
                                     </tr>

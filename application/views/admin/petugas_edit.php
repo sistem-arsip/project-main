@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-sm btn-success">
                             <i class="fa fa-save"></i> Simpan Perubahan
                         </button>
                     </div>

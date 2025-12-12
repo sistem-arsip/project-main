@@ -65,7 +65,7 @@ $arsip['ekstensi_file_arsip'] = pathinfo($arsip['file_arsip'], PATHINFO_EXTENSIO
                         <?php
                         $file_url = base_url("assets/arsip/" . $arsip['file_arsip']);
                         ?>
-                        <a href="<?php echo $file_url; ?>" download class="btn btn-success mt-3">
+                        <a href="<?php echo $file_url; ?>" download class="btn btn-sm btn-success mt-3">
                             <i class="fa fa-download"></i> Download File
                         </a>
                     </div>

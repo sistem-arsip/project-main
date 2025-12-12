@@ -6,6 +6,7 @@ class Arsip extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('admin/Arsip_model');
+        $this->load->model('admin/Kategori_model');
         
         // Pastikan user sudah login sebagai admin
         if (!$this->session->userdata('status') || $this->session->userdata('status') != 'admin_login') {
@@ -55,6 +56,7 @@ class Arsip extends CI_Controller {
 
     function all_arsip() {
         $data["arsip"] = $this->Arsip_model->tampil();
+        $data["kategori"] = $this->Kategori_model->tampil(); 
         $this->load->view("admin/header");
         $this->load->view("admin/arsip_semua",$data);
         $this->load->view("admin/footer");
@@ -63,6 +65,9 @@ class Arsip extends CI_Controller {
     function arsip_perunit($id_unit) {
         $data['arsip'] = $this->Arsip_model->get_arsip_by_unit($id_unit);
         $data['unit'] = $this->Arsip_model->get_unit_by_id($id_unit);
+        
+        $this->load->model('admin/Kategori_model');
+        $data['kategori'] = $this->Kategori_model->tampil();
 
         $this->load->view('admin/header');
         $this->load->view('admin/arsip_perunit', $data);

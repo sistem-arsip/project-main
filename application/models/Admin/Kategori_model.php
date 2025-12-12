@@ -53,4 +53,10 @@ class Kategori_model extends CI_Model {
         $error = $this->db->error(); // error = Cannot delete or update
         return $error['code']; // 0 jika tidak ada error
     }
+    function tampil() {
+        $this->db->order_by("id_kategori","asc");
+        $query = $this->db->get("kategori");
+        return $query->result_array();
+    }
+
 }
