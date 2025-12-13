@@ -27,7 +27,7 @@
                     <?php echo form_error('nomor_dokumen', "<div class='text-danger small'>", "</div>"); ?>
                 </div>
 
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-sm btn-success">
                     <i class="fa fa-save"></i> Simpan Perubahan
                 </button>
                 <?php echo form_close(); ?>

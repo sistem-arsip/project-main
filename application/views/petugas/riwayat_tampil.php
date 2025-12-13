@@ -67,11 +67,11 @@
                                 <small class="text-muted">Bagian <?= $v['nama_unit']; ?></small>
                             </td>
                             <td class="text-center">
-                                <a href="<?= base_url('petugas/riwayat/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-white"><i class="fa fa-file"></i></a>
-                                <a href="<?= base_url('petugas/riwayat/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white"><i class="fa fa-edit"></i></a>
+                                <a href="<?= base_url('petugas/riwayat/detail/' . $v['id_arsip']); ?>" class="btn btn-sm btn-success text-white"><i class="fa fa-file"></i></a>
+                                <a href="<?= base_url('petugas/riwayat/edit/' . $v['id_arsip']); ?>" class="btn btn-sm btn-warning text-white"><i class="fa fa-edit"></i></a>
                                 <a href="<?= base_url('petugas/riwayat/hapus/' . $v['id_arsip']); ?>" 
                                    onclick="return confirm('Yakin ingin menghapus arsip ini?')" 
-                                   class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                   class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach ?>

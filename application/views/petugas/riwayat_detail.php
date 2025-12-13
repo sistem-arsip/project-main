@@ -64,7 +64,7 @@ $riwayat['ekstensi_file_arsip'] = pathinfo($riwayat['file_arsip'], PATHINFO_EXTE
                         <?php
                         $file_url = base_url("assets/arsip/" . $riwayat['file_arsip']);
                         ?>
-                        <a href="<?php echo $file_url; ?>" download class="btn btn-success mt-3">
+                        <a href="<?php echo $file_url; ?>" download class="btn btn-sm btn-success mt-3">
                             <i class="fa fa-download"></i> Download File
                         </a>
                     </div>

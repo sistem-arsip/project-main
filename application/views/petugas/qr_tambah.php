@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <button type="submit" class="btn btn-success text-light">
+                        <button type="submit" class="btn btn-sm btn-success text-light">
                             <i class="fa fa-plus"></i> Generate Kode QR
                         </button>
                     </div>

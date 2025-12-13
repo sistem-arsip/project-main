@@ -25,7 +25,6 @@ class Petugas extends CI_Controller {
 
     function index() {
         $data["petugas"] = $this->Petugas_model->tampil_aktif();
-        $data["petugas_nonaktif"] = $this->Petugas_model->tampil_nonaktif();
         
         $this->load->view("admin/header");
         $this->load->view("admin/petugas_tampil",$data);
@@ -33,7 +32,7 @@ class Petugas extends CI_Controller {
     }
 
     function tambah(){
-        $data['unit'] = $this->Unit_model->tampil();
+        $data['unit'] = $this->Unit_model->tampil_aktif();
 
         $this->form_validation->set_rules("nama_petugas", "Nama Petugas", "required|trim|callback_periksa_html");
         $this->form_validation->set_rules("username_petugas", "Username", "required|is_unique[petugas.username_petugas]|trim|callback_periksa_html");
@@ -118,12 +117,12 @@ class Petugas extends CI_Controller {
         redirect('admin/petugas','refresh');
     }
     function nonaktif_list() {
-    $data['petugas_nonaktif'] = $this->Petugas_model->tampil_nonaktif();
+        $data['petugas_nonaktif'] = $this->Petugas_model->tampil_nonaktif();
 
-    $this->load->view("admin/header");
-    $this->load->view("admin/petugas_nonaktif", $data);
-    $this->load->view("admin/footer");
-}
+        $this->load->view("admin/header");
+        $this->load->view("admin/petugas_nonaktif", $data);
+        $this->load->view("admin/footer");
+    }
 
 
     function aktifkan($id_petugas) {

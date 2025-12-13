@@ -21,12 +21,12 @@
                                 <strong><i class="fa fa-database"></i> Backup</strong>
                             </div>
                             <div class="card-body">
-                                <p>Data telah ter-backup secara otomatis ke server. Untuk backup manual, silakan klik salah satu tombol di bawah:</p>
+                                <p>Backup Manual, silakan klik salah satu tombol di bawah untuk membackup sesuai dengan kebutuhan:</p>
                                 <div class="d-flex justify-content-center gap-3 mt-4">
-                                    <a href="<?php echo base_url('admin/backup/db') ?>" class="btn btn-success">
+                                    <a href="<?php echo base_url('admin/backup/db') ?>" class="btn btn-sm btn-success">
                                         <i class="fa fa-download"></i> Backup Database
                                     </a>
-                                    <a href="<?php echo base_url('admin/backup/files') ?>" class="btn btn-success">
+                                    <a href="<?php echo base_url('admin/backup/files') ?>" class="btn btn-sm btn-success">
                                         <i class="fa fa-archive"></i> Backup File Arsip
                                     </a>
                                 </div>
@@ -45,7 +45,7 @@
                                         <label for="sqlFile">Pilih File <code>*.sql</code></label>
                                         <input type="file" class="form-control-file" name="sql_file" id="sqlFile" accept=".sql" required>
                                     </div>
-                                    <button type="submit" class="btn btn-success mt-3">
+                                    <button type="submit" class="btn btn-sm btn-success mt-3">
                                         <i class="fa fa-upload"></i> Restore Database
                                     </button>
                                 </form>
@@ -56,7 +56,7 @@
                                         <label for="zipFile">Pilih File ZIP Arsip</label>
                                         <input type="file" class="form-control-file" name="zip_file" id="zipFile" accept=".zip" required>
                                     </div>
-                                    <button type="submit" class="btn btn-success mt-2">
+                                    <button type="submit" class="btn btn-sm btn-success mt-2">
                                         <i class="fa fa-upload"></i> Restore File Arsip
                                     </button>
                                 </form>

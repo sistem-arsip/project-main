@@ -35,7 +35,7 @@
             </div>
 
             <div class="d-flex gap-2">
-                <a href="<?php echo base_url('petugas/arsip/tambah'); ?>" class="btn text-white btn-success">
+                <a href="<?php echo base_url('petugas/arsip/tambah'); ?>" class="btn btn-sm text-white btn-success">
                     <i class="fa fa-plus"></i> Upload Arsip
                 </a>
             </div>
@@ -73,14 +73,14 @@
                             </td>
                             <td><?php echo $v['keterangan_arsip']; ?></td>
                             <td class="text-center">
-                                <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-success text-white">
+                                <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-sm btn-success text-white">
                                     <i class="fa fa-file"></i>
                                 </a>
                                 <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
-                                    <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-warning text-white">
+                                    <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-sm btn-warning text-white">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
+                                    <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 <?php endif; ?>

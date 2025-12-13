@@ -24,7 +24,7 @@ class Unit extends CI_Controller {
 
     function index() {
         $data["unit"] = $this->Unit_model->tampil_aktif();
-        $data["unit_nonaktif"] = $this->Unit_model->tampil_nonaktif();
+
         $this->load->view("admin/header");
         $this->load->view("admin/unit_tampil", $data);
         $this->load->view("admin/footer");
@@ -92,14 +92,14 @@ class Unit extends CI_Controller {
         redirect('admin/unit','refresh');
     }
     function nonaktif_list() {
-    $this->load->model('admin/Unit_model');
+        $this->load->model('admin/Unit_model');
 
-    $data["unit_nonaktif"] = $this->Unit_model->tampil_nonaktif();
+        $data["unit_nonaktif"] = $this->Unit_model->tampil_nonaktif();
 
-    $this->load->view("admin/header");
-    $this->load->view("admin/unit_nonaktif", $data);
-    $this->load->view("admin/footer");
-}
+        $this->load->view("admin/header");
+        $this->load->view("admin/unit_nonaktif", $data);
+        $this->load->view("admin/footer");
+    }
 
 
     function aktifkan($id_unit) {

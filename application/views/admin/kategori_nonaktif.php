@@ -20,7 +20,7 @@
                 </a>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover w-100">
+                    <table id="mytable" class="table table-bordered table-striped table-hover w-100">
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
