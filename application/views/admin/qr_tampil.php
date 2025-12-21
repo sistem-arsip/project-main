@@ -19,7 +19,7 @@
                             <tr>
                                 <th class="text-center" width="1%">No</th>
                                 <th>Unit</th>
-                                <th class="text-center">Jumlah QR Code</th>
+                                <th class="text-center">Jumlah Kode QR</th>
                                 <th class="text-center" width="20%">Detail</th>
                             </tr>
                         </thead>

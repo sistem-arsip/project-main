@@ -59,6 +59,9 @@
                         <label class="form-label">File</label>
                         <input class="form-control" type="file" name="file">
                         <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small><br>
+                        <small class="text-muted">
+                            Jika arsip berupa video atau foto dalam jumlah banyak, silakan unggah dalam bentuk file ZIP.
+                        </small><br>
                         <?php if (!empty($arsip['file_arsip'])): ?>
                             <a href="<?php echo base_url('assets/arsip/' . $arsip['file_arsip']); ?>" target="_blank" class="btn btn-sm btn-secondary mt-2">Lihat file saat ini</a>
                         <?php endif; ?>

@@ -72,7 +72,7 @@ class Petugas extends CI_Controller {
 
     function edit($id_petugas){
         $data['petugas'] = $this->Petugas_model->detail($id_petugas);
-        $data['unit'] = $this->Unit_model->tampil();
+        $data['unit'] = $this->Unit_model->tampil_aktif();
 
         $input = $this->input->post();
 

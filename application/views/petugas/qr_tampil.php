@@ -12,7 +12,7 @@
     <div class="col-12">
         <div class="bg-light rounded shadow-sm p-3">
             <div class="d-flex justify-content-end mb-3">
-                <a href="<?php echo base_url("petugas/generate/tambah"); ?>" class="btn btn-sm btn-success text-light"><i class="fa fa-qrcode"></i> Generate QR
+                <a href="<?php echo base_url("petugas/generate/tambah"); ?>" class="btn btn-sm btn-success text-light"><i class="fa fa-qrcode"></i> Buat QR
                 </a>
             </div>
 

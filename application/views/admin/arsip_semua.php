@@ -1,3 +1,8 @@
+<?php
+$kategori_aktif = $kategori_aktif ?? '';
+$bulan_aktif    = $bulan_aktif ?? '';
+?>
+
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12">
@@ -22,21 +27,46 @@
         <!-- FILTER SECTION -->
         <div class="d-flex align-items-start gap-3 mb-3">
 
-            <!-- FILTER BULAN TAHUN -->
+            <!-- FILTER BULAN -->
             <div>
-                <label class="form-label fw-bold mb-0">Pilih Bulan & Tahun:</label>
-                <input type="text" class="form-control" id="filterBulanTahun" placeholder="Pilih Bulan & Tahun">
+                <label class="fw-bold mb-0">Bulan & Tahun</label>
+                <input type="month"
+                       id="filterBulan"
+                       class="form-control"
+                       value="<?= $bulan_aktif; ?>"
+                       onchange="applyFilter()">
             </div>
 
             <!-- FILTER KATEGORI -->
             <div>
-                <label class="form-label fw-bold mb-0">Pilih Kategori:</label>
-                <select id="filterKategori" class="form-control">
-                    <option value="">Semua Kategori</option>
-                    <?php foreach ($kategori as $k): ?>
-                        <option value="<?= $k['id_kategori']; ?>"><?= $k['nama_kategori']; ?></option>
-                    <?php endforeach; ?>
-                </select>
+                <label class="fw-bold mb-0">Kategori</label>
+                <div class="input-group">
+                    <select id="filterKategori"
+                            class="form-control"
+                            onchange="applyFilter()">
+
+                        <option value=""
+                            <?= empty($kategori_aktif) ? 'selected' : '' ?>
+                            disabled>
+                            Semua Kategori
+                        </option>
+
+                        <?php foreach ($kategori as $k): ?>
+                            <option value="<?= $k['id_kategori']; ?>"
+                                <?= ($kategori_aktif == $k['id_kategori']) ? 'selected' : ''; ?>>
+                                <?= $k['nama_kategori']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <!-- RESET -->
+                    <button type="button"
+                            class="btn btn-outline-secondary"
+                            onclick="resetFilter()"
+                            title="Reset Filter">
+                        ✕
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -50,7 +80,7 @@
                         <th>Kategori</th>
                         <th>Petugas</th>
                         <th>Keterangan</th>
-                        <th class="text-center" width="15%">OPSI</th>
+                        <th class="text-center" width="15%">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,9 +109,9 @@
                                 <a href="<?= base_url('admin/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-sm btn-success text-light">
                                     <i class="fa fa-file"></i>
                                 </a>
-                                <a href="<?= base_url('admin/arsip/hapus/' . $v['id_arsip'] . '?redirect=admin/arsip/all_arsip'); ?>" class="btn btn-sm btn-danger text-light" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
+                                <!-- <a href="<?= base_url('admin/arsip/hapus/' . $v['id_arsip'] . '?redirect=admin/arsip/all_arsip'); ?>" class="btn btn-sm btn-danger text-light" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                     <i class="fa fa-trash"></i>
-                                </a>
+                                </a> -->
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -91,50 +121,21 @@
     </div>
 </div>
 
-<!-- JAVASCRIPT FILTER -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
-
 <script>
-    // Inisialisasi flatpickr Month-Year
-    flatpickr("#filterBulanTahun", {
-        dateFormat: "Y-m",
-        altInput: true,
-        altFormat: "F Y",
-        plugins: [
-            new monthSelectPlugin({
-                shorthand: true,
-                dateFormat: "Y-m",
-                altFormat: "F Y"
-            })
-        ]
-    });
+function applyFilter() {
+    const kategori = document.getElementById('filterKategori').value;
+    const bulan    = document.getElementById('filterBulan').value;
 
-    // Fungsi Filter
-    function applyFilters() {
-        const kategoriDipilih = document.getElementById('filterKategori').value;
-        const bulanTahun = document.getElementById('filterBulanTahun').value;
+    let params = [];
 
-        let tahun = null, bulan = null;
+    if (kategori) params.push('kategori=' + kategori);
+    if (bulan) params.push('bulan=' + bulan);
 
-        if (bulanTahun) {
-            [tahun, bulan] = bulanTahun.split("-");
-        }
+    const query = params.length ? '?' + params.join('&') : '';
+    window.location.href = query;
+}
 
-        const rows = document.querySelectorAll('#mytable tbody tr');
-
-        rows.forEach(row => {
-            const rowKategori = row.getAttribute('data-kategori');
-            const rowBulan = row.getAttribute('data-bulan');
-            const rowTahun = row.getAttribute('data-tahun');
-
-            let cocokKategori = !kategoriDipilih || rowKategori === kategoriDipilih;
-            let cocokTanggal = !bulanTahun || (rowBulan === bulan && rowTahun === tahun);
-
-            row.style.display = (cocokKategori && cocokTanggal) ? '' : 'none';
-        });
-    }
-
-    document.getElementById('filterKategori').addEventListener('change', applyFilters);
-    document.getElementById('filterBulanTahun').addEventListener('change', applyFilters);
+function resetFilter() {
+    window.location.href = window.location.pathname;
+}
 </script>

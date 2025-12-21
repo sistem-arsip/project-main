@@ -28,7 +28,7 @@
                         <img src="<?php echo base_url('assets/kode_qr/' . $qr['foto_qr']); ?>" alt="QR Code" class="img-thumbnail mb-3" style="max-width: 250px;">
                         <br>
                         <a href="<?php echo base_url('assets/kode_qr/' . $qr['foto_qr']); ?>" download class="btn btn-sm btn-success">
-                            <i class="fa fa-download"></i> Unduh QR Code
+                            <i class="fa fa-download"></i> Unduh Kode QR
                         </a>
                     </div>
                 </div>

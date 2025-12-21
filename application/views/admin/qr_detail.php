@@ -23,12 +23,14 @@
                         <p><strong>Kode QR:</strong> <?php echo $qr['kode_qr']; ?></p>
                         <p><strong>Nomor Dokumen:</strong> <?php echo $qr['nomor_dokumen']; ?></p>
                         <p><strong>Waktu Generate:</strong> <?php echo $qr['waktu_generate']; ?></p>
+                        <p><strong>Petugas:</strong> <?php echo $qr['nama_petugas']; ?></p>
+                        <p><strong>Unit:</strong> <?php echo $qr['nama_unit']; ?></p>
                     </div>
                     <div class="col-md-6 text-center">
-                        <img src="<?php echo base_url('assets/kode_qr/' . $qr['foto_qr']); ?>" alt="QR Code" class="img-thumbnail mb-3" style="max-width: 250px;">
+                        <img src="<?php echo base_url('assets/kode_qr/' . $qr['foto_qr']) . '?v=' . time(); ?>" alt="QR Code" class="img-thumbnail mb-3" style="max-width: 250px;">
                         <br>
-                        <a href="<?php echo base_url('assets/kode_qr/' . $qr['foto_qr']); ?>" download class="btn btn-sm btn-success">
-                            <i class="fa fa-download"></i> Unduh QR Code
+                        <a href="<?php echo base_url('assets/kode_qr/' . $qr['foto_qr']) . '?v=' . time(); ?>" download class="btn btn-sm btn-success">
+                            <i class="fa fa-download"></i> Unduh Kode QR
                         </a>
                     </div>
                 </div>

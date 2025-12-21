@@ -33,7 +33,6 @@ class Arsip extends CI_Controller {
     function detail($id_arsip){
         $data["arsip"] = $this->Arsip_model->detail($id_arsip);
 
-
         $this->load->view("admin/header");
         $this->load->view("admin/arsip_detail",$data);
         $this->load->view("admin/footer");
@@ -54,24 +53,43 @@ class Arsip extends CI_Controller {
     }
 
 
-    function all_arsip() {
-        $data["arsip"] = $this->Arsip_model->tampil();
-        $data["kategori"] = $this->Kategori_model->tampil(); 
-        $this->load->view("admin/header");
-        $this->load->view("admin/arsip_semua",$data);
-        $this->load->view("admin/footer");
+    function all_arsip(){
+        $id_kategori = $this->input->get('kategori');
+        $bulan       = $this->input->get('bulan');
+    
+        $data['arsip'] = $this->Arsip_model
+            ->tampil($id_kategori, $bulan);
+    
+        $data['kategori'] = $this->Kategori_model->tampil();
+    
+        // kirim filter aktif ke view
+        $data['kategori_aktif'] = $id_kategori;
+        $data['bulan_aktif']   = $bulan;
+    
+        $this->load->view('admin/header');
+        $this->load->view('admin/arsip_semua', $data);
+        $this->load->view('admin/footer');
     }
 
-    function arsip_perunit($id_unit) {
-        $data['arsip'] = $this->Arsip_model->get_arsip_by_unit($id_unit);
-        $data['unit'] = $this->Arsip_model->get_unit_by_id($id_unit);
-        
-        $this->load->model('admin/Kategori_model');
-        $data['kategori'] = $this->Kategori_model->tampil();
 
+    function arsip_perunit($id_unit){
+        $id_kategori = $this->input->get('kategori'); 
+        $bulan       = $this->input->get('bulan');   
+    
+        $data['arsip'] = $this->Arsip_model->get_arsip_by_unit($id_unit, $id_kategori, $bulan);
+    
+        $data['unit'] = $this->Arsip_model->get_unit_by_id($id_unit);
+        $data['kategori'] = $this->Kategori_model->tampil();
+    
+        // kirim filter aktif ke view
+        $data['kategori_aktif'] = $id_kategori;
+        $data['bulan_aktif']   = $bulan;
+    
         $this->load->view('admin/header');
         $this->load->view('admin/arsip_perunit', $data);
         $this->load->view('admin/footer');
     }
+
+
 
 }

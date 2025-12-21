@@ -76,7 +76,7 @@ class Generate extends CI_Controller {
             $tanggal = format_tanggal_indo($data_qr['waktu_generate']);
 
             // Format isi QR
-            $isi_qr = "{$nomor_dokumen} dibuat oleh {$data_qr['nama_unit']} pada {$tanggal}";
+            $isi_qr = "{$data_qr['nama_unit']} membuat {$nomor_dokumen} pada {$tanggal}";
 
             // Generate QR image
             $options = new QROptions([

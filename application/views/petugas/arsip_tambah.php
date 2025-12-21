@@ -68,6 +68,9 @@
                         <label class="form-label">File</label>
                         <input type="file" class="form-control" name="file_arsip">
                         <?php if (!empty($error_file)) echo $error_file; ?>
+                        <small class="text-muted">
+                            Jika arsip berupa video atau foto dalam jumlah banyak, silakan unggah dalam bentuk file ZIP.
+                        </small>
                     </div>
 
                     <div class="mb-3">

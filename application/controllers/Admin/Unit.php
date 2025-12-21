@@ -93,7 +93,6 @@ class Unit extends CI_Controller {
     }
     function nonaktif_list() {
         $this->load->model('admin/Unit_model');
-
         $data["unit_nonaktif"] = $this->Unit_model->tampil_nonaktif();
 
         $this->load->view("admin/header");
