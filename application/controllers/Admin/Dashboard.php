@@ -25,9 +25,14 @@ class Dashboard extends CI_Controller {
         $data['total_unit']     = $this->Dashboard_model->total_unit();
         $data['total_arsip']    = $this->Dashboard_model->total_arsip();
         $data['total_kategori'] = $this->Dashboard_model->total_kategori();
+        $data['tahun_arsip'] = $this->Dashboard_model->get_tahun_arsip();
 
         $this->load->view('admin/header');
         $this->load->view('admin/dashboard', $data);
         $this->load->view('admin/footer');
+    }
+    function get_bulan_by_tahun($tahun){
+        $bulan = $this->Dashboard_model->get_bulan_arsip($tahun);
+        echo json_encode($bulan);
     }
 }

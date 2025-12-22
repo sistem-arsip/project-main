@@ -68,7 +68,35 @@ function format_tanggal_indo($datetime) {
     return "{$tanggal} {$bulan} {$tahun}";
 }
 
+/* FORMAT TANGGAL + JAM WIB */
+function format_datetime_indo($datetime){
+    $bulanIndo = [
+        1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
 
+    $timestamp = strtotime($datetime);
+    $tanggal = date('d', $timestamp);
+    $bulan   = $bulanIndo[(int)date('m', $timestamp)];
+    $tahun   = date('Y', $timestamp);
+    $jam     = date('H:i', $timestamp);
 
+    return $tanggal.' '.$bulan.' '.$tahun.' '.$jam.' WIB';
+}
+
+/* PERIODE LAPORAN BULANAN */
+function periode_bulanan_indo($bulan, $tahun){
+    $bulanIndo = [
+        1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+
+    return $bulanIndo[(int)$bulan].' '.$tahun;
+}
+
+/* PERIODE LAPORAN TAHUNAN */
+function periode_tahunan_indo($tahun){
+    return 'Tahun '.$tahun;
+}
 
 ?>

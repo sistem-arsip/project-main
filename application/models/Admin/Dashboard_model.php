@@ -20,4 +20,11 @@ class Dashboard_model extends CI_Model {
     function total_kategori() {
         return $this->db->count_all('kategori');
     }
+    function get_tahun_arsip(){
+        return $this->db->select('YEAR(waktu_upload) AS tahun')->from('arsip')->group_by('YEAR(waktu_upload)')->order_by('tahun', 'DESC')->get()->result_array();
+    }
+    function get_bulan_arsip($tahun){
+        return $this->db->select('MONTH(waktu_upload) AS bulan')->from('arsip')->where('YEAR(waktu_upload)', $tahun)->group_by('MONTH(waktu_upload)')->order_by('bulan', 'ASC')->get()->result_array();
+    }
+
 }

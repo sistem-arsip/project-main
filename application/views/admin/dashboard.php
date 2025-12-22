@@ -8,6 +8,51 @@
   </div>
 </div>
 <br>
+<!-- DOWNLOAD -->
+<div class="container-fluid mb-3">
+  <div class="d-flex align-items-center gap-2">
+
+    <!-- Button utama -->
+    <div class="dropdown">
+      <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <i class="fa fa-download"></i> Download Laporan
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" href="#" onclick="pilihJenis('bulanan')">
+            Laporan Bulanan
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#" onclick="pilihJenis('tahunan')">
+            Laporan Tahunan
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ✅ PILIH TAHUN (DULU) -->
+    <select id="tahun" class="form-select d-none" style="width:150px">
+      <option value="">Pilih Tahun</option>
+      <?php
+      foreach ($tahun_arsip as $t) {
+          echo '<option value="'.$t['tahun'].'">'.$t['tahun'].'</option>';
+      }
+      ?>
+    </select>
+
+    <!-- ✅ PILIH BULAN (SETELAH TAHUN) -->
+    <select id="bulan" class="form-select d-none" style="width:180px">
+      <option value="">Pilih Bulan</option>
+    </select>
+
+    <!-- Button Download -->
+    <button id="btnDownload" class="btn btn-primary d-none">
+      Download
+    </button>
+
+  </div>
+</div>
 
 <div class="traffice-source-area mb-4">
   <div class="container-fluid">
@@ -177,9 +222,6 @@
   </div>
 </div>
 
-
-
-
 <?php if ($this->session->flashdata('login_success')): ?>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
@@ -194,3 +236,123 @@
     });
   </script>
 <?php endif; ?>
+
+<script>
+let jenis = '';
+
+// =====================
+// PILIH JENIS LAPORAN
+// =====================
+function pilihJenis(val){
+  jenis = val;
+
+  // sembunyikan semua dulu
+  document.getElementById('bulan').classList.add('d-none');
+  document.getElementById('tahun').classList.add('d-none');
+  document.getElementById('btnDownload').classList.add('d-none');
+
+  // reset value
+  document.getElementById('bulan').value = '';
+  document.getElementById('tahun').value = '';
+
+  if(val === 'bulanan'){
+    // ✅ BULANAN: tampilkan TAHUN dulu
+    document.getElementById('tahun').classList.remove('d-none');
+  } 
+  else if(val === 'tahunan'){
+    // ✅ TAHUNAN: hanya tahun
+    document.getElementById('tahun').classList.remove('d-none');
+  }
+}
+
+// =====================
+// SAAT TAHUN DIPILIH
+// =====================
+document.getElementById('tahun').addEventListener('change', function () {
+
+  let tahun = this.value;
+  let bulanSelect = document.getElementById('bulan');
+
+  // reset bulan & tombol
+  bulanSelect.innerHTML = '<option value="">Pilih Bulan</option>';
+  document.getElementById('btnDownload').classList.add('d-none');
+
+  // =====================
+  // JIKA BULANAN
+  // =====================
+  if (jenis === 'bulanan' && tahun !== '') {
+
+    // ✅ tampilkan BULAN setelah tahun dipilih
+    document.getElementById('bulan').classList.remove('d-none');
+
+    fetch("<?= base_url('admin/dashboard/get_bulan_by_tahun/') ?>" + tahun)
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(function (b) {
+          let namaBulan = new Date(2024, b.bulan - 1)
+            .toLocaleString('id-ID', { month: 'long' });
+
+          bulanSelect.innerHTML += 
+            '<option value="'+b.bulan+'">'+namaBulan+'</option>';
+        });
+      });
+  }
+
+  tampilDownload();
+});
+
+// =====================
+// SAAT BULAN DIPILIH
+// =====================
+document.getElementById('bulan').addEventListener('change', tampilDownload);
+
+// =====================
+// LOGIKA TOMBOL DOWNLOAD
+// =====================
+function tampilDownload(){
+  let tahun = document.getElementById('tahun').value;
+  let bulan = document.getElementById('bulan').value;
+
+  if (
+    (jenis === 'bulanan' && tahun !== '' && bulan !== '') ||
+    (jenis === 'tahunan' && tahun !== '')
+  ) {
+    document.getElementById('btnDownload').classList.remove('d-none');
+  } else {
+    document.getElementById('btnDownload').classList.add('d-none');
+  }
+}
+
+// =====================
+// AKSI DOWNLOAD
+// =====================
+document.getElementById('btnDownload').addEventListener('click', function(){
+
+  let url = '';
+
+  if(jenis === 'bulanan'){
+    let bulan = document.getElementById('bulan').value;
+    let tahun = document.getElementById('tahun').value;
+
+    if(bulan === '' || tahun === ''){
+      alert('Silakan pilih tahun dan bulan terlebih dahulu');
+      return;
+    }
+
+    url = "<?= base_url('admin/laporan/bulanan/') ?>" + bulan + "/" + tahun;
+
+  } 
+  else if(jenis === 'tahunan'){
+    let tahun = document.getElementById('tahun').value;
+
+    if(tahun === ''){
+      alert('Silakan pilih tahun terlebih dahulu');
+      return;
+    }
+
+    url = "<?= base_url('admin/laporan/tahunan/') ?>" + tahun;
+  }
+
+  window.location.href = url;
+});
+</script>
