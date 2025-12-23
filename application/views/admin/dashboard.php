@@ -8,51 +8,6 @@
   </div>
 </div>
 <br>
-<!-- DOWNLOAD -->
-<div class="container-fluid mb-3">
-  <div class="d-flex align-items-center gap-2">
-
-    <!-- Button utama -->
-    <div class="dropdown">
-      <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        <i class="fa fa-download"></i> Download Laporan
-      </button>
-      <ul class="dropdown-menu">
-        <li>
-          <a class="dropdown-item" href="#" onclick="pilihJenis('bulanan')">
-            Laporan Bulanan
-          </a>
-        </li>
-        <li>
-          <a class="dropdown-item" href="#" onclick="pilihJenis('tahunan')">
-            Laporan Tahunan
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- ✅ PILIH TAHUN (DULU) -->
-    <select id="tahun" class="form-select d-none" style="width:150px">
-      <option value="">Pilih Tahun</option>
-      <?php
-      foreach ($tahun_arsip as $t) {
-          echo '<option value="'.$t['tahun'].'">'.$t['tahun'].'</option>';
-      }
-      ?>
-    </select>
-
-    <!-- ✅ PILIH BULAN (SETELAH TAHUN) -->
-    <select id="bulan" class="form-select d-none" style="width:180px">
-      <option value="">Pilih Bulan</option>
-    </select>
-
-    <!-- Button Download -->
-    <button id="btnDownload" class="btn btn-primary d-none">
-      Download
-    </button>
-
-  </div>
-</div>
 
 <div class="traffice-source-area mb-4">
   <div class="container-fluid">
@@ -115,6 +70,51 @@
       </div>
 
     </div>
+  </div>
+</div>
+<!-- DOWNLOAD -->
+<div class="container-fluid mb-3">
+  <div class="d-flex align-items-center gap-2">
+
+    <!-- Button utama -->
+    <div class="dropdown">
+      <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <i class="fa fa-download"></i> Download Laporan
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" href="#" onclick="pilihJenis('bulanan')">
+            Laporan Bulanan
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="#" onclick="pilihJenis('tahunan')">
+            Laporan Tahunan
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ✅ PILIH TAHUN (DULU) -->
+    <select id="tahun" class="form-select d-none" style="width:150px">
+      <option value="">Pilih Tahun</option>
+      <?php
+      foreach ($tahun_arsip as $t) {
+          echo '<option value="'.$t['tahun'].'">'.$t['tahun'].'</option>';
+      }
+      ?>
+    </select>
+
+    <!-- ✅ PILIH BULAN (SETELAH TAHUN) -->
+    <select id="bulan" class="form-select d-none" style="width:180px">
+      <option value="">Pilih Bulan</option>
+    </select>
+
+    <!-- Button Download -->
+    <button id="btnDownload" class="btn btn-success d-none">
+      Download
+    </button>
+
   </div>
 </div>
 
