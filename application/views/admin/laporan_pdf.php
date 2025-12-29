@@ -102,7 +102,7 @@
 <!-- ================= 1. DATA KATEGORI ================= -->
 <p class="section-title">1. Detail Laporan Data Kategori</p>
 <p>
-    Jumlah Data Kategori pada <?php echo $periode; ?> sebanyak <b><?php echo count($kategori); ?> </b> katgeori.
+    Jumlah data kategori pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo count($kategori); ?> </b> katgeori.
 </p>
 
 <table>
@@ -124,7 +124,7 @@
 <!-- ================= 2. DATA UNIT ================= -->
 <p class="section-title">2. Detail Laporan Data Unit</p>
 <p>
-    Jumlah Data Unit pada <?php echo $periode; ?> sebanyak <b><?php echo count($unit); ?></b> unit.
+    Jumlah data unit pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo count($unit); ?></b> unit.
 </p>
 
 <table>
@@ -146,7 +146,7 @@
 <!-- ================= 3. DATA PETUGAS ================= -->
 <p class="section-title">3. Detail Laporan Data Petugas</p>
 <p>
-    Jumlah Data Petugas pada <?php echo $periode; ?> sebanyak <b><?php echo $ringkasan['Petugas']; ?></b> orang petugas.
+    Jumlah data petugas pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo $ringkasan['Petugas']; ?></b> orang petugas.
 </p>
 
 <table>
@@ -168,9 +168,76 @@
 <!-- ================= 4. DATA ARSIP (DETAIL) ================= -->
 <p class="section-title">4. Detail Laporan Data Arsip</p>
 <p>
-    Jumlah Data Arsip pada <?php echo $periode; ?> sebanyak <b><?php echo $ringkasan['Arsip']; ?></b> arsip.
+    Jumlah seluruh data arsip pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo $ringkasan['Arsip']; ?></b> arsip.
+</p>
+<!-- KATEGORI -->
+<p class="section-title">a. Arsip Berdasarkan Kategori</p>
+<p>
+    Jumlah arsip berdasarkan kategori pada <b><?php echo $periode; ?></b> ditampilkan pada tabel berikut.
 </p>
 
+<table>
+    <tr>
+        <th style="width:10%">No</th>
+        <th style="width:60%">Nama Kategori</th>
+        <th style="width:30%">Jumlah Arsip</th>
+    </tr>
+
+    <?php $no = 1; foreach ($arsip_per_kategori as $apk) { ?>
+    <tr>
+        <td class="center"><?php echo $no++; ?></td>
+        <td><?php echo $apk['nama_kategori']; ?></td>
+        <td class="center"><?php echo $apk['jumlah']; ?></td>
+    </tr>
+    <?php } ?>
+</table>
+<!-- UNIT -->
+ <p class="section-title">b. Arsip Berdasarkan Unit</p>
+<p>
+    Jumlah arsip berdasarkan unit pada <b><?php echo $periode; ?></b> ditampilkan pada tabel berikut.
+</p>
+
+<table>
+    <tr>
+        <th style="width:10%">No</th>
+        <th style="width:60%">Nama Unit</th>
+        <th style="width:30%">Jumlah Arsip</th>
+    </tr>
+
+    <?php $no = 1; foreach ($arsip_per_unit as $apu) { ?>
+    <tr>
+        <td class="center"><?php echo $no++; ?></td>
+        <td><?php echo $apu['nama_unit']; ?></td>
+        <td class="center"><?php echo $apu['jumlah']; ?></td>
+    </tr>
+    <?php } ?>
+</table>
+<!-- PETUGAS -->
+ <p class="section-title">c. Arsip Berdasarkan Petugas</p>
+<p>
+    Jumlah arsip berdasarkan petugas pada <b><?php echo $periode; ?></b> ditampilkan pada tabel berikut.
+</p>
+
+<table>
+    <tr>
+        <th style="width:10%">No</th>
+        <th style="width:60%">Nama Petugas</th>
+        <th style="width:30%">Jumlah Arsip</th>
+    </tr>
+
+    <?php $no = 1; foreach ($arsip_per_petugas as $app) { ?>
+    <tr>
+        <td class="center"><?php echo $no++; ?></td>
+        <td><?php echo $app['nama_petugas']; ?></td>
+        <td class="center"><?php echo $app['jumlah']; ?></td>
+    </tr>
+    <?php } ?>
+</table>
+<!-- DETAIL -->
+  <p class="section-title">d. Laporan Detail Arsip</p>
+<p>
+    Detail laporan arsip pada <b><?php echo $periode; ?></b> ditampilkan pada tabel berikut.
+</p>
 <table>
     <tr>
         <th style="width:5%">No</th>
@@ -193,7 +260,7 @@
 <!-- ================= 5. DATA KODE QR ================= -->
 <p class="section-title">5. Detail Laporan Data Kode QR</p>
 <p>
-    Jumlah Data Kode QR pada <?php echo $periode; ?> sebanyak <b><?php echo $ringkasan['Kode QR']; ?></b> Kode QR
+    Jumlah data kode QR pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo $ringkasan['Kode QR']; ?></b> Kode QR
 </p>
 
 <table>

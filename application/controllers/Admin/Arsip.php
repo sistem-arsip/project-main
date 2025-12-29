@@ -30,12 +30,14 @@ class Arsip extends CI_Controller {
     }
 
 
-    function detail($id_arsip){
-        $data["arsip"] = $this->Arsip_model->detail($id_arsip);
+    function detail($id_arsip, $id_unit = null){
+            $data["arsip"] = $this->Arsip_model->detail($id_arsip);
+            $data["unit_id"] = $id_unit;
 
-        $this->load->view("admin/header");
-        $this->load->view("admin/arsip_detail",$data);
-        $this->load->view("admin/footer");
+
+            $this->load->view("admin/header");
+            $this->load->view("admin/arsip_detail",$data);
+            $this->load->view("admin/footer");
     }
 
     function hapus($id_arsip){

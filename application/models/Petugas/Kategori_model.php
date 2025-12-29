@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Kategori_model extends CI_Model {
     function tampil (){
-        
+        $this->db->where('status_kategori', 'aktif');
         $this->db->order_by("id_kategori","asc");
 		$query = $this->db->get("kategori");
 		$data = $query->result_array();

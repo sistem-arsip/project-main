@@ -114,7 +114,7 @@ $bulan_aktif    = $bulan_aktif ?? '';
                             <td><?= $v['keterangan_arsip']; ?></td>
 
                             <td class="text-center">
-                                <a href="<?= base_url('admin/arsip/detail/' . $v['id_arsip']); ?>"
+                                <a href="<?= base_url('admin/arsip/detail/' . $v['id_arsip'] . '/' . $v['id_unit']) ?>"
                                    class="btn btn-sm btn-success">
                                     <i class="fa fa-file"></i>
                                 </a>

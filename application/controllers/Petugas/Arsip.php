@@ -58,7 +58,8 @@ class Arsip extends CI_Controller {
         if (strtolower($nama_unit) !== 'unit c') {
             // Filter agar kategori "Warta Tahunan" tidak muncul
             $kategori = array_filter($kategori, function($k) {
-                return strtolower($k['nama_kategori']) !== 'kategori c';
+                        $nama = strtolower($k['nama_kategori']);
+                        return $nama !== 'warta tahunan' && $nama !== 'warta ngabar';
             });
         }
 
