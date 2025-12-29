@@ -88,8 +88,7 @@ $bulan_aktif    = $bulan_aktif ?? '';
                         <tr
                             data-bulan="<?= date('m', strtotime($v['waktu_upload'])); ?>"
                             data-tahun="<?= date('Y', strtotime($v['waktu_upload'])); ?>"
-                            data-kategori="<?= $v['id_kategori']; ?>"
-                        >
+                            data-kategori="<?= $v['id_kategori']; ?>">
                             <td><?= $a + 1; ?></td>
                             <td class="d-none d-md-table-cell"><?= date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
 

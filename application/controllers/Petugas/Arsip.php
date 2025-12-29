@@ -26,11 +26,19 @@ class Arsip extends CI_Controller {
     }
 
     function index() {
+        $id_kategori = $this->input->get('kategori');
+        $bulan       = $this->input->get('bulan');
 
         $id_petugas = $this->session->userdata('id_petugas'); 
         $id_unit = $this->Arsip_model->unit_by_petugas($id_petugas);
-        $data["arsip"] = $this->Arsip_model->tampil_by_unit($id_unit);
+        $data["arsip"] = $this->Arsip_model->tampil_by_unit($id_unit, $id_kategori, $bulan);
+
         $data["kategori"] = $this->Kategori_model->tampil();
+
+        // kirim filter aktif ke view
+        $data['kategori_aktif'] = $id_kategori;
+        $data['bulan_aktif']   = $bulan;
+        
         $this->load->view("petugas/header");
         $this->load->view("petugas/arsip_tampil",$data);
         $this->load->view("petugas/footer");
@@ -252,5 +260,5 @@ class Arsip extends CI_Controller {
         $this->session->set_flashdata('sukses', 'Arsip berhasil dihapus');
         redirect('petugas/arsip', 'refresh');
     }
-
+ 
 }

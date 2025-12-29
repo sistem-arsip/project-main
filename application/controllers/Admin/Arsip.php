@@ -59,9 +59,7 @@ class Arsip extends CI_Controller {
         $id_kategori = $this->input->get('kategori');
         $bulan       = $this->input->get('bulan');
     
-        $data['arsip'] = $this->Arsip_model
-            ->tampil($id_kategori, $bulan);
-    
+        $data['arsip'] = $this->Arsip_model->tampil($id_kategori, $bulan);
         $data['kategori'] = $this->Kategori_model->tampil();
     
         // kirim filter aktif ke view

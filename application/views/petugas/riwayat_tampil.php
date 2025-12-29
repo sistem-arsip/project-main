@@ -1,3 +1,8 @@
+<?php
+$kategori_aktif = $kategori_aktif ?? '';
+$bulan_aktif    = $bulan_aktif ?? '';
+?>
+
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-12">
@@ -11,27 +16,49 @@
 
 <div class="container-fluid">
     <div class="bg-light rounded shadow-sm p-3">
-
-        <!-- FILTER PANEL -->
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-end align-items-md-center mb-3 gap-3">
 
-            <div class="d-flex gap-3">
+            <div class="d-flex align-items-start gap-3">
 
-                <!-- FILTER BULAN TAHUN -->
+                <!-- FILTER BULAN -->
                 <div>
-                    <label class="form-label fw-bold mb-0">Pilih Arsip Bulan & Tahun:</label>
-                    <input type="text" id="filterBulanTahun" class="form-control" placeholder="Pilih Bulan & Tahun">
+                    <label class="fw-bold mb-0">Bulan & Tahun</label>
+                    <input type="month"
+                        id="filterBulan"
+                        class="form-control"
+                        value="<?= $bulan_aktif; ?>"
+                        onchange="applyFilter()">
                 </div>
-
-                <!-- FILTER KATEGORI -->
+            
+                <!-- FILTER KATEGORI  -->
                 <div>
-                    <label class="form-label fw-bold mb-0">Pilih Kategori:</label>
-                    <select id="filterKategori" class="form-control">
-                        <option value="">Semua Kategori</option>
-                        <?php foreach ($kategori as $k): ?>
-                            <option value="<?= $k['nama_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                    <label class="form-label fw-bold mb-0">Kategori:</label>
+                    <div class="input-group">
+                        <select id="filterKategori"
+                                class="form-control"
+                                onchange="applyFilter()">
+                
+                            <option value=""
+                                <?= empty($kategori_aktif) ? 'selected' : '' ?>
+                                disabled>
+                                Semua Kategori
+                            </option>
+                
+                            <?php foreach ($kategori as $k): ?>
+                                <option value="<?= $k['id_kategori']; ?>"
+                                    <?= ($kategori_aktif == $k['id_kategori']) ? 'selected' : ''; ?>>
+                                    <?= $k['nama_kategori']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        
+                        <button type="button"
+                                class="btn btn-outline-secondary"
+                                title="Reset Filter"
+                                onclick="resetFilter()">
+                            ✕
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,47 +109,22 @@
     </div>
 </div>
 
-<!-- FLATPICKR -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
-
 <script>
-// Inisialisasi Flatpickr
-flatpickr("#filterBulanTahun", {
-    dateFormat: "Y-m",
-    altFormat: "F Y",
-    altInput: true,
-    plugins: [ new monthSelectPlugin({ shorthand: true, dateFormat: "Y-m" }) ]
-});
-
-// Fungsi Filter
-function applyFilters() {
-    const kategori = document.getElementById('filterKategori').value;
-    const bulanTahun = document.getElementById('filterBulanTahun').value;
-
-    let filterYear = null;
-    let filterMonth = null;
-
-    if (bulanTahun) {
-        const [y, m] = bulanTahun.split("-");
-        filterYear = y;
-        filterMonth = m;
+    function applyFilter() {
+        const kategori = document.getElementById('filterKategori').value;
+        const bulan    = document.getElementById('filterBulan').value;
+    
+        let params = [];
+    
+        if (kategori) params.push('kategori=' + kategori);
+        if (bulan) params.push('bulan=' + bulan);
+    
+        const query = params.length ? '?' + params.join('&') : '';
+        window.location.href = query;
     }
-
-    document.querySelectorAll("#mytable tbody tr").forEach(row => {
-        const rowKategori = row.getAttribute("data-kategori");
-        const rowMonth   = row.getAttribute("data-bulan");
-        const rowYear    = row.getAttribute("data-tahun");
-
-        let matchKategori = kategori === "" || kategori === rowKategori;
-        let matchTanggal  = (!filterYear || !filterMonth) || (rowMonth === filterMonth && rowYear === filterYear);
-
-        row.style.display = (matchKategori && matchTanggal) ? "" : "none";
-    });
-}
-
-// Event Listener
-document.getElementById('filterKategori').addEventListener('change', applyFilters);
-document.getElementById('filterBulanTahun').addEventListener('change', applyFilters);
-
+    
+    function resetFilter() {
+        // reset ke kondisi awal (tanpa parameter)
+        window.location.href = window.location.pathname;
+    }
 </script>
