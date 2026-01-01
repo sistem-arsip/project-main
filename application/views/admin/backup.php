@@ -29,12 +29,12 @@
 
                                 <div class="d-grid gap-2">
                                     <a href="<?= base_url('admin/backup/db') ?>" 
-                                       class="btn btn-success">
+                                       class="btn btn-secondary">
                                         <i class="fa fa-database"></i> Cadangkan Database
                                     </a>
 
                                     <a href="<?= base_url('admin/backup/files') ?>" 
-                                       class="btn btn-success">
+                                       class="btn btn-secondary">
                                         <i class="fa fa-archive"></i> Cadangkan File Arsip
                                     </a>
                                 </div>
@@ -45,7 +45,7 @@
                     <!-- CARD PULIHKAN -->
                     <div class="col-md-6">
                         <div class="card mb-4 shadow-sm">
-                            <div class="card-header bg-warning text-dark">
+                            <div class="card-header bg-success text-white">
                                 <strong><i class="fa fa-upload"></i> Pulihkan Data</strong>
                             </div>
                             <div class="card-body">
@@ -61,7 +61,7 @@
                                         </label>
                                         <input type="file" class="form-control" name="sql_file" accept=".sql" required>
                                     </div>
-                                    <button type="submit" class="btn btn-warning w-100 mb-3">
+                                    <button type="submit" class="btn btn-secondary w-100 mb-3">
                                         <i class="fa fa-upload"></i> Pulihkan Database
                                     </button>
                                 </form>
@@ -73,7 +73,7 @@
                                         </label>
                                         <input type="file" class="form-control" name="zip_file" accept=".zip" required>
                                     </div>
-                                    <button type="submit" class="btn btn-warning w-100">
+                                    <button type="submit" class="btn btn-secondary w-100">
                                         <i class="fa fa-upload"></i> Pulihkan File Arsip
                                     </button>
                                 </form>
