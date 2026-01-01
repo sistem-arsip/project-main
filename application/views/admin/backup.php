@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="bg-light rounded p-3 shadow-sm">
-                <h4 class="m-0 fw-bold text-dark">Backup & Restore</h4>
+                <h4 class="m-0 fw-bold text-dark">Cadangkan & Pulihkan Data</h4>
             </div>
         </div>
     </div>
@@ -15,55 +15,74 @@
         <div class="col-12">
             <div class="bg-light rounded shadow-sm p-3">
                 <div class="row">
+
+                    <!-- CARD CADANGKAN -->
                     <div class="col-md-6">
                         <div class="card mb-4 shadow-sm">
                             <div class="card-header bg-success text-white">
-                                <strong><i class="fa fa-database"></i> Backup</strong>
+                                <strong><i class="fa fa-database"></i> Cadangkan Data</strong>
                             </div>
                             <div class="card-body">
-                                <p>Backup Manual, silakan klik salah satu tombol di bawah untuk membackup sesuai dengan kebutuhan:</p>
-                                <div class="d-flex justify-content-center gap-3 mt-4">
-                                    <a href="<?php echo base_url('admin/backup/db') ?>" class="btn btn-sm btn-success">
-                                        <i class="fa fa-download"></i> Backup Database
+                                <p class="mb-3">
+                                    Gunakan fitur ini untuk mencadangkan seluruh data sistem secara manual.
+                                </p>
+
+                                <div class="d-grid gap-2">
+                                    <a href="<?= base_url('admin/backup/db') ?>" 
+                                       class="btn btn-success">
+                                        <i class="fa fa-database"></i> Cadangkan Database
                                     </a>
-                                    <a href="<?php echo base_url('admin/backup/files') ?>" class="btn btn-sm btn-success">
-                                        <i class="fa fa-archive"></i> Backup File Arsip
+
+                                    <a href="<?= base_url('admin/backup/files') ?>" 
+                                       class="btn btn-success">
+                                        <i class="fa fa-archive"></i> Cadangkan File Arsip
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- CARD PULIHKAN -->
                     <div class="col-md-6">
                         <div class="card mb-4 shadow-sm">
-                            <div class="card-header bg-success text-white">
-                                <strong><i class="fa fa-upload"></i> Restore</strong>
+                            <div class="card-header bg-warning text-dark">
+                                <strong><i class="fa fa-upload"></i> Pulihkan Data</strong>
                             </div>
                             <div class="card-body">
-                                <form action="<?php echo base_url('admin/backup/restore_db') ?>" method="post" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label for="sqlFile">Pilih File <code>*.sql</code></label>
-                                        <input type="file" class="form-control-file" name="sql_file" id="sqlFile" accept=".sql" required>
+
+                                <p class="mb-3">
+                                    Gunakan fitur ini untuk memulihkan data secara manual dari file cadangan yang telah dibuat sebelumnya.
+                                </p>
+
+                                <form action="<?= base_url('admin/backup/restore_db') ?>" method="post" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">
+                                            Pilih File Database Dalam Format (.sql)
+                                        </label>
+                                        <input type="file" class="form-control" name="sql_file" accept=".sql" required>
                                     </div>
-                                    <button type="submit" class="btn btn-sm btn-success mt-3">
-                                        <i class="fa fa-upload"></i> Restore Database
+                                    <button type="submit" class="btn btn-warning w-100 mb-3">
+                                        <i class="fa fa-upload"></i> Pulihkan Database
                                     </button>
                                 </form>
-                            </div>
-                            <div class="card-body">
-                                <form action="<?php echo base_url('admin/backup/restore_files') ?>" method="post" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label for="zipFile">Pilih File ZIP Arsip</label>
-                                        <input type="file" class="form-control-file" name="zip_file" id="zipFile" accept=".zip" required>
+
+                                <form action="<?= base_url('admin/backup/restore_files') ?>" method="post" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">
+                                            Pilih File Arsip Dalam Format (.zip)
+                                        </label>
+                                        <input type="file" class="form-control" name="zip_file" accept=".zip" required>
                                     </div>
-                                    <button type="submit" class="btn btn-sm btn-success mt-2">
-                                        <i class="fa fa-upload"></i> Restore File Arsip
+                                    <button type="submit" class="btn btn-warning w-100">
+                                        <i class="fa fa-upload"></i> Pulihkan File Arsip
                                     </button>
                                 </form>
+
                             </div>
                         </div>
                     </div>
-                </div> <!-- end row -->
+
+                </div>
             </div>
         </div>
     </div>

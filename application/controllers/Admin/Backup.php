@@ -157,7 +157,7 @@ class Backup extends CI_Controller {
                 }
             }
 
-            $this->session->set_flashdata('sukses', 'Database berhasil di-restore.');
+            $this->session->set_flashdata('sukses', 'Database berhasil dipulihkan.');
         } else {
             $this->session->set_flashdata('gagal', 'Gagal, file SQL tidak ditemukan.');
         }
@@ -205,7 +205,7 @@ class Backup extends CI_Controller {
                 delete_files($temp_extract_folder, true);
                 rmdir($temp_extract_folder);
 
-                $this->session->set_flashdata('sukses', 'File arsip berhasil di-restore.');
+                $this->session->set_flashdata('sukses', 'File arsip berhasil dipulihkan.');
             } else {
                 $this->session->set_flashdata('gagal', 'Gagal membuka file ZIP.');
             }

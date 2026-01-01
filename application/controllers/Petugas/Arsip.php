@@ -33,7 +33,7 @@ class Arsip extends CI_Controller {
         $id_unit = $this->Arsip_model->unit_by_petugas($id_petugas);
         $data["arsip"] = $this->Arsip_model->tampil_by_unit($id_unit, $id_kategori, $bulan);
 
-        $data["kategori"] = $this->Kategori_model->tampil();
+        $data["kategori"] = $this->Kategori_model->tampil_semua();
 
         // kirim filter aktif ke view
         $data['kategori_aktif'] = $id_kategori;

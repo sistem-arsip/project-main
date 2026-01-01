@@ -24,7 +24,7 @@ class Kategori extends CI_Controller {
 
     function index() {
 
-        $data["kategori"] = $this->Kategori_model->tampil();
+        $data["kategori"] = $this->Kategori_model->tampil_semua();
         $this->load->view("petugas/header");
         $this->load->view("petugas/kategori_tampil",$data);
         $this->load->view("petugas/footer");

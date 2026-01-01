@@ -30,6 +30,7 @@
                                 <th style="width: 5%;">No</th>
                                 <th>Nama</th>
                                 <th>Keterangan</th>
+                                <th class="text-center">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,13 @@
                                     <td class="text-center"><?php echo $index + 1; ?></td>
                                     <td><?php echo $var['nama_kategori']; ?></td>
                                     <td><?php echo $var['keterangan_kategori']; ?></td>
+                                    <td class="text-center">
+                                        <?php if ($var['status_kategori'] == 'aktif'): ?>
+                                        <span class="badge bg-warning text-dark">Aktif</span>
+                                        <?php elseif ($var['status_kategori'] == 'nonaktif'): ?>
+                                            <span class="badge bg-secondary">Nonaktif</span>
+                                        <?php endif; ?>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

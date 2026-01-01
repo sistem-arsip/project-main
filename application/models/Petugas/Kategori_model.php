@@ -9,6 +9,12 @@ class Kategori_model extends CI_Model {
 		$data = $query->result_array();
 		return $data;
 	}
+    function tampil_semua(){
+        $this->db->order_by("id_kategori","asc");
+		$query = $this->db->get("kategori");
+		$data = $query->result_array();
+		return $data;
+    }
 
     function unit_by_petugas($id_petugas) {
         $query = $this->db->get_where('petugas', ['id_petugas' => $id_petugas]);

@@ -33,7 +33,7 @@ class Riwayat extends CI_Controller {
         $id_petugas = $this->session->userdata('id_petugas'); 
 
         $data['riwayat'] = $this->Riwayat_model->tampil_by_petugas($id_petugas, $id_kategori, $bulan);
-        $data['kategori'] = $this->Kategori_model->tampil();
+        $data['kategori'] = $this->Kategori_model->tampil_semua();
 
         // kirim filter aktif ke view
         $data['kategori_aktif'] = $id_kategori;
