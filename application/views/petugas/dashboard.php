@@ -104,7 +104,7 @@
                             </p>
                         </div>
                         <div class="mt-3 mt-md-0">
-                            <a href="https://docs.google.com/document/d/e/2PACX-1vSKzvGJtdt4W9qJv0UoI24gbvRSObxuxnzex0qcTHURiQHLMmGsAhW-LBFP0PWPv5ERvKBI6qEoaU88/pub"
+                            <a href="https://docs.google.com/document/d/e/2PACX-1vTATbnt0LbG4QDkNbzm2n6K-2isO1ToHcTmaixrvWrZyS1uD55dPbFCrSNaL3Vv3a4G2oCFGZ-CrUAE/pub"
                                 target="_blank"
                                 class="btn btn-success">
                                 <i class="fa fa-book me-1"></i> Lihat Panduan

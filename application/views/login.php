@@ -205,7 +205,7 @@
                             <div class="alert-info-box mt-3" style="justify-content: center;">
                                 <i class="fas fa-circle-question"></i>
                                 <span>
-                                    <a href="https://docs.google.com/document/d/e/2PACX-1vTDL93qKM-7Q4DWrd2ShJVwmWg7VyaoXQtSO2tA064L1UKl9IOfggxGvCfFywSUV43SvVVrqNRZiZUv/pub"
+                                    <a href="https://docs.google.com/document/d/e/2PACX-1vSlHYmXGWtLJXbS4BNiKF3hUmWyWFBeFqZvFff7w6-rgmOrd4Gmo7W3sml5vEi3Uob7L3Npqbv6S4tY/pub"
                                         target="_blank"
                                         style="color:#0d6efd; display:inline; margin-top:0;">
                                         Lihat Panduan Login
