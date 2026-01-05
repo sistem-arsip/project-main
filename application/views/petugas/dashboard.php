@@ -1,25 +1,24 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    .card-box {
+        background-color: #F5F5F5;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .card-box {
-            background-color: #F5F5F5;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+    .card-title {
+        margin: 0;
+        font-weight: bold;
+        color: #333;
+    }
 
-        .card-title {
-            margin: 0;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
+    .stat-number {
+        font-size: 24px;
+        font-weight: bold;
+    }
+</style>
 
 <body>
 
@@ -94,20 +93,40 @@
                 </div>
             </div>
         </div>
-
         <div class="row mt-4">
+            <div class="col-12">
+                <div class="card-box">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <div>
+                            <h5 class="mb-1 fw-bold">Panduan Penggunaan Sistem</h5>
+                            <p class="mb-0 text-muted">
+                                Klik tombol di samping untuk melihat alur penggunaan sistem arsip digital.
+                            </p>
+                        </div>
+                        <div class="mt-3 mt-md-0">
+                            <a href="https://docs.google.com/document/d/e/2PACX-1vSKzvGJtdt4W9qJv0UoI24gbvRSObxuxnzex0qcTHURiQHLMmGsAhW-LBFP0PWPv5ERvKBI6qEoaU88/pub"
+                                target="_blank"
+                                class="btn btn-success">
+                                <i class="fa fa-book me-1"></i> Lihat Panduan
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
             <div class="col-12">
                 <div class="card-box">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center gap-2">
                             <h5 class="mb-0"><b>Grafik Jumlah Arsip Tahun</b></h5>
-                                <select id="tahunSelect" class="form-select ms-3" style="width:auto; min-width:120px;">
-                                    <?php foreach ($tahunList as $tahun): ?>
-                                        <option value="<?= $tahun ?>" <?= ($tahun == date('Y')) ? 'selected' : '' ?>>
-                                            <?= $tahun ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
+                            <select id="tahunSelect" class="form-select ms-3" style="width:auto; min-width:120px;">
+                                <?php foreach ($tahunList as $tahun): ?>
+                                    <option value="<?= $tahun ?>" <?= ($tahun == date('Y')) ? 'selected' : '' ?>>
+                                        <?= $tahun ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
 
 
                         </div>
@@ -148,20 +167,26 @@
             options: {
                 responsive: true,
                 plugins: {
-                    legend: { display: false }
+                    legend: {
+                        display: false
+                    }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: {display: false} ,
-                        grid: {display: false}
+                        ticks: {
+                            display: false
+                        },
+                        grid: {
+                            display: false
+                        }
                     }
                 }
             }
         });
 
         // Ubah grafik saat tahun diganti manual
-        document.getElementById('tahunSelect').addEventListener('change', function () {
+        document.getElementById('tahunSelect').addEventListener('change', function() {
             const tahunDipilih = this.value;
             uploadChart.data.datasets[0].data = arsipDataPerTahun[tahunDipilih] || [];
             uploadChart.update();

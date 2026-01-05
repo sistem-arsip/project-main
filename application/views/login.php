@@ -202,6 +202,17 @@
                                 </div>
                             <?php endif; ?>
                             <input type="submit" class="btn btn-block loginbtn" value="Login">
+                            <div class="alert-info-box mt-3" style="justify-content: center;">
+                                <i class="fas fa-circle-question"></i>
+                                <span>
+                                    <a href="https://docs.google.com/document/d/e/2PACX-1vTDL93qKM-7Q4DWrd2ShJVwmWg7VyaoXQtSO2tA064L1UKl9IOfggxGvCfFywSUV43SvVVrqNRZiZUv/pub"
+                                        target="_blank"
+                                        style="color:#0d6efd; display:inline; margin-top:0;">
+                                        Lihat Panduan Login
+                                    </a>
+                                </span>
+                            </div>
+
                         </form>
                         <div class="text-center mt-3">
                             <a href="<?php echo base_url('/'); ?>" class="btn btn-sm btn-success text-light">← Kembali</a>
@@ -255,31 +266,31 @@
     <?php endif; ?>
 
     <!-- select login -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const form = document.getElementById('loginForm');
-                const roleSelect = document.getElementById('roleSelect');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            const roleSelect = document.getElementById('roleSelect');
 
-                form.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter') {
-                        if (document.activeElement === roleSelect) {
-                            e.preventDefault();
-                            form.submit();
-                        }
+            form.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    if (document.activeElement === roleSelect) {
+                        e.preventDefault();
+                        form.submit();
                     }
-                });
+                }
+            });
+        });
+    </script>
+
+    <?php if ($this->session->flashdata('gagal')): ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Login!',
+                text: "<?php echo $this->session->flashdata('gagal'); ?>",
             });
         </script>
-
-        <?php if ($this->session->flashdata('gagal')): ?>
-            <script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal Login!',
-                    text: "<?php echo $this->session->flashdata('gagal'); ?>",
-                });
-            </script>
-        <?php endif; ?>
+    <?php endif; ?>
 
 
 </body>
