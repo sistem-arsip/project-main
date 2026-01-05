@@ -80,6 +80,10 @@ class Arsip_model extends CI_Model {
         $data = $query->row_array();
         return $data ? $data['nama_unit'] : null;
     }
+    function update_by_kode_qr($kode_qr, $data){
+        $this->db->where('kode_qr', $kode_qr);
+        return $this->db->update('arsip', $data);
+    }
 
 }
 ?>

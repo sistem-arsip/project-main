@@ -122,60 +122,87 @@ class Generate extends CI_Controller {
         return TRUE;
     }
     function edit($kode_qr) {
+        // Ambil data QR
         $data['qr'] = $this->Generate_model->qr_by_kode($kode_qr);
 
         if (!$data['qr']) {
             show_404();
         }
 
-        $this->form_validation->set_rules("nomor_dokumen", "Nomor Dokumen", "required|callback_nomor_dokumen_cek[".$kode_qr."]|trim|callback_periksa_html");
+        // Validasi
+        $this->form_validation->set_rules("nomor_dokumen","Nomor Dokumen","required|callback_nomor_dokumen_cek[".$kode_qr."]|trim|callback_periksa_html");
         $this->form_validation->set_message("required", "%s wajib diisi!");
         $this->form_validation->set_message("is_unique", "%s sudah digunakan!");
 
-        if ($this->form_validation->run() == TRUE) {
+        if ($this->form_validation->run() === TRUE) {
+
             $nomor_dokumen_baru = $this->input->post('nomor_dokumen');
 
             // Ambil data unit & waktu generate
             $data_qr = $this->Generate_model->unit_by_qr($kode_qr);
             $tanggal = format_tanggal_indo($data_qr['waktu_generate']);
 
-            // Buat isi QR baru
+            // Isi QR baru
             $isi_qr_baru = "{$data_qr['nama_unit']} membuat {$nomor_dokumen_baru} pada {$tanggal}";
 
-            // Lokasi file QR lama
-            $lokasi_file_lama = FCPATH . 'assets/kode_qr/' . $data['kode_qr']['foto_qr'];
+            // Lokasi file QR lama ( perbaikan: pakai $data['qr'])
+            $lokasi_file_lama = FCPATH . 'assets/kode_qr/' . $data['qr']['foto_qr'];
 
-            // Hapus file lama jika ada
-            if (file_exists($lokasi_file_lama)) {
+            // Hapus file lama
+            if (!empty($data['qr']['foto_qr']) && file_exists($lokasi_file_lama)) {
                 unlink($lokasi_file_lama);
             }
 
             // Generate QR baru
             $options = new \chillerlan\QRCode\QROptions([
                 'outputType' => QRCode::OUTPUT_IMAGE_PNG,
-                'eccLevel' => QRCode::ECC_L,
-                'scale' => 8,
+                'eccLevel'   => QRCode::ECC_L,
+                'scale'      => 8,
             ]);
+
             $qrcode = new QRCode($options);
-            $nama_file_baru = $kode_qr . '.png';
+            $nama_file_baru   = $kode_qr . '.png';
             $lokasi_file_baru = FCPATH . 'assets/kode_qr/' . $nama_file_baru;
             $qrcode->render($isi_qr_baru, $lokasi_file_baru);
 
-            // Update database
-            $update_data = [
-                'nomor_dokumen' => $nomor_dokumen_baru,
-                'foto_qr' => $nama_file_baru
-            ];
-            $this->Generate_model->update_qr($kode_qr, $update_data);
+            // Load Arsip model (untuk foreign key)
+            $this->load->model('petugas/Arsip_model');
 
+            // trans database
+            $this->db->trans_start();
+
+            // 1. Update tabel QR
+            $this->Generate_model->update_qr($kode_qr, [
+                'nomor_dokumen' => $nomor_dokumen_baru,
+                'foto_qr'       => $nama_file_baru
+            ]);
+
+            // 2. Sinkronkan semua arsip yang memakai QR ini
+            $this->Arsip_model->update_by_kode_qr($kode_qr, [
+                'nomor_dokumen' => $nomor_dokumen_baru
+            ]);
+
+            $this->db->trans_complete();
+
+            // Jika gagal
+            if ($this->db->trans_status() === FALSE) {
+                $this->session->set_flashdata('gagal', 'Gagal memperbarui QR dan Arsip');
+                redirect('petugas/generate/edit/' . $kode_qr);
+                return;
+            }
+
+            // Berhasil
             $this->session->set_flashdata('sukses', 'QR Code berhasil diperbarui.');
             redirect('petugas/generate/detail/' . $kode_qr);
+            return;
         }
 
+        // View
         $this->load->view("petugas/header");
         $this->load->view("petugas/qr_edit", $data);
         $this->load->view("petugas/footer");
     }
+
 
     function hapus($kode_qr) {
         $data_qr = $this->Generate_model->qr_by_kode($kode_qr);

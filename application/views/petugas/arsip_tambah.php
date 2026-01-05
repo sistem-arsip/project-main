@@ -21,7 +21,7 @@
                 <form method="post" novalidate enctype="multipart/form-data">
                     <!-- Apakah punya QR Code -->
                     <div class="mb-3">
-                        <label class="form-label">Apakah surat/dokumen memiliki QR Code?</label>
+                        <label class="form-label">Apakah surat/dokumen memiliki Kode QR?</label>
                         <select class="form-select" name="kode_qr_status" id="kode_qr_status" required>
                             <option value="">Pilih</option>
                             <option value="ya" <?php echo set_select('kode_qr_status', 'ya') ?>>Ya</option>

@@ -75,7 +75,7 @@ class Arsip extends CI_Controller {
 
         $this->form_validation->set_rules("id_kategori", "Kategori", "required");
         $this->form_validation->set_rules("keterangan_arsip", "Keterangan Arsip", "required|trim|callback_periksa_html");
-        $this->form_validation->set_rules("kode_qr_status", "Status QR Code", "required");
+        $this->form_validation->set_rules("kode_qr_status", "Status Kode QR", "required");
 
         $qr_status = $this->input->post("kode_qr_status");
 

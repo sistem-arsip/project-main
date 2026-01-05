@@ -70,8 +70,8 @@ class Backup extends CI_Controller {
         rmdir($temp_folder);
 
         // Redirect download
-        $relative_path = str_replace(FCPATH, '', $finalZipPath);
-        redirect(base_url($relative_path));
+        $this->load->helper('download');
+        force_download($finalZipPath, NULL);
     }
 
     private function copy_recursive($src, $dst) {
