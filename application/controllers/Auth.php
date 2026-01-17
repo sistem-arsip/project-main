@@ -8,7 +8,7 @@ class Auth extends CI_Controller {
     function login() {
         $this->load->view('login');
     }
-    public function periksa_html($str){
+    function periksa_html($str){
         $clean = strip_tags($str);
         if ($str !== $clean) {
             $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
@@ -16,8 +16,18 @@ class Auth extends CI_Controller {
         }
         return TRUE;
     }
+    function inputan_username($username){
+        if (preg_match("/['\"!#$%^&*():;<>?+=\/\\\\|{}\[\]]/", $username)) {
+            $this->form_validation->set_message(
+                'inputan_username',
+                'Username tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
     function proses_login(){
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|callback_periksa_html', [
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|callback_periksa_html|callback_inputan_username', [
             'required' => 'Username wajib diisi!'
         ]);
         $this->form_validation->set_rules('password', 'Password', 'required|callback_periksa_html', [

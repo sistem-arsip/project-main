@@ -37,9 +37,9 @@
                                     <td class="text-center">
                                         <?php if ($var['status_pengajuan'] == 'pending'): ?>
                                             <a href="<?php echo base_url('admin/pengajuan_kategori/terima/' . $var['id_pengajuan']); ?>"
-                                                class="btn btn-success btn-xs" style="color: #fff;"
+                                                class="btn btn-success btn-sm" style="color: #fff;"
                                                 onclick="return confirm('Yakin akan menerima kategori ini?')">Terima</a>
-                                            <span class="btn btn-danger btn-xs btn-tolak" style="color: #fff;" 
+                                            <span class="btn btn-danger btn-sm btn-tolak" style="color: #fff;" 
                                                 id_pengajuan="<?php echo $var['id_pengajuan'] ?>">Tolak</span>
                                         <?php elseif ($var['status_pengajuan'] == 'accepted'): ?>
                                             <span class="text-success"><i class="fa fa-check"></i></span>

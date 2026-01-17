@@ -39,15 +39,30 @@
 
 
 <script>
-    $(document).ready(function() {
-        $('#mytable').DataTable({
-            stateSave: true
-        });
+$(document).ready(function() {
+    const bahasaID = {
+        lengthMenu: "_MENU_ data per halaman",
+        zeroRecords: "Data tidak ditemukan",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+        infoFiltered: "(difilter dari _MAX_ total data)",
+        search: "Cari:",
+        paginate: {
+            first: "Pertama",
+            last: "Terakhir",
+            next: "›",
+            previous: "‹"
+        }
+    };
 
-        $('#mytable2').DataTable({
-            stateSave: true
-        });
+    $('#mytable').DataTable({
+        language: bahasaID
     });
+
+    $('#mytable2').DataTable({
+        language: bahasaID
+    });
+});
 </script>
 
 <?php if ($this->session->flashdata('sukses')): ?>

@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pengajuan_kategori_model extends CI_Model {
     function tampil (){
+		$this->db->order_by("id_pengajuan","desc");
         $this->db->join('unit', 'pengajuan_kategori.id_unit = unit.id_unit', 'left');
         $this->db->join('petugas', 'pengajuan_kategori.id_petugas = petugas.id_petugas', 'left');
 		$query = $this->db->get("pengajuan_kategori");
