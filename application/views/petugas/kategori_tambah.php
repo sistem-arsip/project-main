@@ -12,8 +12,8 @@
 <div class="container-fluid">
     <div class="row justify-content">
         <div class="col-12">
-            <div class="bg-light rounded shadow-sm p-3">
-                <div class="mb-3">
+            <div class="bg-light rounded shadow-sm p-2">
+                <div class="mb-2">
                     <a href="<?php echo base_url('petugas/kategori'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
                     </a>
@@ -32,7 +32,7 @@
                         <?php echo form_error('keterangan_kategori', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
-                    <div class="mb-4">
+                    <div>
                         <button type="submit" class="btn btn-sm btn-success text-light">
                             <i class="fa fa-plus"></i> Tambah
                         </button>

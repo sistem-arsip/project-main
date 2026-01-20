@@ -5,14 +5,14 @@ class Unit_model extends CI_Model {
     // NEW
     function tampil_aktif (){
         $this->db->where('status_unit', 'aktif');
-        $this->db->order_by("id_unit","asc");
+        $this->db->order_by("id_unit","desc");
 		$query = $this->db->get("unit");
 		$data = $query->result_array();
 		return $data;
 	}
     function tampil_nonaktif (){
         $this->db->where('status_unit', 'nonaktif');
-        $this->db->order_by("id_unit","asc");
+        $this->db->order_by("id_unit","desc");
 		$query = $this->db->get("unit");
 		$data = $query->result_array();
 		return $data;

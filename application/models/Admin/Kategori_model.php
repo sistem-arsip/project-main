@@ -5,14 +5,14 @@ class Kategori_model extends CI_Model {
     // NEW
     function tampil_aktif (){
         $this->db->where('status_kategori', 'aktif');
-        $this->db->order_by("id_kategori","asc");
+        $this->db->order_by("id_kategori","desc");
 		$query = $this->db->get("kategori");
 		$data = $query->result_array();
 		return $data;
 	}
     function tampil_nonaktif (){
         $this->db->where('status_kategori', 'nonaktif');
-        $this->db->order_by("id_kategori","asc");
+        $this->db->order_by("id_kategori","desc");
 		$query = $this->db->get("kategori");
 		$data = $query->result_array();
 		return $data;

@@ -11,7 +11,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <div class="bg-light rounded shadow-sm p-3">
+            <div class="bg-light rounded shadow-sm p-2">
                 <div class="mb-3">
                     <a href="<?php echo base_url('admin/unit'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
@@ -31,7 +31,7 @@
                         <?php echo form_error('keterangan_unit', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
-                    <div class="mb-3">
+                    <div>
                         <button type="submit" class="btn btn-sm btn-success text-light">
                             <i class="fa fa-plus"></i> Tambah</button>
                     </div>

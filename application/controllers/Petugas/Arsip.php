@@ -123,7 +123,7 @@ class Arsip extends CI_Controller {
                 // Upload file
                 $config['upload_path']   = './assets/arsip/';
                 $config['allowed_types'] = 'pdf|doc|docx|xls|xlsx|jpg|jpeg|png|ppt|pptx|zip';
-                $config['max_size']      = 20000;
+                $config['max_size']      = 102400;
 
                 $this->load->library('upload', $config);
 
@@ -211,7 +211,7 @@ class Arsip extends CI_Controller {
                 if (!empty($_FILES['file']['name'])) {
                     $config['upload_path']   = './assets/arsip/';
                     $config['allowed_types'] = 'pdf|doc|docx|xls|xlsx|jpg|jpeg|png|ppt|pptx|zip';
-                    $config['max_size']      = 10000;
+                    $config['max_size']      = 102400;
 
                     $this->load->library('upload', $config);
 

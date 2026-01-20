@@ -12,13 +12,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="bg-light rounded shadow-sm p-3">
+            <div class="bg-light rounded shadow-sm p-2">
 
-                <div class="mb-3">
                     <a href="<?php echo base_url('admin/unit'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
                     </a>
-                </div>
 
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordered table-striped table-hover w-100">
@@ -27,7 +25,7 @@
                                 <th width="1%">No</th>
                                 <th>Nama Kategori</th>
                                 <th>Keterangan</th>
-                                <th class="text-center" width="15%">OPSI</th>
+                                <th class="text-center" width="20%">OPSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +44,7 @@
                                             <a href="<?php echo base_url('admin/unit/hapus/' . $v['id_unit']); ?>" 
                                                class="btn btn-danger btn-sm text-light"
                                                onclick="return confirm('Hapus permanen unit ini?')">
-                                                <i class="fa fa-trash"></i>
+                                                <i class="fa fa-trash"></i> Hapus
                                             </a>
                                         </div>
                                     </td>

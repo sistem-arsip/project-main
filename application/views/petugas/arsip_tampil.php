@@ -15,35 +15,34 @@ $bulan_aktif    = $bulan_aktif ?? '';
 <br>
 
 <div class="container-fluid">
-    <div class="bg-light rounded shadow-sm p-3">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-end align-items-md-center mb-3 gap-2">
+    <div class="bg-light rounded shadow-sm p-2">
+        <!-- FILTER + BUTTON BAR -->
+        <div class="d-flex justify-content-between align-items-end flex-wrap gap-2">
 
-            <div class="d-flex align-items-start gap-3">
-
-                <!-- FILTER BULAN -->
+            <!-- FILTER SECTION -->
+            <div class="d-flex align-items-end gap-1 mb-0 flex-wrap">
+                
+                <!-- FILTER BULAN & TAHUN -->
                 <div>
-                    <label class="fw-bold mb-0">Bulan & Tahun</label>
-                    <input type="month"
-                        id="filterBulan"
+                    <label class="fw-bold mb-1">Bulan & Tahun</label>
+                    <input type="text"
+                        id="filterBulanTahun"
                         class="form-control"
-                        value="<?= $bulan_aktif; ?>"
-                        onchange="applyFilter()">
+                        placeholder="Pilih Bulan & Tahun"
+                        value="<?= $bulan_aktif ?? '' ?>">
+                    <input type="hidden"
+                        id="filterBulan"
+                        value="<?= $bulan_aktif ?? '' ?>">
                 </div>
-            
-                <!-- FILTER KATEGORI  -->
+
+                <!-- FILTER KATEGORI -->
                 <div>
-                    <label class="form-label fw-bold mb-0">Kategori:</label>
+                    <label class="fw-bold mb-1">Kategori</label>
                     <div class="input-group">
                         <select id="filterKategori"
-                                class="form-control"
-                                onchange="applyFilter()">
-                
-                            <option value=""
-                                <?= empty($kategori_aktif) ? 'selected' : '' ?>
-                                disabled>
-                                Semua Kategori
-                            </option>
-                
+                            class="form-select"
+                            onchange="applyFilter()">
+                            <option value="" disabled selected hidden>Pilih Kategori</option>
                             <?php foreach ($kategori as $k): ?>
                                 <option value="<?= $k['id_kategori']; ?>"
                                     <?= ($kategori_aktif == $k['id_kategori']) ? 'selected' : ''; ?>>
@@ -51,19 +50,21 @@ $bulan_aktif    = $bulan_aktif ?? '';
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        
                         <button type="button"
-                                class="btn btn-outline-secondary"
-                                title="Reset Filter"
-                                onclick="resetFilter()">
-                            ✕
+                            class="btn btn-outline-secondary"
+                            onclick="resetFilter()">
+                            <i class="fa fa-rotate-right"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="d-flex gap-2">
-                <a href="<?php echo base_url('petugas/arsip/tambah'); ?>" class="btn btn-sm text-white btn-success">
-                    <i class="fa fa-plus"></i> Upload Arsip
+
+            <!-- BUTTON TAMBAH -->
+            <div>
+                <a href="<?= base_url('petugas/arsip/tambah'); ?>"
+                    class="btn btn-sm btn-success text-white">
+                    <i class="fa fa-plus"></i>
+                    <span> Upload Arsip</span>
                 </a>
             </div>
         </div>
@@ -77,13 +78,13 @@ $bulan_aktif    = $bulan_aktif ?? '';
                         <th>Kategori</th>
                         <th>Petugas</th>
                         <th>Keterangan</th>
-                        <th class="text-center" style="width: 15%;">Opsi</th>
+                        <th class="text-center" width="25%">Opsi</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php foreach ($arsip as $a => $v): ?>
-                        <tr 
+                        <tr
                             data-bulan="<?= date('m', strtotime($v['waktu_upload'])); ?>"
                             data-tahun="<?= date('Y', strtotime($v['waktu_upload'])); ?>"
                             data-kategori="<?= $v['id_kategori']; ?>">
@@ -102,13 +103,16 @@ $bulan_aktif    = $bulan_aktif ?? '';
                             <td class="text-center">
                                 <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-sm btn-success text-white">
                                     <i class="fa fa-file"></i>
+                                    <span class="d-none d-md-inline"> Detail</span>
                                 </a>
                                 <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
-                                    <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-sm btn-warning text-white">
+                                    <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-sm btn-outline-secondary text-dark">
                                         <i class="fa fa-edit"></i>
+                                        <span class="d-none d-md-inline"> Ubah</span>
                                     </a>
                                     <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                         <i class="fa fa-trash"></i>
+                                        <span class="d-none d-md-inline"> Hapus</span>
                                     </a>
                                 <?php endif; ?>
                             </td>
@@ -121,22 +125,42 @@ $bulan_aktif    = $bulan_aktif ?? '';
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+
+<script>
+    flatpickr("#filterBulanTahun", {
+        dateFormat: "Y-m", // VALUE UNTUK LOGIC
+        altInput: true,
+        altFormat: "F Y", // TAMPILAN USER
+        plugins: [
+            new monthSelectPlugin({
+                shorthand: true,
+                dateFormat: "Y-m"
+            })
+        ],
+        onChange: function(selectedDates, dateStr) {
+            if (dateStr) {
+                document.getElementById('filterBulan').value = dateStr;
+                applyFilter(); // LOGIC LAMA
+            }
+        }
+    });
+</script>
 <script>
     function applyFilter() {
         const kategori = document.getElementById('filterKategori').value;
-        const bulan    = document.getElementById('filterBulan').value;
-    
+        const bulan = document.getElementById('filterBulan').value;
+
         let params = [];
-    
         if (kategori) params.push('kategori=' + kategori);
         if (bulan) params.push('bulan=' + bulan);
-    
+
         const query = params.length ? '?' + params.join('&') : '';
         window.location.href = query;
     }
-    
+
     function resetFilter() {
-        // reset ke kondisi awal (tanpa parameter)
         window.location.href = window.location.pathname;
     }
 </script>

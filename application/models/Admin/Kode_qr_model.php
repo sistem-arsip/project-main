@@ -19,7 +19,7 @@ class Kode_qr_model extends CI_Model {
     function get_qr_by_unit($id_unit) {
         $this->db->join('unit', 'kode_qr.id_unit = unit.id_unit', 'left');
         $this->db->join('petugas', 'kode_qr.id_petugas = petugas.id_petugas', 'left');
-        $this->db->order_by('waktu_generate', 'ASC');
+        $this->db->order_by('waktu_generate', 'desc');
         $this->db->where('kode_qr.id_unit', $id_unit);
         $query = $this->db->get('kode_qr');
         return $query->result_array();

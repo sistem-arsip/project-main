@@ -175,7 +175,24 @@ $(document).ready(function() {
     </footer>
 </div>
 
+<style>
+    #mytable_wrapper .dt-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
+#mytable_wrapper .dt-search input {
+    width: 240px !important;
+    height: 30px !important;
+    font-size: 18px !important;
+    padding: 8px 12px !important;
+}
+#mytable_wrapper .dt-length {
+    display: none !important;
+}
+
+</style>
 
 </body>
 

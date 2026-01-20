@@ -10,8 +10,8 @@
 <br>
 <div class="container-fluid">
     <div class="col-12">
-        <div class="bg-light rounded shadow-sm p-3">
-            <div class="mb-3">
+        <div class="bg-light rounded shadow-sm p-2">
+            <div>
             <a href="<?php echo base_url('admin/kode_qr'); ?>" class="btn btn-sm btn-outline-dark">
                 <i class="fa fa-arrow-left"></i> Kembali
             </a>
@@ -36,7 +36,7 @@
                                 <td><?php echo $qr['nomor_dokumen']; ?></td>
                                 <td><?php echo $qr['nama_petugas']; ?></td>
                                 <td class="text-center">
-                                    <a href="<?= base_url('admin/kode_qr/detail/' . $qr['kode_qr']) ?>" class="btn btn-sm btn-secondary text-light">
+                                    <a href="<?= base_url('admin/kode_qr/detail/' . $qr['kode_qr']) ?>" class="btn btn-sm btn-success text-light">
                                         <i class="fa fa-info-circle"></i> Detail QR
                                     </a>
                                 </td>

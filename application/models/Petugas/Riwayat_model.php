@@ -22,6 +22,7 @@ class Riwayat_model extends CI_Model {
         if (!empty($bulan)) {
             $this->db->where('DATE_FORMAT(arsip.waktu_upload, "%Y-%m") =', $bulan);
         }
+        $this->db->order_by('arsip.id_arsip', 'desc');
 
         $query = $this->db->get('arsip');
         return $query->result_array();

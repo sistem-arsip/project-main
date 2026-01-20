@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Generate_model extends CI_Model {
     function tampil_by_petugas($id_petugas) {
         $this->db->where('id_petugas', $id_petugas);
-        $this->db->order_by('waktu_generate', 'ASC');
+        $this->db->order_by('waktu_generate', 'desc');
         $query = $this->db->get('kode_qr');
         return $query->result_array();
     }
@@ -26,7 +26,9 @@ class Generate_model extends CI_Model {
 		return $query->row_array();
 	}
     function qr_by_kode($kode_qr) {
-        return $this->db->get_where('kode_qr', ['kode_qr' => $kode_qr])->row_array();
+        $this->db->join('unit', 'kode_qr.id_unit = unit.id_unit', 'left');
+        $this->db->join('petugas', 'kode_qr.id_petugas = petugas.id_petugas', 'left');
+        return $this->db->get_where('kode_qr', ['kode_qr.kode_qr' => $kode_qr])->row_array();
     }
     function update_qr($kode_qr, $data) {
         $this->db->where('kode_qr', $kode_qr);

@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Petugas_model extends CI_Model {
     function tampil_aktif() {
         $this->db->where('status_petugas', 'aktif');
-        $this->db->order_by('id_petugas', 'asc');
+        $this->db->order_by('id_petugas', 'desc');
         $this->db->join("unit", "petugas.id_unit = unit.id_unit", "left");
         return $this->db->get("petugas")->result_array();
     }
     function tampil_nonaktif() {
         $this->db->where('status_petugas', 'nonaktif');
-        $this->db->order_by('id_petugas', 'asc');
+        $this->db->order_by('id_petugas', 'desc');
         $this->db->join("unit", "petugas.id_unit = unit.id_unit", "left");
         return $this->db->get("petugas")->result_array();
     }

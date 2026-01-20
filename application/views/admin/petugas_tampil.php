@@ -11,12 +11,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="bg-light rounded shadow-sm p-3">
-                <div class="d-flex justify-content-end mb-3 gap-2">
-                     <a href="<?php echo base_url('admin/petugas/nonaktif_list'); ?>" 
-       class="btn btn-secondary btn-sm text-light">
-        <i class="fa fa-eye"></i> Lihat Petugas Nonaktif
-    </a>
+            <div class="bg-light rounded shadow-sm p-2">
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="<?php echo base_url('admin/petugas/nonaktif_list'); ?>"
+                        class="btn btn-secondary btn-sm text-light">
+                        <i class="fa fa-eye"></i> Lihat Petugas Nonaktif
+                    </a>
                     <a href="<?php echo base_url('admin/petugas/tambah'); ?>" class="btn btn-sm btn-success text-light">
                         <i class="fa fa-plus"></i> Tambah Petugas
                     </a>
@@ -30,7 +30,7 @@
                                 <th>Nama Petugas</th>
                                 <th>Unit</th>
                                 <th>Username</th>
-                                <th class="text-center" width="20%">OPSI</th>
+                                <th class="text-center" width="30%">OPSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,19 +42,19 @@
                                     <td><?php echo $var['username_petugas']; ?></td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-1">
-                                            <a href="<?php echo base_url('admin/petugas/edit/' . $var['id_petugas']); ?>" 
-                                            class="btn btn-warning btn-sm text-light">
-                                                <i class="fa fa-edit"></i>
+                                            <a href="<?php echo base_url('admin/petugas/edit/' . $var['id_petugas']); ?>"
+                                                class="btn btn-sm btn-outline-secondary text-dark">
+                                                <i class="fa fa-edit"></i> Ubah
                                             </a>
-                                            <a href="<?php echo base_url('admin/petugas/nonaktif/' . $var['id_petugas']); ?>" 
-                                            class="btn btn-warning btn-sm text-light" style="background-color:#ff8c00; border-color:#ff8c00;"
-                                            onclick="return confirm('Nonaktifkan petugas ini?')">
+                                            <a href="<?php echo base_url('admin/petugas/nonaktif/' . $var['id_petugas']); ?>"
+                                                class="btn btn-warning btn-sm"
+                                                onclick="return confirm('Nonaktifkan petugas ini?')">
                                                 <i class="fa fa-ban"></i> Nonaktifkan
                                             </a>
-                                            <a href="<?php echo base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>" 
-                                            class="btn btn-danger btn-sm text-light" 
-                                            onclick="return confirm('Yakin ingin menghapus petugas ini?')">
-                                                <i class="fa fa-trash"></i>
+                                            <a href="<?php echo base_url('admin/petugas/hapus/' . $var['id_petugas']); ?>"
+                                                class="btn btn-danger btn-sm text-light"
+                                                onclick="return confirm('Yakin ingin menghapus petugas ini?')">
+                                                <i class="fa fa-trash"></i> Hapus
                                             </a>
                                         </div>
                                     </td>

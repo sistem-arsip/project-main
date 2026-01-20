@@ -93,7 +93,7 @@ class Generate extends CI_Controller {
             // Update foto_qr di database
             $this->Generate_model->update_qr($kode_qr, ['foto_qr' => $nama_file]);
 
-            $this->session->set_flashdata('sukses', 'QR Code berhasil dibuat, silahkan download qr pada halaman detail.');
+            $this->session->set_flashdata('sukses', 'Kode QR berhasil dibuat, silahkan download qr pada halaman detail.');
             redirect('petugas/generate/detail/' . $kode_qr);
         }
 
@@ -192,7 +192,7 @@ class Generate extends CI_Controller {
             }
 
             // Berhasil
-            $this->session->set_flashdata('sukses', 'QR Code berhasil diperbarui.');
+            $this->session->set_flashdata('sukses', 'Kode QR berhasil diperbarui.');
             redirect('petugas/generate/detail/' . $kode_qr);
             return;
         }
@@ -218,7 +218,7 @@ class Generate extends CI_Controller {
 
         $this->Generate_model->hapus_qr($kode_qr);
 
-        $this->session->set_flashdata('sukses', 'QR Code berhasil dihapus.');
+        $this->session->set_flashdata('sukses', 'Kode QR berhasil dihapus.');
         redirect('petugas/generate');
     }
 

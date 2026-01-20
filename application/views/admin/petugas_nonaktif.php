@@ -13,24 +13,20 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="bg-light rounded shadow-sm p-3">
-
-                <div class="d-flex justify-content-start mb-3">
-                    <a href="<?= base_url('admin/petugas'); ?>" 
-                       class="btn btn-sm btn-outline-dark mb-3">
+            <div class="bg-light rounded shadow-sm p-2">
+                    <a href="<?= base_url('admin/petugas'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
                     </a>
-                </div>
 
                 <div class="table-responsive">
-                    <table id="mytable2" class="table table-bordered table-striped table-hover w-100">
+                    <table id="mytable" class="table table-bordered table-striped table-hover w-100">
                         <thead class="table-light">
                             <tr>
                                 <th width="1%">No</th>
                                 <th>Nama Petugas</th>
                                 <th>Unit</th>
                                 <th>Username</th>
-                                <th class="text-center" width="15%">OPSI</th>
+                                <th class="text-center" width="20%">OPSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,7 +48,7 @@
                                             <a href="<?= base_url('admin/petugas/hapus/' . $p['id_petugas']); ?>" 
                                                class="btn btn-danger btn-sm text-light"
                                                onclick="return confirm('Yakin ingin menghapus permanen?')">
-                                                <i class="fa fa-trash"></i>
+                                                <i class="fa fa-trash"></i> Hapus
                                             </a>
 
                                         </div>

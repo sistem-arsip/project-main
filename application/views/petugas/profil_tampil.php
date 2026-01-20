@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="row justify-content">
         <div class="col-12">
-            <div class="bg-light rounded shadow-sm p-3">
+            <div class="bg-light rounded shadow-sm p-2">
                 <div class="mb-3">
                     <a href="<?php echo base_url('petugas/dashboard'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
@@ -46,7 +46,7 @@
                         <input type="text" id="nama_unit" class="form-control" name="nama_unit" value="<?php echo $profil['nama_unit']; ?>" readonly>
                     </div>
 
-                    <div class="mb-4">
+                    <div>
                         <button type="submit" class="btn btn-sm btn-success">
                             <i class="fa fa-save"></i> Simpan Perubahan
                         </button>

@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="<?php echo base_url('assets/js/vendor/jquery-1.12.4.min.js'); ?>"></script>
+
 <script src="<?php echo base_url('assets/js/wow.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/jquery-price-slider.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/jquery.meanmenu.js'); ?>"></script>
@@ -39,19 +39,31 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<!-- <script>
-$(document).ready(function(){
-  $('#filterBulanTahun').datepicker({
-    format: "mm-yyyy",
-    minViewMode: 1,
-    autoclose: true
-  });
-});
-</script> -->
+
 <script>
     $(document).ready(function() {
-        $('#mytable').DataTable();
+        const bahasaID = {
+        lengthMenu: "_MENU_ data per halaman",
+        zeroRecords: "Data tidak ditemukan",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+        infoFiltered: "(difilter dari _MAX_ total data)",
+        search: "Cari:",
+        paginate: {
+            first: "Pertama",
+            last: "Terakhir",
+            next: "›",
+            previous: "‹"
+        }
+    };
+        $('#mytable').DataTable({
+        language: bahasaID
     });
+
+    $('#mytable2').DataTable({
+        language: bahasaID
+    });
+});
 </script>
 <?php if ($this->session->flashdata('sukses')): ?>
     <script>
@@ -141,6 +153,25 @@ $(document).ready(function(){
 </div>
 </div>
 </div>
+
+<style>
+    #mytable_wrapper .dt-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#mytable_wrapper .dt-search input {
+    width: 240px !important;
+    height: 30px !important;
+    font-size: 18px !important;
+    padding: 8px 12px !important;
+}
+#mytable_wrapper .dt-length {
+    display: none !important;
+}
+
+</style>
 
 </body>
 

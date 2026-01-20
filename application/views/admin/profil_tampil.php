@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <div class="bg-light rounded shadow-sm p-3">
+            <div class="bg-light rounded shadow-sm p-2">
                 <div class="mb-3">
                     <a href="<?php echo base_url('admin/dashboard'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali</a>
@@ -39,7 +39,7 @@
                         <?php echo form_error('password_admin', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
-                   <div class="mb-4">
+                   <div>
                         <button type="submit" class="btn btn-sm btn-success">
                             <i class="fa fa-save"></i> Simpan Perubahan
                         </button>

@@ -18,7 +18,7 @@ function total_arsip_saya($id_petugas) {
 }
 
 function total_kategori() {
-    return $this->db->count_all('kategori'); 
+    return $this->db->where('status_kategori', 'aktif')->count_all_results('kategori');
 }
 
 function arsip_per_bulan_per_tahun($id_unit, $tahun) {

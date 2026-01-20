@@ -11,8 +11,8 @@
 <div class="container-fluid">
     <div class="row justify-content">
         <div class="col-lg-12">
-            <div class="bg-light rounded shadow-sm p-3">
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3 gap-2">
+            <div class="bg-light rounded shadow-sm p-2">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
                     <a href="<?php echo base_url('petugas/pengajuan_kategori'); ?>" class="btn btn-sm btn-secondary text-white">
                         <i class="fa fa-history"></i> Riwayat Pengajuan
                     </a>
@@ -30,7 +30,7 @@
                                 <th style="width: 5%;">No</th>
                                 <th>Nama</th>
                                 <th>Keterangan</th>
-                                <th class="text-center">Status</th>
+                                <th class="text-center" width="20%">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +41,7 @@
                                     <td><?php echo $var['keterangan_kategori']; ?></td>
                                     <td class="text-center">
                                         <?php if ($var['status_kategori'] == 'aktif'): ?>
-                                        <span class="badge bg-warning text-dark">Aktif</span>
+                                        <span class="badge bg-success">Aktif</span>
                                         <?php elseif ($var['status_kategori'] == 'nonaktif'): ?>
                                             <span class="badge bg-secondary">Nonaktif</span>
                                         <?php endif; ?>

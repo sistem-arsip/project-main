@@ -12,18 +12,17 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="bg-light rounded shadow-sm p-3">
+            <div class="bg-light rounded shadow-sm p-2">
                 <div class="table-responsive">
-                    <br>
                     <table id="mytable" class="table table-bordered table-striped table-hover w-100">
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
                                 <th>Nama Kategori</th>
                                 <th>Keterangan</th>
-                                <th>Petugas</th>
-                                <th>Unit</th>
-                                <th>Opsi</th>
+                                <th width="20%">Petugas</th>
+                                <th width="15%">Unit</th>
+                                <th width="15%">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>

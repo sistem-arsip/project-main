@@ -13,9 +13,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="bg-light rounded shadow-sm p-3">
-
-                <a href="<?php echo base_url('admin/kategori'); ?>" class="btn btn-sm btn-outline-dark mb-3">
+            <div class="bg-light rounded shadow-sm p-2">
+                <a href="<?php echo base_url('admin/kategori'); ?>" class="btn btn-sm btn-outline-dark">
                     <i class="fa fa-arrow-left"></i> Kembali
                 </a>
 
@@ -26,7 +25,7 @@
                                 <th width="1%">No</th>
                                 <th>Nama Kategori</th>
                                 <th>Keterangan</th>
-                                <th class="text-center" width="15%">OPSI</th>
+                                <th class="text-center" width="20%">OPSI</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,7 +43,7 @@
                                     <a href="<?php echo base_url('admin/kategori/hapus/'.$v['id_kategori']); ?>" 
                                        class="btn btn-danger btn-sm text-light"
                                        onclick="return confirm('Yakin ingin menghapus kategori ini?')">
-                                        <i class="fa fa-trash"></i>
+                                        <i class="fa fa-trash"></i> Hapus
                                     </a>
                                 </td>
                             </tr>

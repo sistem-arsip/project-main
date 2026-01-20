@@ -11,15 +11,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="bg-light rounded shadow-sm p-3">
-
+            <div class="bg-light rounded shadow-sm p-2">
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordered table-striped table-hover w-100">
                         <thead class="table-light">
                             <tr>
                                 <th class="text-center" width="1%">No</th>
                                 <th>Unit</th>
-                                <th class="text-center">Jumlah Kode QR</th>
+                                <th>Keterangan</th>
+                                <th class="text-center" width="15%">Jumlah Kode QR</th>
                                 <th class="text-center" width="20%">Detail</th>
                             </tr>
                         </thead>
@@ -30,10 +30,11 @@
                                     <tr>
                                         <td class="text-center"><?= $no++ ?></td>
                                         <td><?= $qr['nama_unit'] ?></td>
+                                        <td><?php echo $qr['keterangan_unit']; ?></td>
                                         <td class="text-center"><?= $qr['jumlah_qr'] ?></td>
                                         <td class="text-center">
-                                            <a href="<?php echo base_url('admin/kode_qr/qr_perunit/' . $qr['id_unit']); ?>" class="btn btn-sm btn-secondary text-light">
-                                                <i class="bi bi-eye"></i> View More
+                                            <a href="<?php echo base_url('admin/kode_qr/qr_perunit/' . $qr['id_unit']); ?>" class="btn btn-sm btn-success text-light">
+                                                <i class="fa fa-file"></i> Selengkapnya
                                             </a>
                                         </td>
                                     </tr>

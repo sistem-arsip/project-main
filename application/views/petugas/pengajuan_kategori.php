@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="row justify-content">
         <div class="col-lg-12">
-            <div class="bg-light rounded shadow-sm p-3">
+            <div class="bg-light rounded shadow-sm p-2">
 
                 <div class="mb-3">
                     <a href="<?php echo base_url('petugas/kategori'); ?>" class="btn btn-sm btn-outline-dark">

@@ -16,39 +16,46 @@ $bulan_aktif    = $bulan_aktif ?? '';
 <br>
 
 <div class="container-fluid">
-    <div class="bg-light rounded shadow-sm p-3">
-
-        <div class="mb-3">
+    <div class="bg-light rounded shadow-sm p-2">
+        <div class="mb-2">
             <a href="<?php echo base_url('admin/arsip'); ?>" class="btn btn-sm btn-outline-dark">
                 <i class="fa fa-arrow-left"></i> Kembali
             </a>
         </div>
 
         <!-- FILTER SECTION -->
-        <div class="d-flex align-items-start gap-3 mb-3">
+        <div class="d-flex align-items-end gap-1 mb-0 flex-wrap">
 
-            <!-- FILTER BULAN -->
+            <!-- FILTER BULAN & TAHUN -->
             <div>
-                <label class="fw-bold mb-0">Bulan & Tahun</label>
-                <input type="month"
-                       id="filterBulan"
-                       class="form-control"
-                       value="<?= $bulan_aktif; ?>"
-                       onchange="applyFilter()">
+                <label class="fw-bold mb-1">Bulan & Tahun</label>
+
+                <input type="text"
+                    id="filterBulanTahun"
+                    class="form-control"
+                    placeholder="Pilih Bulan & Tahun"
+                    value="<?= $bulan_aktif ?? '' ?>">
+
+                <input type="hidden"
+                    id="filterBulan"
+                    value="<?= $bulan_aktif ?? '' ?>">
             </div>
 
             <!-- FILTER KATEGORI -->
             <div>
-                <label class="fw-bold mb-0">Kategori</label>
+                <label class="fw-bold mb-1">Kategori</label>
+
                 <div class="input-group">
                     <select id="filterKategori"
-                            class="form-control"
-                            onchange="applyFilter()">
+                        class="form-select"
+                        onchange="applyFilter()">
 
+                        <!-- PLACEHOLDER (TIDAK MUNCUL DI DROPDOWN) -->
                         <option value=""
-                            <?= empty($kategori_aktif) ? 'selected' : '' ?>
-                            disabled>
-                            Semua Kategori
+                            disabled
+                            selected
+                            hidden>
+                            Pilih Kategori
                         </option>
 
                         <?php foreach ($kategori as $k): ?>
@@ -61,14 +68,13 @@ $bulan_aktif    = $bulan_aktif ?? '';
 
                     <!-- RESET -->
                     <button type="button"
-                            class="btn btn-outline-secondary"
-                            onclick="resetFilter()"
-                            title="Reset Filter">
-                        ✕
+                        class="btn btn-outline-secondary"
+                        onclick="resetFilter()"
+                        title="Reset Filter">
+                        <i class="fa fa-rotate-right"></i>
                     </button>
                 </div>
             </div>
-
         </div>
 
         <div class="table-responsive">
@@ -106,7 +112,7 @@ $bulan_aktif    = $bulan_aktif ?? '';
 
                             <td class="text-center">
                                 <a href="<?= base_url('admin/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-sm btn-success text-light">
-                                    <i class="fa fa-file"></i>
+                                    <i class="fa fa-file"></i> Selengkapnya
                                 </a>
                                 <!-- <a href="<?= base_url('admin/arsip/hapus/' . $v['id_arsip'] . '?redirect=admin/arsip/all_arsip'); ?>" class="btn btn-sm btn-danger text-light" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
                                     <i class="fa fa-trash"></i>
@@ -120,21 +126,42 @@ $bulan_aktif    = $bulan_aktif ?? '';
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+
 <script>
-function applyFilter() {
-    const kategori = document.getElementById('filterKategori').value;
-    const bulan    = document.getElementById('filterBulan').value;
+    flatpickr("#filterBulanTahun", {
+        dateFormat: "Y-m", // VALUE UNTUK LOGIC
+        altInput: true,
+        altFormat: "F Y", // TAMPILAN USER
+        plugins: [
+            new monthSelectPlugin({
+                shorthand: true,
+                dateFormat: "Y-m"
+            })
+        ],
+        onChange: function(selectedDates, dateStr) {
+            if (dateStr) {
+                document.getElementById('filterBulan').value = dateStr;
+                applyFilter(); // LOGIC LAMA
+            }
+        }
+    });
+</script>
+<script>
+    function applyFilter() {
+        const kategori = document.getElementById('filterKategori').value;
+        const bulan = document.getElementById('filterBulan').value;
 
-    let params = [];
+        let params = [];
+        if (kategori) params.push('kategori=' + kategori);
+        if (bulan) params.push('bulan=' + bulan);
 
-    if (kategori) params.push('kategori=' + kategori);
-    if (bulan) params.push('bulan=' + bulan);
+        const query = params.length ? '?' + params.join('&') : '';
+        window.location.href = query;
+    }
 
-    const query = params.length ? '?' + params.join('&') : '';
-    window.location.href = query;
-}
-
-function resetFilter() {
-    window.location.href = window.location.pathname;
-}
+    function resetFilter() {
+        window.location.href = window.location.pathname;
+    }
 </script>

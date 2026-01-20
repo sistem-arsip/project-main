@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="row justify-content">
         <div class="col-12">
-            <div class="bg-light p-4 rounded shadow-sm">
+            <div class="bg-light rounded shadow-sm p-2">
                 <div class="mb-3">
                     <a href="<?php echo base_url('petugas/arsip'); ?>" class="btn btn-sm btn-outline-dark">
                         <i class="fa fa-arrow-left"></i> Kembali
@@ -48,7 +48,6 @@
                         </select>
                     </div>
 
-
                     <div class="mb-3">
                         <label class="form-label">Keterangan</label>
                         <textarea class="form-control" name="keterangan_arsip" rows="3"><?php echo $arsip['keterangan_arsip']; ?></textarea>
@@ -67,7 +66,7 @@
                         <?php endif; ?>
                     </div>
                     
-                    <div class="mb-4">
+                    <div>
                         <button type="submit" class="btn btn-sm btn-success">
                             <i class="fa fa-save"></i> Simpan Perubahan
                         </button>
