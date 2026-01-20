@@ -34,6 +34,11 @@
                     <div class="mb-3" id="kode_qr_input_group">
                         <label class="form-label">Masukkan Kode QR</label>
                         <input type="text" class="form-control" name="kode_qr" value="<?php echo set_value('kode_qr') ?>">
+                        <?php if (!form_error('kode_qr')): ?>
+                            <div class="form-text">
+                                Kode QR harus sesuai dengan format yang ada pada menu Buat Kode QR. 
+                            </div>
+                        <?php endif; ?>
                         <?php echo form_error('kode_qr', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 
@@ -41,6 +46,11 @@
                     <div class="mb-3" id="nomor_arsip_group">
                         <label class="form-label">Nomor Surat / Dokumen</label>
                         <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo set_value('nomor_dokumen') ?>">
+                        <?php if (!form_error('nomor_dokumen')): ?>
+                            <div class="form-text">
+                                Nomor surat/dokumen dapat berupa huruf, angka, spasi, titik (.), tanda minus (-), underscore (_), dan garis miring (/).
+                            </div>
+                        <?php endif; ?>
                         <?php echo form_error('nomor_dokumen', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 

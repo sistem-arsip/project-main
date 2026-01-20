@@ -25,7 +25,7 @@ class Profil extends CI_Controller {
         if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_admin)) {
             $this->form_validation->set_message(
                 'inputan_nama',
-                'Nama admin tidak boleh mengandung karakter khusus!'
+                'Nama tidak boleh mengandung karakter khusus!'
             );
             return FALSE;
         }
@@ -35,7 +35,7 @@ class Profil extends CI_Controller {
         if (!preg_match("/^[a-zA-Z0-9._-]+$/", $username_admin)) {
             $this->form_validation->set_message(
                 'inputan_username',
-                'Username admin tidak boleh mengandung karakter khusus!'
+                'Username tidak boleh mengandung karakter khusus!'
             );
             return FALSE;
         }

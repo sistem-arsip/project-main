@@ -21,7 +21,7 @@ class Profil extends CI_Controller {
         $this->load->view("petugas/profil_tampil", $data);
         $this->load->view("petugas/footer");
     }
-    public function periksa_html($str){
+    function periksa_html($str){
         $clean = strip_tags($str);
         if ($str !== $clean) {
             $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
@@ -39,11 +39,31 @@ class Profil extends CI_Controller {
             return TRUE;
         }
     }
+    function inputan_nama($nama_petugas){
+        if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_petugas)) {
+            $this->form_validation->set_message(
+                'inputan_nama',
+                'Nama tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
+    function inputan_username($username_petugas){
+        if (!preg_match("/^[a-zA-Z0-9._-]+$/", $username_petugas)) {
+            $this->form_validation->set_message(
+                'inputan_username',
+                'Username tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
     function update() {
         $id_petugas = $this->session->userdata('id_petugas'); 
 
-        $this->form_validation->set_rules("nama_petugas", "Nama", "required|trim|callback_periksa_html");
-        $this->form_validation->set_rules("username_petugas","Username","required|trim|callback_cek_username_petugas|callback_periksa_html");
+        $this->form_validation->set_rules("nama_petugas", "Nama", "required|trim|callback_periksa_html|callback_inputan_nama");
+        $this->form_validation->set_rules("username_petugas","Username","required|trim|callback_cek_username_petugas|callback_periksa_html|callback_inputan_username");
         $this->form_validation->set_rules("password_petugas", "Password", "trim|callback_periksa_html");
 
         $this->form_validation->set_message("required", "%s wajib diisi");

@@ -22,20 +22,39 @@
                 <form method="post" enctype="multipart/form-data">
                     <!-- Hidden ID Arsip -->
                     <input type="hidden" name="id_arsip" value="<?php echo $arsip['id_arsip']; ?>">
-                    <?php if (!empty($arsip['kode_qr'])): ?>
-                        <div class="mb-3">
-                            <label class="form-label">Kode QR</label>
-                            <input type="text" class="form-control" name="kode_qr" value="<?php echo $arsip['kode_qr']; ?>"
-                                <?php echo !empty($arsip['kode_qr']) ? 'readonly' : ''; ?>>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Nomor Surat / Dokumen</label>
-                        <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo $arsip['nomor_dokumen']; ?>"
-                            <?php echo !empty($arsip['kode_qr']) ? 'readonly' : ''; ?>>
-                            <?php echo form_error('nomor_dokumen', "<div class='text-danger small'>", "</div>") ?>
-                    </div>
+                        <!-- JIKA ARSIP PUNYA QR -->
+                        <?php if (!empty($arsip['kode_qr'])): ?>
+
+                            <!-- KODE QR (BOLEH DIUBAH) -->
+                            <div class="mb-3">
+                                <label class="form-label">Kode QR</label>
+                                <input type="text" name="kode_qr" class="form-control" value="<?= set_value('kode_qr', $arsip['kode_qr']); ?>">
+                                <?php if (!form_error('kode_qr')): ?>
+                                    <div class="form-text">
+                                        Kode QR harus sesuai dengan format yang ada pada menu Buat Kode QR. 
+                                    </div>
+                                <?php endif; ?>
+                                <?php echo form_error('kode_qr', "<div class='text-danger small'>", "</div>") ?>
+                            </div>
+
+                            <!-- NOMOR DOKUMEN (READONLY) -->
+                            <div class="mb-3">
+                                <label class="form-label">Nomor Surat / Dokumen</label>
+                                <input type="text" class="form-control" value="<?= $arsip['nomor_dokumen']; ?>" readonly>
+                                <small class="text-muted">
+                                    Nomor surat pada arsip yang mempunyai Kode QR hanya dapat diubah pada menu Buat Kode QR
+                                </small>
+                            </div>
+                        <!-- JIKA ARSIP TANPA QR -->
+                        <!-- ===================== -->
+                        <?php else: ?>
+                            <!-- NOMOR DOKUMEN (BOLEH DIUBAH) -->
+                            <div class="mb-3">
+                                <label class="form-label">Nomor Surat / Dokumen</label>
+                                <input type="text" name="nomor_dokumen" class="form-control" value="<?= set_value('nomor_dokumen', $arsip['nomor_dokumen']); ?>">
+                                <?= form_error('nomor_dokumen', "<div class='text-danger small'>", "</div>"); ?>
+                            </div>
+                        <?php endif; ?>
 
                     <div class="mb-3">
                         <label class="form-label">Kategori</label>

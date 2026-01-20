@@ -16,14 +16,54 @@ class Arsip extends CI_Controller {
         $this->load->model('petugas/Kategori_model');
     }
 
-    public function periksa_html($str){
+    function periksa_html($str){
+        // jika null atau kosong, biarkan validasi lain yang menangani
+        if ($str === null || $str === '') {
+            return TRUE;
+        }
+
         $clean = strip_tags($str);
+
         if ($str !== $clean) {
-            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            $this->form_validation->set_message('periksa_html','Input tidak boleh mengandung tag HTML.'
+            );
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+    function inputan_kode_qr($kode_qr){
+        // kalau null / kosong, biarkan validasi lain yang menangani
+        if ($kode_qr === null || $kode_qr === '') {
+            return TRUE;
+        }
+
+        if (!preg_match("/^QR-[A-Z0-9]+$/", $kode_qr)) {
+            $this->form_validation->set_message(
+                'inputan_kode_qr',
+                'Kode QR tidak sesuai format!'
+            );
             return FALSE;
         }
         return TRUE;
     }
+    function inputan_nomor_dokumen($nomor_dokumen){
+        // cegah null / kosong
+        if ($nomor_dokumen === null || $nomor_dokumen === '') {
+            return TRUE;
+        }
+
+        if (!preg_match("/^[\p{Arabic}a-zA-Z0-9 ._\-\/]+$/u", $nomor_dokumen)) {
+            $this->form_validation->set_message(
+                'inputan_nomor_dokumen',
+                'Nomor surat tidak boleh mengandung karakter yang dimasukkan!'
+            );
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+
 
     function index() {
         $id_kategori = $this->input->get('kategori');
@@ -80,9 +120,9 @@ class Arsip extends CI_Controller {
         $qr_status = $this->input->post("kode_qr_status");
 
         if ($qr_status === "ya") {
-            $this->form_validation->set_rules("kode_qr", "Kode QR", "required|is_unique[arsip.kode_qr]|trim|callback_periksa_html");
+            $this->form_validation->set_rules("kode_qr", "Kode QR", "required|is_unique[arsip.kode_qr]|trim|callback_periksa_html|callback_inputan_kode_qr");
         } else {
-            $this->form_validation->set_rules("nomor_dokumen", "Nomor Dokumen", "required|is_unique[arsip.nomor_dokumen]|trim|callback_periksa_html");
+            $this->form_validation->set_rules("nomor_dokumen", "Nomor Dokumen", "required|is_unique[arsip.nomor_dokumen]|trim|callback_periksa_html|callback_inputan_nomor_dokumen");
         }
 
         $this->form_validation->set_message("required", "%s wajib diisi");
@@ -161,57 +201,86 @@ class Arsip extends CI_Controller {
         return TRUE;
     }
 
-    function edit($id_arsip) {
-        $data["arsip"] = $this->Arsip_model->detail_ubah($id_arsip);
-        
+    function edit($id_arsip){
+        // data lama
+        $data['arsip'] = $this->Arsip_model->detail_ubah($id_arsip);
+        if (!$data['arsip']) {
+            show_404();
+        }
+
+        //  petugas, unit
         $id_petugas = $this->session->userdata('id_petugas');
-        $id_unit = $this->Arsip_model->unit_by_petugas($id_petugas);
-        $nama_unit = $this->Arsip_model->get_nama_unit($id_unit);
+        $id_unit    = $this->Arsip_model->unit_by_petugas($id_petugas);
+        $nama_unit  = $this->Arsip_model->get_nama_unit($id_unit);
 
+        // kategori
         $kategori = $this->Kategori_model->tampil();
-
         if (strtolower($nama_unit) !== 'unit c') {
-            $kategori = array_filter($kategori, function($k) {
+            $kategori = array_filter($kategori, function ($k) {
                 return strtolower($k['nama_kategori']) !== 'kategori c';
             });
         }
+        $data['kategori'] = $kategori;
 
-        $data["kategori"] = $kategori;
+        // submit
+        if ($this->input->post()) {
 
-        $inputan = $this->input->post();
+            // ---- VALIDASI UMUM
+            $this->form_validation->set_rules('keterangan_arsip', 'Keterangan Arsip', 'required|trim|callback_periksa_html'
+            );
 
-        if (!empty($inputan)) {
-            $this->form_validation->set_rules("keterangan_arsip","Keterangan Arsip","required|trim|callback_periksa_html");
-
-            // validasi nomor dokumen  kalau arsip TIDAK punya kode_qr
-            if (empty($data['arsip']['kode_qr'])) {
-                $this->form_validation->set_rules("nomor_dokumen","Nomor Dokumen","required|trim|callback_periksa_html|callback_nomor_dokumen_cek");
+            // ---- JIKA ARSIP PUNYA QR → VALIDASI QR
+            if (!empty($data['arsip']['kode_qr'])) {
+                $this->form_validation->set_rules('kode_qr', 'Kode QR', 'required|trim|callback_periksa_html|callback_inputan_kode_qr'
+                );
             }
 
-            $this->form_validation->set_message("required", "%s wajib diisi");
-
-            if ($this->form_validation->run() === TRUE) {
-            
-                $inputan['id_petugas'] = $this->session->userdata('id_petugas');
-                $inputan['id_unit'] = $this->Arsip_model->unit_by_petugas(
-                    $this->session->userdata('id_petugas')
+            // ---- JIKA ARSIP TIDAK PUNYA QR → VALIDASI NOMOR
+            if (empty($data['arsip']['kode_qr'])) {
+                $this->form_validation->set_rules('nomor_dokumen','Nomor Dokumen','required|trim|callback_periksa_html|callback_inputan_nomor_dokumen|callback_nomor_dokumen_cek'
                 );
+            }
 
-                // kode QR
+            $this->form_validation->set_message('required', '%s wajib diisi');
+
+            // ================= JIKA VALID =================
+            if ($this->form_validation->run() === TRUE) {
+
+                $inputan = [
+                    'id_petugas'       => $id_petugas,
+                    'id_unit'          => $id_unit,
+                    'id_kategori'      => $this->input->post('id_kategori'),
+                    'keterangan_arsip' => $this->input->post('keterangan_arsip')
+                ];
+
+                // ================= LOGIKA QR =================
                 if (!empty($data['arsip']['kode_qr'])) {
-                    //  arsip punya QR : tetap pakai data lama
-                    $inputan['kode_qr'] = $data['arsip']['kode_qr'];
-                    $inputan['nomor_dokumen'] = $data['arsip']['nomor_dokumen'];
+
+                    // arsip PUNYA QR → QR BOLEH DIUBAH
+                    $kode_qr_baru = trim($this->input->post('kode_qr'));
+
+                    $qr_data = $this->Arsip_model->get_nomor_by_kode_qr($kode_qr_baru);
+                    if (!$qr_data) {
+                        $this->session->set_flashdata('gagal', 'Kode QR tidak ditemukan!');
+                        redirect('petugas/arsip/edit/' . $id_arsip);
+                        return;
+                    }
+                    // QR berubah → nomor dokumen ikut QR
+                    $inputan['kode_qr']       = $kode_qr_baru;
+                    $inputan['nomor_dokumen'] = $qr_data['nomor_dokumen'];
+
                 } else {
-                    // tidak punya QR : ambil nomor dokumen dari input
-                    $inputan['kode_qr'] = null;
-                    $inputan['nomor_dokumen'] = $this->input->post("nomor_dokumen");
+                    // arsip TANPA QR → nomor manual
+                    $inputan['kode_qr']       = null;
+                    $inputan['nomor_dokumen'] = $this->input->post('nomor_dokumen');
                 }
 
+                // ================= UPLOAD FILE =================
                 if (!empty($_FILES['file']['name'])) {
+
                     $config['upload_path']   = './assets/arsip/';
                     $config['allowed_types'] = 'pdf|doc|docx|xls|xlsx|jpg|jpeg|png|ppt|pptx|zip';
-                    $config['max_size']      = 102400;
+                    $config['max_size']      = 102400; // 100 MB
 
                     $this->load->library('upload', $config);
 
@@ -225,22 +294,25 @@ class Arsip extends CI_Controller {
                         redirect('petugas/arsip/edit/' . $id_arsip);
                         return;
                     }
+
                 } else {
-                    //pakai file lama
+                    // pakai file lama
                     $inputan['file_arsip'] = $data['arsip']['file_arsip'];
                 }
 
+                // ================= UPDATE =================
                 $this->Arsip_model->ubah($id_arsip, $inputan);
 
-                $this->session->set_flashdata('sukses', 'Arsip berhasil diubah');
+                $this->session->set_flashdata('sukses', 'Arsip berhasil diperbarui');
                 redirect('petugas/arsip', 'refresh');
             }
         }
-
         $this->load->view('petugas/header');
         $this->load->view('petugas/arsip_edit', $data);
         $this->load->view('petugas/footer');
     }
+
+
 
 
     function hapus($id_arsip){

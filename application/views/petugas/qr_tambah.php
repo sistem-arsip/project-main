@@ -23,6 +23,11 @@
                     <div class="mb-3">
                         <label class="form-label">Masukkan Nomor Surat/Dokumen</label>
                         <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo set_value('nomor_dokumen') ?>">
+                         <?php if (!form_error('nomor_dokumen')): ?>
+                            <div class="form-text">
+                                Nomor surat/dokumen dapat berupa huruf, angka, spasi, titik (.), tanda minus (-), underscore (_), dan garis miring (/).
+                            </div>
+                        <?php endif; ?>
                         <?php echo form_error('nomor_dokumen', "<div class='text-danger small'>", "</div>") ?>
                     </div>
 

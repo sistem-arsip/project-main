@@ -16,7 +16,7 @@ class Generate extends CI_Controller {
             redirect('auth/login', 'refresh'); 
         }
     }
-    public function periksa_html($str){
+    function periksa_html($str){
         $clean = strip_tags($str);
         if ($str !== $clean) {
             $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
@@ -24,7 +24,16 @@ class Generate extends CI_Controller {
         }
         return TRUE;
     }
-
+    function inputan_nomor_dokumen($nomor_dokumen){
+        if (!preg_match("/^[\p{Arabic}a-zA-Z0-9 ._\-\/]+$/u", $nomor_dokumen)) {
+            $this->form_validation->set_message(
+                'inputan_nomor_dokumen',
+                'Nomor surat tidak boleh mengandung karakter yang dimasukkan!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
     function index() {
         $id_petugas = $this->session->userdata('id_petugas'); 
         $data["generate"] = $this->Generate_model->tampil_by_petugas($id_petugas);
@@ -36,7 +45,7 @@ class Generate extends CI_Controller {
 
     
     function tambah() {
-        $this->form_validation->set_rules("nomor_dokumen","Nomor Surat/Dokumen","required|is_unique[kode_qr.nomor_dokumen]|trim|callback_periksa_html");
+        $this->form_validation->set_rules("nomor_dokumen","Nomor Surat/Dokumen","required|is_unique[kode_qr.nomor_dokumen]|trim|callback_periksa_html|callback_inputan_nomor_dokumen");
         $this->form_validation->set_message("required", "%s wajib diisi!");
         $this->form_validation->set_message("is_unique", "%s yang sama sudah digunakan!");
 
@@ -130,7 +139,7 @@ class Generate extends CI_Controller {
         }
 
         // Validasi
-        $this->form_validation->set_rules("nomor_dokumen","Nomor Dokumen","required|callback_nomor_dokumen_cek[".$kode_qr."]|trim|callback_periksa_html");
+        $this->form_validation->set_rules("nomor_dokumen","Nomor Dokumen","required|callback_nomor_dokumen_cek[".$kode_qr."]|trim|callback_periksa_html|callback_inputan_nomor_dokumen");
         $this->form_validation->set_message("required", "%s wajib diisi!");
         $this->form_validation->set_message("is_unique", "%s sudah digunakan!");
 
