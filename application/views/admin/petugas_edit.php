@@ -24,20 +24,36 @@
                     <div class="mb-3">
                         <label for="nama_petugas" class="form-label">Nama</label>
                         <input type="text" id="nama_petugas" class="form-control" name="nama_petugas" value="<?php echo set_value('nama_petugas', $petugas['nama_petugas']) ?>">
-                        <?php echo form_error('nama_petugas', "<div class='text-danger small'>", "</div>") ?>
+                        <?php if (!form_error('nama_petugas')): ?>
+                                <div class="text-muted small mt-1">
+                                    Nama petugas hanya boleh mengandung huruf, angka, spasi, titik (.), tanda minus (-), dan underscore (_).
+                                </div>
+                            <?php endif; ?>
+                        <?php echo form_error('nama_petugas', "<div class='text-danger small mt-1'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
                         <label for="username_petugas" class="form-label">Username</label>
                         <input type="text" id="username_petugas" class="form-control" name="username_petugas" value="<?php echo set_value('username_petugas', $petugas['username_petugas']) ?>">
-                        <?php echo form_error('username_petugas', "<div class='text-danger small'>", "</div>") ?>
+                        <?php if (!form_error('username_petugas')): ?>
+                                <div class="text-muted small mt-1">
+                                    Username petugas hanya boleh mengandung huruf, angka, titik (.), tanda minus (-), dan underscore (_).
+                                </div>
+                            <?php endif; ?>
+                        <?php echo form_error('username_petugas', "<div class='text-danger small mt-1'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
                         <label for="password_petugas" class="form-label">Password</label>
                         <input type="password" id="password_petugas" class="form-control" name="password_petugas">
-                        <div class="form-text">Kosongkan jika tidak ingin mengubah password.</div>
-                        <?php echo form_error('password_petugas', "<div class='text-danger small'>", "</div>") ?>
+                        <?php if (!form_error('password_petugas')): ?>
+                            <div class="text-muted small mt-1">
+                                Kosongkan jika tidak ingin mengubah password.
+                            </div>
+                        <?php endif; ?>
+
+<?php echo form_error('password_petugas', "<div class='text-danger small'>", "</div>") ?>
+
                     </div>
 
                     <div class="mb-3">

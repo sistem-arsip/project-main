@@ -13,7 +13,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         th, td {
             border: 1px solid #000;
@@ -47,133 +47,62 @@
     <tr>
         <td width="30%">Waktu Download</td>
         <td width="5%">:</td>
-        <td>
-           <?php echo $waktu_download; ?>
-        </td>
+        <td><?php echo $waktu_download; ?></td>
     </tr>
     <tr>
         <td>Keterangan</td>
         <td>:</td>
-        <td>
-            <?php echo 'Laporan ' . $jenis_laporan . ' - ' . $periode; ?>
-        </td>
+        <td>Laporan <?php echo $jenis_laporan; ?> - <?php echo $periode; ?></td>
     </tr>
 </table>
-<br>
+
 <p style="margin-top:10px; text-align: justify;">
-    Rekapitulasi data keseluruhan Sistem Informasi Arsip Digital Pondok Pesantren Wali Songo Ngabar pada periode laporan ditampilkan pada tabel berikut.
+    Rekapitulasi data arsip berdasarkan aktivitas
+    pengarsipan pada Sistem Informasi Arsip Digital Pondok Pesantren
+    Wali Songo Ngabar sesuai dengan periode laporan.
 </p>
 
-<!-- ================= RINGKASAN ================= -->
+<!-- ================= RINGKASAN (JUMLAH ARSIP) ================= -->
 <table>
     <tr>
-        <th width="10%">No</th>
-        <th width="45%">Keterangan</th>
-        <th width="45%">Jumlah</th>
+        <th style="width:10%">No</th>
+        <th style="width:60%">Keterangan</th>
+        <th style="width:30%">Jumlah Arsip</th>
     </tr>
     <?php $no = 1; ?>
     <tr>
         <td><?php echo $no++; ?></td>
-        <td>Petugas</td>
-        <td><?php echo $ringkasan['Petugas']; ?></td>
-    </tr>
-    <tr>
-        <td><?php echo $no++; ?></td>
-        <td>Unit</td>
-        <td><?php echo $ringkasan['Unit']; ?></td>
-    </tr>
-    <tr>
-        <td><?php echo $no++; ?></td>
-        <td>Kategori</td>
-        <td><?php echo $ringkasan['Kategori']; ?></td>
-    </tr>
-    <tr>
-        <td><?php echo $no++; ?></td>
-        <td>Arsip</td>
+        <td>Total Arsip Keseluruhan</td>
         <td><?php echo $ringkasan['Arsip']; ?></td>
     </tr>
     <tr>
         <td><?php echo $no++; ?></td>
-        <td>Kode QR</td>
+        <td>Total Arsip Berdasarkan Kategori</td>
+        <td><?php echo $ringkasan['ArsipKategori']; ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $no++; ?></td>
+        <td>Total Arsip Berdasarkan Unit</td>
+        <td><?php echo $ringkasan['ArsipUnit']; ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $no++; ?></td>
+        <td>Total Arsip Berdasarkan Petugas</td>
+        <td><?php echo $ringkasan['ArsipPetugas']; ?></td>
+    </tr>
+    <tr>
+        <td><?php echo $no++; ?></td>
+        <td>Total Kode QR</td>
         <td><?php echo $ringkasan['Kode QR']; ?></td>
     </tr>
 </table>
 
-<!-- ================= 1. DATA KATEGORI ================= -->
-<p class="section-title">1. Detail Laporan Data Kategori</p>
+<!-- ================= 1. ARSIP PER KATEGORI ================= -->
+<p class="section-title">1. Arsip Berdasarkan Kategori</p>
 <p>
-    Jumlah data kategori pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo count($kategori); ?> </b> katgeori.
-</p>
-
-<table>
-    <tr>
-        <th style="width:10%">No</th>
-        <th style="width:45%">Nama Kategori</th>
-        <th style="width:45%">Keterangan</th>
-    </tr>
-
-    <?php $no = 1; foreach ($kategori as $k) { ?>
-    <tr>
-        <td><?php echo $no++; ?></td>
-        <td><?php echo $k['nama_kategori']; ?></td>
-        <td><?php echo $k['keterangan_kategori']; ?></td>
-    </tr>
-    <?php } ?>
-</table>
-
-<!-- ================= 2. DATA UNIT ================= -->
-<p class="section-title">2. Detail Laporan Data Unit</p>
-<p>
-    Jumlah data unit pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo count($unit); ?></b> unit.
-</p>
-
-<table>
-    <tr>
-        <th style="width:10%">No</th>
-        <th style="width:45%">Nama Unit</th>
-        <th style="width:45%">Keterangan</th>
-    </tr>
-
-    <?php $no = 1; foreach ($unit as $u) { ?>
-    <tr>
-        <td><?php echo $no++; ?></td>
-        <td><?php echo $u['nama_unit']; ?></td>
-        <td><?php echo $u['keterangan_unit']; ?></td>
-    </tr>
-    <?php } ?>
-</table>
-
-<!-- ================= 3. DATA PETUGAS ================= -->
-<p class="section-title">3. Detail Laporan Data Petugas</p>
-<p>
-    Jumlah data petugas pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo $ringkasan['Petugas']; ?></b> orang petugas.
-</p>
-
-<table>
-    <tr>
-        <th style="width:10%">No</th>
-        <th style="width:45%">Nama Petugas</th>
-        <th style="width:45%">Unit Asal</th>
-    </tr>
-    <?php $no = 1; foreach ($petugas as $p) { ?>
-    <tr>
-        <td><?php echo $no++; ?></td>
-        <td><?php echo $p['nama_petugas']; ?></td>
-        <td><?php echo $p['nama_unit']; ?></td>
-    </tr>
-    <?php } ?>
-</table>
-
-
-<!-- ================= 4. DATA ARSIP (DETAIL) ================= -->
-<p class="section-title">4. Detail Laporan Data Arsip</p>
-<p>
-    Jumlah seluruh data arsip pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo $ringkasan['Arsip']; ?></b> arsip.
-</p>
-<!-- KATEGORI -->
-<p class="section-title">a. Arsip Berdasarkan Kategori</p>
-<p>
-    Jumlah arsip berdasarkan kategori pada <b><?php echo $periode; ?></b> ditampilkan pada tabel berikut.
+    Total arsip berdasarkan kategori pada periode
+    <b><?php echo $periode; ?></b> berjumlah
+    <b><?php echo $ringkasan['ArsipKategori']; ?></b>.
 </p>
 
 <table>
@@ -182,19 +111,21 @@
         <th style="width:60%">Nama Kategori</th>
         <th style="width:30%">Jumlah Arsip</th>
     </tr>
-
-    <?php $no = 1; foreach ($arsip_per_kategori as $apk) { ?>
+    <?php $no = 1; foreach ($arsip_per_kategori as $r): ?>
     <tr>
         <td class="center"><?php echo $no++; ?></td>
-        <td><?php echo $apk['nama_kategori']; ?></td>
-        <td class="center"><?php echo $apk['jumlah']; ?></td>
+        <td><?php echo $r['nama_kategori']; ?></td>
+        <td class="center"><?php echo $r['jumlah']; ?></td>
     </tr>
-    <?php } ?>
+    <?php endforeach; ?>
 </table>
-<!-- UNIT -->
- <p class="section-title">b. Arsip Berdasarkan Unit</p>
+
+<!-- ================= 2. ARSIP PER UNIT ================= -->
+<p class="section-title">2. Arsip Berdasarkan Unit</p>
 <p>
-    Jumlah arsip berdasarkan unit pada <b><?php echo $periode; ?></b> ditampilkan pada tabel berikut.
+    Total arsip berdasarkan unit pada periode
+    <b><?php echo $periode; ?></b> berjumlah
+    <b><?php echo $ringkasan['ArsipUnit']; ?></b>.
 </p>
 
 <table>
@@ -203,19 +134,21 @@
         <th style="width:60%">Nama Unit</th>
         <th style="width:30%">Jumlah Arsip</th>
     </tr>
-
-    <?php $no = 1; foreach ($arsip_per_unit as $apu) { ?>
+    <?php $no = 1; foreach ($arsip_per_unit as $r): ?>
     <tr>
         <td class="center"><?php echo $no++; ?></td>
-        <td><?php echo $apu['nama_unit']; ?></td>
-        <td class="center"><?php echo $apu['jumlah']; ?></td>
+        <td><?php echo $r['nama_unit']; ?></td>
+        <td class="center"><?php echo $r['jumlah']; ?></td>
     </tr>
-    <?php } ?>
+    <?php endforeach; ?>
 </table>
-<!-- PETUGAS -->
- <p class="section-title">c. Arsip Berdasarkan Petugas</p>
+
+<!-- ================= 3. ARSIP PER PETUGAS ================= -->
+<p class="section-title">3. Arsip Berdasarkan Petugas</p>
 <p>
-    Jumlah arsip berdasarkan petugas pada <b><?php echo $periode; ?></b> ditampilkan pada tabel berikut.
+    Total arsip berdasarkan petugas pada periode
+    <b><?php echo $periode; ?></b> berjumlah
+    <b><?php echo $ringkasan['ArsipPetugas']; ?></b>.
 </p>
 
 <table>
@@ -224,29 +157,32 @@
         <th style="width:60%">Nama Petugas</th>
         <th style="width:30%">Jumlah Arsip</th>
     </tr>
-
-    <?php $no = 1; foreach ($arsip_per_petugas as $app) { ?>
+    <?php $no = 1; foreach ($arsip_per_petugas as $r): ?>
     <tr>
         <td class="center"><?php echo $no++; ?></td>
-        <td><?php echo $app['nama_petugas']; ?></td>
-        <td class="center"><?php echo $app['jumlah']; ?></td>
+        <td><?php echo $r['nama_petugas']; ?></td>
+        <td class="center"><?php echo $r['jumlah']; ?></td>
     </tr>
-    <?php } ?>
+    <?php endforeach; ?>
 </table>
-<!-- DETAIL -->
-  <p class="section-title">d. Laporan Detail Arsip</p>
+
+<!-- ================= 4. DETAIL ARSIP ================= -->
+<p class="section-title">4. Detail Arsip</p>
 <p>
-    Detail laporan arsip pada <b><?php echo $periode; ?></b> ditampilkan pada tabel berikut.
+    Detail keseluruhan arsip yang tercatat pada periode
+    <b><?php echo $periode; ?></b> sebanyak
+    <b><?php echo $ringkasan['Arsip']; ?></b> arsip.
 </p>
+
 <table>
     <tr>
         <th style="width:5%">No</th>
-        <th style="width:30%">Nama Arsip</th>
+        <th style="width:35%">Nama Arsip</th>
         <th style="width:20%">Tanggal Upload</th>
-        <th style="width:25%">Asal Unit</th>
+        <th style="width:20%">Asal Unit</th>
         <th style="width:20%">Kategori</th>
     </tr>
-    <?php $no = 1; foreach ($arsip_detail as $a) { ?>
+    <?php $no = 1; foreach ($arsip_detail as $a): ?>
     <tr>
         <td><?php echo $no++; ?></td>
         <td><?php echo $a['keterangan_arsip']; ?></td>
@@ -254,29 +190,47 @@
         <td><?php echo $a['nama_unit']; ?></td>
         <td><?php echo $a['nama_kategori']; ?></td>
     </tr>
-    <?php } ?>
+    <?php endforeach; ?>
 </table>
 
 <!-- ================= 5. DATA KODE QR ================= -->
-<p class="section-title">5. Detail Laporan Data Kode QR</p>
+<p class="section-title">5. Data Kode QR</p>
 <p>
-    Jumlah data kode QR pada <b><?php echo $periode; ?></b> sebanyak <b><?php echo $ringkasan['Kode QR']; ?></b> Kode QR
+    Total kode QR yang dihasilkan pada periode
+    <b><?php echo $periode; ?></b> sebanyak
+    <b><?php echo $ringkasan['Kode QR']; ?></b> kode QR.
 </p>
 
 <table>
     <tr>
         <th style="width:10%">No</th>
-        <th style="width:45%">Nama Unit</th>
-        <th style="width:45%">Jumlah Kode QR</th>
+        <th style="width:60%">Nama Unit</th>
+        <th style="width:30%">Jumlah</th>
     </tr>
-    <?php $no = 1; foreach ($qr_per_unit as $q) { ?>
+    <?php $no = 1; foreach ($qr_per_unit as $q): ?>
     <tr>
         <td><?php echo $no++; ?></td>
         <td><?php echo $q['nama_unit']; ?></td>
         <td><?php echo $q['jumlah']; ?></td>
     </tr>
-    <?php } ?>
+    <?php endforeach; ?>
 </table>
+
+<br><br>
+
+<!-- ================= PENGESAHAN ================= -->
+<p class="center">
+    Ngabar, <?php echo format_tanggal_indo(date('Y-m-d')); ?><br><br>
+
+    <?php if (!empty($qr_base64)): ?>
+        <img src="data:image/png;base64,<?php echo $qr_base64; ?>" width="90" style="margin-bottom:10px;"><br>
+    <?php endif; ?>
+
+    <strong>
+        <u><?php echo $this->session->userdata('nama_admin'); ?></u>
+    </strong><br>
+    <span>Administrator Sistem Informasi Arsip Digital</span>
+</p>
 
 </body>
 </html>

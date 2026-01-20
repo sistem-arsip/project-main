@@ -14,7 +14,7 @@ class Kategori extends CI_Controller {
         }
     }
 
-    public function periksa_html($str){
+    function periksa_html($str){
         $clean = strip_tags($str);
         if ($str !== $clean) {
             $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
@@ -22,7 +22,16 @@ class Kategori extends CI_Controller {
         }
         return TRUE;
     }
-
+    function inputan_kategori($nama_kategori){
+        if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_kategori)) {
+            $this->form_validation->set_message(
+                'inputan_kategori',
+                'Nama kategori tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
     function index(){
         $data["kategori"] = $this->Kategori_model->tampil_aktif();
 
@@ -34,7 +43,7 @@ class Kategori extends CI_Controller {
     function tambah(){
 
         $inputan = $this->input->post();
-        $this->form_validation->set_rules("nama_kategori","Nama Kategori","required|is_unique[kategori.nama_kategori]|trim|callback_periksa_html");
+        $this->form_validation->set_rules("nama_kategori","Nama Kategori","required|is_unique[kategori.nama_kategori]|trim|callback_periksa_html|callback_inputan_kategori");
         $this->form_validation->set_rules("keterangan_kategori","Keterangan ","required|trim|callback_periksa_html");
         $this->form_validation->set_message("required"," %s wajib diisi");
         $this->form_validation->set_message("is_unique", "%s yang sama sudah ada");
@@ -71,7 +80,7 @@ class Kategori extends CI_Controller {
         $input = $this->input->post();
 
         if (!empty($input)) {
-            $this->form_validation->set_rules('nama_kategori','Nama Kategori','required|trim|callback_cek_nama_kategori['.$id_kategori.']|callback_periksa_html');
+            $this->form_validation->set_rules('nama_kategori','Nama Kategori','required|trim|callback_cek_nama_kategori['.$id_kategori.']|callback_periksa_html|callback_inputan_kategori');
             $this->form_validation->set_rules('keterangan_kategori','Keterangan','required|trim|callback_periksa_html');
             $this->form_validation->set_message("required", " %s wajib diisi!");
 

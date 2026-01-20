@@ -19,19 +19,18 @@
                 </div>
 
                 <form action="<?php echo base_url('admin/profil/update'); ?>" method="post" enctype="multipart/form-data">
-
                     <div class="mb-3">
                         <label for="nama_admin" class="form-label">Nama</label>
-                        <input type="text" id="nama_admin" class="form-control" name="nama_admin" value="<?php echo set_value('nama_admin', $profil['nama_admin']) ?>">
+                        <input type="text" id="nama_admin" class="form-control" name="nama_admin"
+                            value="<?php echo set_value('nama_admin', $profil['nama_admin']) ?>">
                         <?php echo form_error('nama_admin', "<div class='text-danger small'>", "</div>") ?>
                     </div>
-
                     <div class="mb-3">
                         <label for="username_admin" class="form-label">Username</label>
-                        <input type="text" id="username_admin" class="form-control" name="username_admin" value="<?php echo set_value('username_admin', $profil['username_admin']) ?>">
+                        <input type="text" id="username_admin" class="form-control" name="username_admin"
+                            value="<?php echo set_value('username_admin', $profil['username_admin']) ?>">
                         <?php echo form_error('username_admin', "<div class='text-danger small'>", "</div>") ?>
                     </div>
-
                     <div class="mb-3">
                         <label for="password_admin" class="form-label">Password</label>
                         <input type="password" id="password_admin" class="form-control" placeholder="Masukkan Password .." name="password_admin" value="">

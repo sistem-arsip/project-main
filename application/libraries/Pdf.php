@@ -10,6 +10,7 @@ class Pdf {
     public function __construct() {
         $options = new Options();
         $options->set('isRemoteEnabled', true);
+        $options->set('isHtml5ParserEnabled', true);
         $options->set('defaultFont', 'Times New Roman');
 
         $this->dompdf = new Dompdf($options);

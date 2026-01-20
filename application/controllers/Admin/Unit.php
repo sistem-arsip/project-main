@@ -13,7 +13,7 @@ class Unit extends CI_Controller {
             redirect('auth/login', 'refresh');
         }
     }
-    public function periksa_html($str){
+    function periksa_html($str){
         $clean = strip_tags($str);
         if ($str !== $clean) {
             $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
@@ -21,7 +21,16 @@ class Unit extends CI_Controller {
         }
         return TRUE;
     }
-
+    function inputan_unit($nama_unit){
+        if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_unit)) {
+            $this->form_validation->set_message(
+                'inputan_unit',
+                'Nama unit tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
     function index() {
         $data["unit"] = $this->Unit_model->tampil_aktif();
 
@@ -31,7 +40,7 @@ class Unit extends CI_Controller {
     }
 
     function tambah(){
-        $this->form_validation->set_rules("nama_unit", "Nama Unit", "required|is_unique[unit.nama_unit]|trim|callback_periksa_html");
+        $this->form_validation->set_rules("nama_unit", "Nama Unit", "required|is_unique[unit.nama_unit]|trim|callback_periksa_html|callback_inputan_unit");
         $this->form_validation->set_rules("keterangan_unit", "Keterangan", "required|trim|callback_periksa_html");
 
         $this->form_validation->set_message("required", "%s wajib diisi");
@@ -68,7 +77,7 @@ class Unit extends CI_Controller {
         $input = $this->input->post();
 
         if (!empty($input)) {
-            $this->form_validation->set_rules('nama_unit','Nama Unit','required|trim|callback_cek_nama_unit['.$id_unit.']|callback_periksa_html');
+            $this->form_validation->set_rules('nama_unit','Nama Unit','required|trim|callback_cek_nama_unit['.$id_unit.']|callback_periksa_html|callback_inputan_unit');
             $this->form_validation->set_rules('keterangan_unit','Keterangan','required|trim|callback_periksa_html');
 
             $this->form_validation->set_message('required', '%s wajib diisi');

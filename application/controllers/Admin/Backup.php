@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class Backup extends CI_Controller {
-
     function __construct(){
         parent::__construct();
 
@@ -11,7 +9,6 @@ class Backup extends CI_Controller {
             redirect('auth/login', 'refresh'); 
         }
     }
-
     function index(){
 
         $this->load->view("admin/header");
@@ -21,59 +18,52 @@ class Backup extends CI_Controller {
 
     // backup file
     function files() {
+        $this->_backup_files(true);
+    }
+    private function _backup_files($force_download = true) {
         $src = FCPATH . 'assets/arsip';
         $dst = FCPATH . 'backup/files';
-
-        // Cek apakah folder kosong
+    
         $files = array_diff(scandir($src), array('.', '..'));
         if (empty($files)) {
             $this->session->set_flashdata('gagal', 'Tidak ada file arsip yang dapat di-backup.');
             redirect('admin/backup');
             return;
         }
-
-        // folder sementara dengan tanggal
+    
         $tanggal = date('d-m-Y');
         $nama_folder_dalam_zip = 'arsip_file_backup_' . $tanggal;
         $temp_folder = FCPATH . 'temp_backup/' . $nama_folder_dalam_zip;
-
-        // Hapus folder temp sebelumnya jika ada
+    
         $this->load->helper('file');
         if (is_dir($temp_folder)) {
             delete_files($temp_folder, true);
             rmdir($temp_folder);
         }
-
-        // folder baru
+    
         mkdir($temp_folder, 0755, true);
-
-        // Salin semua isi dari assets/arsip ke folder temp
         $this->load->helper('directory');
         $this->copy_recursive($src, $temp_folder);
-
-        // kompres folder temp : arsip_file_backup.zip
+    
         $opt = array(
             'src' => $temp_folder,
             'dst' => $dst
         );
-
         $this->load->library('recurseZip_lib', $opt);
         $zipPath = $this->recursezip_lib->compress();
-
-        // ganti nama file zip 
+    
         $finalZipPath = $dst . '/arsip_file_backup.zip';
-        @unlink($finalZipPath); // hapus kalau sudah ada
+        @unlink($finalZipPath);
         rename($zipPath, $finalZipPath);
-
-        // hapus folder temp
+    
         delete_files($temp_folder, true);
         rmdir($temp_folder);
-
-        // Redirect download
-        $this->load->helper('download');
-        force_download($finalZipPath, NULL);
+    
+        if ($force_download) {
+            $this->load->helper('download');
+            force_download($finalZipPath, NULL);
+        }
     }
-
     private function copy_recursive($src, $dst) {
         $dir = opendir($src);
         @mkdir($dst);
@@ -92,54 +82,53 @@ class Backup extends CI_Controller {
         }
         closedir($dir);
     }
-
-
     // backup database.sql
     function db() {
+        $this->_backup_db(true);
+    }
+    
+    private function _backup_db($force_download = false) {
         $this->load->dbutil();
-
+    
         $prefs = array(
             'format' => 'txt', 
             'filename' => 'backup-database.sql'
         );
-
+    
         $raw_backup = $this->dbutil->backup($prefs);
-
-        // Bungkus dengan disable foreign key
         $safe_backup = "SET FOREIGN_KEY_CHECKS=0;\n" . $raw_backup . "\nSET FOREIGN_KEY_CHECKS=1;";
-
+    
         $filename_sql = 'arsip_database_backup_' . date("Y-m-d") . '.sql';
         $save_path_sql = FCPATH . 'backup/db/' . $filename_sql;
-
-        // Simpan file sql
+    
         $this->load->helper('file');
         write_file($save_path_sql, $safe_backup);
-
-        // --- buat file ZIP yang berisi file .sql ---
+    
         $zip = new ZipArchive();
-        $filename_zip = 'arsip_database_backup' . '.zip';
+        $filename_zip = 'arsip_database_backup.zip';
         $save_path_zip = FCPATH . 'backup/db/' . $filename_zip;
-
+        // hapus file ZIP lama
+        if (file_exists($save_path_zip)) {
+            @unlink($save_path_zip);
+        }
+    
         if ($zip->open($save_path_zip, ZipArchive::CREATE) === TRUE) {
-            // tambah file sql ke zip
             $zip->addFile($save_path_sql, $filename_sql);
             $zip->close();
-
-            // hapus file .sql asli agar tidak berantakan (optional)
+    
             @unlink($save_path_sql);
-
-            // download file zip
-            $this->load->helper('download');
-            force_download($filename_zip, file_get_contents($save_path_zip));
-
-            // jika ingin hapus file zip setelah download
-            // @unlink($save_path_zip);
-
+    
+            if ($force_download) {
+                $this->load->helper('download');
+                force_download($save_path_zip, NULL); // file zip terdownload
+            }
+    
         } else {
             echo "Gagal membuat file ZIP backup database.";
             exit;
         }
     }
+
 
 
 
@@ -215,6 +204,4 @@ class Backup extends CI_Controller {
 
         redirect('admin/backup');
     }
-
-
 }

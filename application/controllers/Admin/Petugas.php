@@ -14,7 +14,7 @@ class Petugas extends CI_Controller {
             redirect('auth/login', 'refresh'); 
         }
     }
-    public function periksa_html($str){
+    function periksa_html($str){
         $clean = strip_tags($str);
         if ($str !== $clean) {
             $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
@@ -22,7 +22,26 @@ class Petugas extends CI_Controller {
         }
         return TRUE;
     }
-
+    function inputan_nama($nama_petugas){
+        if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_petugas)) {
+            $this->form_validation->set_message(
+                'inputan_nama',
+                'Nama petugas tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
+    function inputan_username($username_petugas){
+        if (!preg_match("/^[a-zA-Z0-9._-]+$/", $username_petugas)) {
+            $this->form_validation->set_message(
+                'inputan_username',
+                'Username petugas tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
     function index() {
         $data["petugas"] = $this->Petugas_model->tampil_aktif();
         
@@ -34,13 +53,14 @@ class Petugas extends CI_Controller {
     function tambah(){
         $data['unit'] = $this->Unit_model->tampil_aktif();
 
-        $this->form_validation->set_rules("nama_petugas", "Nama Petugas", "required|trim|callback_periksa_html");
-        $this->form_validation->set_rules("username_petugas", "Username", "required|is_unique[petugas.username_petugas]|trim|callback_periksa_html");
-        $this->form_validation->set_rules("password_petugas", "Password", "required|callback_periksa_html");
+        $this->form_validation->set_rules("nama_petugas", "Nama Petugas", "required|trim|callback_periksa_html|callback_inputan_nama");
+        $this->form_validation->set_rules("username_petugas", "Username", "required|is_unique[petugas.username_petugas]|trim|callback_periksa_html|callback_inputan_username");
+        $this->form_validation->set_rules("password_petugas", "Password", "required|min_length[8]|callback_periksa_html");
         $this->form_validation->set_rules("id_unit", "Unit", "required");
 
         $this->form_validation->set_message("required", "%s wajib diisi");
         $this->form_validation->set_message("is_unique", "%s sudah digunakan");
+        $this->form_validation->set_message("min_length", "%s harus berisi minimal 8 karakter");
 
         // validasi sukses
         if ($this->form_validation->run() == TRUE) {
@@ -77,11 +97,12 @@ class Petugas extends CI_Controller {
         $input = $this->input->post();
 
         if (!empty($input)) {
-            $this->form_validation->set_rules("nama_petugas", "Nama Petugas", "required|trim|callback_periksa_html");
-            $this->form_validation->set_rules("username_petugas","Username", "required|trim|callback_periksa_html|callback_cek_username[".$id_petugas."]");
-            $this->form_validation->set_rules("password_petugas", "Password", "trim|callback_periksa_html");
+            $this->form_validation->set_rules("nama_petugas", "Nama Petugas", "required|trim|callback_periksa_html|callback_inputan_nama");
+            $this->form_validation->set_rules("username_petugas","Username", "required|trim|callback_periksa_html|callback_cek_username[".$id_petugas."]|callback_inputan_username");
+            $this->form_validation->set_rules("password_petugas", "Password", "trim|min_length[8]|callback_periksa_html");
 
             $this->form_validation->set_message("required", "%s wajib diisi");
+            $this->form_validation->set_message("min_length", "%s harus berisi minimal 8 karakter");
 
             if ($this->form_validation->run() == TRUE) {
                 $update_data = [

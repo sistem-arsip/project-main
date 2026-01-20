@@ -17,7 +17,7 @@ class Auth extends CI_Controller {
         return TRUE;
     }
     function inputan_username($username){
-        if (preg_match("/['\"!#$%^&*():;<>?+=\/\\\\|{}\[\]]/", $username)) {
+        if (!preg_match("/^[a-zA-Z0-9._-]+$/", $username)) {
             $this->form_validation->set_message(
                 'inputan_username',
                 'Username tidak boleh mengandung karakter khusus!'

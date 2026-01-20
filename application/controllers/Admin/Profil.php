@@ -13,7 +13,7 @@ class Profil extends CI_Controller {
             redirect('auth/login', 'refresh'); 
         }
     }
-    public function periksa_html($str){
+    function periksa_html($str){
         $clean = strip_tags($str);
         if ($str !== $clean) {
             $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
@@ -21,6 +21,27 @@ class Profil extends CI_Controller {
         }
         return TRUE;
     }
+    function inputan_nama($nama_admin){
+        if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_admin)) {
+            $this->form_validation->set_message(
+                'inputan_nama',
+                'Nama admin tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
+    function inputan_username($username_admin){
+        if (!preg_match("/^[a-zA-Z0-9._-]+$/", $username_admin)) {
+            $this->form_validation->set_message(
+                'inputan_username',
+                'Username admin tidak boleh mengandung karakter khusus!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
+
     function index() {
 
         $data["profil"] = $this->Profil_model->tampil();
@@ -42,12 +63,11 @@ class Profil extends CI_Controller {
     function update() {
         $id_admin = $this->session->userdata('id_admin'); 
 
-        $this->form_validation->set_rules("nama_admin", "Nama", "required|trim|callback_periksa_html");
-        $this->form_validation->set_rules("username_admin","Username","required|trim|callback_cek_username_admin|callback_periksa_html");
+        $this->form_validation->set_rules("nama_admin", "Nama", "required|trim|callback_periksa_html|callback_inputan_nama");
+        $this->form_validation->set_rules("username_admin","Username","required|trim|callback_cek_username_admin|callback_periksa_html|callback_inputan_username");
         $this->form_validation->set_rules("password_admin", "Password", "trim|callback_periksa_html");
 
         $this->form_validation->set_message("required", "%s wajib diisi");
-
         if ($this->form_validation->run() == TRUE) {
 
             $data = [

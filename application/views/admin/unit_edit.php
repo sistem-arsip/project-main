@@ -24,7 +24,12 @@
                     <div class="mb-3">
                         <label for="nama_unit" class="form-label">Nama Unit</label>
                         <input type="text" id="nama_unit" class="form-control" name="nama_unit" value="<?php echo set_value("nama_unit", $unit['nama_unit']) ?>">
-                        <?php echo form_error('nama_unit', "<div class='text-danger small'>", "</div>") ?>
+                        <?php if (!form_error('nama_unit')): ?>
+                                <div class="text-muted small mt-1">
+                                    Nama unit hanya boleh mengandung huruf, angka, spasi, titik (.), tanda minus (-), dan underscore (_).
+                                </div>
+                            <?php endif; ?>
+                        <?php echo form_error('nama_unit', "<div class='text-danger small mt-1'>", "</div>") ?>
                     </div>
 
                     <div class="mb-3">
