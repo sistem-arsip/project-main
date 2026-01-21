@@ -30,7 +30,7 @@
                                 <th style="width: 5%;">No</th>
                                 <th>Nama</th>
                                 <th>Keterangan</th>
-                                <th class="text-center" width="20%">Status</th>
+                                <th class="text-center" width="15%">Status</th>
                             </tr>
                         </thead>
                         <tbody>

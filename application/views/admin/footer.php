@@ -191,6 +191,20 @@ $(document).ready(function() {
 #mytable_wrapper .dt-length {
     display: none !important;
 }
+.info-qr-table th,
+.info-qr-table td {
+    padding-top: 16px;
+    padding-bottom: 18px;
+    vertical-align: middle;
+}
+.info-arsip-table th,
+.info-arsip-table td {
+    padding-top: 14px;
+    padding-bottom: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
+    vertical-align: middle;
+}
 
 </style>
 

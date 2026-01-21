@@ -41,9 +41,9 @@
                                             <span class="btn btn-danger btn-sm btn-tolak" style="color: #fff;" 
                                                 id_pengajuan="<?php echo $var['id_pengajuan'] ?>">Tolak</span>
                                         <?php elseif ($var['status_pengajuan'] == 'accepted'): ?>
-                                            <span class="text-success"><i class="fa fa-check"></i></span>
+                                            <span class="badge bg-success px-3 py-2"><i class="fa fa-check"></i> Diterima</span>
                                         <?php elseif ($var['status_pengajuan'] == 'rejected'): ?>
-                                            <span class="text-danger"><i class="fa fa-times"></i></span>
+                                            <span class="badge bg-danger px-3 py-2"><i class="fa fa-times"></i> Ditolak</span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>

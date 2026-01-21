@@ -34,7 +34,7 @@ $file_url = base_url("assets/arsip/" . $arsip['file_arsip']);
                     <!-- INFORMASI ARSIP -->
                     <div class="col-lg-4">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered info-arsip-table">
                                 <tr>
                                     <th>Waktu</th>
                                     <td><?= date('d-m-Y H:i:s', strtotime($arsip['waktu_upload'])); ?></td>

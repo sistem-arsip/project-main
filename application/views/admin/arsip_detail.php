@@ -39,7 +39,7 @@ $file_exist = (!empty($arsip['file_arsip']) && file_exists($file_path));
                     <!-- INFORMASI ARSIP -->
                     <div class="col-lg-4">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered info-arsip-table">
                                 <tr>
                                     <th>Waktu</th>
                                     <td><?= date('d-m-Y H:i:s', strtotime($arsip['waktu_upload'])); ?></td>

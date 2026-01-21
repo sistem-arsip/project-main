@@ -40,14 +40,30 @@ $file_url = base_url('assets/kode_qr/' . $qr['foto_qr']);
                             <div class="card-body">
                                 <div class="row">
 
-                                    <!-- INFORMASI QR -->
                                     <div class="col-md-6 mb-3">
-                                        <p><strong>Kode QR:</strong> <?= $qr['kode_qr']; ?></p>
-                                        <p><strong>Nomor Dokumen:</strong> <?= $qr['nomor_dokumen']; ?></p>
-                                        <p><strong>Waktu Generate:</strong> <?= $qr['waktu_generate']; ?></p>
-                                        <p><strong>Petugas:</strong> <?= $qr['nama_petugas']; ?></p>
-                                        <p><strong>Unit:</strong> <?= $qr['nama_unit']; ?></p>
-                                    </div>
+                                    <table class="table table-bordered table-sm mb-0 w-100 info-qr-table">
+                                        <tr>
+                                            <th style="width:40%">Kode QR</th>
+                                            <td><?= $qr['kode_qr']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Nomor Dokumen</th>
+                                            <td><?= $qr['nomor_dokumen']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Waktu Generate</th>
+                                            <td><?= $qr['waktu_generate']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Petugas</th>
+                                            <td><?= $qr['nama_petugas']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Unit</th>
+                                            <td><?= $qr['nama_unit']; ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
 
                                     <!-- PREVIEW QR -->
                                     <div class="col-md-6 text-center">

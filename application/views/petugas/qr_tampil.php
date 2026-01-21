@@ -23,7 +23,7 @@
                             <th class="text-center" width="1%">No</th>
                             <th>Kode QR</th>
                             <th>Nomor</th>
-                            <th class="text-center" width="25%">Detail</th>
+                            <th class="text-center" width="30%">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
