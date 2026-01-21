@@ -28,4 +28,10 @@ class Dashboard_model extends CI_Model {
         return $this->db->select('MONTH(waktu_upload) AS bulan')->from('arsip')->where('YEAR(waktu_upload)', $tahun)->group_by('MONTH(waktu_upload)')->order_by('bulan', 'ASC')->get()->result_array();
     }
 
+    function arsip_per_unit_chart() {
+        return $this->db->select('unit.id_unit, unit.nama_unit, unit.keterangan_unit, COUNT(arsip.id_arsip) AS jumlah')->from('unit')
+            ->join('arsip', 'arsip.id_unit = unit.id_unit', 'left')->where('unit.status_unit', 'aktif')->group_by('unit.id_unit')->order_by('unit.id_unit', 'asc')
+            ->get()->result_array();
+    }
+
 }

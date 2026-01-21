@@ -122,7 +122,7 @@
             <div class="card-box">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="d-flex align-items-center gap-2">
-                        <h5 class="mb-0"><b>Grafik Jumlah Arsip Tahun</b></h5>
+                        <h5 class="mb-0"><b>Grafik Jumlah Arsip Unit Tahun</b></h5>
                         <select id="tahunSelect" class="form-select ms-3" style="width:auto; min-width:120px;">
                             <?php foreach ($tahunList as $tahun): ?>
                                 <option value="<?= $tahun ?>" <?= ($tahun == date('Y')) ? 'selected' : '' ?>>
@@ -134,65 +134,116 @@
 
                     </div>
                 </div>
-                <canvas id="uploadChart" style="height: 150px;"></canvas>
+                <canvas id="uploadChart" height="100"></canvas>
             </div>
         </div>
     </div>
 
 
     <script>
-        // Ambil dataset dari PHP
-        const arsipDataPerTahun = <?php echo $arsipDataPerTahunJson; ?>;
+  // DATA DARI PHP
+  const arsipDataPerTahun = <?php echo $arsipDataPerTahunJson; ?>;
+  const tahunSelect = document.getElementById('tahunSelect');
+  const ctx = document.getElementById('uploadChart').getContext('2d');
 
-        // Ambil tahun yang terpilih default
-        const tahunAwal = document.getElementById('tahunSelect').value;
+  // =====================
+  // FUNGSI HITUNG SKALA (ADAPTIF)
+  // =====================
+  function hitungSkala(data) {
+    const max = Math.max(0, ...data);
+    let step;
 
-        const ctx = document.getElementById('uploadChart').getContext('2d');
-        const uploadChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: [
-                    'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
-                    'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des',
-                ],
-                datasets: [{
-                    label: 'Jumlah Upload',
-                    data: arsipDataPerTahun[tahunAwal] || [],
-                    fill: true,
-                    backgroundColor: 'rgba(0, 109, 240, 0.2)',
-                    borderColor: '#006DF0',
-                    tension: 0.4,
-                    pointBackgroundColor: '#006DF0'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            display: false
-                        },
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
+    if (max <= 50) {
+      step = 10;
+    } else if (max <= 100) {
+      step = 20;
+    } else {
+      step = 50;
+    }
 
-        // Ubah grafik saat tahun diganti manual
-        document.getElementById('tahunSelect').addEventListener('change', function() {
-            const tahunDipilih = this.value;
-            uploadChart.data.datasets[0].data = arsipDataPerTahun[tahunDipilih] || [];
-            uploadChart.update();
-        });
-    </script>
+    return {
+      step: step,
+      maxScale: Math.ceil(max / step) * step
+    };
+  }
+
+  // =====================
+  // DATA AWAL
+  // =====================
+  const dataAwal = arsipDataPerTahun[tahunSelect.value] || [];
+  const skalaAwal = hitungSkala(dataAwal);
+
+  // =====================
+  // INIT CHART
+  // =====================
+  const uploadChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [
+        'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+        'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'
+      ],
+      datasets: [{
+        label: 'Jumlah Upload',
+        data: dataAwal,
+        fill: true,
+        backgroundColor: 'rgba(0, 109, 240, 0.2)',
+        borderColor: '#006DF0',
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: '#006DF0'
+      }]
+    },
+    options: {
+      responsive: true,
+      // ❗ JANGAN pakai maintainAspectRatio:false (biar tidak scroll)
+
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+
+      scales: {
+  x: {
+    offset: true, // 🔥 INI KUNCINYA
+    grid: {
+      display: false
+    }
+  },
+  y: {
+    beginAtZero: true,
+    ticks: {
+      stepSize: skalaAwal.step,
+      color: '#333',
+      font: {
+        size: 11
+      }
+    },
+    suggestedMax: skalaAwal.maxScale,
+    grid: {
+      display: false
+    }
+  }
+}
+
+    }
+  });
+
+  // =====================
+  // SAAT TAHUN DIGANTI
+  // =====================
+  tahunSelect.addEventListener('change', function () {
+    const dataBaru = arsipDataPerTahun[this.value] || [];
+    const skalaBaru = hitungSkala(dataBaru);
+
+    uploadChart.data.datasets[0].data = dataBaru;
+    uploadChart.options.scales.y.ticks.stepSize = skalaBaru.step;
+    uploadChart.options.scales.y.suggestedMax = skalaBaru.maxScale;
+    uploadChart.update();
+  });
+</script>
+
 
 
     <?php if ($this->session->flashdata('login_success')): ?>

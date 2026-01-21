@@ -26,6 +26,7 @@ class Dashboard extends CI_Controller {
         $data['total_arsip']    = $this->Dashboard_model->total_arsip();
         $data['total_kategori'] = $this->Dashboard_model->total_kategori();
         $data['tahun_arsip'] = $this->Dashboard_model->get_tahun_arsip();
+        $data['data_arsip_per_unit'] = $this->Dashboard_model->arsip_per_unit_chart();
 
         $this->load->view('admin/header');
         $this->load->view('admin/dashboard', $data);

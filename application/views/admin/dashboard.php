@@ -152,8 +152,22 @@
           <!-- Chart Script -->
           <script>
             const dataUnit = <?php echo json_encode($data_arsip_per_unit); ?>;
-            const labels = dataUnit.map(item => item.unit);
+            const labels = dataUnit.map(item =>`${item.nama_unit} (${item.keterangan_unit})`);
             const data = dataUnit.map(item => item.jumlah);
+
+            const maxData = Math.max(...data);
+
+            // LOGIKA STEP ADAPTIF (ANTI UI JELEK)
+            let step;
+            if (maxData <= 50) {
+              step = 10;
+            } else if (maxData <= 100) {
+              step = 20;
+            } else {
+              step = 50;
+            }
+
+            const maxScale = Math.ceil(maxData / step) * step;
 
             const ctx = document.getElementById('barChartUnit').getContext('2d');
 
@@ -174,10 +188,12 @@
               options: {
                 responsive: true,
                 maintainAspectRatio: false,
+
                 animation: {
                   duration: 1000,
                   easing: 'easeOutQuart'
                 },
+
                 scales: {
                   x: {
                     grid: {
@@ -192,38 +208,35 @@
                   },
                   y: {
                     beginAtZero: true,
+
+                    ticks: {
+                      stepSize: step,
+                      color: '#333',
+                      font: {
+                        size: 11
+                      }
+                    },
+
+                    suggestedMax: maxScale,
+
                     grid: {
                       display: false
-                    },
-                    ticks: {
-                      display: false // Hilangkan angka 0–6
                     },
                     border: {
                       display: false
                     }
-
                   }
                 },
+
                 plugins: {
                   legend: {
                     display: false
                   },
                   tooltip: {
                     enabled: true
-                  },
-                  datalabels: {
-                    anchor: 'end',
-                    align: 'end',
-                    color: '#111',
-                    font: {
-                      size: 10,
-                      weight: 'bold'
-                    },
-                    formatter: value => value
                   }
                 }
-              },
-              plugins: [ChartDataLabels]
+              }
             });
           </script>
 
