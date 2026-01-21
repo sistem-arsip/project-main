@@ -10,17 +10,6 @@ class Dashboard extends CI_Controller {
         }
     }
     function index() {
-        $units = $this->Dashboard_model->tampil_unit();
-        $data_chart = [];
-        foreach ($units as $unit) {
-            $jumlah = $this->Dashboard_model->jumlah_arsip_perunit($unit['id_unit']);
-            $data_chart[] = [
-                'unit' => $unit['nama_unit'],  
-                'jumlah' => $jumlah
-            ];
-        }
-        $data['data_arsip_per_unit'] = $data_chart;
-
         $data['total_petugas']  = $this->Dashboard_model->total_petugas();
         $data['total_unit']     = $this->Dashboard_model->total_unit();
         $data['total_arsip']    = $this->Dashboard_model->total_arsip();
