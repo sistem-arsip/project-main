@@ -103,7 +103,7 @@ $file_exist = (!empty($arsip['file_arsip']) && file_exists($file_path));
                                 <img src="<?= base_url("assets/arsip/" . $arsip['file_arsip']); ?>"
                                     class="w-100 img-fluid">
 
-                            <?php elseif (in_array($arsip['ekstensi_file_arsip'], ['doc', 'docx'])): ?>
+                            <?php elseif (in_array($arsip['ekstensi_file_arsip'], ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'])): ?>
                                 <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=<?=
                                                                                                 base_url("assets/arsip/" . $arsip['file_arsip']); ?>&embedded=true"
                                     width="100%" height="500"></iframe>
