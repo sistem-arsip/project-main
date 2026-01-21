@@ -22,7 +22,7 @@
                                 <th>Keterangan</th>
                                 <th width="20%">Petugas</th>
                                 <th width="15%">Unit</th>
-                                <th width="15%">Opsi</th>
+                                <th class="text-center" width="15%">OPSI</th>
                             </tr>
                         </thead>
                         <tbody>

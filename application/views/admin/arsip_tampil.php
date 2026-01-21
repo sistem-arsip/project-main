@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="bg-light rounded p-3 shadow-sm">
-                <h4 class="m-0 fw-bold text-dark">Arsip-Arsip Unit</h4>
+                <h4 class="m-0 fw-bold text-dark"> Data Arsip-Arsip Unit</h4>
             </div>
         </div>
     </div>
@@ -38,8 +38,8 @@
                                     <td><?= $unit['keterangan_unit']; ?></td>
                                     <td class="text-center"><?= $unit['jumlah_arsip']; ?></td>
                                     <td class="text-center">
-                                        <a href="<?php echo base_url('admin/arsip/arsip_perunit/' . $unit['id_unit']); ?>" class="btn btn-sm btn-secondary text-light">
-                                            <i class="bi bi-eye"></i> Selengkapnya
+                                        <a href="<?php echo base_url('admin/arsip/arsip_perunit/' . $unit['id_unit']); ?>" class="btn btn-sm btn-success text-light">
+                                            <i class="fa fa-file"></i> Selengkapnya
                                         </a>
                                     </td>
                                 </tr>

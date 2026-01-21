@@ -25,7 +25,7 @@
                                 <th width="1%">No</th>
                                 <th>Nama Kategori</th>
                                 <th>Keterangan</th>
-                                <th class="text-center" width="20%">OPSI</th>
+                                <th class="text-center" width="25%">OPSI</th>
                             </tr>
                         </thead>
                         <tbody>
