@@ -28,24 +28,46 @@
                     </thead>
                     <tbody>
                         <?php foreach ($generate as $gen => $var): ?>
-                            <tr>
+                            <tr class="align-middle">
+
                                 <td class="text-center"><?php echo $gen + 1; ?></td>
-                                <td><?php echo $var['kode_qr']; ?></td>
-                                <td><?php echo $var['nomor_dokumen']; ?></td>
+
+                                <td class="small"><?php echo $var['kode_qr']; ?></td>
+
+                                <td class="small"><?php echo $var['nomor_dokumen']; ?></td>
+
                                 <td class="text-center">
-                                    <a href="<?php echo base_url('petugas/generate/detail/' . $var['kode_qr']); ?>" class="btn btn-sm btn-success text-white">
-                                        <i class="fa fa-file"></i> Detail
-                                    </a>
-                                    <a href="<?php echo base_url('petugas/generate/edit/' . $var['kode_qr']); ?>" class="btn btn-sm btn-outline-secondary text-dark">
-                                        <i class="fa fa-edit"></i> Ubah
-                                    </a>
-                                    <a href="<?php echo base_url('petugas/generate/hapus/' . $var['kode_qr']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus QR Code ini?')">
-                                        <i class="fa fa-trash"></i> Hapus
-                                    </a>
+                                    <div class="d-flex justify-content-center gap-1 gap-md-2 flex-wrap">
+
+                                        <a href="<?php echo base_url('petugas/generate/detail/' . $var['kode_qr']); ?>"
+                                            class="btn btn-sm btn-success text-white"
+                                            title="Detail">
+                                            <i class="fa fa-file"></i>
+                                            <span class="d-none d-md-inline"> Detail</span>
+                                        </a>
+
+                                        <a href="<?php echo base_url('petugas/generate/edit/' . $var['kode_qr']); ?>"
+                                            class="btn btn-sm btn-outline-secondary text-dark"
+                                            title="Ubah">
+                                            <i class="fa fa-edit"></i>
+                                            <span class="d-none d-md-inline"> Ubah</span>
+                                        </a>
+
+                                        <a href="<?php echo base_url('petugas/generate/hapus/' . $var['kode_qr']); ?>"
+                                            class="btn btn-sm btn-danger"
+                                            title="Hapus"
+                                            onclick="return confirm('Yakin ingin menghapus QR Code ini?')">
+                                            <i class="fa fa-trash"></i>
+                                            <span class="d-none d-md-inline"> Hapus</span>
+                                        </a>
+
+                                    </div>
                                 </td>
+
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
+
                 </table>
             </div>
         </div>

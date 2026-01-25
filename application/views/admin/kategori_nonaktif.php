@@ -30,23 +30,29 @@
                         </thead>
                         <tbody>
                             <?php foreach ($kategori_nonaktif as $k => $v): ?>
-                            <tr>
-                                <td class="text-center"><?php echo $k + 1; ?></td>
-                                <td><?php echo $v['nama_kategori']; ?></td>
-                                <td><?php echo $v['keterangan_kategori']; ?></td>
-                                <td class="text-center">
-                                    <a href="<?php echo base_url('admin/kategori/aktifkan/'.$v['id_kategori']); ?>" 
-                                       class="btn btn-success btn-sm text-light"
-                                       onclick="return confirm('Aktifkan kategori ini?')">
-                                        <i class="fa fa-check"></i> Aktifkan
-                                    </a>
-                                    <a href="<?php echo base_url('admin/kategori/hapus/'.$v['id_kategori']); ?>" 
-                                       class="btn btn-danger btn-sm text-light"
-                                       onclick="return confirm('Yakin ingin menghapus kategori ini?')">
-                                        <i class="fa fa-trash"></i> Hapus
-                                    </a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="text-center"><?php echo $k + 1; ?></td>
+                                    <td><?php echo $v['nama_kategori']; ?></td>
+                                    <td><?php echo $v['keterangan_kategori']; ?></td>
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-1 flex-wrap">
+                                            <a href="<?php echo base_url('admin/kategori/aktifkan/' . $v['id_kategori']); ?>"
+                                                class="btn btn-success btn-sm text-light"
+                                                title="Aktifkan"
+                                                onclick="return confirm('Aktifkan kategori ini?')">
+                                                <i class="fa fa-check"></i>
+                                                <span class="d-none d-md-inline"> Aktifkan</span>
+                                            </a>
+                                            <a href="<?php echo base_url('admin/kategori/hapus/' . $v['id_kategori']); ?>"
+                                                class="btn btn-danger btn-sm text-light"
+                                                title="Hapus"
+                                                onclick="return confirm('Yakin ingin menghapus kategori ini?')">
+                                                <i class="fa fa-trash"></i>
+                                                <span class="d-none d-md-inline"> Hapus</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
                             <?php endforeach ?>
                         </tbody>
                     </table>

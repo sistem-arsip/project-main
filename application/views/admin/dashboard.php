@@ -152,7 +152,7 @@
           <!-- Chart Script -->
           <script>
             const dataUnit = <?php echo json_encode($data_arsip_per_unit); ?>;
-            const labels = dataUnit.map(item =>`${item.nama_unit} (${item.keterangan_unit})`);
+            const labels = dataUnit.map(item => item.nama_unit);
             const data = dataUnit.map(item => item.jumlah);
 
             const maxData = Math.max(...data);

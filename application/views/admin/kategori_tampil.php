@@ -14,13 +14,18 @@
             <div class="bg-light rounded shadow-sm p-2">
                 <div class="d-flex justify-content-end gap-2">
                     <a href="<?php echo base_url('admin/kategori/nonaktif_list'); ?>"
-                        class="btn btn-sm btn-secondary text-light">
-                        <i class="fa fa-eye"></i> Lihat Kategori Nonaktif
+                        class="btn btn-sm btn-secondary text-light"
+                        title="Lihat Kategori Nonaktif">
+                        <i class="fa fa-eye"></i>
+                        <span class="d-none d-md-inline"> Lihat Kategori Nonaktif</span>
+                    </a>
+                    <a href="<?php echo base_url('admin/kategori/tambah'); ?>"
+                        class="btn btn-sm btn-success text-light"
+                        title="Tambah Kategori">
+                        <i class="fa fa-plus"></i>
+                        <span class="d-none d-md-inline"> Tambah Kategori</span>
                     </a>
 
-                    <a href="<?php echo base_url('admin/kategori/tambah'); ?>" class="btn btn-sm btn-success text-light">
-                        <i class="fa fa-plus"></i> Tambah Kategori
-                    </a>
                 </div>
 
                 <div class="table-responsive">
@@ -40,17 +45,32 @@
                                     <td><?php echo $v['nama_kategori']; ?></td>
                                     <td><?php echo $v['keterangan_kategori']; ?></td>
                                     <td class="text-center">
-                                        <a href="<?php echo base_url('admin/kategori/edit/' . $v['id_kategori']); ?>" class="btn btn-sm btn-outline-secondary text-dark">
-                                            <i class="fa fa-edit"></i> Ubah
-                                        </a>
-                                        <a href="<?php echo base_url('admin/kategori/nonaktif/' . $v['id_kategori']); ?>"
-                                            class="btn btn-warning btn-sm" 
-                                            onclick="return confirm('Nonaktifkan kategori ini?')">
-                                            <i class="fa fa-ban"></i> Nonaktifkan
-                                        </a>
-                                        <a href="<?php echo base_url('admin/kategori/hapus/' . $v['id_kategori']); ?>" class="btn btn-danger btn-sm text-light" onclick="return confirm('Yakin ingin menghapus kategori ini?')">
-                                            <i class="fa fa-trash"></i> Hapus
-                                        </a>
+                                        <div class="d-flex justify-content-center gap-1 gap-md-2 flex-wrap">
+
+                                            <a href="<?php echo base_url('admin/kategori/edit/' . $v['id_kategori']); ?>"
+                                                class="btn btn-sm btn-outline-secondary text-dark"
+                                                title="Ubah">
+                                                <i class="fa fa-edit"></i>
+                                                <span class="d-none d-md-inline"> Ubah</span>
+                                            </a>
+
+                                            <a href="<?php echo base_url('admin/kategori/nonaktif/' . $v['id_kategori']); ?>"
+                                                class="btn btn-warning btn-sm"
+                                                title="Nonaktifkan"
+                                                onclick="return confirm('Nonaktifkan kategori ini?')">
+                                                <i class="fa fa-ban"></i>
+                                                <span class="d-none d-md-inline"> Nonaktifkan</span>
+                                            </a>
+
+                                            <a href="<?php echo base_url('admin/kategori/hapus/' . $v['id_kategori']); ?>"
+                                                class="btn btn-danger btn-sm text-light"
+                                                title="Hapus"
+                                                onclick="return confirm('Yakin ingin menghapus kategori ini?')">
+                                                <i class="fa fa-trash"></i>
+                                                <span class="d-none d-md-inline"> Hapus</span>
+                                            </a>
+
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -62,4 +82,3 @@
     </div>
 </div>
 <br>
-

@@ -21,7 +21,7 @@ $bulan_aktif    = $bulan_aktif ?? '';
 
             <!-- FILTER SECTION -->
             <div class="d-flex align-items-end gap-1 mb-0 flex-wrap">
-                
+
                 <!-- FILTER BULAN & TAHUN -->
                 <div>
                     <label class="fw-bold mb-1">Bulan & Tahun</label>
@@ -85,40 +85,74 @@ $bulan_aktif    = $bulan_aktif ?? '';
                 <tbody>
                     <?php foreach ($arsip as $a => $v): ?>
                         <tr
+                            class="align-middle"
                             data-bulan="<?= date('m', strtotime($v['waktu_upload'])); ?>"
                             data-tahun="<?= date('Y', strtotime($v['waktu_upload'])); ?>"
                             data-kategori="<?= $v['id_kategori']; ?>">
 
-                            <td><?php echo $a + 1; ?></td>
-                            <td class="d-none d-md-table-cell"><?php echo date('d-m-Y', strtotime($v['waktu_upload'])); ?></td>
-                            <td>
-                                <?php echo $v['nama_kategori']; ?> <br>
-                                <div class="d-block d-md-none"><small><?php echo $v['waktu_upload']; ?></small></div>
+                            <td><?= $a + 1; ?></td>
+
+                            <!-- tanggal desktop -->
+                            <td class="d-none d-md-table-cell">
+                                <?= date('d-m-Y', strtotime($v['waktu_upload'])); ?>
                             </td>
+
+                            <!-- kategori -->
                             <td>
-                                <strong>Petugas:</strong> <?php echo $v['nama_petugas']; ?> <br>
-                                <strong>Bagian:</strong> <?php echo $v['nama_unit']; ?>
+                                <?= $v['nama_kategori']; ?>
+                                <div class="d-block d-md-none small text-muted mt-1">
+                                    <?= date('d-m-Y H:i', strtotime($v['waktu_upload'])); ?>
+                                </div>
                             </td>
-                            <td><?php echo $v['keterangan_arsip']; ?></td>
+
+                            <!-- petugas + unit -->
+                            <td class="small">
+                                <div><strong>Petugas:</strong> <?= $v['nama_petugas']; ?></div>
+                                <div class="text-muted"><strong>Bagian:</strong> <?= $v['nama_unit']; ?></div>
+                            </td>
+
+                            <!-- keterangan -->
+                            <td class="small">
+                                <?= $v['keterangan_arsip']; ?>
+                            </td>
+
+                            <!-- OPSI -->
                             <td class="text-center">
-                                <a href="<?php echo base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>" class="btn btn-sm btn-success text-white">
-                                    <i class="fa fa-file"></i>
-                                    <span class="d-none d-md-inline"> Detail</span>
-                                </a>
-                                <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
-                                    <a href="<?php echo base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>" class="btn btn-sm btn-outline-secondary text-dark">
-                                        <i class="fa fa-edit"></i>
-                                        <span class="d-none d-md-inline"> Ubah</span>
+                                <div class="d-flex justify-content-center gap-1 gap-md-2 flex-wrap">
+
+                                    <a href="<?= base_url('petugas/arsip/detail/' . $v['id_arsip']); ?>"
+                                        class="btn btn-sm btn-success text-white"
+                                        title="Detail">
+                                        <i class="fa fa-file"></i>
+                                        <span class="d-none d-md-inline"> Detail</span>
                                     </a>
-                                    <a href="<?php echo base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus arsip ini?')">
-                                        <i class="fa fa-trash"></i>
-                                        <span class="d-none d-md-inline"> Hapus</span>
-                                    </a>
-                                <?php endif; ?>
+
+                                    <?php if ($v['id_petugas'] == $this->session->userdata('id_petugas')): ?>
+
+                                        <a href="<?= base_url('petugas/arsip/edit/' . $v['id_arsip']); ?>"
+                                            class="btn btn-sm btn-outline-secondary text-dark"
+                                            title="Ubah">
+                                            <i class="fa fa-edit"></i>
+                                            <span class="d-none d-md-inline"> Ubah</span>
+                                        </a>
+
+                                        <a href="<?= base_url('petugas/arsip/hapus/' . $v['id_arsip']); ?>"
+                                            class="btn btn-sm btn-danger"
+                                            title="Hapus"
+                                            onclick="return confirm('Yakin ingin menghapus arsip ini?')">
+                                            <i class="fa fa-trash"></i>
+                                            <span class="d-none d-md-inline"> Hapus</span>
+                                        </a>
+
+                                    <?php endif; ?>
+
+                                </div>
                             </td>
+
                         </tr>
                     <?php endforeach ?>
                 </tbody>
+
             </table>
 
         </div>

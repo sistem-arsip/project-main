@@ -71,45 +71,61 @@ $bulan_aktif    = $bulan_aktif ?? '';
                 </thead>
 
                 <tbody>
-                    <?php foreach ($riwayat as $r => $v): ?>
-                        <tr
-                            data-bulan="<?= date('m', strtotime($v['waktu_upload'])) ?>"
-                            data-tahun="<?= date('Y', strtotime($v['waktu_upload'])) ?>"
-                            data-kategori="<?= $v['nama_kategori'] ?>">
-                            <td class="text-center"><?= $r + 1 ?></td>
-                            <td><?= date('d-m-Y', strtotime($v['waktu_upload'])) ?></td>
-                            <td>
-                                <b>Kategori :</b> <?= $v['nama_kategori']; ?><br>
-                                <?= $v['keterangan_arsip']; ?>
-                            </td>
-                            <td>
-                                <strong><?= $v['nama_petugas']; ?></strong><br>
-                                <small class="text-muted">Bagian <?= $v['nama_unit']; ?></small>
-                            </td>
-                            <td class="text-center">
-                                <a href="<?= base_url('petugas/riwayat/detail/' . $v['id_arsip']); ?>"
-                                    class="btn btn-sm btn-success text-white">
-                                    <i class="fa fa-file"></i>
-                                    <span class="d-none d-md-inline"> Detail</span>
-                                </a>
+<?php foreach ($riwayat as $r => $v): ?>
+<tr
+    class="align-middle"
+    data-bulan="<?= date('m', strtotime($v['waktu_upload'])) ?>"
+    data-tahun="<?= date('Y', strtotime($v['waktu_upload'])) ?>"
+    data-kategori="<?= $v['nama_kategori'] ?>">
 
-                                <a href="<?= base_url('petugas/riwayat/edit/' . $v['id_arsip']); ?>"
-                                    class="btn btn-sm btn-outline-secondary text-dark">
-                                    <i class="fa fa-edit"></i>
-                                    <span class="d-none d-md-inline"> Ubah</span>
-                                </a>
+    <td class="text-center"><?= $r + 1 ?></td>
 
-                                <a href="<?= base_url('petugas/riwayat/hapus/' . $v['id_arsip']); ?>"
-                                    onclick="return confirm('Yakin ingin menghapus arsip ini?')"
-                                    class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                    <span class="d-none d-md-inline"> Hapus</span>
-                                </a>
-                            </td>
+    <td class="small">
+        <?= date('d-m-Y', strtotime($v['waktu_upload'])) ?>
+    </td>
 
-                        </tr>
-                    <?php endforeach ?>
-                </tbody>
+    <td class="small">
+        <b>Kategori :</b> <?= $v['nama_kategori']; ?><br>
+        <span class="text-muted"><?= $v['keterangan_arsip']; ?></span>
+    </td>
+
+    <td class="small">
+        <strong><?= $v['nama_petugas']; ?></strong><br>
+        <span class="text-muted">Bagian <?= $v['nama_unit']; ?></span>
+    </td>
+
+    <td class="text-center">
+        <div class="d-flex justify-content-center gap-1 gap-md-2 flex-wrap">
+
+            <a href="<?= base_url('petugas/riwayat/detail/' . $v['id_arsip']); ?>"
+               class="btn btn-sm btn-success text-white"
+               title="Detail">
+                <i class="fa fa-file"></i>
+                <span class="d-none d-md-inline"> Detail</span>
+            </a>
+
+            <a href="<?= base_url('petugas/riwayat/edit/' . $v['id_arsip']); ?>"
+               class="btn btn-sm btn-outline-secondary text-dark"
+               title="Ubah">
+                <i class="fa fa-edit"></i>
+                <span class="d-none d-md-inline"> Ubah</span>
+            </a>
+
+            <a href="<?= base_url('petugas/riwayat/hapus/' . $v['id_arsip']); ?>"
+               onclick="return confirm('Yakin ingin menghapus arsip ini?')"
+               class="btn btn-sm btn-danger"
+               title="Hapus">
+                <i class="fa fa-trash"></i>
+                <span class="d-none d-md-inline"> Hapus</span>
+            </a>
+
+        </div>
+    </td>
+
+</tr>
+<?php endforeach ?>
+</tbody>
+
 
             </table>
         </div>
