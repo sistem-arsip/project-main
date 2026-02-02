@@ -18,14 +18,8 @@ class Profil_model extends CI_Model {
         return $query->num_rows() > 0 ? TRUE : FALSE;
     }
 	function ubah($id_petugas, $data) {
-        // jika password diisi, enkripsi sebelum disimpan
-        if (!empty($data["password_petugas"])) {
-            $data["password_petugas"] = md5($data["password_petugas"]);
-        } else {
-            unset($data["password_petugas"]); // jika kosong, hapus dari array update
-        }
-
         $this->db->where("id_petugas", $id_petugas);
         return $this->db->update("petugas", $data);
     }
+
 }

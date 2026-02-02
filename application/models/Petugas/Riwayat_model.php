@@ -55,11 +55,11 @@ class Riwayat_model extends CI_Model {
 
     function ubah($id_arsip, $data) {
         $this->db->where('id_arsip', $id_arsip);
-        $this->db->update('arsip', $data);
+        return $this->db->update('arsip', $data);
     }
     function hapus($id_arsip){
         $this->db->where('id_arsip', $id_arsip);
-        $this->db->delete('arsip');
+        return $this->db->delete('arsip');
     }
 
     function get_nama_unit($id_unit) {

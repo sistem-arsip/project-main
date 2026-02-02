@@ -17,12 +17,51 @@ class Riwayat extends CI_Controller {
         $this->load->model('petugas/Kategori_model');
     }
 
-    public function periksa_html($str){
+        function periksa_html($str){
+        // jika null atau kosong, biarkan validasi lain yang menangani
+        if ($str === null || $str === '') {
+            return TRUE;
+        }
+
         $clean = strip_tags($str);
+
         if ($str !== $clean) {
-            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            $this->form_validation->set_message('periksa_html','Input tidak boleh mengandung tag HTML.'
+            );
             return FALSE;
         }
+
+        return TRUE;
+    }
+    function inputan_kode_qr($kode_qr){
+        // kalau null / kosong, biarkan validasi lain yang menangani
+        if ($kode_qr === null || $kode_qr === '') {
+            return TRUE;
+        }
+
+        if (!preg_match("/^QR-[A-Z0-9]+$/", $kode_qr)) {
+            $this->form_validation->set_message(
+                'inputan_kode_qr',
+                'Kode QR tidak sesuai format!'
+            );
+            return FALSE;
+        }
+        return TRUE;
+    }
+    function inputan_nomor_dokumen($nomor_dokumen){
+        // cegah null / kosong
+        if ($nomor_dokumen === null || $nomor_dokumen === '') {
+            return TRUE;
+        }
+
+        if (!preg_match("/^[\p{Arabic}a-zA-Z0-9 ._\-\/]+$/u", $nomor_dokumen)) {
+            $this->form_validation->set_message(
+                'inputan_nomor_dokumen',
+                'Nomor surat tidak boleh mengandung karakter yang dimasukkan!'
+            );
+            return FALSE;
+        }
+
         return TRUE;
     }
 
@@ -63,9 +102,13 @@ class Riwayat extends CI_Controller {
 
     function edit($id_arsip) {
         $data["riwayat"] = $this->Riwayat_model->detail_ubah($id_arsip);
+
+        if (!$data["riwayat"]) {
+            show_404();
+        }
         $id_petugas = $this->session->userdata('id_petugas');
-        $id_unit = $this->Riwayat_model->unit_by_petugas($id_petugas);
-        $nama_unit = $this->Riwayat_model->get_nama_unit($id_unit);
+        $id_unit    = $this->Riwayat_model->unit_by_petugas($id_petugas);
+        $nama_unit  = $this->Riwayat_model->get_nama_unit($id_unit);
 
         $kategori = $this->Kategori_model->tampil();
 
@@ -77,76 +120,111 @@ class Riwayat extends CI_Controller {
 
         $data["kategori"] = $kategori;
 
-        $inputan = $this->input->post();
 
-        if (!empty($inputan)) {
-            $this->form_validation->set_rules("keterangan_arsip","Keterangan Arsip","required|trim|callback_periksa_html");
+        if ($this->input->post()) {
+            $this->form_validation->set_rules(
+                "keterangan_arsip",
+                "Keterangan Arsip",
+                "required|trim|callback_periksa_html"
+            );
 
-            // validasi nomor dokumen jika riwayat tidak punya kode_qr
             if (empty($data['riwayat']['kode_qr'])) {
-                $this->form_validation->set_rules("nomor_dokumen","Nomor Dokumen","required|trim|callback_periksa_html|callback_nomor_dokumen_cek");
+
+                $this->form_validation->set_rules(
+                    "nomor_dokumen",
+                    "Nomor Dokumen",
+                    "required|trim|callback_periksa_html|callback_inputan_nomor_dokumen|callback_nomor_dokumen_cek"
+                );
+            }
+
+            if (!empty($data['riwayat']['kode_qr'])) {
+
+                $this->form_validation->set_rules(
+                    "kode_qr",
+                    "Kode QR",
+                    "required|trim|callback_periksa_html|callback_inputan_kode_qr"
+                );
             }
 
             $this->form_validation->set_message("required", "%s wajib diisi");
 
-            if ($this->form_validation->run() === TRUE) {
-            
-                $inputan['id_petugas'] = $this->session->userdata('id_petugas');
-                $inputan['id_unit'] = $this->Riwayat_model->unit_by_petugas(
-                    $this->session->userdata('id_petugas')
-                );
 
-                // kode QR
+            if ($this->form_validation->run() === TRUE) {
+
+                $inputan = [
+                    'id_petugas'       => $id_petugas,
+                    'id_unit'          => $id_unit,
+                    'id_kategori'      => $this->input->post('id_kategori'),
+                    'keterangan_arsip' => $this->input->post('keterangan_arsip')
+                ];
+
                 if (!empty($data['riwayat']['kode_qr'])) {
-                    //  arsip punya QR : tetap pakai data lama
-                    $inputan['kode_qr'] = $data['riwayat']['kode_qr'];
+
+                    // punya QR → pakai data lama
+                    $inputan['kode_qr']       = $data['riwayat']['kode_qr'];
                     $inputan['nomor_dokumen'] = $data['riwayat']['nomor_dokumen'];
+
                 } else {
-                    // tidak punya QR : ambil nomor dokumen dari input
-                    $inputan['kode_qr'] = null;
-                    $inputan['nomor_dokumen'] = $this->input->post("nomor_dokumen");
+
+                    // manual nomor
+                    $inputan['kode_qr']       = null;
+                    $inputan['nomor_dokumen'] = $this->input->post('nomor_dokumen');
                 }
 
                 if (!empty($_FILES['file']['name'])) {
+
                     $config['upload_path']   = './assets/arsip/';
-                    $config['allowed_types'] = 'pdf|doc|docx|jpg|png';
-                    $config['max_size']      = 10000;
+                    $config['allowed_types'] = 'pdf|doc|docx|jpg|jpeg|png|zip';
+                    $config['max_size']      = 102400;
 
                     $this->load->library('upload', $config);
 
                     if ($this->upload->do_upload('file')) {
+
                         $inputan['file_arsip'] = $this->upload->data('file_name');
+
                     } else {
+
                         $this->session->set_flashdata(
                             'gagal',
                             'Gagal upload file arsip: ' . $this->upload->display_errors('', '')
                         );
-                        redirect('petugas/riwayat/edit/' . $id_arsip);
+
+                        redirect('petugas/riwayat/edit/'.$id_arsip);
                         return;
                     }
+
                 } else {
-                    //pakai file lama
+
+                    // pakai file lama
                     $inputan['file_arsip'] = $data['riwayat']['file_arsip'];
                 }
 
-                $this->Riwayat_model->ubah($id_arsip, $inputan);
+                if ($this->Riwayat_model->ubah($id_arsip, $inputan)) {
 
-                $this->session->set_flashdata('sukses', 'Arsip berhasil diubah');
+                    $this->session->set_flashdata('sukses', 'Arsip berhasil diubah');
+
+                } else {
+
+                    $this->session->set_flashdata('gagal', 'Gagal mengubah arsip');
+                }
+
                 redirect('petugas/riwayat', 'refresh');
             }
         }
-
         $this->load->view('petugas/header');
         $this->load->view('petugas/riwayat_edit', $data);
         $this->load->view('petugas/footer');
     }
 
+
     function hapus($id_arsip){
-
-        $this->Riwayat_model->hapus($id_arsip);
-
-        //redirect ke kategori 
-        $this->session->set_flashdata('sukses', 'Riwayat Arsip berhasil dihapus');
+        if ($this->Riwayat_model->hapus($id_arsip)) {
+            $this->session->set_flashdata('sukses', 'Riwayat Arsip berhasil dihapus');
+        } else {
+            $this->session->set_flashdata('gagal', 'Gagal menghapus riwayat');
+        }
         redirect('petugas/riwayat', 'refresh');
     }
+
 }

@@ -29,9 +29,18 @@ class Petugas_model extends CI_Model {
     }
 
     function edit($input, $id_petugas){
+        $data = [
+            'nama_petugas' => $input['nama_petugas'],
+            'username_petugas' => $input['username_petugas'],
+            'id_unit' => $input['id_unit']
+        ];
+        if (isset($input['password_petugas'])) {
+            $data['password_petugas'] = $input['password_petugas'];
+        }
         $this->db->where('id_petugas', $id_petugas);
-		$this->db->update('petugas', $input);
+        $this->db->update('petugas', $data);
     }
+
 
     // jika ubah unit
     function update_unit($id_petugas, $id_unit_baru) {

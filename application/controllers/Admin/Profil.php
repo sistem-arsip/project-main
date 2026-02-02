@@ -14,14 +14,20 @@ class Profil extends CI_Controller {
         }
     }
     function periksa_html($str){
+        if ($str === '') return TRUE;
         $clean = strip_tags($str);
         if ($str !== $clean) {
-            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            $this->form_validation->set_message(
+                'periksa_html',
+                'Input tidak boleh mengandung tag HTML.'
+            );
             return FALSE;
         }
         return TRUE;
     }
+
     function inputan_nama($nama_admin){
+        if ($nama_admin === '') return TRUE;
         if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_admin)) {
             $this->form_validation->set_message(
                 'inputan_nama',
@@ -32,6 +38,7 @@ class Profil extends CI_Controller {
         return TRUE;
     }
     function inputan_username($username_admin){
+        if ($username_admin === '') return TRUE;
         if (!preg_match("/^[a-zA-Z0-9._-]+$/", $username_admin)) {
             $this->form_validation->set_message(
                 'inputan_username',
@@ -71,10 +78,13 @@ class Profil extends CI_Controller {
         if ($this->form_validation->run() == TRUE) {
 
             $data = [
-                "nama_admin" => $this->input->post("nama_admin", TRUE),
-                "username_admin" => $this->input->post("username_admin", TRUE),
-                "password_admin" => $this->input->post("password_admin", TRUE)
-            ];
+                    "nama_admin" => $this->input->post("nama_admin", TRUE),
+                    "username_admin" => $this->input->post("username_admin", TRUE)
+                ];
+                $password = $this->input->post("password_admin", TRUE);
+                if (!empty($password)) {
+                    $data["password_admin"] = md5($password);
+                }
 
             // jalankan update
             if ($this->Profil_model->ubah($id_admin, $data)) {

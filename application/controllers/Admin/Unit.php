@@ -14,14 +14,19 @@ class Unit extends CI_Controller {
         }
     }
     function periksa_html($str){
+        if ($str === '') return TRUE; // required
         $clean = strip_tags($str);
         if ($str !== $clean) {
-            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            $this->form_validation->set_message(
+                'periksa_html',
+                'Input tidak boleh mengandung tag HTML.'
+            );
             return FALSE;
         }
         return TRUE;
     }
     function inputan_unit($nama_unit){
+        if ($nama_unit === '') return TRUE; // rquired
         if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_unit)) {
             $this->form_validation->set_message(
                 'inputan_unit',
@@ -31,6 +36,7 @@ class Unit extends CI_Controller {
         }
         return TRUE;
     }
+
     function index() {
         $data["unit"] = $this->Unit_model->tampil_aktif();
 
@@ -74,7 +80,10 @@ class Unit extends CI_Controller {
     function edit($id_unit){
         $data['unit'] = $this->Unit_model->detail($id_unit);
 
-        $input = $this->input->post();
+        $input = [
+            'nama_unit' => $this->input->post('nama_unit'),
+            'keterangan_unit' => $this->input->post('keterangan_unit')
+        ];
 
         if (!empty($input)) {
             $this->form_validation->set_rules('nama_unit','Nama Unit','required|trim|callback_cek_nama_unit['.$id_unit.']|callback_periksa_html|callback_inputan_unit');

@@ -20,8 +20,6 @@
                 </div>
 
                 <form method="post" enctype="multipart/form-data">
-                    <!-- Hidden ID Arsip -->
-                    <input type="hidden" name="id_arsip" value="<?php echo $arsip['id_arsip']; ?>">
                         <!-- JIKA ARSIP PUNYA QR -->
                         <?php if (!empty($arsip['kode_qr'])): ?>
 

@@ -18,7 +18,6 @@
                 </div>
 
                 <form method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id_kategori" value="<?php echo set_value('nama_kategori', $kategori['id_kategori']) ?>">
 
                     <div class="mb-3">
                         <label for="nama_kategori" class="form-label">Nama Kategori</label>

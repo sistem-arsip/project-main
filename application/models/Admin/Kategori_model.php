@@ -37,9 +37,15 @@ class Kategori_model extends CI_Model {
         return $query->num_rows() > 0 ? TRUE : FALSE;
     }
     function edit($input, $id_kategori){
+        $data = [
+            'nama_kategori' => $input['nama_kategori'],
+            'keterangan_kategori' => $input['keterangan_kategori']
+        ];
+
         $this->db->where('id_kategori', $id_kategori);
-		$this->db->update('kategori', $input);
+        $this->db->update('kategori', $data);
     }
+
     // New
     function update_status($id_kategori, $status) {
         $this->db->where('id_kategori', $id_kategori);

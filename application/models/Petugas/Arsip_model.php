@@ -63,16 +63,14 @@ class Arsip_model extends CI_Model {
         $query = $this->db->get('arsip');
         return $query->num_rows() > 0 ? TRUE : FALSE;
     }
-
-
     function ubah($id_arsip, $data) {
         $this->db->where('id_arsip', $id_arsip);
-        $this->db->update('arsip', $data);
+        return $this->db->update('arsip', $data);
     }
     
     function hapus($id_arsip){
-            $this->db->where('id_arsip', $id_arsip);
-            $this->db->delete('arsip');
+        $this->db->where('id_arsip', $id_arsip);
+        return $this->db->delete('arsip');
     }
 
     function get_nama_unit($id_unit) {

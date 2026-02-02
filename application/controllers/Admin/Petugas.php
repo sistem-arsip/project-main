@@ -15,14 +15,20 @@ class Petugas extends CI_Controller {
         }
     }
     function periksa_html($str){
+        if ($str === '') return TRUE; // req
         $clean = strip_tags($str);
         if ($str !== $clean) {
-            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            $this->form_validation->set_message(
+                'periksa_html',
+                'Input tidak boleh mengandung tag HTML.'
+            );
             return FALSE;
         }
         return TRUE;
     }
     function inputan_nama($nama_petugas){
+        if ($nama_petugas === '') return TRUE; // required
+
         if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_petugas)) {
             $this->form_validation->set_message(
                 'inputan_nama',
@@ -33,6 +39,7 @@ class Petugas extends CI_Controller {
         return TRUE;
     }
     function inputan_username($username_petugas){
+        if ($username_petugas === '') return TRUE;
         if (!preg_match("/^[a-zA-Z0-9._-]+$/", $username_petugas)) {
             $this->form_validation->set_message(
                 'inputan_username',

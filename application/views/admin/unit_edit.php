@@ -19,7 +19,6 @@
                 </div>
 
                 <form method="post">
-                    <input type="hidden" name="id_unit" value="<?php echo set_value("nama_unit", $unit['id_unit']) ?>">
 
                     <div class="mb-3">
                         <label for="nama_unit" class="form-label">Nama Unit</label>

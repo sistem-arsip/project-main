@@ -14,14 +14,24 @@ class Kategori extends CI_Controller {
         }
     }
     function periksa_html($str){
+        if ($str === null || $str === '') {
+            return TRUE;
+        }
         $clean = strip_tags($str);
+
         if ($str !== $clean) {
-            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            $this->form_validation->set_message(
+                'periksa_html',
+                'Input tidak boleh mengandung tag HTML.'
+            );
             return FALSE;
         }
         return TRUE;
     }
     function inputan_kategori($nama_kategori){
+        if ($nama_kategori === null || $nama_kategori === '') {
+            return TRUE;
+        }
         if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_kategori)) {
             $this->form_validation->set_message(
                 'inputan_kategori',

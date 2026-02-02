@@ -18,56 +18,70 @@
                         <i class="fa fa-arrow-left"></i> Kembali
                     </a>
                 </div>
+                    <form method="post" enctype="multipart/form-data">
 
-                <form method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id_arsip" value="<?php echo $riwayat['id_arsip']; ?>">
-
-                    <?php if (!empty($riwayat['kode_qr'])): ?>
-                        <div class="mb-3">
-                            <label class="form-label">Kode QR</label>
-                            <input type="text" class="form-control" name="kode_qr" value="<?php echo $riwayat['kode_qr']; ?>"
-                                <?php echo !empty($riwayat['kode_qr']) ? 'readonly' : ''; ?>>
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="mb-3">
-                        <label class="form-label">Nomor Surat / Dokumen</label>
-                        <input type="text" class="form-control" name="nomor_dokumen" value="<?php echo $riwayat['nomor_dokumen']; ?>"
-                            <?php echo !empty($riwayat['kode_qr']) ? 'readonly' : ''; ?>>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Kategori</label>
-                        <select class="form-select" name="id_kategori" required>
-                            <option value="">Pilih kategori</option>
-                            <?php foreach ($kategori as $k): ?>
-                                <option value="<?= $k['id_kategori']; ?>" <?= $k['id_kategori'] == $riwayat['id_kategori'] ? 'selected' : ''; ?>>
-                                    <?= $k['nama_kategori']; ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Keterangan</label>
-                        <textarea class="form-control" name="keterangan_arsip" rows="3" required><?php echo $riwayat['keterangan_arsip']; ?></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">File</label>
-                        <input type="file" class="form-control" name="file">
-                        <div class="form-text">Kosongkan jika tidak ingin mengubah file.</div>
-                        <?php if (!empty($riwayat['file_arsip'])): ?>
-                            <a href="<?= base_url('assets/arsip/' . $riwayat['file_arsip']); ?>" target="_blank" class="btn btn-sm btn-secondary mt-2">Lihat file saat ini</a>
+                        <?php if (!empty($riwayat['kode_qr'])): ?>
+                            <div class="mb-3">
+                                <label class="form-label">Kode QR</label>
+                                <input type="text"
+                                    class="form-control"
+                                    name="kode_qr"
+                                    value="<?= set_value('kode_qr', $riwayat['kode_qr']); ?>"
+                                    readonly>
+                            </div>
                         <?php endif; ?>
-                    </div>
 
-                    <div>
-                        <button type="submit" class="btn btn-sm btn-success">
-                            <i class="fa fa-save"></i> Simpan Perubahan
-                        </button>
-                    </div>
-                </form>
+                        <div class="mb-3">
+                            <label class="form-label">Nomor Surat / Dokumen</label>
+                            <input type="text"
+                                class="form-control"
+                                name="nomor_dokumen"
+                                value="<?= set_value('nomor_dokumen', $riwayat['nomor_dokumen']); ?>"
+                                <?= !empty($riwayat['kode_qr']) ? 'readonly' : ''; ?>>
+                            <?= form_error('nomor_dokumen', "<div class='text-danger small'>", "</div>"); ?>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Kategori</label>
+                            <select class="form-select" name="id_kategori" required>
+                                <?php foreach ($kategori as $k): ?>
+                                    <option value="<?= $k['id_kategori']; ?>"
+                                        <?= set_value('id_kategori', $riwayat['id_kategori']) == $k['id_kategori'] ? 'selected' : ''; ?>>
+                                        <?= $k['nama_kategori']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Keterangan</label>
+                            <textarea class="form-control"
+                                    name="keterangan_arsip"
+                                    rows="3"><?= set_value('keterangan_arsip', $riwayat['keterangan_arsip']); ?></textarea>
+                            <?= form_error('keterangan_arsip', "<div class='text-danger small'>", "</div>"); ?>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">File</label>
+                            <input type="file" class="form-control" name="file">
+                            <div class="form-text">Kosongkan jika tidak ingin mengubah file.</div>
+
+                            <?php if (!empty($riwayat['file_arsip'])): ?>
+                                <a href="<?= base_url('assets/arsip/' . $riwayat['file_arsip']); ?>"
+                                target="_blank"
+                                class="btn btn-sm btn-secondary mt-2">
+                                Lihat file saat ini
+                                </a>
+                            <?php endif; ?>
+                        </div>
+
+                        <div>
+                            <button type="submit" class="btn btn-sm btn-success">
+                                <i class="fa fa-save"></i> Simpan Perubahan
+                            </button>
+                        </div>
+                    </form>
+
             </div>
         </div>
     </div>

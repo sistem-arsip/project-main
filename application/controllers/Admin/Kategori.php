@@ -15,14 +15,22 @@ class Kategori extends CI_Controller {
     }
 
     function periksa_html($str){
+        if ($str == '') return TRUE; // skip kalau kosong
+    
         $clean = strip_tags($str);
         if ($str !== $clean) {
-            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            $this->form_validation->set_message(
+                'periksa_html',
+                'Input tidak boleh mengandung tag HTML.'
+            );
             return FALSE;
         }
         return TRUE;
     }
+
     function inputan_kategori($nama_kategori){
+        if ($nama_kategori == '') return TRUE; // skip kalau kosong
+    
         if (!preg_match("/^[a-zA-Z0-9 ._-]+$/", $nama_kategori)) {
             $this->form_validation->set_message(
                 'inputan_kategori',
@@ -77,7 +85,10 @@ class Kategori extends CI_Controller {
     function edit($id_kategori){
         $data['kategori'] = $this->Kategori_model->detail($id_kategori);
 
-        $input = $this->input->post();
+        $input = [
+            'nama_kategori' => $this->input->post('nama_kategori'),
+            'keterangan_kategori' => $this->input->post('keterangan_kategori')
+        ];
 
         if (!empty($input)) {
             $this->form_validation->set_rules('nama_kategori','Nama Kategori','required|trim|callback_cek_nama_kategori['.$id_kategori.']|callback_periksa_html|callback_inputan_kategori');

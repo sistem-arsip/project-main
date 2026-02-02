@@ -301,9 +301,11 @@ class Arsip extends CI_Controller {
                 }
 
                 // ================= UPDATE =================
-                $this->Arsip_model->ubah($id_arsip, $inputan);
-
-                $this->session->set_flashdata('sukses', 'Arsip berhasil diperbarui');
+                if ($this->Arsip_model->ubah($id_arsip, $inputan)) {
+                    $this->session->set_flashdata('sukses', 'Arsip berhasil diperbarui');
+                } else {
+                    $this->session->set_flashdata('gagal', 'Gagal memperbarui arsip');
+                }
                 redirect('petugas/arsip', 'refresh');
             }
         }
@@ -327,9 +329,11 @@ class Arsip extends CI_Controller {
         //     }
         // }
         
-        $this->Arsip_model->hapus($id_arsip);
-
-        $this->session->set_flashdata('sukses', 'Arsip berhasil dihapus');
+        if ($this->Arsip_model->hapus($id_arsip)) {
+            $this->session->set_flashdata('sukses', 'Arsip berhasil dihapus');
+        } else {
+            $this->session->set_flashdata('gagal', 'Gagal menghapus arsip');
+        }
         redirect('petugas/arsip', 'refresh');
     }
  

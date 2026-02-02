@@ -19,7 +19,6 @@
                 </div>
 
                 <form method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id_petugas" value="<?php echo set_value('nama_petugas', $petugas['id_petugas']) ?>">
 
                     <div class="mb-3">
                         <label for="nama_petugas" class="form-label">Nama</label>

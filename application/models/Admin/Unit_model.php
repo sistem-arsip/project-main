@@ -37,8 +37,13 @@ class Unit_model extends CI_Model {
     }
 
     function edit($input, $id_unit){
+        $data = [
+            'nama_unit' => $input['nama_unit'],
+            'keterangan_unit' => $input['keterangan_unit']
+        ];
+
         $this->db->where('id_unit', $id_unit);
-		$this->db->update('unit', $input);
+        $this->db->update('unit', $data);
     }
     // NEW
      function update_status($id_unit, $status) {

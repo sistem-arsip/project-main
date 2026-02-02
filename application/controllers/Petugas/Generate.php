@@ -17,14 +17,24 @@ class Generate extends CI_Controller {
         }
     }
     function periksa_html($str){
+        if ($str === null || $str === '') {
+            return TRUE;
+        }
         $clean = strip_tags($str);
+
         if ($str !== $clean) {
-            $this->form_validation->set_message('periksa_html', 'Input tidak boleh mengandung tag HTML.');
+            $this->form_validation->set_message(
+                'periksa_html',
+                'Input tidak boleh mengandung tag HTML.'
+            );
             return FALSE;
         }
         return TRUE;
     }
     function inputan_nomor_dokumen($nomor_dokumen){
+        if ($nomor_dokumen === null || $nomor_dokumen === '') {
+            return TRUE;
+        }
         if (!preg_match("/^[\p{Arabic}a-zA-Z0-9 ._\-\/]+$/u", $nomor_dokumen)) {
             $this->form_validation->set_message(
                 'inputan_nomor_dokumen',
